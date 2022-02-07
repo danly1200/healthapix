@@ -90,7 +90,7 @@ yum install openssl openssl-devel
 
 ```bash
 # Create a directory to store keys and certificats.
-# Note : Replace the <domain-name> in the command below:
+# Note : Replace the <domain-name> in the commands below:
 
 cd
 mkdir -p sslcerts
@@ -107,7 +107,7 @@ mkdir -p /etc/ssl/<domain-name>
 cp *.pem /etc/ssl/<domain-name>/
 ```
 
-#### Generate a key and certificate signing requsest for CA - Optional
+#### Generate a key and certificate signing request for CA - Optional
 
 This step can be skipped in order to complete this installation by using the self signed certificate created in previous step. A CA signed certificate is required for the TLS but not immediatedly.
 
