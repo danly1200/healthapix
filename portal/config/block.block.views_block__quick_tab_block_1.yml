@@ -1,0 +1,33 @@
+uuid: ba629a77-7c1a-4db9-9d15-56fde8e9a06c
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.quick_tab
+  module:
+    - ctools
+    - views
+  theme:
+    - fhir_responsive_theme
+id: views_block__quick_tab_block_1
+theme: fhir_responsive_theme
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:quick_tab-block_1'
+settings:
+  id: 'views_block:quick_tab-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      smartdocs: smartdocs
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

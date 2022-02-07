@@ -1,0 +1,5 @@
+dexp_builder.settings:
+  title: 'Builder settings'
+  parent: system.admin_config_content
+  description: 'Builder Settings.'
+  route_name: dexp_builder.settings

@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.field_collection_item.field_carousel_item.field_content
+    - field.field.field_collection_item.field_carousel_item.field_image
+    - field_collection.field_collection.field_carousel_item
+  module:
+    - image
+    - text
+id: field_collection_item.field_carousel_item.default
+targetEntityType: field_collection_item
+bundle: field_carousel_item
+mode: default
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+hidden: {  }

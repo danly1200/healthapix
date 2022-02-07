@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="SoF_FaultInvalidClientAssertion">
+    <DisplayName>SoF_FaultInvalidClientAssertion</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <AssignVariable>
+            <Name>error-description</Name>
+            <Value>response.content</Value>
+        </AssignVariable>
+        <Set>
+            <Headers>
+                <Header name="Access-Control-Allow-Origin">*</Header>
+                <Header name="Access-Control-Allow-Methods">POST, OPTIONS</Header>
+                <Header name="Access-Control-Allow-Headers">Accept, Content-Type, connection, content-length,
+				Authorization, x-requested-with</Header>
+                <Header name="Access-Control-Allow-Credentials">true</Header>
+            </Headers>
+            <Payload contentType="application/json">{"error":"Invalid request","error_decription": " Client Assertion invalid"}</Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>unauthorized</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

@@ -1,0 +1,18 @@
+uuid: 33811b3a-a097-43e9-8ba2-5e27cc0b1b39
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_custom_api_form
+    - serialization
+    - user
+id: api_resource
+plugin_id: api_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

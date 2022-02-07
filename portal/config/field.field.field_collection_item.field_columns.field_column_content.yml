@@ -1,0 +1,25 @@
+uuid: 0e2dd043-5beb-45ae-9387-d0b4b31e1546
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.field_collection_item.field_column_content
+    - field_collection.field_collection.field_columns
+  module:
+    - text
+_core:
+  default_config_hash: jFddTATVyGAUg_qQF3m_huzrr0YcPDsr9z_r4P_Xumc
+id: field_collection_item.field_columns.field_column_content
+field_name: field_column_content
+entity_type: field_collection_item
+bundle: field_columns
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

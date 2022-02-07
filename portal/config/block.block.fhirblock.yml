@@ -1,0 +1,26 @@
+uuid: a67ff420-cfa8-4e13-b7ff-149ce77a72dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_blocks
+    - system
+  theme:
+    - fhir_responsive_theme
+id: fhirblock
+theme: fhir_responsive_theme
+region: content
+weight: -8
+provider: null
+plugin: fhir_block
+settings:
+  id: fhir_block
+  label: 'FHIR block'
+  provider: fhir_blocks
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

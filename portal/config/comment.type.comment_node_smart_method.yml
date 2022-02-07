@@ -1,0 +1,8 @@
+uuid: 0e7db83e-c1ea-4393-a695-58dbec608609
+langcode: en
+status: true
+dependencies: {  }
+id: comment_node_smart_method
+label: 'SmartDocs Method comment'
+target_entity_type_id: node
+description: null

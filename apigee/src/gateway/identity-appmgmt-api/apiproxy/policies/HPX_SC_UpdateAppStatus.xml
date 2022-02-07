@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_SC_UpdateAppStatus">
+    <DisplayName>HPX_SC_UpdateAppStatus</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="HPX_SC_UpdateAppStatus">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{adminCredentials}</Header>
+            </Headers>
+            <Verb>POST</Verb>
+        </Set>
+    </Request>
+    <Response>GetAppDetailsCalloutResponse</Response>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="ApigeeMgmtServer"/>
+        </LoadBalancer>
+        <Path>{{ appStatus_path }}</Path>
+    </HTTPTargetConnection>
+</ServiceCallout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="8" name="fhirApis">
+    <Basepaths>/v1/ghc</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1594577285592</CreatedAt>
+    <CreatedBy>shashank@digitalapicraft.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>fhirApis</DisplayName>
+    <LastModifiedAt>1594577285592</LastModifiedAt>
+    <LastModifiedBy>shashank@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:20cd953eea157f2233658a405760516b908d446b95964ddc29073c12eb0247168a6b7a2d285312c78442be3ca08b52da99a1c7c119da0c7909850ec568c97efb</ManifestVersion>
+    <Policies>
+        <Policy>HPX_CORSPreflight</Policy>
+        <Policy>HPX_Fault_InvalidAccessToken</Policy>
+        <Policy>HPX_RemoveTargetPathSuffix</Policy>
+        <Policy>HPX_SetCORSHeaders</Policy>
+        <Policy>HPX_SetTargetServerName</Policy>
+        <Policy>HPX_VerifyAccessToken</Policy>
+        <Policy>HPX_validateApiKey</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://RemoveTargetSuffic.js</Resource>
+        <Resource>jsc://SetTargetServerName.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>dstu2-target</TargetEndpoint>
+        <TargetEndpoint>r4-target</TargetEndpoint>
+        <TargetEndpoint>stu3-target</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

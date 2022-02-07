@@ -1,0 +1,54 @@
+.conformance-page {
+  width: 100%;
+}
+.conformance-page .material-icons {
+  font-size: 1.1rem;
+}
+.conformance-page thead {
+  background-color: #F8F8F8;
+}
+.conformance-page .mdc-data-table__header-cell {
+  font-weight: 600;
+}
+.conformance-page .support-conformance-class td, .conformance-page .resource-conformance-class td {
+  font-weight: 600;
+}
+.conformance-page .end-conformance-class td {
+  color: #4285F4;
+}
+.conformance-page .navtext {
+  color: rgba(0, 0, 0, 0.87);
+  padding: 4px 2px;
+  position: relative;
+  opacity: 0.7;
+}
+.conformance-page .navtext span {
+  font-weight: 400;
+  letter-spacing: 1px;
+  bottom: 22px;
+  left: -30px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 0;
+}
+.conformance-page .navtext:hover span {
+  width: auto;
+  padding: 0 30px;
+  overflow: visible;
+}
+.conformance-page .search_params_table {
+  width: 100%;
+}
+.conformance-page .search_params_table td.param-name {
+  width: 40% !important;
+}
+.conformance-page .search_params_table td.param-name-val {
+  padding-left: 80px;
+}
+.conformance-page .hide {
+  display: none;
+}
+
+/*# sourceMappingURL=conformance.css.map */

@@ -1,0 +1,2087 @@
+{
+  "swagger": "2.0",
+  "info":{
+   "description": 
+    "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+   "version": "1.4.0",
+   "title": "FHIR Coverage resource API documentation"
+  },
+  "host": "healthapix-demo-test.apigee.net",
+  "schemes":[
+     "https"
+     ],
+  "basePath": "/v1/dstu2",
+  "produces":[
+    "application/json+fhir;charset=UTF-8",
+    "application/xml+fhir;charset=UTF-8"
+    ], 
+  "definitions": {
+    "Coverage": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "div": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "status",
+            "div"
+          ]
+        },
+        "issuerReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "period": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "minLength": 1
+            },
+            "end": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ]
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "system": {
+              "type": "string",
+              "minLength": 1
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            },
+            "display": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "system",
+            "code",
+            "display"
+          ]
+        },
+        "planholderReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "beneficiaryReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "relationship": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "code"
+          ]
+        },
+        "identifier": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "system",
+              "value"
+            ],
+            "properties": {
+              "system": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "plan": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subPlan": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependent": {
+          "type": "number"
+        },
+        "sequence": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "text",
+        "issuerReference",
+        "period",
+        "type",
+        "planholderReference",
+        "beneficiaryReference",
+        "relationship",
+        "identifier",
+        "plan",
+        "subPlan",
+        "dependent",
+        "sequence"
+      ]
+    },
+    "metaBody": {
+      "type": "string"
+    }
+  },
+  "paths": {
+     "/Coverage": {
+      "parameters": [],
+      "post": {
+        "tags":[
+          "Coverage"
+          ],
+        "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Coverage"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "required": false,
+            "description": "Specify the search query for conditional create.",
+            "type": "string"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Coverage could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Coverage not found."
+          },
+          "422": {
+            "description": "The Coverage resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Create Coverage",
+        "description": "Create a new Coverage with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      },
+      "put": {
+         "tags":[
+          "Coverage"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Coverage"
+            }
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "beneficiaryidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "beneficiaryreference",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "dependent",
+            "type": "string",
+            "in": "query",
+            "description": "Dependent number"
+          },
+          {
+            "name": "group",
+            "type": "string",
+            "in": "query",
+            "description": "Group identifier"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The primary identifier of the insured and the coverage"
+          },
+          {
+            "name": "issueridentifier",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "issuerreference",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "plan",
+            "type": "string",
+            "in": "query",
+            "description": "A plan or policy identifier"
+          },
+          {
+            "name": "planholderidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "planholderreference",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "sequence",
+            "type": "string",
+            "in": "query",
+            "description": "Sequence number"
+          },
+          {
+            "name": "subplan",
+            "type": "string",
+            "in": "query",
+            "description": "Sub-plan identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "The kind of coverage (health plan, auto, Workers Compensation)"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage Updated."
+          },
+          "201": {
+            "description": "Coverage Created."
+          },
+          "400": {
+            "description": "Coverage could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverage Conditional Update",
+        "description": "The conditional update interaction is used to update an existing Coverage based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      },
+      "delete": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "beneficiaryidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "beneficiaryreference",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "dependent",
+            "type": "string",
+            "in": "query",
+            "description": "Dependent number"
+          },
+          {
+            "name": "group",
+            "type": "string",
+            "in": "query",
+            "description": "Group identifier"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The primary identifier of the insured and the coverage"
+          },
+          {
+            "name": "issueridentifier",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "issuerreference",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "plan",
+            "type": "string",
+            "in": "query",
+            "description": "A plan or policy identifier"
+          },
+          {
+            "name": "planholderidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "planholderreference",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "sequence",
+            "type": "string",
+            "in": "query",
+            "description": "Sequence number"
+          },
+          {
+            "name": "subplan",
+            "type": "string",
+            "in": "query",
+            "description": "Sub-plan identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "The kind of coverage (health plan, auto, Workers Compensation)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Coverage not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverage Conditional Delete",
+        "description": "The conditional delete interaction allows a client to delete Coverage/Coverages  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      },
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "beneficiaryidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "beneficiaryreference",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "dependent",
+            "type": "string",
+            "in": "query",
+            "description": "Dependent number"
+          },
+          {
+            "name": "group",
+            "type": "string",
+            "in": "query",
+            "description": "Group identifier"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The primary identifier of the insured and the coverage"
+          },
+          {
+            "name": "issueridentifier",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "issuerreference",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "plan",
+            "type": "string",
+            "in": "query",
+            "description": "A plan or policy identifier"
+          },
+          {
+            "name": "planholderidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "planholderreference",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "sequence",
+            "type": "string",
+            "in": "query",
+            "description": "Sequence number"
+          },
+          {
+            "name": "subplan",
+            "type": "string",
+            "in": "query",
+            "description": "Sub-plan identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "The kind of coverage (health plan, auto, Workers Compensation)"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Coverage"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverages Search",
+        "description": "Returns Coverages based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}": {
+      "parameters": [],
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage Instance",
+            "schema": {
+              "$ref": "#/definitions/Coverage"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Read Coverage",
+        "description": "Returns details of Coverage having id given in path.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      },
+      "put": {
+         "tags":[
+          "Coverage"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Coverage"
+            }
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage Updated."
+          },
+          "201": {
+            "description": "Coverage Created."
+          },
+          "400": {
+            "description": "Coverage could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Update Coverage",
+        "description": "Update an existing Coverage by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      },
+      "delete": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Coverage not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Delete Coverage",
+        "description": "The delete interaction removes an existing Coverage.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/_history": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Coverage"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverage History",
+        "description": "It retrieves the history of a particular Coverage identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/_history": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Coverage"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverages History",
+        "description": "It retrieves the history of all resources of Coverage.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/_history/{vid}": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage Instance",
+            "schema": {
+              "$ref": "#/definitions/Coverage"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverage Version Read",
+        "description": "This interaction preforms a version specific read of Coverage resource.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/$meta": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for Coverage"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverages Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for Coverages.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/$meta": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverage Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given Coverage resource.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/_history/{vid}/$meta": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverage Version based Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the Coverage.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/{type}": {
+      "get": {
+         "tags":[
+          "Coverage"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "type",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular Coverage"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": " Compartment Search",
+        "description": "Search the specified resource type in Coverage compartment.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/_search": {
+      "post": {
+         "tags":[
+          "Coverage"
+          ],
+        "consumes":[
+        "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "beneficiaryidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "beneficiaryreference",
+            "type": "string",
+            "in": "query",
+            "description": "Covered party"
+          },
+          {
+            "name": "dependent",
+            "type": "string",
+            "in": "query",
+            "description": "Dependent number"
+          },
+          {
+            "name": "group",
+            "type": "string",
+            "in": "query",
+            "description": "Group identifier"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The primary identifier of the insured and the coverage"
+          },
+          {
+            "name": "issueridentifier",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "issuerreference",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "plan",
+            "type": "string",
+            "in": "query",
+            "description": "A plan or policy identifier"
+          },
+          {
+            "name": "planholderidentifier",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "planholderreference",
+            "type": "string",
+            "in": "query",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "sequence",
+            "type": "string",
+            "in": "query",
+            "description": "Sequence number"
+          },
+          {
+            "name": "subplan",
+            "type": "string",
+            "in": "query",
+            "description": "Sub-plan identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "The kind of coverage (health plan, auto, Workers Compensation)"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "formData",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "beneficiaryidentifier",
+            "type": "string",
+            "in": "formData",
+            "description": "Covered party"
+          },
+          {
+            "name": "beneficiaryreference",
+            "type": "string",
+            "in": "formData",
+            "description": "Covered party"
+          },
+          {
+            "name": "dependent",
+            "type": "string",
+            "in": "formData",
+            "description": "Dependent number"
+          },
+          {
+            "name": "group",
+            "type": "string",
+            "in": "formData",
+            "description": "Group identifier"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "formData",
+            "description": "The primary identifier of the insured and the coverage"
+          },
+          {
+            "name": "issueridentifier",
+            "type": "string",
+            "in": "formData",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "issuerreference",
+            "type": "string",
+            "in": "formData",
+            "description": "The identity of the insurer"
+          },
+          {
+            "name": "plan",
+            "type": "string",
+            "in": "formData",
+            "description": "A plan or policy identifier"
+          },
+          {
+            "name": "planholderidentifier",
+            "type": "string",
+            "in": "formData",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "planholderreference",
+            "type": "string",
+            "in": "formData",
+            "description": "Reference to the planholder"
+          },
+          {
+            "name": "sequence",
+            "type": "string",
+            "in": "formData",
+            "description": "Sequence number"
+          },
+          {
+            "name": "subplan",
+            "type": "string",
+            "in": "formData",
+            "description": "Sub-plan identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "formData",
+            "description": "The kind of coverage (health plan, auto, Workers Compensation)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Coverage bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Coverage"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Coverages Search using POST",
+        "description": "This interaction searches a set of Coverages based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/$meta-add": {
+      "post": {
+         "tags":[
+          "Coverage"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Coverage could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Coverage not found."
+          },
+          "422": {
+            "description": "The Coverage resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Coverage metadata",
+        "description": "Add a metadata info Coverage with specified id.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    },
+    "/Coverage/{id}/_history/{vid}/$meta-add": {
+      "post": {
+         "tags":[
+          "Coverage"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Coverage.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Coverage.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Coverage could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Coverage not found."
+          },
+          "422": {
+            "description": "The Coverage resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Coverage Version based Metadata",
+        "description": "Add metadata info to specified Coverage resource.<p><a href = 'https://www.hl7.org/fhir/coverage.html'>FHIR documentation for Coverage.</a></p>"
+      }
+    }
+  },
+  
+  "securityDefinitions": {
+    "OAuthV2B2C": {
+      "type": "oauth2",
+      "description": "Security scheme for B2C flow using authorization code flow.",
+      "scopes": {
+        "patient/Coverage.read": "Read permissions for Coverage demographics.",
+        "patient/Coverage.write": "Write permissions for Coverage demographics."
+      },
+      "flow": "accessCode",
+      "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken"
+    },
+  "OAuthV2B2B": {
+      "type": "oauth2",
+      "description": "Security scheme for B2B flow using authorization code flow.",
+      "flow": "application",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+      "scopes": {
+        "patient/Coverage.read": "Read permissions for Coverage demographics.",
+        "patient/Coverage.write": "Write permissions for Coverage demographics."
+      }
+    }
+}
+}

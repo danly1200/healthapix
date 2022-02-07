@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="HPX_ValidatePatientReference">
+    <DisplayName>HPX_ValidatePatientReference</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://HPX_ValidatePatientReference.js</ResourceURL>
+    <IncludeURL>jsc://jsonpath-0.8.0.js</IncludeURL>
+</Javascript>

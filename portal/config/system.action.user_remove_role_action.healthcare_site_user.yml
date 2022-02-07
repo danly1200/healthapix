@@ -1,0 +1,14 @@
+uuid: 39321f36-90bb-485a-8559-7222b7584c27
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.healthcare_site_user
+  module:
+    - user
+id: user_remove_role_action.healthcare_site_user
+label: 'Remove the healthcare_site_user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: healthcare_site_user

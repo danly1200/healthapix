@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetClientIdForMetadata">
+    <DisplayName>HPX_SetClientIdForMetadata</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>client_id</Name>
+        <Ref>default.fhir.app.client_id</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

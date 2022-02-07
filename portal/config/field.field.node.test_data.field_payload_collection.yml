@@ -1,0 +1,31 @@
+uuid: 86536827-5962-44aa-9c46-1e8425822b53
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_payload_collection
+    - node.type.test_data
+    - paragraphs.paragraphs_type.payload_fields
+  module:
+    - entity_reference_revisions
+id: node.test_data.field_payload_collection
+field_name: field_payload_collection
+entity_type: node
+bundle: test_data
+label: 'Test data Collection'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      payload_fields: payload_fields
+    target_bundles_drag_drop:
+      payload_fields:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

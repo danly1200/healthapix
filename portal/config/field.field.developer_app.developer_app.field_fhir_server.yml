@@ -1,0 +1,20 @@
+uuid: e2c81ca0-e77b-47f2-b726-e63c826d2652
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_fhir_server
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_fhir_server
+field_name: field_fhir_server
+entity_type: developer_app
+bundle: developer_app
+label: 'FHIR server'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

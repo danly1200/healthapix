@@ -1,0 +1,30 @@
+uuid: a66de705-60fc-4471-bf8b-ca94582aa5fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.test_data.field_payload_collection
+    - node.type.test_data
+  module:
+    - entity_reference_revisions
+    - user
+id: node.test_data.default
+targetEntityType: node
+bundle: test_data
+mode: default
+content:
+  field_payload_collection:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

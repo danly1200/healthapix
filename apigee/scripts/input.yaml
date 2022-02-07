@@ -1,0 +1,34 @@
+GHC:
+  fhir_version: R4
+  proxyurl: https://healthapix-dev-test.apigee.net/
+  google_api_version: v1beta1
+  pubsub_topic: projects/ghcfhirtest/topics/ghcfhirtest
+  enable_update_create: false
+  disable_referential_integrity: true
+  disable_resource_versioning: false
+  enable_history_import: false
+  gcp_project:
+    name: ghcfhirtest
+    number: 172650815065
+  location:
+    name: us-central1
+  dataset:
+    name: r4_dataset1
+  fhir_store_name:
+    name: fhirstore_r4_instance_115
+  custom_proxy:
+    option: true
+    proxy: custom_apigee_proxy_name_34
+    product: custom_product_name_34
+  backupBucketName: provisionscriptdata
+  use_fhirstore_as_proxy_name: no
+  import_data:
+    option: true
+    bucket_name: ghc_unified_bucket
+    file_names:
+      name: fhir_r4_json_bundle_pretty_resources/**.json
+      type: bundle_pretty
+    file_names:
+      name: fhir_r4_ndjson_regular_resources/**.ndjson
+      type: resource
+  service_account: stradmin.json

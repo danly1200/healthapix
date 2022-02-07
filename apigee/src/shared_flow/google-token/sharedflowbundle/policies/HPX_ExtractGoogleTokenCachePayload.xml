@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractGoogleTokenCachePayload">
+    <DisplayName>HPX_ExtractGoogleTokenCachePayload</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="google_fhirstore_url">
+            <JSONPath>$.google_fhirstore_url</JSONPath>
+        </Variable>
+        <Variable name="IAM.access_token">
+            <JSONPath>$.IAM_access_token</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">backend.config</Source>
+</ExtractVariables>

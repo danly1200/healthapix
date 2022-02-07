@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="HPX_AM_ExtractHost" version="SHA-512:b155e4a61b0f546b88950f462f7a60d74c8f5442a095206be03bfca9c04601f83631cf3e78dcb2117831924bb0e68e8084bff64f31a026eeac14a6aa9e08ed71"/>
+        <VersionInfo resourceName="HPX_AM_OpenIdWellKnownResponse" version="SHA-512:c164e2e3c18874f46ef822894ff04493f0f6000e19ac21be0b0600a6a578adf3fc8ea517d0c44de52db8ea4622802865c8d35692fc0381d4a5fa9fe1daee917b"/>
+        <VersionInfo resourceName="HPX_AM_RemoveRequestAttributes" version="SHA-512:819f58aea48b3b8c66cebfbf59705eb16aed55d51c09c4c8c9cdfc787e29dc65ab70f81f989cd0252b03d04cc544ae70a530796a82e042725e01c02703b562b1"/>
+        <VersionInfo resourceName="HPX_AM_SmartWellKnownResponse" version="SHA-512:703c7672b75d098db47aef44d33b54465c09cf5482273a7b2b3cab6ebec658395579f7b06789f72ff8955c1ec7f18baebd28eaccd2b55afb0e218f514dd3a3e9"/>
+        <VersionInfo resourceName="HPX_ExtractSingleRecord" version="SHA-512:2986a87fdfb101d865231a2576f9e4904b36a2c8e64ee2293ead04c97f9f2ed287e09ef8b1bad25dc33b61ee5188a511d37fc99b2aca9094c12c5d6871034f72"/>
+        <VersionInfo resourceName="HPX_Fault_BtoCOperationFailed" version="SHA-512:1f6cb1ec5cbd3c9693f635e34df746725a83471f6593648fd248f868ff6c8a6e869b7894ab1ace0c11059fd83ae099d1e81ebd0fba5da0a11ed3ac00980f27df"/>
+        <VersionInfo resourceName="HPX_Fault_BtoCOperationNotPermitted" version="SHA-512:fb542c5736b19caf65315ad4b39e859c9c242099a2229fe35cf55e8042ef80c1daa15df26183b83fa0c973ef20a79ae106fe1aad728a2a62dd2da7e788373b57"/>
+        <VersionInfo resourceName="HPX_Fault_NoRecordsForGivenId" version="SHA-512:66cc1c791b57db31cf30397753684ba2c7b859ca4ef9f2a3228bd8933d76a0cd228452de768cf3ae4e67e3a24f124c8f2acb91d8514dcf917ee183b225a6c278"/>
+        <VersionInfo resourceName="HPX_JS_IsExportCall" version="SHA-512:cbec748a79e518dce7df9eb186d93c3e7afd9c7065f3ccf8570dbf63f00b41b044fefcbef6961364a6dfa32184378dfb8d238a0be842d86318ca232b165dfff7"/>
+        <VersionInfo resourceName="HPX_JS_IsExportStatusCall" version="SHA-512:c3e56a5629f35322ab49a1ffb0db35e901902c3c6a94172b45cac0e0dc54a8b463e12c356c653db4f2573b1668402648e72ed146fbe8b27196c25368667dda78"/>
+        <VersionInfo resourceName="HPX_JS_SetTargetUri" version="SHA-512:90428d8d9bbf6196ac7ef42f0851e779a44e67213f50071169f985a965f3db39399807a8baded2f74fc30a7986a16e45be07cde497b3b18112526103e046eed3"/>
+        <VersionInfo resourceName="HPX_MetadataWorkAroundToken" version="SHA-512:6bc3a9a454889cee8814c59f42524d23bc5e0218bf4654eea778d3a369fd46147e6acd110ebda5ab77fed1b407801b144c7f502781a25af79d92e3e987a44b4e"/>
+        <VersionInfo resourceName="HPX_MetadataWorkAroundVariables" version="SHA-512:db840778e1cfbd14e5fe4de5b190f15c452d16b135c456d5a8ac7b111441169249be0c21abb6550b37dd2f98c8889b4282f84fa7424489acafeb886a64beac7b"/>
+        <VersionInfo resourceName="HPX_ReadDefaultAppClientId" version="SHA-512:a61156e999a022708200cb0339e24e0d63f6e481b7e1fd4ac5339085a09a1bff3e4c87c6fe72daa89cde9b252372078e0d34fe69ea1f05eb8185bc8bd5c84ad3"/>
+        <VersionInfo resourceName="HPX_SetClientIdForMetadata" version="SHA-512:07508e96e048720df3e2be4b31096e4b811b128dab39e68a64cd4f191a97c6aea366c11154dad0e4e14e4229072e7ace460074c0f90c5dce02e6e98573ca7cb3"/>
+        <VersionInfo resourceName="HPX_SetPatientAndIdQueryFilter" version="SHA-512:ce9c76dd5f386a81bdc6866d976d32be061976abce525f647e52ee923497bf7d541da1a00eeb6a6b535f98ce90846411c31274e2e09696ed414b9fd28a2be620"/>
+        <VersionInfo resourceName="HPX_SetPatientFormFilter" version="SHA-512:6d70a47d74a55b58e506b4757600685b4dbb4c4d047dc6f2359658dfa374cd705a7838685b4a871c192d54da7030d27107e3a874ab8b3c644a0f5528b110626f"/>
+        <VersionInfo resourceName="HPX_SetPatientQueryFilter" version="SHA-512:d0c64934abf2a67035e3ef0bf75e2e5b346f3a835a97b3ec5ef904f64744cec64d68bfc9d2c8c55f12403859d16ff637cc8599ed4c394d868b2f46338d81ba5e"/>
+        <VersionInfo resourceName="HPX_SharedFlow_Authorization" version="SHA-512:b38fba061a2d5f94a20ddda8b409e0f26f50c43290329705efe85e4921b37bd80401f3d0d9fbdcf946a78a5762e6e200edccd813bb1745198a22d7fe98c30efd"/>
+        <VersionInfo resourceName="HPX_SharedFlow_GoogleToken" version="SHA-512:cc8fbef4af110a39f7c264e9eea8af4cd52a04994bf21544a1f3ddc9b9bd7dcdd2c1a5598bb9305b3aebf316b8b94cfa54d0948dc78af090c8e20466e78a6a15"/>
+        <VersionInfo resourceName="HPX_SharedFlow_ProxyFaults" version="SHA-512:15a43d22e2806e1f4873873d0d7ce90e4467d3323ccd643591c0734ed52f33246a535b8ad5c7297fdbaa94a62a5fcec9e8535e8cb93dd3d0fdfecf4852b3458b"/>
+        <VersionInfo resourceName="HPX_SharedFlow_ReWriteLinks" version="SHA-512:aecd149d37294685c57c1bbe446299e74d0be900efbea541838ca1bfd781ff5e9d579b21214f930bd8a2085f82a79cfafa67123b69b8d6cc7b614bf34a4c6910"/>
+        <VersionInfo resourceName="HPX_SharedFlow_ResponseHeaders" version="SHA-512:1b1ec004b0694d34a59d1168cec86e43ad33a93082a332d099499ff4836b96fc6e07b076ffa4bdafdc417bfeee1c9d4a596321d1a549a3b87ad4fa631b984e4a"/>
+        <VersionInfo resourceName="HPX_SharedFlow_SpikeArrest" version="SHA-512:b39fb240d7443abc4639054fe947f62fc72d6104ee14b416d5ce44f53805d14ef2c3174cde70fa33990d9fbb54efe6dbb65839d0fba17c0ffbacb45e4ddcd589"/>
+        <VersionInfo resourceName="HPX_SharedFlow_TargetFaults" version="SHA-512:5e1e2445757bdd84a86f3ca0cbacb52ee1e1050c5cc10b4265569697713138b0486ed8a45536ea21ed8ab96f8079ccc668ba0cb8f548233d8364dc51861f3e07"/>
+        <VersionInfo resourceName="HPX_SharedFlow_ThreatProtection" version="SHA-512:8141469e235807c6b634ec7fb851aa60ce697ce30297181062264ea2d087a8f00ac4485a79b24a14ec58379638a22f17d21ea6a8c29e615828927f301a103d33"/>
+        <VersionInfo resourceName="HPX_SharedFlow_UnsupportedOperation" version="SHA-512:cb473bb7b9d4b3c78cb324775ebd705fc4a2c05ac6ce7ed1811a5c13621196e8d00aed1ca8bae9666ddf1092f51c6ca07276a35e5f2c9652e17b7f65a350a022"/>
+        <VersionInfo resourceName="HPX_Smart-launch-security" version="SHA-512:99442646c3af5dcc460577e4c6663ef1e06bfa93f68f5822412598ef8de0ec59ceb960e7e78ddf9d5e17049d75418db050e68187170870d9193a04608bde69c7"/>
+        <VersionInfo resourceName="HPX_SuppressProxyPathSuffix" version="SHA-512:a5aab334a53d86cc60f13dc6707ce548de8f9d6341077e4dd3e7c1f2c11479070bc1104a2e4cfa31eba8e4ed0016aac227bbacdee016e2ee9e435b23e3e3e126"/>
+        <VersionInfo resourceName="HPX_ValidatePatientReference" version="SHA-512:93fcdfc3bd55c6a841de2167156b27ad746a0a44248798d64f87de87c2a09a9db8f08970d6cb4e5f9e656f8ab2887e009bba2e5f29588eac5147002e5e0b74ba"/>
+        <VersionInfo resourceName="HPX_ValidatePatientReferencePATCH" version="SHA-512:ea87895e7a1345a3c6d757dec5ba326c52777897279c079acfb9e842f6f4052e9add385436d966bb2af74b989bc603e3c33bcba572d0d081122e16f1bc836772"/>
+        <VersionInfo resourceName="HPX_VerifyAccessToken" version="SHA-512:4715e309310695a96a03a25aeafc59827f2ea407ed6578dd76f00c1ae76402eddacb909399aded0dd06d91bffd67432f313d007bbfef7b76d56e5d1e6795054e"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:6bbfc79776aee16cae183f532caac12fa96c17d808810aa13cce3e3ecc3a9dc83d259c7560dad896e4ec5fba0cb71f146baf3a02cc017c0f8a0d46fcb6b4d75d"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://HPX_ExtractSingleRecord.js" version="SHA-512:dc6219a21f53dcc19fff52904ff6eb32ab64e027d8bba954f4d0f51cf0d68cf3d3583cd9c77f26d228f1de51160599f623351ac7781aa36f84ea49a7f52e350f"/>
+        <VersionInfo resourceName="jsc://HPX_SetPatientAndIdQueryFilter.js" version="SHA-512:59e1bf84e84313e6caba12e50083497064e52ffce762f5b721f709404d8b3a0c502c6b20a5a5cfcd4769da05a0cf63b04a9a32f3e5148fd4881ecdb0032d679c"/>
+        <VersionInfo resourceName="jsc://HPX_SetPatientFormFilter.js" version="SHA-512:bb9c1270ad3882f8661e24009dc4489a8cee992c8cf8315c6403cb987a6a95f5cf37419ae7a3d335766f33fed3981f3d4939984ee9d6a1507d8b251414f6bbab"/>
+        <VersionInfo resourceName="jsc://HPX_SetPatientQueryFilter.js" version="SHA-512:09a847ca11ec48e30e52c3f6d6d038a74e27b6b383298f13a6beffd3a2bdb6f0f4471100479654e6e2d49ad0c84ee17299095be4e22829485e88481a764cbb89"/>
+        <VersionInfo resourceName="jsc://HPX_ValidatePatientReference.js" version="SHA-512:5738e370c4dda77b2b23288267bd11a3dd48f9d9f48abda2f611435736200bac407681122806814bbb1342920b6f9750db2258338270337f0e3d955daa99740a"/>
+        <VersionInfo resourceName="jsc://HPX_ValidatePatientReferencePATCH.js" version="SHA-512:27dc90c442233861b67d3ad503ecf80ad7c186affb9dff9e04d4f1856b73af816be4b46ba855d33153a5f24d8fe9a46b9e46e74adfe89cf58daba5cc988b99a7"/>
+        <VersionInfo resourceName="jsc://IsExportCall.js" version="SHA-512:0a02d54b55359fc91751957b255e24e91acf83deb4bcb8128937fdb233339d4f0d12d61a1895c430b662404d5f0e003e213441d924171a8e89eff4f468a8bd19"/>
+        <VersionInfo resourceName="jsc://IsExportStatusCall.js" version="SHA-512:01c8824c26aa271bc13fd9c01d87bc8b0ead2c3c4233e218b3c7af36c22f986e1f8aa62a34551d9fffaae716e1cf1f4c098f52d62896125a18f35a66d8ec32c6"/>
+        <VersionInfo resourceName="jsc://SetTargetUri.js" version="SHA-512:0d953ce0b2e20ac0eb6154388f19933b728679229b1784dc8fdaa1cc9de8c8a2b0c7427bb52bb46b4a45090dd67059ac589f19b5c3b1b629cf947c45bc375196"/>
+        <VersionInfo resourceName="jsc://jsonpath-0.8.0.js" version="SHA-512:ad02990404af1455b68224f459fa0cf0be17933fa92276e2ef6449ecf6137771ba358c983b615d77131f81abf99042dbb140bfe09a0a7a881c3c6dea999b9309"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="Bulk Export" version="SHA-512:1e1685857b011c8d94246fa623fdb1b1aad860484dd1c5da777579ee9b3c56e765368cd946e6dd932f31f7e4edd8537ea5a5b33170fdef18fd26227da323918d"/>
+        <VersionInfo resourceName="default" version="SHA-512:381f47a9746ca1b91f4862b3b50e7f5e1f3bc3d1d4d73c640c5c3758d608d6034f0136cce91b7aeee124d9496bf3427f5e6be92b023da0983a8ddabfa0805349"/>
+    </TargetEndpoints>
+</Manifest>

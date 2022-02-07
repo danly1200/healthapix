@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="HPX_PC_RequestHash">
+    <DisplayName>HPX_PC_RequestHash</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix>appRequest</Prefix>
+        <KeyFragment ref="hashed_token"/>
+    </CacheKey>
+    <CacheResource>request-hash-links</CacheResource>
+    <Scope>Exclusive</Scope>
+    <ExpirySettings>
+        <TimeoutInSeconds ref="HPX.CacheTimeOut">3600</TimeoutInSeconds>
+    </ExpirySettings>
+    <Source>hashRequest</Source>
+</PopulateCache>

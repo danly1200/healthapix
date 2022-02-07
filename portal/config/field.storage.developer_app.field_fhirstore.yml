@@ -1,0 +1,21 @@
+uuid: e6e022af-e389-4bc7-af3b-31fb93ce9f93
+langcode: en
+status: true
+dependencies:
+  module:
+    - apigee_edge
+id: developer_app.field_fhirstore
+field_name: field_fhirstore
+entity_type: developer_app
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

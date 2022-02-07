@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_CollectVolatileHeadersForPagination">
+    <DisplayName>HPX_CollectVolatileHeadersForPagination</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>caller.host</Name>
+        <Ref>request.header.Host</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>caller.port</Name>
+        <Ref>request.header.X-Forwarded-Port</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>caller.protocol</Name>
+        <Ref>request.header.X-Forwarded-Proto</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+</AssignMessage>

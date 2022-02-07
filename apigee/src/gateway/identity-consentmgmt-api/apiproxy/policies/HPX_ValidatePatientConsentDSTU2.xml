@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="HPX_ValidatePatientConsentDSTU2">
+    <DisplayName>HPX_ValidatePatientConsentDSTU2</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://HPX_ValidatePatientConsentDSTU2.js</ResourceURL>
+</Javascript>

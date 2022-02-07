@@ -1,0 +1,5 @@
+<div{{ attributes }}>
+  {{ progress|raw }}
+  {% if title is not empty %}{{title | raw}}{% endif %}
+  {% if content is not empty %}<div class = "dexp-progress-circle-content">{{content | raw}}</div>{% endif %}
+</div>

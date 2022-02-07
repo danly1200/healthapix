@@ -1,0 +1,38 @@
+backend:
+  js:
+    assets/js/admin.min.js: {}
+  css:
+    base:
+      vendor/fontawesome/css/all.min.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.ajax
+    - core/jquery.ui.autocomplete
+    - core/jquery.ui.draggable
+    - core/jquery.ui.sortable
+    - core/drupal.vertical-tabs
+    - core/drupal.states
+settings:
+  js:
+    assets/js/settings.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    
+frontend:
+  js:
+    vendor/rs/js/jquery.themepunch.tools.min.js: {}
+    vendor/rs/js/jquery.themepunch.revolution.min.js: {}
+    assets/js/dexp-layerslider.js: {}
+  css:
+    base:
+      vendor/rs/css/settings.css: {}
+      assets/css/dexp-layerslider.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings

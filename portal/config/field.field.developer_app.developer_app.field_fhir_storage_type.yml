@@ -1,0 +1,21 @@
+uuid: 9ce2c03b-d108-470a-a0d4-443aef87c4ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_fhir_storage_type
+  module:
+    - apigee_edge
+    - options
+id: developer_app.developer_app.field_fhir_storage_type
+field_name: field_fhir_storage_type
+entity_type: developer_app
+bundle: developer_app
+label: 'FHIR Storage Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

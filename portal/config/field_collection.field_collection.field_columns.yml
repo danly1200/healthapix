@@ -1,0 +1,8 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: gokVvZCh5xy2eiKx91tZ6kG4g6kU1L_XvpIwNcWE5-I
+id: field_columns
+label: field_columns

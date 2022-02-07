@@ -1,0 +1,20 @@
+uuid: fa35c3ee-2bd1-4069-99f8-053266bf9c26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_fhir_version
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_fhir_version
+field_name: field_fhir_version
+entity_type: developer_app
+bundle: developer_app
+label: 'Fhir Version'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

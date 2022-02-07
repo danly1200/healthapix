@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_EV_ExtractAccessTokenResponse">
+    <DisplayName>HPX_EV_ExtractAccessTokenResponse</DisplayName>
+    <Source clearPayload="false">response</Source>
+    <JSONPayload>
+        <Variable name="issued_at">
+            <JSONPath>$.issued_at</JSONPath>
+        </Variable>
+        <Variable name="application_name">
+            <JSONPath>$.application_name</JSONPath>
+        </Variable>
+        <Variable name="userid">
+            <JSONPath>$.userid</JSONPath>
+        </Variable>
+        <Variable name="refresh_token_status">
+            <JSONPath>$.refresh_token_status</JSONPath>
+        </Variable>
+        <Variable name="expires_in">
+            <JSONPath>$.expires_in</JSONPath>
+        </Variable>
+        <Variable name="refresh_token">
+            <JSONPath>$.refresh_token</JSONPath>
+        </Variable>
+        <Variable name="nonce">
+            <JSONPath>$.nonce</JSONPath>
+        </Variable>
+        <Variable name="scope">
+            <JSONPath>$.scope</JSONPath>
+        </Variable>
+        <Variable name="fhirUser">
+            <JSONPath>$.fhirUser</JSONPath>
+        </Variable>
+        <Variable name="patient">
+            <JSONPath>$.patient</JSONPath>
+        </Variable>
+        <Variable name="aud">
+            <JSONPath>$.aud</JSONPath>
+        </Variable>
+    </JSONPayload>
+</ExtractVariables>

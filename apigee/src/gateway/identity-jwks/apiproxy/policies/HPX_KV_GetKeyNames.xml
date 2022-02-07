@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="HPX_KV_GetKeyNames" mapIdentifier="HPX_Config">
+    <DisplayName>HPX_KV_GetKeyNames</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Get assignTo="publickeyRS384Name" index="1">
+        <Key>
+            <Parameter>publickeyRS384Name</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="privatekeyRS384Name" index="1">
+        <Key>
+            <Parameter>privatekeyRS384Name</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="jwksJson" index="1">
+        <Key>
+            <Parameter>jwksJson</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

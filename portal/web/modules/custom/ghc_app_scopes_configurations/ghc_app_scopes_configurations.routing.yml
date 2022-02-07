@@ -1,0 +1,10 @@
+ghc_app_scopes_configurations.scope_config_form:
+  path: '/admin/config/ghc_app_scopes_configurations/scopeconfig'
+  defaults:
+    _form: '\Drupal\ghc_app_scopes_configurations\Form\ScopeConfigForm'
+    _title: 'ScopeConfigForm'
+  requirements:
+    _permission: 'administer app scopes'
+#    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

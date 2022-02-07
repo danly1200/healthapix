@@ -1,0 +1,5 @@
+name: 'Payload Version'
+type: module
+description: 'Payload Version custom views field plugin'
+core: 8.x
+package: 'GHC'

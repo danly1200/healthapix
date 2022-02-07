@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="HPX_VJW_VerifyOIDCTokenJwksInFlow">
+    <DisplayName>HPX_VJW_VerifyOIDCTokenJwksInFlow</DisplayName>
+    <Algorithm>RS384</Algorithm>
+    <Source>request.formparam.client_assertion</Source>
+    <PublicKey>
+        <JWKS ref="publicKeyJwks"/>
+    </PublicKey>
+    <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
+    <Source>request.formparam.client_assertion</Source>
+    <Audience ref="audienceUri"></Audience>
+    <IgnoreIssuedAt>false</IgnoreIssuedAt>
+    <Issuer ref="jwt.HPX_DJW_DecodeOIDCToken.claim.issuer"></Issuer>
+    <Subject ref="jwt.HPX_DJW_DecodeOIDCToken.claim.subject"></Subject>
+</VerifyJWT>

@@ -1,0 +1,8 @@
+name: 'DrupalExp Page Settings'
+type: module
+description: 'Providers page settings.'
+package: DrupalExp
+core: '8.x'
+version: 8.x-1.0
+dependencies:
+  - image_browser

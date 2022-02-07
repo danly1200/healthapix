@@ -1,0 +1,8 @@
+fhir_customizations.testdata:
+  js:
+    js/testdata.js: {}
+  dependencies:
+    - core/drupal.ajax
+  css:
+    theme:
+      css/testdata.css: {}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="HPX_Fault_BtoCOperationNotPermitted">
+    <DisplayName>HPX_Fault_BtoCOperationNotPermitted</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="text/plain"/>
+            <StatusCode>403</StatusCode>
+            <ReasonPhrase>Forbidden</ReasonPhrase>
+        </Set>
+        <AssignVariable>
+            <Name>btoc.error</Name>
+            <Value>true</Value>
+        </AssignVariable>
+        <AssignVariable>
+            <Name>btoc.message</Name>
+            <Value>This operation is not permitted on behalf of a patient.</Value>
+        </AssignVariable>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

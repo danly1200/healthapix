@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bootstrap_columns
+label: 'Bootstrap Columns'
+revision: 0
+description: ''

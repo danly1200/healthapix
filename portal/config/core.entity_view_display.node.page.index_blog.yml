@@ -1,0 +1,23 @@
+uuid: 983c3017-a354-4607-a618-d0b5bdeb93ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.index_blog
+    - field.field.node.page.body
+    - node.type.page
+  module:
+    - user
+id: node.page.index_blog
+targetEntityType: node
+bundle: page
+mode: index_blog
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_page: true

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_SetFhirServer">
+    <DisplayName>HPX_AM_SetFhirServer</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>fhir_server_name</Name>
+        <Value/>
+        <Ref>verifyapikey.HPX_VAK_VerifyRequestApiKey.apiproduct.fhir_server_name</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>fhir_server_version</Name>
+        <Value/>
+        <Ref>verifyapikey.HPX_VAK_VerifyRequestApiKey.apiproduct.fhir_version</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>google_fhirstore_url</Name>
+        <Value/>
+        <Ref>verifyapikey.HPX_VAK_VerifyRequestApiKey.apiproduct.google_fhirstore_url</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

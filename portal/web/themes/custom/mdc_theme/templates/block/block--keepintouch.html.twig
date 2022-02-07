@@ -1,0 +1,18 @@
+<div class="keep-in-touch-block">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-keep-in-touch mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+      <h3 class="mdc-typography--headline3 keep-in-touch-title">{{ content.field_content_title }}</h3>
+      <div class="mdc-typography--body1 right-content">
+        {{ content.body }}
+      </div>
+      {% if content.field_button %}
+        {{ content.field_button }}
+      {% endif %}
+    </div>
+    <div class="mdc-get-started-image-right mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+      <div class="get-started-image"> {{ content.field_image }}</div>
+    </div>
+  </div>
+</div>
+
+

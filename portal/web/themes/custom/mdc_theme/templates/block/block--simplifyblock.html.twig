@@ -1,0 +1,25 @@
+<div class="simplify-block">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-simplify-left-content mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+      <div class="get-started-image"> {{ content.field_image }}</div>
+      {% if content.field_image_label %}
+        <h4 class="mdc-typography--headline4 image-label">{{ content.field_image_label }}</h4>
+      {% endif %}
+    </div>
+
+    <div class="mdc-simplify-right-content mdc-layout-grid__cell mdc-layout-grid--align-right mdc-layout-grid__cell--span-6-desktop">
+      <div class="right-content-grid">
+        <h3 class="mdc-typography--headline3 simplify-title">{{ content.field_content_title }}</h3>
+        <div class="mdc-typography--body1 right-content">
+          {{ content.body }}
+        </div>
+        {% if content.field_button %}
+          {{ content.field_button }}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

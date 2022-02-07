@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>HPX_IdentifyProduct</Name>
+    </Step>
+    <Step>
+        <Name>HPX_LookupGoogleTokenCache</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is true</Condition>
+        <Name>HPX_ExtractGoogleTokenCachePayload</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_GetProductAttributes</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_ProductXMLToJson</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_ParseProductAttributes</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_ReadFHIRServiceAccountCredentials</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_ExtractFHIRServiceAccountCredentials</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_GenerateGoogleServiceAccountJWT</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_GenerateGoogleAccessToken</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_ExtractGoogleAccessToken</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_SetGoogleTokenCachePayload</Name>
+    </Step>
+    <Step>
+        <Condition>lookupcache.HPX_LookupGoogleTokenCache.cachehit is false</Condition>
+        <Name>HPX_PopulateGoogleTokenCache</Name>
+    </Step>
+</SharedFlow>

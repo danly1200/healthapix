@@ -1,0 +1,293 @@
+<?php
+
+/**
+ * @file
+ * Contains fhir_app.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Laminas\Diactoros\Response\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function fhir_app_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the fhir_app module.
+    case 'help.page.fhir_app':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Fhir App') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function fhir_app_preprocess_select(&$variables) {
+  $element = $variables['element'];
+  $variables['option_attributes'] = $element['#option_attributes'];
+  $variables['fhir_server_name'] = $element['#fhir_server_name'];
+
+}
+
+function getAppScopeList($fhir_server_name){
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+  $scope_values = [];
+  try {
+    $request = $client->get('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/apiproducts/' . $fhir_server_name, [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+    if ($code == 200) {
+      $attributes  = [];
+      $response = json_decode($request->getBody());
+      $scopes = $response->scopes;
+      foreach($scopes as $each_scope) {
+        $scope_values[$each_scope] = $each_scope;
+      }
+      return $scope_values;
+    }
+  } catch (Exception $e) {
+
+  } catch (GuzzleHttp\Exception\ClientException $ex) {
+  }
+}
+
+function fhir_create_app_after_build(&$form, $form_state){
+  $values = $form_state->getValues();
+  if($values['form_id'] == 'fhir_smart_app' || $values['form_id'] == 'fhir_app_edit') {
+    $fhir_server = $values['fhir_server'];
+    if($fhir_server) {
+      $node = \Drupal::entityTypeManager()->getStorage('node')->load($fhir_server);
+      if($node) {
+        $fhir_server_name = $node->get('field_fhir_api_products')->getValue()[0]['target_id'];
+        $scopes_list = getAppScopeList($fhir_server_name);
+        $form['scopes_multi_select']['#options'] = $scopes_list;
+      }
+    }
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_mail().
+ */
+function fhir_app_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'create_apigee_app':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+    case 'update_apigee_app':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+  }
+}
+
+function getProductOwnerEmail($fhir_server_name) {
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+  $scope_values = [];
+  try {
+    $request = $client->get('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/apiproducts/' . $fhir_server_name, [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+    if ($code == 200) {
+      $attributes  = [];
+      $response = json_decode($request->getBody());
+      $product_owner_email = '';
+      foreach($response->attributes as $each_attribute) {
+        if($each_attribute->name == 'product_owner_email') {
+          $product_owner_email = $each_attribute->value;
+        }
+      }
+     return $product_owner_email;
+
+    }
+  } catch (Exception $e) {
+    $error = json_decode($e->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+  } catch (GuzzleHttp\Exception\ClientException $ex) {
+    $error = json_decode($ex->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+  }
+}
+
+// Get approve reject links
+function getApproveRejectLinks($app_name, $app_client_id, $app_id, $app_action, $developer_email, $api_product_name, $requested_scopes, $app_type) {
+  $host_url = \Drupal::config('fhir_restapi.apigee_auth_url.settings')->get('launch_url');
+  $client = \Drupal::httpClient();
+  if($app_action == "update") {
+    $serialized_body = json_encode([
+      'app_name' => $app_name,
+      'app_id' => $app_id,
+      'app_clientId' => $app_client_id,
+      'app_action' => $app_action,
+      'developer_email' => $developer_email,
+      'apiProduct' => $api_product_name,
+      'requested_scopes' => $requested_scopes,
+      'app_type' => $app_type
+    ]);
+  } else {
+    $serialized_body = json_encode([
+      'app_name' => $app_name,
+      'app_id' => $app_id,
+      'app_clientId' => $app_client_id,
+      'app_action' => $app_action,
+      'developer_email' => $developer_email,
+      'apiProduct' => $api_product_name,
+      'requested_scopes' => $requested_scopes,
+      'approved_scopes' => 'NA',
+      'app_type' => $app_type
+    ]);
+  }
+
+  $url = $host_url . '/v1/app/links';
+  $x_api_key = getxapikey();
+  try {
+    $response = $client->post($url , [
+      'body' => $serialized_body,
+      'headers' => [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+        'Cache-Control' => 'no-cache',
+        'x-api-key' => $x_api_key,
+      ],
+    ]);
+    if($response) {
+      if($response->getStatusCode() == 200) {
+        $response_body = json_decode($response->getBody());
+        return $response_body;
+      }
+    }
+
+  } catch (Exception $e) {
+    $error = json_decode($e->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+  } catch (GuzzleHttp\Exception\ClientException $ex) {
+    $error = json_decode($ex->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+  }
+
+}
+
+function getxapikey() {
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+  $app_name = \Drupal::config('fhir_restapi.apigee_auth_url.settings')->get('apigee_developer_app_name');
+  $developer_email = \Drupal::config('fhir_restapi.apigee_auth_url.settings')->get('apigee_developer_email');
+
+  $url = 'https://api.enterprise.apigee.com/v1/organizations/'. $get_cred[2] .'/developers/'. $developer_email .'/apps/' . $app_name;
+  try {
+    $request = $client->get($url, [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+
+    if ($code == 200) {
+      $response = json_decode($request->getBody());
+      return $response->credentials[0]->consumerKey;
+    }
+  } catch (Exception $e) {
+    $error = json_decode($e->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+    \Drupal::messenger()->addMessage('Cannot update or create app. Please try again later.', 'error');
+
+  } catch (GuzzleHttp\Exception\ClientException $ex) {
+    $error = json_decode($ex->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+    \Drupal::messenger()->addMessage('Cannot update or create app. Please try again later.', 'error');
+  }
+}
+
+// Get approve reject links
+function getApprovedScopes($app_name, $developer_email) {
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+
+  $url = 'https://api.enterprise.apigee.com/v1/organizations/'. $get_cred[2] .'/developers/'. $developer_email .'/apps/' . $app_name;
+  try {
+    $request = $client->get($url, [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+
+    if ($code == 200) {
+      $response = json_decode($request->getBody());
+
+      foreach($response->attributes as $each_attribute) {
+        if($each_attribute->name == 'approved_scopes') {
+          return $each_attribute->value;
+        }
+      }
+    }
+  } catch (Exception $e) {
+    $error = json_decode($e->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+    \Drupal::messenger()->addMessage('Cannot update or create app. Please try again later.', 'error');
+
+  } catch (GuzzleHttp\Exception\ClientException $ex) {
+    $error = json_decode($ex->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+    \Drupal::messenger()->addMessage('Cannot update or create app. Please try again later.', 'error');
+  }
+
+}
+
+// Get all the app names
+function getAppNames() {
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+  $app_names = [];
+  try {
+    $request = $client->get('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/apps?expand=true' , [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+    if ($code == 200) {
+      $response = json_decode($request->getBody());
+      foreach($response->app as $each_app) {
+        foreach($each_app->attributes as $each_app_attr) {
+          if($each_app_attr->name == 'DisplayName') {
+            $app_names[] = strtolower($each_app_attr->value);
+          }
+        }
+      }
+      return $app_names;
+    }
+  } catch (Exception $e) {
+    $error = json_decode($e->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+  } catch (GuzzleHttp\Exception\ClientException $ex) {
+    $error = json_decode($ex->getResponse()->getBody())->message;
+    if($error) {
+      \Drupal::logger('fhir_app')->error($error);
+    }
+  }
+}

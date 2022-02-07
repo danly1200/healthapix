@@ -1,0 +1,14 @@
+{
+  "name": "healthapix-jwks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+   "start": "node index.js"
+  },
+  "author": "",
+  "license": "",
+  "description": "Healthapix Jwks utility",
+  "dependencies": {
+      "node-jose": "^1.1.3"
+  }
+}

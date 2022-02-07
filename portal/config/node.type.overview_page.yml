@@ -1,0 +1,23 @@
+uuid: 11dffd59-e907-4d65-96d0-34821db84504
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fhir_overview
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: OU3poVkbMc3l1aGkF8foT9hawPM_Sohhs0VllZxNgOE
+name: 'Overview Page'
+type: overview_page
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: true

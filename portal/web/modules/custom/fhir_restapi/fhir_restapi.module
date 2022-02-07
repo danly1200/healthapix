@@ -1,0 +1,466 @@
+<?php
+/*
+ * hook_theme() Implementation
+ * To assign the templates for the "My Apps page and Analytics page."
+ */
+
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use GuzzleHttp\Psr7;
+use Drupal\Component\Serialization\Json;
+use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
+use Drupal\fhir_restapi\Controller\MyDeveloperAppsListController;
+use Drupal\rest\Plugin\ResourceBase;
+use Drupal\rest\ResourceResponse;
+
+
+function fhir_restapi_theme($existing, $type, $theme, $path) {
+  $uid = User::load(\Drupal::currentUser()->id());
+  $service_response =  \Drupal::service('fhir_restapi.credlist')->appcredlist();
+  $launch_url_base_path = $service_response['launch_url_base_path'];
+
+  return [
+    'page__user__apps' => [
+      'variables' => [
+        'my_apps' => NULL,
+        'user_id' => $uid->id(),
+      ],
+    ],
+    'page__user__myapps__analytics' => [
+      'variables' => [
+        'analytics_form' => NULL,
+        'displayName' => NULL,
+      ],
+    ],
+    'smart__apps__list' => [
+      'variables' => [
+        'my_apps'=> NULL,
+        'user_id' => $uid->id(),
+        'app_proxy' => NULL,
+        'launch_url_array' => NULL,
+        'app_type' => NULL,
+        'dataset_filter' => NULL,
+        'launch_url_base_path' => $launch_url_base_path,
+
+      ],
+    ],
+
+  ];
+}
+
+/*
+ * Get Apigge edge credentials form the edge connection
+ */
+function fhir_get_edge_cred() {
+  $apigee_cred = [];
+  $config = \Drupal::config('key.key.apigee_edge_connection_default');
+  $message = $config->get('key_provider_settings');
+  if (isset($message['key_value']) && !empty($message['key_value'])) {
+    $key_value = json_decode($message['key_value']);
+    $apigee_cred[0] = $key_value->username;
+    $apigee_cred[1] = $key_value->password;
+    $apigee_cred[2] = $key_value->organization;
+  }
+  return $apigee_cred;
+}
+
+/*
+ *  Implements hook_form_alter().
+ *  To validate the KVM file, to assign classes to the fields in the developer app, edit and delete form.
+ */
+function fhir_restapi_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if ($form_id == "developer_app_add_for_developer_form") {
+    $validators = [
+      'file_validate_extensions' => ['json'],
+    ];
+    $form['file_markup'] = [
+      '#type' => 'fieldset',
+      '#prefix' => '<div class="custom_attrib">',
+      '#suffix' => '</div>',
+    ];
+    $form['file_markup']['json_file'] = [
+      '#type' => 'managed_file',
+      '#name' => 'json_file',
+      '#attributes' => [
+        'class' => ['custom_attrib_file'],
+      ],
+      '#title' => t('Upload File'),
+      '#size' => 20,
+      '#description' => t('Json format only'),
+      '#upload_validators' => $validators,
+      '#upload_location' => 'public://user_profile/',
+
+    ];
+
+    $form['#attributes']['class'][] = 'modal-add-app';
+    $api_prod_var = $form['api_products']['#options'];
+    // set the variable for option field in config form
+    $config = \Drupal::service('config.factory')
+      ->getEditable('fhir_restapi.settings');
+    $config->set('variable_options', $api_prod_var)
+      ->save();
+    $form['field_dataset']['#attributes']['class'][] = 'custom_attrib';
+    $form['field_location']['#attributes']['class'][] = 'custom_attrib';
+    $form['field_project']['#attributes']['class'][] = 'custom_attrib';
+    $form['field_fhirstore']['#attributes']['class'][] = 'custom_attrib';
+    $form['actions']['submit']['#attributes']['class'][] = 'modal-add-app-submit';
+    $form['#validate'][] = 'fhir_restapi_validate_handler';
+    $form['actions']['submit']['#submit'][] = 'fhir_restapi_redirect_handler_submit';
+
+    /* Adding the My App links on top of the form */
+//    $options = [
+//      'attributes' => ['class' => ['backto-my-apps-link']],
+//    ];
+//    $url = Url::fromUri('internal:/user/my-apps', $options);
+//    $linkText = '<span class="glyphicon glyphicon-pencil"></span>' . t('My Apps');
+//    $linkMarkup = Markup::create($linkText);
+//    $link = Link::fromTextAndUrl($linkMarkup, $url)->toString();
+//    $form['#prefix'] = '<div class="backto-my-apps-link-wrap clearfix">' . $link . '</div>';
+
+
+    /* Adding Radio button to select default value for custom attributes */
+    $custom_attr_data_options = array(
+      'custom' => t('Custom'),
+      'default' => t('Default'),
+    );
+    $form['custom_attr_data_options'] = array(
+    '#type' => 'radios',
+    '#title' => t('Select Default value or Custom value'),
+    '#options' => $custom_attr_data_options,
+    '#default_value' => 'custom',
+    '#weight' => 1,
+    '#prefix' => '<div class="stu3-fields-panel">',
+    '#suffix' => '</div>',
+    );
+
+    $form['field_dataset']['#attributes']['data-dataset'] = $form['field_dataset']['widget'][0]['value']['#default_value'];
+    $form['field_dataset']['widget'][0]['value']['#default_value'] = "";//keeping it empty for custom attrib
+    $form['field_location']['#attributes']['data-location'] = $form['field_location']['widget'][0]['value']['#default_value'];
+    $form['field_location']['widget'][0]['value']['#default_value'] = "";//keeping it empty for custom attrib
+    $form['field_project']['#attributes']['data-project'] = $form['field_project']['widget'][0]['value']['#default_value'];
+    $form['field_project']['widget'][0]['value']['#default_value'] = "";//keeping it empty for custom attrib
+    $form['field_fhirstore']['#attributes']['data-fhirstore'] = $form['field_fhirstore']['widget'][0]['value']['#default_value'];
+    $form['field_fhirstore']['widget'][0]['value']['#default_value'] = "";//keeping it empty for custom attrib
+
+  }
+
+  if (strpos('developer_app_edit_for_developer_form', $form_id) !== FALSE) {
+
+    $link = "<a class = 'btn btn-default form-submit modal-edit-app-cancel-extra cancel-btn' href = '#form-submit'>" . "Cancel" . "</a>";
+    $form['file_markup'] = [
+      '#type' => 'fieldset',
+      '#prefix' => '<div class="custom_attrib">',
+      '#suffix' => '</div>',
+    ];
+    //Field to update the kvm
+    $validators_edit = [
+      'file_validate_extensions' => ['json'],
+    ];
+    $form['file_markup_edit']['json_file'] = [
+      '#type' => 'managed_file',
+      '#name' => 'json_file',
+      '#attributes' => [
+        'class' => ['custom_attrib_file'],
+      ],
+      '#title' => t('Upload File'),
+      '#size' => 20,
+      '#description' => t('Json format only'),
+      '#upload_validators' => $validators_edit,
+      '#upload_location' => 'public://user_profile/',
+
+    ];
+    $form['actions']['cancel'] = [
+      '#type' => 'markup',
+      '#markup' => $link,
+      '#weight' => 99,
+    ];
+
+    /*
+     * Code to fix issue DE16 GH-290.
+     * To handle the Apps Edit form: Toggle the view of custom attributes.
+     * */
+
+    $form['field_dataset']['#attributes']['class'][] = 'visually-hidden';
+    $form['field_fhirstore']['#attributes']['class'][] = 'visually-hidden';
+    $form['field_location']['#attributes']['class'][] = 'visually-hidden';
+    $form['field_project']['#attributes']['class'][] = 'visually-hidden';
+
+    $developerApp = \Drupal::service('request_stack')
+      ->getCurrentRequest()
+      ->get('app');
+    $credentials = $developerApp->getCredentials();
+    $consumerKey = '';
+    foreach ($credentials as $key => $value) {
+      $consumerKey = $value->getConsumerKey();
+    }
+    $selected_values = $form['credential'][$consumerKey]['api_products']['#default_value'];
+    $api_val = \Drupal::config('fhir_custom_api_form.settings')
+      ->get('variable_api_selected');
+
+    $array_check = array_diff($api_val, $selected_values);
+
+    if (sizeof($array_check) < sizeof($api_val)) {
+      $form['field_dataset']['#attributes']['class'] = array_filter($form['field_dataset']['#attributes']['class'], function ($e) {
+        return $e != 'visually-hidden';
+      });
+
+      $form['field_fhirstore']['#attributes']['class'] = array_filter($form['field_fhirstore']['#attributes']['class'] , function($e){
+        return $e != 'visually-hidden';
+      });
+
+      $form['field_location']['#attributes']['class'] = array_filter($form['field_location']['#attributes']['class'] , function($e){
+        return $e != 'visually-hidden';
+      });
+
+      $form['field_project']['#attributes']['class'] = array_filter($form['field_project']['#attributes']['class'] , function($e){
+        return $e != 'visually-hidden';
+      });
+    }
+
+    $form['actions']['submit']['#attributes']['class'][] = 'modal-edit-app-submit';
+    $form['actions']['delete']['#attributes']['class'][] = 'modal-edit-app-cancel';
+    // changed label for phase-2
+    $form['actions']['delete']['#title'] = t('CANCEL');
+    $form['#attributes']['class'][] = 'modal-edit-app';
+    $form['#validate'][] = 'fhir_restapi_edit_validate_handler';
+    $form['actions']['submit']['#submit'][] = 'fhir_restapi_redirect_handler';
+
+
+    /* Adding Radio button to select default value for custom attributes */
+
+    $current_storage_type = $form['field_fhir_storage_type']['widget']['#default_value'][0];
+
+    $custom_attr_data_options = array(
+      'custom' => t('Custom'),
+      'default' => t('Default'),
+    );
+    $form['custom_attr_data_options'] = array(
+      '#type' => 'radios',
+      '#title' => t('Select Default value or Custom value'),
+      '#options' => $custom_attr_data_options,
+      '#default_value' => $current_storage_type,
+      '#weight' => 1,
+      '#prefix' => '<div class="stu3-fields-panel stu3-fields-panel-active">',
+      '#suffix' => '</div>',
+    );
+
+
+    $dev_app_entity = $form_state->getformObject()->getEntity();
+
+    if($current_storage_type == 'default') {
+      $form['field_dataset']['#attributes']['data-dataset'] = $form['field_dataset']['widget'][0]['value']['#default_value'];
+      $form['field_location']['#attributes']['data-location'] = $form['field_location']['widget'][0]['value']['#default_value'];
+      $form['field_project']['#attributes']['data-project'] = $form['field_project']['widget'][0]['value']['#default_value'];
+      $form['field_fhirstore']['#attributes']['data-fhirstore'] = $form['field_fhirstore']['widget'][0]['value']['#default_value'];
+
+      $form['field_dataset']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+      $form['field_location']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+      $form['field_project']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+      $form['field_fhirstore']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+
+
+      $form['field_dataset']['#attributes']['data-dataset-original-value'] = '';
+      $form['field_location']['#attributes']['data-location-original-value'] = '';
+      $form['field_project']['#attributes']['data-project-original-value'] = '';
+      $form['field_fhirstore']['#attributes']['data-fhirstore-original-value'] = '';
+
+    } else {
+      $form['field_dataset']['#attributes']['data-dataset-original-value'] = $form['field_dataset']['widget'][0]['value']['#default_value'];
+      $form['field_location']['#attributes']['data-location-original-value'] = $form['field_location']['widget'][0]['value']['#default_value'];
+      $form['field_project']['#attributes']['data-project-original-value'] = $form['field_project']['widget'][0]['value']['#default_value'];
+      $form['field_fhirstore']['#attributes']['data-fhirstore-original-value'] = $form['field_fhirstore']['widget'][0]['value']['#default_value'];
+
+      $default_dataset_val = $dev_app_entity->getFieldDefinition('field_dataset')->toArray();
+      $form['field_dataset']['#attributes']['data-dataset'] = $default_dataset_val['default_value'][0]['value'];
+      $default_loc_val = $dev_app_entity->getFieldDefinition('field_location')->toArray();
+      $form['field_location']['#attributes']['data-location'] = $default_loc_val['default_value'][0]['value'];
+      $default_proj_val = $dev_app_entity->getFieldDefinition('field_project')->toArray();
+      $form['field_project']['#attributes']['data-project'] = $default_proj_val['default_value'][0]['value'];
+      $default_fhir_store_val = $dev_app_entity->getFieldDefinition('field_fhirstore')->toArray();
+      $form['field_fhirstore']['#attributes']['data-fhirstore'] = $default_fhir_store_val['default_value'][0]['value'];
+    }
+
+  }
+  if (strpos('developer_app_delete_for_developer_form', $form_id) !== FALSE) {
+
+    $internalName = \Drupal::service('request_stack')
+      ->getCurrentRequest()
+      ->get('app')
+      ->label();
+    $form['#prefix'] = '<div id="modal-delete-app">';
+    $form['#suffix'] = '</div>';
+    $form['description'] = [
+      '#prefix' => '<p>',
+      '#markup' => t('Deleting %developer_app App will also delete all of its data. This action cannot be undone.', ['%developer_app' => $internalName]),
+      '#suffix' => '</p>',
+    ];
+    $form['verification_code'] = [
+      '#required' => FALSE,
+    ];
+    $form['actions']['submit']['#attributes']['class'][] = 'modal-delete-app-submit';
+    $form['actions']['cancel']['#attributes']['class'][] = 'modal-delete-app-cancel';
+    $form['actions']['cancel']['#title'] = t('CANCEL');
+    $form['#attributes']['class'][] = 'modal-delete-app';
+    $form['#validate'][] = 'fhir_restapi_delete_validate_handler';
+    $form['actions']['submit']['#submit'][] = 'fhir_restapi_redirect_handler';
+  }
+}
+
+/*
+ * Validate handler for creating KVM while app creation
+ */
+function fhir_restapi_validate_handler(&$form, FormStateInterface &$form_state) {
+  $fid = $form_state->getValue('file_markup')['json_file'][0];
+  $file_upload = $form_state->getValue(['file_markup_json_file_upload_button']);
+  $api_get = \Drupal::config('fhir_custom_api_form.settings')
+    ->get('variable_api_selected');
+  $apiprod = $form_state->getValue('api_products');
+  $result = array_intersect($api_get, $apiprod);
+  if (!empty($result)) {
+    $form['file_markup']['json_file']['#required'] = TRUE;
+  }
+  if (!empty($result) && empty($fid)) {
+    $form_state->setErrorByName('file_markup][json_file', t('Please upload Json files'));
+  }
+  if (!empty($fid) && !empty($file_upload)) {
+    $file = File::load($fid);
+    $data = file_get_contents($file->getFileUri());
+    $decoded = Json::decode($data);
+    if (!(array_key_exists("client_email", $decoded)) || !(array_key_exists("private_key", $decoded)) || !(array_key_exists("private_key_id", $decoded))) {
+      $form['file_markup']['json_file']['#required'] = TRUE;
+      $form_state->setErrorByName('file_markup][json_file', t('Please upload Json file with client_email, private_key and private_key_id'));
+    }
+  }
+}
+
+/*
+ * Validate handler for updating KVM while app editing
+ */
+function fhir_restapi_edit_validate_handler(&$form, FormStateInterface &$form_state) {
+  $get_cred = fhir_get_edge_cred();
+  $title = $form_state->getValue('name');
+  $fid = $form_state->getValue('file_markup_edit')['json_file'][0];
+  $file_upload = $form_state->getValue(['file_markup_edit_json_file_upload_button']);
+  if (!empty($fid) && !empty($file_upload)) {
+    $file = File::load($fid);
+    $data = file_get_contents($file->getFileUri());
+    $decoded = Json::decode($data);
+    if ((array_key_exists("client_email", $decoded)) && (array_key_exists("private_key", $decoded)) && (array_key_exists("private_key_id", $decoded))) {
+      $file->setPermanent();
+      $file->save();
+      $client = \Drupal::httpClient();
+      try {
+        $request = $client->post('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/environments/test/keyvaluemaps/HPX_GoogleServiceAccountCredentials/entries/' . $title, [
+          'auth' => [$get_cred[0], $get_cred[1]],
+          'json' => [
+            'name' => $title,
+            'value' => $data,
+          ],
+        ]);
+        $response = json_decode($request->getBody());
+      } catch (RequestException $e) {
+        \Drupal::logger('fhir_restapi')->error($e->getMessage());
+      }
+    }
+    else {
+      $form_state->setErrorByName('file_markup_edit][json_file', t('Please upload Json file with client_email, private_key and private_key_id'));
+    }
+  }
+}
+
+/*
+ * Validate handler for deleting KVM while app deletion
+ */
+function fhir_restapi_delete_validate_handler(&$form, FormStateInterface &$form_state) {
+  $get_cred = fhir_get_edge_cred();
+  $internalName = \Drupal::service('request_stack')
+    ->getCurrentRequest()
+    ->get('app')
+    ->getName();
+  $fid = $form_state->getValue('file_markup')['json_file'][0];
+  if ($fid) {
+    $client = \Drupal::httpClient();
+    try {
+      $request = $client->delete('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/environments/test/keyvaluemaps/HPX_GoogleServiceAccountCredentials/entries/' . $internalName, [
+        'auth' => [$get_cred[0], $get_cred[1]],
+      ]);
+      $response = json_decode($request->getBody());
+    } catch (RequestException $e) {
+      \Drupal::logger('fhir_restapi')->error($e->getMessage());
+    }
+  }
+}
+
+/*
+ * To Direct to '/user/my-aaps' after submitting "Create Developer App" form and creating KVM.
+ */
+function fhir_restapi_redirect_handler_submit(array $form, FormStateInterface $form_state) {
+  $fid = $form_state->getValue('file_markup')['json_file'][0];
+  if ($fid) {
+    $get_cred = fhir_get_edge_cred();
+    $title = $form_state->getValue('name');
+    $file = File::load($fid);
+    $data = file_get_contents($file->getFileUri());
+    $file->setPermanent();
+    $file->save();
+    $client = \Drupal::httpClient();
+    try {
+      $request = $client->post('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/environments/test/keyvaluemaps/HPX_GoogleServiceAccountCredentials/entries', [
+        'auth' => [$get_cred[0], $get_cred[1]],
+        'json' => [
+          'name' => $title,
+          'value' => $data,
+        ],
+      ]);
+      $response = json_decode($request->getBody());
+    } catch (RequestException $e) {
+      \Drupal::logger('fhir_restapi')->error($e->getMessage());
+    }
+  }
+  $dest_url = "/user/my-apps";
+  $url = Url::fromUri('internal:' . $dest_url);
+  $form_state->setRedirectUrl($url);
+}
+
+/*
+ * To Direct to '/user/my-aaps' after submitting "Edit and delete Developer App" form.
+ */
+function fhir_restapi_redirect_handler($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $dest_url = "/user/my-apps";
+  $url = Url::fromUri('internal:' . $dest_url);
+  $form_state->setRedirectUrl($url);
+}
+
+/*
+ * Flush normaAps load on cache clear.
+ *
+ * Flush conformance page state data.
+ */
+function fhir_restapi_cache_flush() {
+  // Remove normaAps individual user state values on cache clear.
+  $ids = \Drupal::entityQuery('user')->execute();
+  $ex_data = [];
+  foreach($ids as $id){
+    $ex_data[] = "app_cred_resource_".$id;
+  }
+  \Drupal::state()->deleteMultiple($ex_data);
+
+  // Flush conformance page state data.
+  $conformance_config = \Drupal::config('fhir_conformance_report.settings')
+    ->get();
+  if (!empty($conformance_config)) {
+    $version_metadata_urls = [];
+    foreach ($conformance_config as $v_name => $version_metadata_url) {
+      $version_metadata_urls[] = $version_metadata_url;
+    }
+    \Drupal::state()->deleteMultiple($version_metadata_urls);
+  }
+
+}
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="SoF-AM-AddNonRequiredHeaders" version="SHA-512:260994fce5d7906541208982a7b4a66fcdf9824abd781988a7564f367b2b63a8a493ceafba55191644da3748b7d6f773cbeca01234cccd466e1fa2e033261edc"/>
+        <VersionInfo resourceName="SoF_AM_CreateBERequest" version="SHA-512:d63962b6cd59bc9699cd797aa55ed1a2c46547985ef8b81425520dc170e47f05c369ec477b8ad9ecf6dd9baf8976bb93f642c7fbdbc4e18ab13d885194002de2"/>
+        <VersionInfo resourceName="SoF_AM_ExtractIncomingClientHeaders" version="SHA-512:9fb7127d724645bbb2e2057570839ffd353bdead70dcd695cab7e38b01cc9f3f4a33d1a0bce70bcb5a1bdedbc22a42fb0be260716d158ae067fdf0f90c1bb3c8"/>
+        <VersionInfo resourceName="SoF_AM_Fault_GenericFault" version="SHA-512:2b1e3f6e80ba8012273a5792977bc7f5186929dee69211d7caa2990241845b2001f262c84c84d10c5df1e27e8036a9428b5317e493048805330cf97137e18f8d"/>
+        <VersionInfo resourceName="SoF_AM_Fault_HandleCORSPreFlight" version="SHA-512:e8a64f885c203d0bd0e8051a6c1f917f2ee5a2b662a1b24c39b0d778085159bb16f13f90ee33d3598e540083f8732cf599e57c6e858d7ebd52199cd9fa5205e8"/>
+        <VersionInfo resourceName="SoF_AM_Fault_InvalidAuthorization" version="SHA-512:92f17b385fc86e0a035d330450b8001f36a2fac493f788e4ebddcde93868f811968a5899fc5f209900da013701a3434a99934d1e81902492320ac8de1095e945"/>
+        <VersionInfo resourceName="SoF_AM_Fault_InvalidRequest" version="SHA-512:935cf13bd89c6a2077411ee09c4ecaa982c302fbbda22af5a50b7792a0c68d3fc039f08c34e5c7effb299896b84e189adb8e8da42d719682f71c75c1cb91f09b"/>
+        <VersionInfo resourceName="SoF_AM_Fault_Redirect" version="SHA-512:fb4aa5cccee95c8efcf39c8daddd30e2209d5d3b1b3c4ff2d17d7bc2ffd02f9a8fffafc08d04c0b1c346b581c552b2b711d9a9a0ce288b9eeb5d0d13fc937386"/>
+        <VersionInfo resourceName="SoF_AM_RemoveRequestHeaders" version="SHA-512:bf42a93e2096a8900cbb58cd5017d6e8848fb46b075e0b1d03e53e2db611c4fc7382c6771dea2f83ef8bb1b356e126ea7f8837268f5c95566bb4682ca27c26ab"/>
+        <VersionInfo resourceName="SoF_BA_CalculateBasicAuthHeader" version="SHA-512:859923392c823b3f14b9a78f4300838b722ab448b756de900f9682b7b13310725785abf82d9d8b3ce2ae97a82b2193c1592a9839efb12916035a4a9d3b1f5569"/>
+        <VersionInfo resourceName="SoF_EV_ExtactHeaders" version="SHA-512:8fc9af2e08c9bc37bbaa931d99591d1fca31f2e63c34025ecd88d9b20b5b4ed3d9b5aa823af5f8f3cded299bb18b484f479db50fe1b2ac137b4d4c7aa5bcc1bf"/>
+        <VersionInfo resourceName="SoF_EV_ExtractGoogleAccessToken" version="SHA-512:1d1784df53fc9632b4bbb7f493573bed58b5a862302dce324123070a4297134df913d91ceda5ad5e66c288bf991a94f9ec69c937dbce6db607da4eae187fa098"/>
+        <VersionInfo resourceName="SoF_EV_ExtractGoogleTokenCachePayload" version="SHA-512:ef9e3778ec64ff35130594b4fabc223cf019ec89a8e199cf11e8909c447d1702db15ecaee14286eebbf5e965980ad3dfa5ee27cd1a1df0689cfff60560004d22"/>
+        <VersionInfo resourceName="SoF_EV_ExtractJwksUri" version="SHA-512:19a76696f7590664bd55d71593faaa63356bc97382a359c4fa75e34c60e35ee37b5ace80a9cb39dfe6b7653e882769abcb6e4b8ed8ba03f589310cccfd68d512"/>
+        <VersionInfo resourceName="SoF_EV_ExtractPathAttributes" version="SHA-512:1c6622a99085dbec1782923354dd322aeaaf188c116fd4431fcf6ba4048c63c16a0668ee87276c0076f7838aba9e2044a09971603e53936206ed1911453c4508"/>
+        <VersionInfo resourceName="SoF_EV_ExtractServiceAccountDetails" version="SHA-512:e3da7c3c875367bf9dc7c26a75d4fa01ecb307aeb534660597f220d6643e76491db87029ee3beb5965c5340101d0a2101e6d1ec0d92a3d6d34fedb4448f95281"/>
+        <VersionInfo resourceName="SoF_EV_ExtractSmartConfiguration" version="SHA-512:f88645afe7ded2c8006f9a15b6cab610fac3a9e9c74893055ad90e15812e2c7e81a8a49715075cca4f54d940d76e9b535ed728c59b9e4b62bdfac8c322505b64"/>
+        <VersionInfo resourceName="SoF_EV_ExtractUserinfo" version="SHA-512:360b4a55d1e285070d9279d88201896c373df2a09eebcb7b3d607d3186c99a840a0a1042a23ee143a129af218be117c1fde3d76527eaed6a9190f7487fe4a6c9"/>
+        <VersionInfo resourceName="SoF_EV_ExtractUserinfoUrl" version="SHA-512:e2647ebff9ae35d7053d77b747896aad4e618144692899c0367e88f2cf0c6798901447d6b781a14b0815c4a78f60b5660b810151ff6ed975e0e2607970fdd7e3"/>
+        <VersionInfo resourceName="SoF_FaultInvalidClientAssertion" version="SHA-512:20ab2400214926152a707dfeef4f18e48ab85e8547d2d69877bf9ee1f0de6ba0c21b839fafc4014b8619ad32b2438cd6d5e95deccbe91ab44f4b61f02f888467"/>
+        <VersionInfo resourceName="SoF_Fault_SpikeArrestViolation" version="SHA-512:1cbc382fcabdb3c5dcdda5f11dbaca68058ec3111469ca5ba9129bea2ac16418e165d41a3d2855aeaf53b7a1eecea579e8eae486199a43c1ed4aefac056a2ebc"/>
+        <VersionInfo resourceName="SoF_Fault_TargetErrorHandler" version="SHA-512:7f0a28ecb8cc6c83b4b0ef901601c149055bd5c8f38d7386a37d45660235b494f1092169d242eff678209b924261ca8b7d264ec0f33cbb4d812a8d8f06458f80"/>
+        <VersionInfo resourceName="SoF_Fault_ThrowError" version="SHA-512:c166c7c30bb0178be0c6d65f9718744a3fad9b9a17aa118ab1b148c6b691afcf50d467fbbf4a8f5284796eb82767b621c5529e194f180dcc1e4760b9a1d0d5e6"/>
+        <VersionInfo resourceName="SoF_GenerateGoogleJWT" version="SHA-512:ba9dcadc65a05c811a98009e744cd019e3f12c3ed2107885c23cc3de9510819ea1f0936ed0b1e414b89d737b039c7b5e059725341c81c50815b583bf00a27ba6"/>
+        <VersionInfo resourceName="SoF_GetPublicKeyFromCache" version="SHA-512:b6f47775f7230953c904e7f1769e3b4be9ee9a54cc51a4bb807f8c79ebc34cd40b14278bfffa68b8745e18a4b720340e7db49aa12ba5f8f276e7a44d7fde2bfc"/>
+        <VersionInfo resourceName="SoF_HandleOPTIONSRequest" version="SHA-512:0f17d2977e1d01175b6774f9d27f77aedee00e1ad1c61841c3409a747494616400df2232719dde1f62b30e7b1271a9a340d1c9a3ba566de53fc561824f88e94d"/>
+        <VersionInfo resourceName="SoF_JSONtoXML" version="SHA-512:0af1558d947a5b7383f2ee02208cb149ffe9031c2e6e1e5a3384b7bbcc2be1d9bce58783bd99eaea3bba54f19cc9835ed4a062e6bc1ed43e05fcc48eddeb7465"/>
+        <VersionInfo resourceName="SoF_JS_AnalyzeIntrospectionDetails" version="SHA-512:af229271aca42696b5686706459edc88504d4e596bade39c5960ee714ae37129da2549d87eb43abc53caa8594a03e1f9b1bdccfaa5505c508495b7d33cd53cec"/>
+        <VersionInfo resourceName="SoF_JS_AnalyzeJWTDetails" version="SHA-512:9ad5a6c2ab52fe1ecc0bf0bfe50b27776d9b0d02c783ac89b4abc5f25b5bf4ff94c16490d40e4637caf79a912e23bb9559ddb5e81e3a7fa0ee85ad51833bc8c1"/>
+        <VersionInfo resourceName="SoF_JS_AnalyzeUserinfo" version="SHA-512:eeda5bf67f47c48b5325c2d6e8473229a47c60adff04ca66698d60e65383f1048b3cd8aeb7b371917de0d89ad3dc3c3d815586781181b54834f3ff4c35500674"/>
+        <VersionInfo resourceName="SoF_JS_AssignIntrospectUrlAndPath" version="SHA-512:70f62c52bc57df12771ed1b08c45a67d93db9f847de0fe0db5f704892ae8798395e39ef0039a3e624271dad7cefb3efc9d89c175aed77a4d7a1c859c49f15369"/>
+        <VersionInfo resourceName="SoF_JS_AssignJwksResponse" version="SHA-512:b1b80464e2a5c13adc8ed02398a401c604dd7d26a962db2e203d9b3d63a6d3ef4f49ee351e6de56493576cc7348777f19d685c323d80158d69676af8d485b9d7"/>
+        <VersionInfo resourceName="SoF_JS_AssignJwksUriAndPath" version="SHA-512:97ac7e77c9cff360764f96d8c3840382a2f9beaf0745d39d7b2ec56c700c02ebf2576907ecc430bc83ba0d6ea7c41df7856d19f28600b54dc854829fff4a22f3"/>
+        <VersionInfo resourceName="SoF_JS_AssignSCUrlAndPath" version="SHA-512:b730f8d396bf1a3149850afd5b9266e858301ecaae70e9eff3c0d66f128816827c6d7e75abcd91be93a763f99a270098519a16070d67bd957e2da1c25528fae4"/>
+        <VersionInfo resourceName="SoF_JS_AssignSCUserinfoUrl" version="SHA-512:902e8ef69b9b5343a79c5211ed7e8efb55e0eada6341580626c5b4c0a8b732719cca56cd6006a9f7196f6182a271cc6cb21c9e5d180d0dc45b13c42cc1dbca91"/>
+        <VersionInfo resourceName="SoF_JS_AssignSmartUrlAndPath" version="SHA-512:24f068d12da30feed81ad64cc7e64d6eae5509eaea8a2ef08df2bd805d6ad98e06c0d212eaf6f066be0bcb0128b99c103edb4514addec4c0729504da817e4eb7"/>
+        <VersionInfo resourceName="SoF_JS_CalculateTokenHash" version="SHA-512:7c143ee982ba4ce976d09f174ca97bee269df256b1696222351c7e29703cae667f62a9d28a78770a381e829f9b7e5027106952ba9f37fc122115cae2a1ee9d90"/>
+        <VersionInfo resourceName="SoF_JW_DecodeOIDCToken" version="SHA-512:164258d3aba2506a0b7b9e13e39008cd4f64764c36a151bcf0a0747cf84082c59ff327bdad616957c4b96ad3d1e4d6d093b16f09b54a8b0769b8ede14955a072"/>
+        <VersionInfo resourceName="SoF_LookupGoogleTokenCache" version="SHA-512:dc66e92a61b62b624d1644188b70c8ad8052663618bb1e27ebece6022e1d4ef2f8646f81326d6541705f76cdb4b2542b56cb0f2235d61e77365dc0f46f1c2f93"/>
+        <VersionInfo resourceName="SoF_ML_LogMessage" version="SHA-512:d9f1c54d4e88b2d60348a13c1aa611c5693c906ba8419f61fe231946e0c42df6d1440306aad940d399c51987516074169e496e4a01e31ee607ad86a4a7d4e5e8"/>
+        <VersionInfo resourceName="SoF_MatchIssuerWithConfig" version="SHA-512:991735a3c940cf7a4b81ef5d0c44fd247569578bbfdce63325690860faefd721b5c2038a6130195a7d00397f81076ab165296741cff6d220c750a2ba08b94904"/>
+        <VersionInfo resourceName="SoF_PopulateGoogleTokenCache" version="SHA-512:59c00ce298770a3e1031476cb83919c6ff472bc8b64be386817a7232f0477291ae46f8af54b35af40f56445d15236ce024f6a843aa7a4a77ee9bacf1351c24da"/>
+        <VersionInfo resourceName="SoF_PopulateJwksCache" version="SHA-512:04ba533a7d159e5824e674f69d5217b3242958f33b2ce90ec249a18362189d399a5b3a995db9996ca2f21ca5467d7ee0b137ab28b0c90e09a2e2e957053b4b10"/>
+        <VersionInfo resourceName="SoF_PrepareProxyRequest" version="SHA-512:f20791fe6305a3c262f667392e480926f42beb4142b9e411acc5625ff2f90c131e8b0fdeee1c9a7e37d6d02fa7a3e9cc03d8abdfe42322c2351f8adbd8ede817"/>
+        <VersionInfo resourceName="SoF_RC_LookupTokenCache" version="SHA-512:7ca15aa3c3a9e307cb5109daec14bd5b7c9fc436f01a4a315a5ad55f487964e04f1d1aae404c756e287ca03b8251d72eba459d9a41712166ad16781a1548b0a8"/>
+        <VersionInfo resourceName="SoF_RF_Fault_ErrorInJwks" version="SHA-512:f19d67ced5eea701da53836cd064ead253c5e13f6951504fd5939f29294b0c8474313439e22effb5aaa5280512bc96084d50bafdc6eaa1dc87c4f6d7418d3356"/>
+        <VersionInfo resourceName="SoF_RF_Fault_ErrorInSmart" version="SHA-512:1f2621bf1de8bce60a62c63e39fe0db2be0eede8ad280dd3620ecddab1a4dbe1f84e039afbc75544f6011daed0e481a7dc44796550348e73014c372327a4e037"/>
+        <VersionInfo resourceName="SoF_RF_Fault_ErrorInUserInfo" version="SHA-512:7c0abaf512449558a7823c2c11d7ab33639010323f7fcf13fac70fad086c7ecc9fa59940861d3820e9fabcd0344554e2be04c48f707d222ba72edf9047946653"/>
+        <VersionInfo resourceName="SoF_RF_Fault_Introspection" version="SHA-512:9eb5949144b125822fa853653c79df67059cf00e74762bf89272927cf8f6dd306ec25647c19a1d36bfbbb68501877accd147d909be3c0a1dc530325ed9fe52cf"/>
+        <VersionInfo resourceName="SoF_RF_Fault_InvalidAuthorizationHeader" version="SHA-512:def9c6a0329fd625e292b884164f2efd5982b832e72d60f0f88e61c8fd4c34e14ab0cc6e4022faf14776a22a07836e0d78735b55521db5c4f01ddc9fba82fafc"/>
+        <VersionInfo resourceName="SoF_RF_Fault_InvalidFhirStoreInfo" version="SHA-512:d1defef63634a15c574d74635797ba01f0ebd1186b6549633a43ee6433b36da6db00503df4c8a916f67748f1401ca4a9329fd01e55c5e46e0116ef33461d9929"/>
+        <VersionInfo resourceName="SoF_RF_Fault_MandatoryCheckFailed" version="SHA-512:8f4028786a81c25b62c43d50bd082ea29ce7577a696d52c8608b71e5d207a9ada35701ffebfc4c4bce9e703bbf10ba39a4d883970acbe4d636f3d99e3ac3bf40"/>
+        <VersionInfo resourceName="SoF_ReWriteLinks" version="SHA-512:ed77f0d591b4fa22c68edbffc6ae7b51ed412181d5b190a1d20f9f2d2b6a36fce4e77a58ec4ebb2e63c083efcf31743cb5b3958a2f881d420b86e9b43bcef695"/>
+        <VersionInfo resourceName="SoF_ReadConfigKVM" version="SHA-512:86fc752057bf9c942baf3fd8089b68b1b40f202659e8f8cd18e76112bf0c92167c4c7cebb9df3e58639c9d030ebbcccc1e7f9b0a1b5f4dad6167045cea7034e2"/>
+        <VersionInfo resourceName="SoF_ReadServiceAccountDetails" version="SHA-512:48ba6acf5b3388638d65ad39aa64cb3571d2e71146df77db42f7db4c8bc4a6489f24361332b667b7fd60a96e50321e47d80f261117bd83af034464b862719a58"/>
+        <VersionInfo resourceName="SoF_SA_EnforceRateLimit" version="SHA-512:8b459852c32e4ef68512b122d7300443ccaf1fb76282ebf8b99f82ca755bdbc1db5475e716c6345f1bdcb253bf6b4b857a7c538bc8d385ee0d8ab11188823cb5"/>
+        <VersionInfo resourceName="SoF_SC_GenerateGoogleAccessToken" version="SHA-512:3463d3f317319e66c183e193800e67821b39f54c6675b753a5f306c7f8c929b683a2949baf25c6306cd1c59a8d82329fa667c3324144913b2fd1e36026ab7c2c"/>
+        <VersionInfo resourceName="SoF_SC_GetJwksUri" version="SHA-512:d9fe3aac1dec98693be70d8d7aabca09d2d1fafe8555b2eba21cfc2c4854f07286eb84c68c10f2d637cf4edfdc97d7e7912c05cf74bf2497f600003fef3229ba"/>
+        <VersionInfo resourceName="SoF_SC_GetPublicKeyFromJWKSUrl" version="SHA-512:d68c815104b08d541288bfd542ed6ec4c4a1e7f02fdcdefdc6ac02014f8be84f03a6a2c7e157f328bee06ee4cd6533fd6b08427cf52868b226d42c9ec3af4f62"/>
+        <VersionInfo resourceName="SoF_SC_GetSmartConfiguration" version="SHA-512:8e3749119cc0749fdecb881013f46b7a166c07097aa321ab2bd781d1739bfd5c47dfac84e092e4e8cca793dffd7e5344b523526b205693b210fa32382b1b2f3b"/>
+        <VersionInfo resourceName="SoF_SC_GetUserinfo" version="SHA-512:f42bd840fd977706e355d9b1ab6a997becc59773441bd2cd8a42731a541fac11ba44c8ea64639403bf77bf0a14fa91ff1df42575b86b7aadf194ad610d14acf3"/>
+        <VersionInfo resourceName="SoF_SC_GetUserinfoUrl" version="SHA-512:61056a9dc5b775a0fe9cc20887025b991f37902842ee124b7675da411f4178210d6cb81c7c4c96b83e19f54dfffe76bd7df4cd1b6c6ee2a65ed60eab208fcf7a"/>
+        <VersionInfo resourceName="SoF_SC_IntrospectOpaqueToken" version="SHA-512:2a236dd60a57e7e4d0dfcfa8fe499c78c40c2ffa7666327cdf8a28aa19e5deee79447e6d2b4c5c7294017ad64b4bd5abecf2188dcdfe2b357170960489bc8179"/>
+        <VersionInfo resourceName="SoF_SetCORSHeaders" version="SHA-512:9b2a25505b6a645f0f54ca26330ff21121f1bb16a93c9e652f2e685f05235a83d4b906bb27adc95b0e06b247617fe57f9c916703f4a983f2b7ef9504a14be117"/>
+        <VersionInfo resourceName="SoF_SetDefaultPathSuffix" version="SHA-512:571cd74f0ad7f0541df2b18f7b306caa9602a5f1ae31a4fef0c97b6faf804dbb5ef91f9c0c53787144ccf5698b89480f27a6ecab06c9391e8225bf76d6eaae32"/>
+        <VersionInfo resourceName="SoF_SetErrorVariables" version="SHA-512:4cf74d0342102be89061db4f2efabe707d8333a6f330d87752e1a480268e646369de7457fb9aa6692624effd812e063f62e4c75380add6810bbc38223bb31c65"/>
+        <VersionInfo resourceName="SoF_SetFlowProcessingConfig" version="SHA-512:f71291ccda9eab1dbb0b6a235645fed7c07922e2e5b2d653e5cb6959a8bd89296b2c8011d394aa2eb6d4e57b7e9e85cb1f419ed509a63d6d8c188f7c43a5351b"/>
+        <VersionInfo resourceName="SoF_SetGoogleTokenCachePayload" version="SHA-512:0bca46893d2f709a93ffe83b0fbbb8546afea749f49dcc4279c443fda37b3135f8292f7268c1da5cfb8dad4ccef8cb6899089ce7b7fdb35db9bba6ae2be466e9"/>
+        <VersionInfo resourceName="SoF_ValidateApiKey" version="SHA-512:1c12798e29c0a228da3e4960454df51e958feae0158d85fbb981e203648f3905143c26b57096a03be160830b844725bc98809381e2e1f02d09b333b4ba681fd5"/>
+        <VersionInfo resourceName="SoF_ValidateFhirStoreInfo" version="SHA-512:05e7422aa9bea4e89078669c3d4ff9a6555d48668564f05082e7303fe71df0dfedce55c643add5e37496336360b55e115c92355ff4d130e41142dfbba44a6fd3"/>
+        <VersionInfo resourceName="SoF_ValidateTargetResponse" version="SHA-512:d88f191b60ef328d9d72078a6e3bc399dd45a84f28ad9f96ab293d3f77073704f0d210b2b364397151cd4275b9e26edab5de524553a3929c9318548e4d8d7ff5"/>
+        <VersionInfo resourceName="SoF_VerifyESOIDCToken" version="SHA-512:358bd9e553d05ded08aab0fc7b27e96b6e71d044336f1cbad6392ead592c3b3bbc4da906ef4d8dee8a9b3b21ba4ca79ef4eada2a9cc409e3a311684b27a4551f"/>
+        <VersionInfo resourceName="SoF_VerifyRSOIDCToken" version="SHA-512:80bc80f4707930cd3cd218480aaf8df73c0231947f231433d388944130d22da5eab4a87b6f42cf7a784acf6defffafa91b05e751f119c5a0fbf8bbb55ed18c2f"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:7d74001e68e6cc9fdedcb2d4fa5c4de499cf020b711cfde864aedd6a0f7d2e7c3c18ff89c8fbd6e3ab5fd0884f4f7b630601f39381dbb825e654a4f46dfc184f"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://AddNonRequiredHeaders.js" version="SHA-512:6339cea85ba623b38d8bc6c9224f5055e8d13c8b3e75373641982e0168d6c4885981a0921c3f916595e2dc3781b243fa7a894a25170365e414165ac23f87be84"/>
+        <VersionInfo resourceName="jsc://AnalyzeIntrospectionDetails.js" version="SHA-512:4905ad1e96de677902225c0e3e4747089fc934bc2db51b2a80fe0a794167388bdf4cf978dc1210b9e9245b083b3b5b005ae7cec6e351dfb0862c33e762f2ab25"/>
+        <VersionInfo resourceName="jsc://AnalyzeJWTDetails.js" version="SHA-512:b31a36f4c94a5f4c698fd31580dee0ff5fa550886e436e1a664e9893a8b7e72f0da806fb71185a9e57c9087ef215a9214566c8c3b407e6c6e06404afc079ae35"/>
+        <VersionInfo resourceName="jsc://AnalyzeUserinfo.js" version="SHA-512:c5c6f61adf5fb577c4332aa8729a731a12462dbb2e7641f4d4f3628f70560211b29c137c52770bcaf5d7bbc66f94e9417e2bcf99eecd490cad41f17b2cc1a919"/>
+        <VersionInfo resourceName="jsc://AssignIntrospectUrlAndPath.js" version="SHA-512:297d29ba6b97c2fe8d15975ae0678e8c66127e2daa5ef8d30d5a7aaf3515041c938c088f32a003036752e7a464a8571e502c15a7cf682f065d317e2a0b46f6ab"/>
+        <VersionInfo resourceName="jsc://AssignJwksResponse.js" version="SHA-512:ae597718ffa7730db112f787650f7b74b7fd0a6d69de0186cd2fabbfc686a20cbbc35b29a252deeb1b5b88cbafdab2d71cfb93bab34137347e3ad156f1c9225b"/>
+        <VersionInfo resourceName="jsc://AssignJwksUriAndPath.js" version="SHA-512:680be7d4b2791f1ee4566c8c3b2f5d2cdb584595dd077f55e5a4e695cfabbb2991d5901ceb1f516d858bba4e0c8b4c11d0a9238e9b630da280954a647559da7e"/>
+        <VersionInfo resourceName="jsc://AssignSCUrlAndPath.js" version="SHA-512:cae5f099f1a0e8cc3590468160d2abf1ee351cdbbaa3ad23c513562b9960756e8b4e53ca4fb42d899868ed9b3df3f195c7c0f12ea062289da16f73cfcfd49c4f"/>
+        <VersionInfo resourceName="jsc://AssignSCUserinfoUrl.js" version="SHA-512:1553bd7721238bacbec254fbf53d31be41d421cd2fdec42d936113876a9f53373e84923e9c27ef1f63e2714502bf7b4c1dd9cbd974ef7be4cea3046ddcda5958"/>
+        <VersionInfo resourceName="jsc://AssignSmartUrlAndPath.js" version="SHA-512:b21d037950aae1d2bd65134f96f7dc114af55c3e1f711682fd8111985f04ebc960c78355219fc01b0a79bca86978a7c2199ee92e00f0228902fd5f6f1c762307"/>
+        <VersionInfo resourceName="jsc://CalculateTokenHash.js" version="SHA-512:cfa3d1313b1021d5a58a6d808098e9a5db018ccf9ed32f4f0ac05d348c60898d25d805406d6a50cd3e09410f1324dd12978b4b3b9cea00fe62792ef683c603d6"/>
+        <VersionInfo resourceName="jsc://MatchIssuerWithConfig.js" version="SHA-512:872ce407f6c57ce1f0806a66b29bafb2f20c966aebb681b48f8c7608a51432218779df524be9a696215b019104d6ab39239396ee4b8ef65313aed3f1b9fc8703"/>
+        <VersionInfo resourceName="jsc://PrepareProxyRequest.js" version="SHA-512:1d0fb5485301899e560e48cde6cc738372c9d01dc797dbf58f01548bd2d37a6a1c1696dc05b550fc54f9488902febbda3f2b2ad877e57dca5b46dbbc5497ce83"/>
+        <VersionInfo resourceName="jsc://SetFlowProcessingConfig.js" version="SHA-512:ffbff8512d243b51ee7f78be0f7e948f3b03d5b51c4988f3d158dcbef00f8ccf382f1aaabd1e5f0afcdd08b2d7dc0237c594cfbaeb649f656eb07e5d94106ec4"/>
+        <VersionInfo resourceName="jsc://SoF_ReWriteLinks.js" version="SHA-512:39e25c4d2627e40d7ddc6a38761e462171ba5d57ab939cf34fb7636048db919d5a39720966bcfcc17deeb860ed4d4c66914f28fc6347e37b5bf7346ab53e0c72"/>
+        <VersionInfo resourceName="jsc://ValidateFhirStoreInfo.js" version="SHA-512:73c9e41d17a3d7caa3d270673926509074d580e1e80cd06cb6f1edaa69a12911145f4462483d8fc381271fde086ef107824b1ba82bbf3c18b0b08255353f0f5b"/>
+        <VersionInfo resourceName="jsc://ValidateTargetResponse.js" version="SHA-512:b46ac6fa76c7bf2c74e65badd9b016d731ed57d0b35fb932fd8a3a367b0d96f220e5ee63add0865f12a7c51659c89f8c11c4a94dc75b80df00932b6ba991c474"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:c3b7eebd4d27e545d04c17f17afe8225eeb1ab91bec9a20c86dbb812cfebc6ec6a879be95a4ad1887056dbdf78288a1cf975e5e741433d9f417935f9e9698d1e"/>
+    </TargetEndpoints>
+</Manifest>

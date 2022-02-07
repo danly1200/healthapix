@@ -1,0 +1,11 @@
+uuid: 3eaeda99-387a-4be9-8406-081e60aecdd1
+langcode: en
+status: true
+dependencies: {  }
+name: Video
+type: blog_video
+description: ''
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

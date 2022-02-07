@@ -1,0 +1,16 @@
+<div class="row login-form-popup" id="login-form-popup">
+  <form{{ attributes }}>
+    {{ element.status_messages }}
+    {{ element.name }}
+    {{ element.pass }}
+    {{ element.captcha }}
+    {{ element.actions.submit }}
+    {{ element.form_build_id }}
+    {{ element.form_id }}
+  </form>
+  <div class="user-forgot-pass">
+    <a class="use-ajax" data-dialog-type="modal" href="{{ path('user.pass') }}">{{ 'Forgot your password?'|t }}</a>
+  </div>
+</div>
+
+

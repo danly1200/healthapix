@@ -1,0 +1,2142 @@
+{
+  "swagger": "2.0",
+  "info":{
+  "description": 
+    "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+  "version": "1.4.0",
+  "title": "FHIR Condition resource API documentation"
+  },
+  "host": "healthapix-demo-test.apigee.net",
+  "schemes":[
+     "https"
+     ],
+  "basePath": "/v1/dstu2",
+  "produces":[
+    "application/json+fhir;charset=UTF-8",
+    "application/xml+fhir;charset=UTF-8"
+    ],
+  "definitions": {
+    "Condition": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "div": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "status",
+            "div"
+          ]
+        },
+        "patient": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "code": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "coding",
+            "text"
+          ]
+        },
+        "category": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "fhir_comments": {
+                    "type": "array",
+                    "items": {
+                      "properties": {}
+                    }
+                  },
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "coding"
+          ]
+        },
+        "verificationStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "coding"
+          ]
+        },
+        "onsetDateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bodySite": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "coding": {
+                "type": "array",
+                "uniqueItems": true,
+                "minItems": 1,
+                "items": {
+                  "required": [
+                    "system",
+                    "code",
+                    "display"
+                  ],
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "text",
+        "patient",
+        "code",
+        "category",
+        "verificationStatus",
+        "severity",
+        "onsetDateTime",
+        "bodySite"
+      ]
+    },
+    "metaBody": {
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/Condition": {
+      "parameters": [],
+      "post": {
+        "tags":["Condition"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Condition"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "required": false,
+            "description": "Specify the search query for conditional create.",
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Condition could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Condition not found."
+          },
+          "422": {
+            "description": "The Condition resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Create Condition",
+        "description": "Create a new Condition with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      },
+      "put": {
+         "tags":["Condition"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Condition"
+            }
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "asserter",
+            "type": "string",
+            "in": "query",
+            "description": "Person who asserts this condition"
+          },
+          {
+            "name": "body-site",
+            "type": "string",
+            "in": "query",
+            "description": "Anatomical location, if relevant"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The category of the condition"
+          },
+          {
+            "name": "clinicalstatus",
+            "type": "string",
+            "in": "query",
+            "description": "The clinical status of the condition"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Code for the condition"
+          },
+          {
+            "name": "date-recorded",
+            "type": "string",
+            "in": "query",
+            "description": "A date, when the Condition statement was documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Encounter when condition first asserted"
+          },
+          {
+            "name": "evidence",
+            "type": "string",
+            "in": "query",
+            "description": "Manifestation/symptom"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A unique identifier of the condition record"
+          },
+          {
+            "name": "onset",
+            "type": "string",
+            "in": "query",
+            "description": "Date related onsets (dateTime and Period). The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "onset-info",
+            "type": "string",
+            "in": "query",
+            "description": "Other onsets (boolean, age, range, string)"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who has the condition?"
+          },
+          {
+            "name": "severity",
+            "type": "string",
+            "in": "query",
+            "description": "The severity of the condition"
+          },
+          {
+            "name": "stage",
+            "type": "string",
+            "in": "query",
+            "description": "Simple summary (disease specific)"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition Updated."
+          },
+          "201": {
+            "description": "Condition Created."
+          },
+          "400": {
+            "description": "Condition could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Condition Conditional Update",
+        "description": "The conditional update interaction is used to update an existing Condition based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      },
+      "delete": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "asserter",
+            "type": "string",
+            "in": "query",
+            "description": "Person who asserts this condition"
+          },
+          {
+            "name": "body-site",
+            "type": "string",
+            "in": "query",
+            "description": "Anatomical location, if relevant"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The category of the condition"
+          },
+          {
+            "name": "clinicalstatus",
+            "type": "string",
+            "in": "query",
+            "description": "The clinical status of the condition"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Code for the condition"
+          },
+          {
+            "name": "date-recorded",
+            "type": "string",
+            "in": "query",
+            "description": "A date, when the Condition statement was documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Encounter when condition first asserted"
+          },
+          {
+            "name": "evidence",
+            "type": "string",
+            "in": "query",
+            "description": "Manifestation/symptom"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A unique identifier of the condition record"
+          },
+          {
+            "name": "onset",
+            "type": "string",
+            "in": "query",
+            "description": "Date related onsets (dateTime and Period). The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "onset-info",
+            "type": "string",
+            "in": "query",
+            "description": "Other onsets (boolean, age, range, string)"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who has the condition?"
+          },
+          {
+            "name": "severity",
+            "type": "string",
+            "in": "query",
+            "description": "The severity of the condition"
+          },
+          {
+            "name": "stage",
+            "type": "string",
+            "in": "query",
+            "description": "Simple summary (disease specific)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Condition not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Condition Conditional Delete",
+        "description": "The conditional delete interaction allows a client to delete Condition/Conditions  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      },
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "asserter",
+            "type": "string",
+            "in": "query",
+            "description": "Person who asserts this condition"
+          },
+          {
+            "name": "body-site",
+            "type": "string",
+            "in": "query",
+            "description": "Anatomical location, if relevant"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The category of the condition"
+          },
+          {
+            "name": "clinicalstatus",
+            "type": "string",
+            "in": "query",
+            "description": "The clinical status of the condition"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Code for the condition"
+          },
+          {
+            "name": "date-recorded",
+            "type": "string",
+            "in": "query",
+            "description": "A date, when the Condition statement was documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Encounter when condition first asserted"
+          },
+          {
+            "name": "evidence",
+            "type": "string",
+            "in": "query",
+            "description": "Manifestation/symptom"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A unique identifier of the condition record"
+          },
+          {
+            "name": "onset",
+            "type": "string",
+            "in": "query",
+            "description": "Date related onsets (dateTime and Period). The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "onset-info",
+            "type": "string",
+            "in": "query",
+            "description": "Other onsets (boolean, age, range, string)"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who has the condition?"
+          },
+          {
+            "name": "severity",
+            "type": "string",
+            "in": "query",
+            "description": "The severity of the condition"
+          },
+          {
+            "name": "stage",
+            "type": "string",
+            "in": "query",
+            "description": "Simple summary (disease specific)"
+          }
+        ],
+       "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Condition"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Conditions Search",
+        "description": "Returns Conditions based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}": {
+      "parameters": [],
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition Instance",
+            "schema": {
+              "$ref": "#/definitions/Condition"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Read Condition",
+        "description": "Returns details of Condition having id given in path.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      },
+      "put": {
+         "tags":["Condition"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Condition"
+            }
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition Updated."
+          },
+          "201": {
+            "description": "Condition Created."
+          },
+          "400": {
+            "description": "Condition could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Update Condition",
+        "description": "Update an existing Condition by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      },
+      "delete": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Condition not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Delete Condition",
+        "description": "The delete interaction removes an existing Condition.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/_history": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Condition"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Condition History",
+        "description": "It retrieves the history of a particular Condition identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/_history": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          }
+        ],
+       "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Condition"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Conditions History",
+        "description": "It retrieves the history of all resources of Condition.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/_history/{vid}": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition Instance",
+            "schema": {
+              "$ref": "#/definitions/Condition"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Condition Version Read",
+        "description": "This interaction preforms a version specific read of Condition resource.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/$meta": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for Condition"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Conditions Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for Conditions.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/$meta": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Condition Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given Condition resource.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/_history/{vid}/$meta": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Condition Version based Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the Condition.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/{type}": {
+      "get": {
+         "tags":["Condition"],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular Condition"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": " Compartment Search",
+        "description": "Search the specified resource type in Condition compartment.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/_search": {
+      "post": {
+         "tags":["Condition"],
+        "consumes":[
+          "application/x-www-form-urlencoded"
+          ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "asserter",
+            "type": "string",
+            "in": "query",
+            "description": "Person who asserts this condition"
+          },
+          {
+            "name": "body-site",
+            "type": "string",
+            "in": "query",
+            "description": "Anatomical location, if relevant"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The category of the condition"
+          },
+          {
+            "name": "clinicalstatus",
+            "type": "string",
+            "in": "query",
+            "description": "The clinical status of the condition"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Code for the condition"
+          },
+          {
+            "name": "date-recorded",
+            "type": "string",
+            "in": "query",
+            "description": "A date, when the Condition statement was documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Encounter when condition first asserted"
+          },
+          {
+            "name": "evidence",
+            "type": "string",
+            "in": "query",
+            "description": "Manifestation/symptom"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A unique identifier of the condition record"
+          },
+          {
+            "name": "onset",
+            "type": "string",
+            "in": "query",
+            "description": "Date related onsets (dateTime and Period). The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "onset-info",
+            "type": "string",
+            "in": "query",
+            "description": "Other onsets (boolean, age, range, string)"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who has the condition?"
+          },
+          {
+            "name": "severity",
+            "type": "string",
+            "in": "query",
+            "description": "The severity of the condition"
+          },
+          {
+            "name": "stage",
+            "type": "string",
+            "in": "query",
+            "description": "Simple summary (disease specific)"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "formData",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "asserter",
+            "type": "string",
+            "in": "formData",
+            "description": "Person who asserts this condition"
+          },
+          {
+            "name": "body-site",
+            "type": "string",
+            "in": "formData",
+            "description": "Anatomical location, if relevant"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "formData",
+            "description": "The category of the condition"
+          },
+          {
+            "name": "clinicalstatus",
+            "type": "string",
+            "in": "formData",
+            "description": "The clinical status of the condition"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "formData",
+            "description": "Code for the condition"
+          },
+          {
+            "name": "date-recorded",
+            "type": "string",
+            "in": "formData",
+            "description": "A date, when the Condition statement was documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "formData",
+            "description": "Encounter when condition first asserted"
+          },
+          {
+            "name": "evidence",
+            "type": "string",
+            "in": "formData",
+            "description": "Manifestation/symptom"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "formData",
+            "description": "A unique identifier of the condition record"
+          },
+          {
+            "name": "onset",
+            "type": "string",
+            "in": "formData",
+            "description": "Date related onsets (dateTime and Period). The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "onset-info",
+            "type": "string",
+            "in": "formData",
+            "description": "Other onsets (boolean, age, range, string)"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "formData",
+            "description": "Who has the condition?"
+          },
+          {
+            "name": "severity",
+            "type": "string",
+            "in": "formData",
+            "description": "The severity of the condition"
+          },
+          {
+            "name": "stage",
+            "type": "string",
+            "in": "formData",
+            "description": "Simple summary (disease specific)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+       "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Condition"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Conditions Search using POST",
+        "description": "This interaction searches a set of Conditions based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/$meta-add": {
+      "post": {
+         "tags":["Condition"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Condition could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Condition not found."
+          },
+          "422": {
+            "description": "The Condition resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Condition metadata",
+        "description": "Add a metadata info Condition with specified id.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    },
+    "/Condition/{id}/_history/{vid}/$meta-add": {
+      "post": {
+         "tags":["Condition"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+               "patient/Condition.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Condition.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Condition could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Condition not found."
+          },
+          "422": {
+            "description": "The Condition resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Condition Version based Metadata",
+        "description": "Add metadata info to specified Condition resource.<p><a href = 'https://www.hl7.org/fhir/condition.html'>FHIR documentation for Condition.</a></p>"
+      }
+    }
+  },
+   "securityDefinitions": {
+    "OAuthV2B2C": {
+      "type": "oauth2",
+      "description": "Security scheme for B2C flow using authorization code flow.",
+      "scopes": {
+        "patient/Condition.read": "Read permissions for Condition demographics.",
+        "patient/Condition.write": "Write permissions for Condition demographics."
+      },
+      "flow": "accessCode",
+      "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken"
+    },
+    "OAuthV2B2B": {
+      "type": "oauth2",
+      "description": "Security scheme for B2B flow using authorization code flow.",
+      "flow": "application",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+      "scopes": {
+         "patient/Condition.read": "Read permissions for Condition demographics.",
+        "patient/Condition.write": "Write permissions for Condition demographics."
+      }
+    }  
+  }
+}

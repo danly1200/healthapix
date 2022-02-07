@@ -1,0 +1,5 @@
+name: 'FHIR Customizations'
+type: module
+description: 'Provides default customizations for the FHIR developer portal'
+core: 8.x
+package: 'Custom'

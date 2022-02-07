@@ -1,0 +1,3 @@
+administer app scopes:
+  title: 'Administer App Scopes'
+  description: 'Administrating user, patient scopes showing in Apps create/edit pages.'

@@ -1,0 +1,7 @@
+fhir_custom_api_select:
+  path: '/admin/config/api/select'
+  defaults:
+    _title: 'API selection form'
+    _form: '\Drupal\fhir_custom_api_form\Form\ApiForm'
+  requirements:
+    _permission: 'access administration pages'

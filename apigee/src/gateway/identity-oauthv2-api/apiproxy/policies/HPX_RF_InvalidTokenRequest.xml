@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="HPX_RF_InvalidTokenRequest">
+    <DisplayName>HPX_RF_InvalidTokenRequest</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"error":"invalid_request", "error_description":"@error_description#"}</Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

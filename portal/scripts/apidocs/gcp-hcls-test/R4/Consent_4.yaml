@@ -1,0 +1,1640 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Consent resource API documentation
+  description:
+    "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+    ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+    \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+    \ designed for the web; the resources are based on simple JSON structures, with an\
+    \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+    \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+    \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+    \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+    \ interoperability and data access requirements. API docs for other resources can be added\
+    \ by API publishers on request. \n"
+  version: "4.0.1"
+servers:
+  - url: https://gcp-hcls-test.apigee.net/v1/ghc/r4
+tags:
+  - name: Consent
+paths:
+  /Consent:
+    get:
+      tags:
+        - Consent
+      summary: Get Consent
+      parameters:
+        - name: _text
+          in: query
+          description: Search on the narrative of the resource
+          schema:
+            type: string
+        - name: _content
+          in: query
+          description: Search on the entire content of the resource
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: Logical id of this artifact
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: When the resource version last changed
+          schema:
+            type: string
+        - name: _profile
+          in: query
+          description: Profiles this resource claims to conform to
+          schema:
+            type: string
+        - name: _query
+          in: query
+          description:
+            A custom search profile that describes a specific defined query
+            operation
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Security Labels applied to this resource
+          schema:
+            type: string
+        - name: _source
+          in: query
+          description: Identifies where the resource comes from
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Tags applied to this resource
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: date
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: identifier
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: patient id
+          schema:
+            type: string
+        - name: action
+          in: query
+          description: Actions controlled by this rule
+          schema:
+            type: string
+        - name: actor
+          in: query
+          description: Resource for the actor (or group, by role)
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Classification of the consent statement - for indexing/retrieval
+          schema:
+            type: string
+        - name: consentor
+          in: query
+          description: Who is agreeing to the policy and rules
+          schema:
+            type: string
+        - name: data
+          in: query
+          description: The actual data reference
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: Custodian of the consent
+          schema:
+            type: string
+        - name: period
+          in: query
+          description: Timeframe for this rule
+          schema:
+            type: string
+        - name: purpose
+          in: query
+          description: Context of activities covered by this rule
+          schema:
+            type: string
+        - name: scope
+          in: query
+          description: Which of the four areas this resource covers (extensible)
+          schema:
+            type: string
+        - name: security-label
+          in: query
+          description: Security Labels that define affected resources
+          schema:
+            type: string
+        - name: source-reference
+          in: query
+          description:
+            Search by reference to a Consent, DocumentReference, Contract  or
+            QuestionnaireResponse
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: draft | proposed | active | rejected | inactive | entered-in-error
+          schema:
+            type: string
+            enum:
+              - draft
+              - proposed
+              - active
+              - rejected
+              - inactive
+              - entered-in-error
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Bundle"
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.read
+    post:
+      tags:
+        - Consent
+      summary: Create Consent
+      requestBody:
+        content:
+          "application/fhir+json;charset=utf-8":
+            schema:
+              $ref: "#/components/schemas/Consent"
+        required: false
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Consent"
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.write
+      x-codegen-request-body-name: body
+  /Consent/{id}:
+    get:
+      tags:
+        - Consent
+      summary: Retrieve Consent by ID
+      description: Retrieve Consent by providing ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Consent"
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.read
+    put:
+      tags:
+        - Consent
+      summary: Update Consent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          "application/fhir+json;charset=utf-8":
+            schema:
+              $ref: "#/components/schemas/Consent"
+        required: false
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Consent"
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.write
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Consent
+      summary: Remove Consent by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.write
+  /Consent/{id}/_history:
+    get:
+      tags:
+        - Consent
+      summary: Retrive Consent History by ID
+      description: Retrieve Consent History by providing ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: _since
+          in: query
+          schema:
+            type: string
+        - name: _count
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Bundle"
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.read
+  /Consent/{id}/_history/{vid}:
+    get:
+      tags:
+        - Consent
+      summary: Retrive Consent History by ID and Version
+      description: Retrieve Consent History by providing ID and version
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Consent"
+
+        400:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+
+        500:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+
+        default:
+          description: Unexpected Error
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OperationOutcome"
+      security:
+        - OAuthV2B2B:
+            - system/Consent.read
+components:
+  schemas:
+    Consent:
+      required:
+        - category
+        - resourceType
+        - scope
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: This is a Consent resource
+        id:
+          $ref: "#/components/schemas/id"
+        meta:
+          $ref: "#/components/schemas/Meta"
+        implicitRules:
+          $ref: "#/components/schemas/uri"
+        language:
+          $ref: "#/components/schemas/code"
+        text:
+          $ref: "#/components/schemas/Narrative"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the resource. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        modifierExtension:
+          type: array
+          description: |-
+            May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+            Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+          items:
+            $ref: "#/components/schemas/Extension"
+        identifier:
+          type: array
+          description: Unique identifier for this copy of the Consent Statement.
+          items:
+            $ref: "#/components/schemas/Identifier"
+        status:
+          type: string
+          description: Indicates the current state of this consent.
+          enum:
+            - draft
+            - proposed
+            - active
+            - rejected
+            - inactive
+            - entered-in-error
+        scope:
+          $ref: "#/components/schemas/CodeableConcept"
+        category:
+          type: array
+          description:
+            A classification of the type of consents found in the statement.
+            This element supports indexing and retrieval of consent statements.
+          items:
+            $ref: "#/components/schemas/CodeableConcept"
+        patient:
+          $ref: "#/components/schemas/Reference"
+        dateTime:
+          $ref: "#/components/schemas/dateTime"
+        performer:
+          type: array
+          description:
+            Either the Grantor, which is the entity responsible for granting
+            the rights listed in a Consent Directive or the Grantee, which is the
+            entity responsible for complying with the Consent Directive, including
+            any obligations or limitations on authorizations and enforcement of prohibitions.
+          items:
+            $ref: "#/components/schemas/Reference"
+        organization:
+          type: array
+          description:
+            The organization that manages the consent, and the framework
+            within which it is executed.
+          items:
+            $ref: "#/components/schemas/Reference"
+        sourceAttachment:
+          $ref: "#/components/schemas/Attachment"
+        sourceReference:
+          $ref: "#/components/schemas/Reference"
+        policy:
+          type: array
+          description:
+            The references to the policies that are included in this consent
+            scope. Policies may be organizational, but are often defined jurisdictionally,
+            or in law.
+          items:
+            $ref: "#/components/schemas/Consent_Policy"
+        policyRule:
+          $ref: "#/components/schemas/CodeableConcept"
+        verification:
+          type: array
+          description:
+            Whether a treatment instruction (e.g. artificial respiration
+            yes or no) was verified with the patient, his/her family or another authorized
+            person.
+          items:
+            $ref: "#/components/schemas/Consent_Verification"
+        provision:
+          $ref: "#/components/schemas/Consent_Provision"
+      description:
+        A record of a healthcare consumer’s  choices, which permits or
+        denies identified recipient(s) or recipient role(s) to perform one or more
+        actions within a given policy context, for specific purposes and periods of
+        time.
+    id:
+      pattern: ^[A-Za-z0-9\-\.]{1,64}$
+      type: string
+      description:
+        Any combination of letters, numerals, "-" and ".", with a length
+        limit of 64 characters.  (This might be an integer, an unprefixed OID, UUID
+        or any other identifier pattern that meets these constraints.)  Ids are case-insensitive.
+    Meta:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        versionId:
+          $ref: "#/components/schemas/id"
+        lastUpdated:
+          $ref: "#/components/schemas/instant"
+        source:
+          $ref: "#/components/schemas/uri"
+        profile:
+          type: array
+          description:
+            A list of profiles (references to [[[StructureDefinition]]]
+            resources) that this resource claims to conform to. The URL is a reference
+            to [[[StructureDefinition.url]]].
+          items:
+            $ref: "#/components/schemas/canonical"
+        security:
+          type: array
+          description:
+            Security labels applied to this resource. These tags connect
+            specific resources to the overall security policy and infrastructure.
+          items:
+            $ref: "#/components/schemas/Coding"
+        tag:
+          type: array
+          description:
+            Tags applied to this resource. Tags are intended to be used
+            to identify and relate resources to process and workflow, and applications
+            are not required to consider the tags when interpreting the meaning of
+            a resource.
+          items:
+            $ref: "#/components/schemas/Coding"
+      description:
+        The metadata about a resource. This is content in the resource
+        that is maintained by the infrastructure. Changes to the content might not
+        always be associated with version changes to the resource.
+    uri:
+      pattern: ^\S*$
+      type: string
+      description: String of characters used to identify a name or a resource
+    code:
+      pattern: ^[^\s]+(\s[^\s]+)*$
+      type: string
+      description:
+        A string which has at least one character and no leading or trailing
+        whitespace and where there is no whitespace other than single spaces in the
+        contents
+    Narrative:
+      required:
+        - div
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        status:
+          type: string
+          description:
+            The status of the narrative - whether it's entirely generated
+            (from just the defined data or the extensions too), or whether a human
+            authored it and it may contain additional data.
+          enum:
+            - generated
+            - extensions
+            - additional
+            - empty
+        div:
+          $ref: "#/components/schemas/xhtml"
+      description:
+        A human-readable summary of the resource conveying the essential
+        clinical and business information for the resource.
+    Extension:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        url:
+          $ref: "#/components/schemas/uri"
+        valueBase64Binary:
+          pattern: ^(\s*([0-9a-zA-Z\+/=]){4}\s*)+$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueBoolean:
+          type: boolean
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueCanonical:
+          pattern: ^\S*$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueCode:
+          pattern: ^[^\s]+(\s[^\s]+)*$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDate:
+          pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDateTime:
+          pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDecimal:
+          type: number
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueId:
+          pattern: ^[A-Za-z0-9\-\.]{1,64}$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueInstant:
+          pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueInteger:
+          type: number
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueMarkdown:
+          pattern: ^[ \r\n\t\S]+$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueOid:
+          pattern: ^urn:oid:[0-2](\.(0|[1-9][0-9]*))+$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valuePositiveInt:
+          type: number
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueString:
+          pattern: ^[ \r\n\t\S]+$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueTime:
+          pattern: ^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueUnsignedInt:
+          type: number
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueUri:
+          pattern: ^\S*$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueUrl:
+          pattern: ^\S*$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueUuid:
+          pattern: ^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueAddress:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueAge:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueAnnotation:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueAttachment:
+          $ref: "#/components/schemas/Attachment"
+        valueCodeableConcept:
+          $ref: "#/components/schemas/CodeableConcept"
+        valueCoding:
+          $ref: "#/components/schemas/Coding"
+        valueContactPoint:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueCount:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDistance:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDuration:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueHumanName:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueIdentifier:
+          $ref: "#/components/schemas/Identifier"
+        valueMoney:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valuePeriod:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueQuantity:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueRange:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueRatio:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueReference:
+          $ref: "#/components/schemas/Reference"
+        valueSampledData:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueSignature:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueTiming:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueContactDetail:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueContributor:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDataRequirement:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueExpression:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueParameterDefinition:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueRelatedArtifact:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueTriggerDefinition:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueUsageContext:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+        valueDosage:
+          type: string
+          description:
+            Value of extension - must be one of a constrained set of the
+            data types (see [Extensibility](extensibility.html) for a list).
+      description: Optional Extension Element - found in all resources.
+    Identifier:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        use:
+          type: string
+          description: The purpose of this identifier.
+          enum:
+            - usual
+            - official
+            - temp
+            - secondary
+            - old
+        type:
+          $ref: "#/components/schemas/CodeableConcept"
+        system:
+          $ref: "#/components/schemas/uri"
+        value:
+          $ref: "#/components/schemas/string"
+        period:
+          $ref: "#/components/schemas/Period"
+        assigner:
+          $ref: "#/components/schemas/Reference"
+      description:
+        An identifier - identifies some entity uniquely and unambiguously.
+        Typically this is used for business identifiers.
+    CodeableConcept:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        coding:
+          type: array
+          description: A reference to a code defined by a terminology system.
+          items:
+            $ref: "#/components/schemas/Coding"
+        text:
+          $ref: "#/components/schemas/string"
+      description:
+        A concept that may be defined by a formal reference to a terminology
+        or ontology or may be provided by text.
+    Reference:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        reference:
+          $ref: "#/components/schemas/string"
+        type:
+          $ref: "#/components/schemas/uri"
+        identifier:
+          $ref: "#/components/schemas/Identifier"
+        display:
+          $ref: "#/components/schemas/string"
+      description: A reference from one resource to another.
+    dateTime:
+      pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$
+      type: string
+      description:
+        A date, date-time or partial date (e.g. just year or year + month).  If
+        hours and minutes are specified, a time zone SHALL be populated. The format
+        is a union of the schema types gYear, gYearMonth, date and dateTime. Seconds
+        must be provided due to schema type constraints but may be zero-filled and
+        may be ignored.                 Dates SHALL be valid dates.
+    Attachment:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        contentType:
+          $ref: "#/components/schemas/code"
+        language:
+          $ref: "#/components/schemas/code"
+        data:
+          $ref: "#/components/schemas/base64Binary"
+        url:
+          $ref: "#/components/schemas/url"
+        size:
+          $ref: "#/components/schemas/unsignedInt"
+        hash:
+          $ref: "#/components/schemas/base64Binary"
+        title:
+          $ref: "#/components/schemas/string"
+        creation:
+          $ref: "#/components/schemas/dateTime"
+      description: For referring to data content defined in other formats.
+    Consent_Policy:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        modifierExtension:
+          type: array
+          description: |-
+            May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+            Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+          items:
+            $ref: "#/components/schemas/Extension"
+        authority:
+          $ref: "#/components/schemas/uri"
+        uri:
+          $ref: "#/components/schemas/uri"
+      description:
+        A record of a healthcare consumer’s  choices, which permits or
+        denies identified recipient(s) or recipient role(s) to perform one or more
+        actions within a given policy context, for specific purposes and periods of
+        time.
+    Consent_Verification:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        modifierExtension:
+          type: array
+          description: |-
+            May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+            Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+          items:
+            $ref: "#/components/schemas/Extension"
+        verified:
+          $ref: "#/components/schemas/boolean"
+        verifiedWith:
+          $ref: "#/components/schemas/Reference"
+        verificationDate:
+          $ref: "#/components/schemas/dateTime"
+      description:
+        A record of a healthcare consumer’s  choices, which permits or
+        denies identified recipient(s) or recipient role(s) to perform one or more
+        actions within a given policy context, for specific purposes and periods of
+        time.
+    Consent_Provision:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        modifierExtension:
+          type: array
+          description: |-
+            May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+            Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+          items:
+            $ref: "#/components/schemas/Extension"
+        type:
+          type: string
+          description:
+            Action  to take - permit or deny - when the rule conditions
+            are met.  Not permitted in root rule, required in all nested rules.
+          enum:
+            - deny
+            - permit
+        period:
+          $ref: "#/components/schemas/Period"
+        actor:
+          type: array
+          description:
+            Who or what is controlled by this rule. Use group to identify
+            a set of actors by some property they share (e.g. 'admitting officers').
+          items:
+            $ref: "#/components/schemas/Consent_Actor"
+        action:
+          type: array
+          description: Actions controlled by this Rule.
+          items:
+            $ref: "#/components/schemas/CodeableConcept"
+        securityLabel:
+          type: array
+          description:
+            A security label, comprised of 0..* security label fields (Privacy
+            tags), which define which resources are controlled by this exception.
+          items:
+            $ref: "#/components/schemas/Coding"
+        purpose:
+          type: array
+          description:
+            The context of the activities a user is taking - why the user
+            is accessing the data - that are controlled by this rule.
+          items:
+            $ref: "#/components/schemas/Coding"
+        class:
+          type: array
+          description:
+            The class of information covered by this rule. The type can
+            be a FHIR resource type, a profile on a type, or a CDA document, or some
+            other type that indicates what sort of information the consent relates
+            to.
+          items:
+            $ref: "#/components/schemas/Coding"
+        code:
+          type: array
+          description: If this code is found in an instance, then the rule applies.
+          items:
+            $ref: "#/components/schemas/CodeableConcept"
+        dataPeriod:
+          $ref: "#/components/schemas/Period"
+        data:
+          type: array
+          description:
+            The resources controlled by this rule if specific resources
+            are referenced.
+          items:
+            $ref: "#/components/schemas/Consent_Data"
+        provision:
+          type: array
+          description: Rules which provide exceptions to the base rule or subrules.
+          items:
+            $ref: "#/components/schemas/Consent_Provision"
+      description:
+        A record of a healthcare consumer’s  choices, which permits or
+        denies identified recipient(s) or recipient role(s) to perform one or more
+        actions within a given policy context, for specific purposes and periods of
+        time.
+    OperationOutcome:
+      required:
+        - issue
+        - resourceType
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: This is a OperationOutcome resource
+        issue:
+          type: array
+          description:
+            An error, warning, or information message that results from
+            a system action.
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/string"
+              severity:
+                type: object
+                description:
+                  Indicates whether the issue indicates a variation from
+                  successful processing.
+              code:
+                type: object
+                description:
+                  Describes the type of the issue. The system that creates
+                  an OperationOutcome SHALL choose the most applicable code from the
+                  IssueType value set, and may additional provide its own code for
+                  the error in the details element.
+              details:
+                $ref: "#/components/schemas/CodeableConcept"
+              diagnostics:
+                $ref: "#/components/schemas/string"
+              location:
+                type: array
+                description:
+                  "This element is deprecated because it is XML specific.\
+                  \ It is replaced by issue.expression, which is format independent,\
+                  \ and simpler to parse. \n\nFor resource issues, this will be a\
+                  \ simple XPath limited to element names, repetition indicators and\
+                  \ the default child accessor that identifies one of the elements\
+                  \ in the resource that caused this issue to be raised.  For HTTP\
+                  \ errors, will be \"http.\" + the parameter name."
+                items:
+                  $ref: "#/components/schemas/string"
+              expression:
+                type: array
+                description:
+                  A [simple subset of FHIRPath](fhirpath.html#simple) limited
+                  to element names, repetition indicators and the default child accessor
+                  that identifies one of the elements in the resource that caused
+                  this issue to be raised.
+                items:
+                  $ref: "#/components/schemas/string"
+            description:
+              A collection of error, warning, or information messages that
+              result from a system action.
+      description:
+        A collection of error, warning, or information messages that result
+        from a system action.
+    Bundle:
+      required:
+        - resourceType
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: This is a Bundle resource
+        identifier:
+          $ref: "#/components/schemas/Identifier"
+        type:
+          type: string
+          description:
+            Indicates the purpose of this bundle - how it is intended to
+            be used.
+          enum:
+            - document
+            - message
+            - transaction
+            - transaction-response
+            - batch
+            - batch-response
+            - history
+            - searchset
+            - collection
+        timestamp:
+          $ref: "#/components/schemas/instant"
+        total:
+          $ref: "#/components/schemas/unsignedInt"
+        link:
+          type: array
+          description: A series of links that provide context to this bundle.
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/string"
+              relation:
+                $ref: "#/components/schemas/string"
+              url:
+                $ref: "#/components/schemas/uri"
+            description: A container for a collection of resources.
+        entry:
+          type: array
+          description:
+            An entry in a bundle resource - will either contain a resource
+            or information about a resource (transactions and history only).
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/string"
+              link:
+                type: array
+                description: A series of links that provide context to this entry.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      $ref: "#/components/schemas/string"
+                    relation:
+                      $ref: "#/components/schemas/string"
+                    url:
+                      $ref: "#/components/schemas/uri"
+                  description: A container for a collection of resources.
+              fullUrl:
+                $ref: "#/components/schemas/uri"
+              resource:
+                $ref: "#/components/schemas/Resource"
+              search:
+                type: object
+                properties:
+                  id:
+                    $ref: "#/components/schemas/string"
+                  mode:
+                    type: object
+                    description:
+                      Why this entry is in the result set - whether it's
+                      included as a match or because of an _include requirement, or
+                      to convey information or warning information about the search
+                      process.
+                  score:
+                    $ref: "#/components/schemas/decimal"
+                description:
+                  Information about the search process that lead to the
+                  creation of this entry.
+              request:
+                type: object
+                properties:
+                  id:
+                    $ref: "#/components/schemas/string"
+                  method:
+                    type: object
+                    description:
+                      In a transaction or batch, this is the HTTP action
+                      to be executed for this entry. In a history bundle, this indicates
+                      the HTTP action that occurred.
+                  url:
+                    $ref: "#/components/schemas/uri"
+                  ifNoneMatch:
+                    $ref: "#/components/schemas/string"
+                  ifModifiedSince:
+                    $ref: "#/components/schemas/instant"
+                  ifMatch:
+                    $ref: "#/components/schemas/string"
+                  ifNoneExist:
+                    $ref: "#/components/schemas/string"
+                description:
+                  Additional information about how this entry should be
+                  processed as part of a transaction or batch.  For history, it shows
+                  how the entry was processed to create the version contained in the
+                  entry.
+              response:
+                type: object
+                properties:
+                  id:
+                    $ref: "#/components/schemas/string"
+                  status:
+                    $ref: "#/components/schemas/string"
+                  location:
+                    $ref: "#/components/schemas/uri"
+                  etag:
+                    $ref: "#/components/schemas/string"
+                  lastModified:
+                    $ref: "#/components/schemas/instant"
+                  outcome:
+                    $ref: "#/components/schemas/Resource"
+                description:
+                  Indicates the results of processing the corresponding
+                  'request' entry in the batch or transaction being responded to or
+                  what the results of an operation where when returning history.
+            description: A container for a collection of resources.
+        signature:
+          $ref: "#/components/schemas/Signature"
+      description: A container for a collection of resources.
+    unsignedInt:
+      pattern: ^[0]|([1-9][0-9]*)$
+      type: number
+      description: An integer with a value that is not negative (e.g. >= 0)
+    Resource:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        id:
+          $ref: "#/components/schemas/id"
+        meta:
+          $ref: "#/components/schemas/Meta"
+        implicitRules:
+          $ref: "#/components/schemas/uri"
+        language:
+          $ref: "#/components/schemas/code"
+    Signature:
+      required:
+        - type
+        - who
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        type:
+          type: array
+          description:
+            An indication of the reason that the entity signed this document.
+            This may be explicitly included as part of the signature information and
+            can be used when determining accountability for various actions concerning
+            the document.
+          items:
+            $ref: "#/components/schemas/Coding"
+        when:
+          $ref: "#/components/schemas/instant"
+        who:
+          $ref: "#/components/schemas/Reference"
+        onBehalfOf:
+          $ref: "#/components/schemas/Reference"
+        targetFormat:
+          $ref: "#/components/schemas/code"
+        sigFormat:
+          $ref: "#/components/schemas/code"
+        data:
+          $ref: "#/components/schemas/base64Binary"
+      description:
+        A signature along with supporting context. The signature may be
+        a digital signature that is cryptographic in nature, or some other signature
+        acceptable to the domain. This other signature may be as simple as a graphical
+        image representing a hand-written signature, or a signature ceremony Different
+        signature approaches have different utilities.
+    base64Binary:
+      type: string
+      description: A stream of bytes
+    decimal:
+      pattern: ^-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?$
+      type: number
+      description: A rational number with implicit precision
+    string:
+      pattern: ^[ \r\n\t\S]+$
+      type: string
+      description: A sequence of Unicode characters
+    instant:
+      pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$
+      type: string
+      description: An instant in time - known at least to the second
+    canonical:
+      pattern: ^\S*$
+      type: string
+      description: A URI that is a reference to a canonical URL on a FHIR resource
+    Coding:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        system:
+          $ref: "#/components/schemas/uri"
+        version:
+          $ref: "#/components/schemas/string"
+        code:
+          $ref: "#/components/schemas/code"
+        display:
+          $ref: "#/components/schemas/string"
+        userSelected:
+          $ref: "#/components/schemas/boolean"
+      description: A reference to a code defined by a terminology system.
+    xhtml:
+      type: string
+      description: xhtml - escaped html (see specfication)
+    Period:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        start:
+          $ref: "#/components/schemas/dateTime"
+        end:
+          $ref: "#/components/schemas/dateTime"
+      description: A time period defined by a start and end date and optionally time.
+    url:
+      pattern: ^\S*$
+      type: string
+      description: A URI that is a literal reference
+    boolean:
+      pattern: ^true|false$
+      type: boolean
+      description: Value of "true" or "false"
+    Consent_Actor:
+      required:
+        - reference
+        - role
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        modifierExtension:
+          type: array
+          description: |-
+            May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+            Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+          items:
+            $ref: "#/components/schemas/Extension"
+        role:
+          $ref: "#/components/schemas/CodeableConcept"
+        reference:
+          $ref: "#/components/schemas/Reference"
+      description:
+        A record of a healthcare consumer’s  choices, which permits or
+        denies identified recipient(s) or recipient role(s) to perform one or more
+        actions within a given policy context, for specific purposes and periods of
+        time.
+    Consent_Data:
+      required:
+        - reference
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/string"
+        extension:
+          type: array
+          description:
+            May be used to represent additional information that is not
+            part of the basic definition of the element. To make the use of extensions
+            safe and manageable, there is a strict set of governance  applied to the
+            definition and use of extensions. Though any implementer can define an
+            extension, there is a set of requirements that SHALL be met as part of
+            the definition of the extension.
+          items:
+            $ref: "#/components/schemas/Extension"
+        modifierExtension:
+          type: array
+          description: |-
+            May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
+
+            Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+          items:
+            $ref: "#/components/schemas/Extension"
+        meaning:
+          type: string
+          description:
+            How the resource reference is interpreted when testing consent
+            restrictions.
+          enum:
+            - instance
+            - related
+            - dependents
+            - authoredby
+        reference:
+          $ref: "#/components/schemas/Reference"
+      description:
+        A record of a healthcare consumer’s  choices, which permits or
+        denies identified recipient(s) or recipient role(s) to perform one or more
+        actions within a given policy context, for specific purposes and periods of
+        time.
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Consent.read: Read permissions for Consents.
+            system/Consent.write: Write permissions for Consents.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Consent.read: Read permissions for Consents.
+            system/Consent.write: Write permissions for Consents.

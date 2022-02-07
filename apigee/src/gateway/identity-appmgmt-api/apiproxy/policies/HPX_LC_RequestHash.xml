@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="HPX_LC_RequestHash">
+    <DisplayName>HPX_LC_RequestHash</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix>appRequest</Prefix>
+        <KeyFragment ref="hashed_token"/>
+    </CacheKey>
+    <CacheResource>request-hash-links</CacheResource>
+    <Scope>Exclusive</Scope>
+    <AssignTo>hashed_token_value</AssignTo>
+</LookupCache>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description>Default Proxy to create flows on an API</Description>
+    <FaultRules>
+        <FaultRule name="CallbackError">
+            <Step>
+                <Name>HPX_SetFlowErrorForInvalidCode</Name>
+            </Step>
+            <Step>
+                <Name>HPX_SendErrorToCallback</Name>
+            </Step>
+            <Condition>!(redirect_uri = null)</Condition>
+        </FaultRule>
+        <FaultRule name="RenderError">
+            <Step>
+                <Name>HPX_SetFlowErrorForInvalidCode</Name>
+            </Step>
+            <Step>
+                <Name>HPX_RenderErrorScreen</Name>
+            </Step>
+            <Condition>(redirect_uri = null)</Condition>
+        </FaultRule>
+        <FaultRule name="HandledFaults">
+            <Step>
+                <Name>HPX_CORS</Name>
+            </Step>
+            <Condition>(raisefault.failed = true)</Condition>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="Index">
+            <Description>This flow is to render the index page</Description>
+            <Request>
+                <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>HPX_ModifyNodeTargetRequestForIdentifiedUser</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/index") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="OnNet flow">
+            <Description>This flow is for SMS log in</Description>
+            <Request>
+                <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>HPX_SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>HPX_Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+                <!-- Authorization Successful Response -->
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_redirectToConsent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/onnet") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Login Flow">
+            <Description>This flow is for Allow Consent</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractSocialLoginUserEmail</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ValidateSocialLoginUser</Name>
+                </Step>
+                <Step>
+                    <Condition>(validateUserResponse.status.code != "200")</Condition>
+                    <Name>AssignFlowError</Name>
+                </Step>
+                <Step>
+                    <Condition>!(flowError is null)</Condition>
+                    <Name>HPX_RedirectToCallbackURLWithError</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractFromUserResponse</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetFhirUserAndPatientID</Name>
+                </Step>
+                <Step>
+                    <Condition>(user_id != null) and (isUserProfileFlow != "true") and (resourceType = "Patient")</Condition>
+                    <Name>HPX_CheckAlreadyConsentedServiceCallout2</Name>
+                </Step>
+                <Step>
+                    <Condition>(isUserProfileFlow != "true") and (resourceType = "Patient")</Condition>
+                    <Name>HPX_ExtractCheckAlreadyConsentedResponse</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ProcessConsentValidationResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(user_id != null) and (resourceType = "Patient")</Condition>
+                    <Name>HPX_ModifyNodeTargetRequestForIdentifiedUser</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/login") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Redirect Flow">
+            <Description>This flow is for redirect</Description>
+            <Request>
+                <Step>
+                    <Condition> (request.queryparam.error != null)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_SetFlowErrorFromQueryParam</Name>
+                </Step>
+                <Step>
+                    <Condition>(status is "consumed")</Condition>
+                    <Name>HPX_RejectAlreadyConsumedRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_CombineAllScopesPatientUser</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AssignPatientsBasedOnUser</Name>
+                </Step>
+                <Step>
+                    <Condition>(exists is false) and (usertype is "Patient") and (flowError = null)</Condition>
+                    <Name>HPX_CreatePatientConsent</Name>
+                </Step>
+                <Step>
+                    <Condition>(exists is false) and (usertype is "Patient") and (flowError = null)</Condition>
+                    <Name>HPX_ExtractNewPatientConsentId</Name>
+                </Step>
+                <Step>
+                    <Condition>(exists is true) and (usertype is "Patient") and (flowError = null)</Condition>
+                    <Name>HPX_UpdatePatientConsent</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null) and (request.queryparam.error = null)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_GenerateAuthCode.AssignRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null) and (request.queryparam.error = null)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_GenerateAuthCode.Callout</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null) and (request.queryparam.error = null)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_GenerateAuthCode.ExtractResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null) and authcode.response.status.code = 302</Condition>
+                    <Name>HPX_RetrieveCodeFromURL_JS</Name>
+                </Step>
+                <Step>
+                    <Condition>(code = null or code = "" ) and (flowError = null)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_SetFlowErrorForInvalidCode</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_UpdateSessionStatus</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>HPX_OauthAOC.redirectToRedirectFlow</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError != null)</Condition>
+                    <Name>HPX_RedirectErrorToCallbackURI</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_DropScopesFromRedirectURL</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/redirect/{sessionid}") and ((request.verb = "GET") or (request.verb = "POST"))</Condition>
+        </Flow>
+        <Flow name="Callback Flow">
+            <Description>This flow is to render the consent page from google loggin</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_VerifyGoogleIDTokenJWT</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetGoogleUserID</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/callback") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Implicit Flow">
+            <Description/>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>SetCallbackHTMLContent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/implicit") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Patients Flow">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractSessionId</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/patients") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>(request.verb="OPTIONS")</Condition>
+                <Name>HPX_CORSPreflight</Name>
+            </Step>
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath "/onnet") or (proxy.pathsuffix MatchesPath "/index") or (proxy.pathsuffix MatchesPath "/edit-profile") or(proxy.pathsuffix MatchesPath "/profile/update") or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath "/logout") or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath "/recovery")or (proxy.pathsuffix MatchesPath "/register") or (proxy.pathsuffix MatchesPath "/reset") or (proxy.pathsuffix MatchesPath "/login")  or (proxy.pathsuffix MatchesPath "/create") or (proxy.pathsuffix MatchesPath "/msisdnsubmit") or (proxy.pathsuffix MatchesPath "/pinSubmit") or (proxy.pathsuffix MatchesPath "/saveUser")</Condition>
+                <Name>HPX_ExtractSessionId</Name>
+            </Step>
+            <Step>
+                <Condition>((proxy.pathsuffix MatchesPath "/callback") or (sessionid = null)) and (request.query.state !="")</Condition>
+                <Name>ExtractGoogleState</Name>
+            </Step>
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath "/index") and (sessionid = null)</Condition>
+                <Name>HPX_RaiseFlagForUserSelfServiceFlow</Name>
+            </Step>
+            <Step>
+                <Condition>(isUserProfileFlow = "true")</Condition>
+                <Name>HPX_GenerateUUID</Name>
+            </Step>
+            <Step>
+                <Condition>(isUserProfileFlow != "true") and ((proxy.pathsuffix MatchesPath "/redirect/{sessionid}"))</Condition>
+                <Name>HPX_ExtractSessionIdFromURL</Name>
+            </Step>
+            <Step>
+                <Condition>(isUserProfileFlow != "true") and (proxy.pathsuffix MatchesPath "/callback") or (proxy.pathsuffix MatchesPath "/redirect/{sessionid}")or (proxy.pathsuffix MatchesPath "/edit-profile") or (proxy.pathsuffix MatchesPath "/edit-profile") or (proxy.pathsuffix MatchesPath "/profile") or ((proxy.pathsuffix MatchesPath "/profile/update")) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath "/reset") or (proxy.pathsuffix MatchesPath "/index") or (proxy.pathsuffix MatchesPath "/onnet") or (proxy.pathsuffix MatchesPath "/login")   or (proxy.pathsuffix MatchesPath "/create") or (proxy.pathsuffix MatchesPath "/msisdnsubmit") or (proxy.pathsuffix MatchesPath "/pinSubmit")or (proxy.pathsuffix MatchesPath "/saveUser")</Condition>
+                <Name>HPX_Session.GetFromCache</Name>
+            </Step>
+            <Step>
+                <Condition>(isUserProfileFlow != "true") and ((session.Payload = null) or (session.Payload = "")) and ((proxy.pathsuffix MatchesPath "/callback") or (proxy.pathsuffix MatchesPath "/redirect/{sessionid}") or (proxy.pathsuffix MatchesPath "/edit-profile")  or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath "/profile/update") or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath "/reset") or (proxy.pathsuffix MatchesPath "/index") or (proxy.pathsuffix MatchesPath "/onnet") or (proxy.pathsuffix MatchesPath "/login")  or (proxy.pathsuffix MatchesPath "/create") or (proxy.pathsuffix MatchesPath "/pinSubmit") or (proxy.pathsuffix MatchesPath "/msisdnsubmit") or (proxy.pathsuffix MatchesPath "/saveUser"))</Condition>
+                <Name>HPX_SetSessionError</Name>
+            </Step>
+            <Step>
+                <Condition>(isUserProfileFlow != "true") and (flowError = null) and ((proxy.pathsuffix MatchesPath "/callback") or (proxy.pathsuffix MatchesPath "/redirect/{sessionid}") or (proxy.pathsuffix MatchesPath "/reset") or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath "/edit-profile") or ((proxy.pathsuffix MatchesPath "/profile/update")) or (proxy.pathsuffix MatchesPath "/myapps")  or (proxy.pathsuffix MatchesPath "/index") or (proxy.pathsuffix MatchesPath "/onnet") or (proxy.pathsuffix MatchesPath "/login")   or (proxy.pathsuffix MatchesPath "/create") or (proxy.pathsuffix MatchesPath "/msisdnsubmit") or (proxy.pathsuffix MatchesPath "/pinSubmit") or (proxy.pathsuffix MatchesPath "/saveUser"))</Condition>
+                <Name>HPX_ExtractSessionVariables</Name>
+            </Step>
+            <Step>
+                <Condition>(flowError != null)</Condition>
+                <Name>HPX_RedirectErrorInAuthorize</Name>
+            </Step>
+            <Step>
+                <Name>HPX_SetConsentFallbackValues</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Response>
+            <Step>
+                <Condition>(request.verb!="OPTIONS")</Condition>
+                <Name>HPX_CORS</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/openid</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="implicit">
+        <Condition>(proxy.pathsuffix MatchesPath "/implicit") and (request.verb = "GET")</Condition>
+    </RouteRule>
+    <RouteRule name="callback">
+        <TargetEndpoint>callback</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/callback") and (request.verb = "GET")</Condition>
+    </RouteRule>
+    <RouteRule name="onnet">
+        <Condition>(proxy.pathsuffix MatchesPath "/onnet") and (request.verb = "GET")</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

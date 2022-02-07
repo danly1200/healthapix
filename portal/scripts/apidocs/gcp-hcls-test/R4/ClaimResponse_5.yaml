@@ -1,0 +1,1355 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® ClaimResponse resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/r4
+tags:
+- name: ClaimResponse
+paths:
+  /ClaimResponse:
+    get:
+      tags:
+      - ClaimResponse
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: _has
+        in: query
+        description: Return resources linked to by the given target.
+        schema:
+          type: string
+      - name: _filter
+        in: query
+        description: Search the contents of the resource's data using fuultext search
+        schema:
+          type: string
+      - name: _text
+        in: query
+        description: Search the contents of the resource's narrative using a fulltext search
+        schema:
+          type: string
+      - name: _tag
+        in: query
+        description: Search for resources which have the given tag
+        schema:
+          type: string
+      - name: _security
+        in: query
+        description: Search for resources which have the given security labels
+        schema:
+          type: string
+      - name: _profile
+        in: query
+        description: Search for resources which have the given profile
+        schema:
+          type: string
+      - name: _content
+        in: query
+        description: Search the contents of the resource's data using a fulltext search
+        schema:
+          type: string
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: The identity of the ClaimResponse
+        schema:
+          type: string
+      - name: request
+        in: query
+        description: The claim reference
+        schema:
+          type: string
+      - name: created
+        in: query
+        description: The creation date
+        schema:
+          type: string
+          format: date
+      - name: use
+        in: query
+        description: The type of claim
+        schema:
+          type: string
+      - name: payment-date
+        in: query
+        description: The expected payment date
+        schema:
+          type: string
+          format: date
+      - name: requestor
+        in: query
+        description: The Provider of the claim
+        schema:
+          type: string
+      - name: disposition
+        in: query
+        description: The contents of the disposition message
+        schema:
+          type: string
+      - name: insurer
+        in: query
+        description: The organization which generated this resource
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: The subject of care
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: outcome
+        in: query
+        description: The processing outcome
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: The status of the ClaimResponse
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClaimResponse'
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+    post:
+      tags:
+      - ClaimResponse
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/ClaimResponse'
+        required: false
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: ClaimResponse could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: ClaimResponse not found.
+          content: {}
+        '422':
+          description: The ClaimResponse resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}:
+    get:
+      tags:
+      - ClaimResponse
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/ClaimResponse'
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+    put:
+      tags:
+      - ClaimResponse
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/ClaimResponse'
+        required: false
+      responses:
+        '200':
+          description: ClaimResponse Updated.
+          content: {}
+        '201':
+          description: ClaimResponse Created.
+          content: {}
+        '400':
+          description: ClaimResponse could not be parsed or failed basic FHIR validation rules (or multiple matches were found).
+          content: {}
+        '403':
+          description: Not Authorized.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+    delete:
+      tags:
+      - ClaimResponse
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: No Content.
+          content: {}
+        '204':
+          description: No Content.
+          content: {}
+        '404':
+          description: ClaimResponse not found.
+          content: {}
+        '405':
+          description: Method not allowed.
+          content: {}
+        '409':
+          description: Conflict Error.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/_history:
+    get:
+      tags:
+      - ClaimResponse
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/ClaimResponse'
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/_history/{vid}:
+    get:
+      tags:
+      - ClaimResponse
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/ClaimResponse'
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/$meta:
+    get:
+      tags:
+        - ClaimResponse
+      description: 'Retrieves a summary of the profiles, tags, and security labels for ClaimResponse.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: ClaimResponse Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for ClaimResponse'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/$meta:
+    get:
+      tags:
+        - ClaimResponse
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given ClaimResponse resource.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: ClaimResponses Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/_history/{vid}/$meta:
+    get:
+      tags:
+        - ClaimResponse
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given version of the ClaimResponse.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: ClaimResponse Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated version of the resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/{type}:
+    get:
+      tags:
+        - ClaimResponse
+      description: 'Search the specified resource type in ClaimResponse compartment.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: ' Compartment Search'
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: The set of resources associated with a particular ClaimResponse
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/_search:
+    post:
+      tags:
+        - ClaimResponse
+      description: 'This interaction searches a set of ClaimResponse based on some filter criteria. Search interactions take a series of parameters of name''=''value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: ClaimResponse Search using POST
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: Search the contents of the resource's narrative using a fulltext search
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: food | medication | environment | other - Category of Substance
+          schema:
+            type: string
+        - name: criticality
+          in: query
+          description: low | high | unable-to-assess
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'When recorded. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: identifier
+          in: query
+          description: External ids for this item
+          schema:
+            type: string
+        - name: last-date
+          in: query
+          description: 'Date(/time) of last known occurrence of a reaction. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: manifestation
+          in: query
+          description: Clinical symptoms/signs associated with the Event
+          schema:
+            type: string
+        - name: onset
+          in: query
+          description: 'Date(/time) when manifestations showed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: patient
+          in: query
+          description: Who the sensitivity is for
+          schema:
+            type: string
+        - name: recorder
+          in: query
+          description: Who recorded the sensitivity
+          schema:
+            type: string
+        - name: reporter
+          in: query
+          description: Source of the information about the allergy
+          schema:
+            type: string
+        - name: route
+          in: query
+          description: How the subject was exposed to the substance
+          schema:
+            type: string
+        - name: severity
+          in: query
+          description: mild | moderate | severe (of event as a whole)
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: active | unconfirmed | confirmed | inactive | resolved | refuted | entered-in-error
+          schema:
+            type: string
+        - name: substance
+          in: query
+          description: 'Substance, (or class) considered to be responsible for risk'
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: allergy | intolerance - Underlying mechanism (if known)
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                _content:
+                  type: string
+                  description: Search the contents of the resource's data using a fulltext search
+                _id:
+                  type: string
+                  description: The resource identity
+                _language:
+                  type: string
+                  description: The resource language
+                _lastUpdated:
+                  type: string
+                  description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                _profile:
+                  type: string
+                  description: Search for resources which have the given profile
+                _security:
+                  type: string
+                  description: Search for resources which have the given security labels
+                _tag:
+                  type: string
+                  description: Search for resources which have the given tag
+                _text:
+                  type: string
+                  description: Search the contents of the resource's narrative using a fulltext search
+                category:
+                  type: string
+                  description: food | medication | environment | other - Category of Substance
+                criticality:
+                  type: string
+                  description: low | high | unable-to-assess
+                date:
+                  type: string
+                  description: 'When recorded. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                identifier:
+                  type: string
+                  description: External ids for this item
+                last-date:
+                  type: string
+                  description: 'Date(/time) of last known occurrence of a reaction. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                manifestation:
+                  type: string
+                  description: Clinical symptoms/signs associated with the Event
+                onset:
+                  type: string
+                  description: 'Date(/time) when manifestations showed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                patient:
+                  type: string
+                  description: Who the sensitivity is for
+                recorder:
+                  type: string
+                  description: Who recorded the sensitivity
+                reporter:
+                  type: string
+                  description: Source of the information about the allergy
+                route:
+                  type: string
+                  description: How the subject was exposed to the substance
+                severity:
+                  type: string
+                  description: mild | moderate | severe (of event as a whole)
+                status:
+                  type: string
+                  description: active | unconfirmed | confirmed | inactive | resolved | refuted | entered-in-error
+                substance:
+                  type: string
+                  description: 'Substance, (or class) considered to be responsible for risk'
+                type:
+                  type: string
+                  description: allergy | intolerance - Underlying mechanism (if known)
+      responses:
+        '200':
+          description: ClaimResponse bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClaimResponse'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/$meta-add:
+    post:
+      tags:
+        - ClaimResponse
+      description: 'Add a metadata info ClaimResponse with specified id.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: Add ClaimResponse metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: ClaimResponse could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: ClaimResponse not found.
+          content: {}
+        '422':
+          description: The ClaimResponse resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+  /ClaimResponse/{id}/_history/{vid}/$meta-add:
+    post:
+      tags:
+        - ClaimResponse
+      description: 'Add metadata info to specified ClaimResponse resource.<p><a href = ''https://www.hl7.org/fhir/claimresponse.html''>FHIR documentation for ClaimResponse.</a></p>'
+      operationId: Add ClaimResponse Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: ClaimResponse could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: ClaimResponse not found.
+          content: {}
+        '422':
+          description: The ClaimResponse resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ClaimResponse.read
+            - system/ClaimResponse.write
+components:
+  schemas:
+    ClaimResponse:
+      required:
+      - created
+      - disposition
+      - id
+      - identifier
+      - insurer
+      - item
+      - meta
+      - outcome
+      - patient
+      - payeeType
+      - payment
+      - request
+      - requestor
+      - resourceType
+      - status
+      - subType
+      - text
+      - total
+      - type
+      - use
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        status:
+          minLength: 1
+          type: string
+        type:
+          required:
+          - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+        subType:
+          required:
+          - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+        use:
+          minLength: 1
+          type: string
+        patient:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        created:
+          minLength: 1
+          type: string
+        insurer:
+          required:
+          - identifier
+          type: object
+          properties:
+            identifier:
+              required:
+              - system
+              - value
+              type: object
+              properties:
+                system:
+                  minLength: 1
+                  type: string
+                value:
+                  minLength: 1
+                  type: string
+        requestor:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        request:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        outcome:
+          minLength: 1
+          type: string
+        disposition:
+          minLength: 1
+          type: string
+        payeeType:
+          required:
+          - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+        item:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - itemSequence
+            type: object
+            properties:
+              itemSequence:
+                type: number
+              adjudication:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    category:
+                      required:
+                      - coding
+                      type: object
+                      properties:
+                        coding:
+                          minItems: 1
+                          uniqueItems: true
+                          type: array
+                          items:
+                            required:
+                            - code
+                            type: object
+                            properties:
+                              code:
+                                minLength: 1
+                                type: string
+                    reason:
+                      required:
+                      - coding
+                      type: object
+                      properties:
+                        coding:
+                          minItems: 1
+                          uniqueItems: true
+                          type: array
+                          items:
+                            required:
+                            - code
+                            - display
+                            - system
+                            type: object
+                            properties:
+                              system:
+                                minLength: 1
+                                type: string
+                              code:
+                                minLength: 1
+                                type: string
+                              display:
+                                minLength: 1
+                                type: string
+                    amount:
+                      required:
+                      - currency
+                      - value
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                        currency:
+                          minLength: 1
+                          type: string
+        total:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                required:
+                - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - code
+                      type: object
+                      properties:
+                        code:
+                          minLength: 1
+                          type: string
+              amount:
+                required:
+                - currency
+                - value
+                type: object
+                properties:
+                  value:
+                    type: number
+                  currency:
+                    minLength: 1
+                    type: string
+        payment:
+          required:
+          - amount
+          - date
+          - identifier
+          - type
+          type: object
+          properties:
+            type:
+              required:
+              - coding
+              type: object
+              properties:
+                coding:
+                  minItems: 1
+                  uniqueItems: true
+                  type: array
+                  items:
+                    required:
+                    - code
+                    - system
+                    type: object
+                    properties:
+                      system:
+                        minLength: 1
+                        type: string
+                      code:
+                        minLength: 1
+                        type: string
+            date:
+              minLength: 1
+              type: string
+            amount:
+              required:
+              - currency
+              - value
+              type: object
+              properties:
+                value:
+                  type: number
+                currency:
+                  minLength: 1
+                  type: string
+            identifier:
+              required:
+              - system
+              - value
+              type: object
+              properties:
+                system:
+                  minLength: 1
+                  type: string
+                value:
+                  minLength: 1
+                  type: string
+        meta:
+          required:
+          - tag
+          type: object
+          properties:
+            tag:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+    metaBody:
+      type: string
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/ClaimResponse.read: Read permissions for ClaimResponse demographics.
+            system/ClaimResponse.write: Write permissions for ClaimResponse demographics.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/ClaimResponse.read: Read permissions for ClaimResponse demographics.
+            system/ClaimResponse.write: Write permissions for ClaimResponse demographics.

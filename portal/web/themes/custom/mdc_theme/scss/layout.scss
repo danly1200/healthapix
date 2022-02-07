@@ -1,0 +1,465 @@
+$container_border: 1px solid #eee;
+$container_radius: 5px;
+$button_color: #4582F4;
+$color: #ff0000;
+$text_white: #fff;
+$light_font: 300;
+$regular_font: 400;
+$medium_font: 500;
+$font_black: rgba(0, 0, 0, 0.87);
+$light_grey: #F5F5F5;
+$footer_grey: #F8F8F8;
+$font_light_black: #434242;
+
+:root {
+  --mdc-theme-primary: $button_color;
+  --mdc-theme-secondary: $button_color;
+}
+
+.mdc-checkbox__native-control {
+  color: var(--mdc-theme-secondary);
+}
+
+
+.plain-content-wrapper {
+  padding: 120px 0px;
+
+  .mdc-plain-container {
+    border: $container_border;
+    border-radius: $container_radius;
+    width: 720px;
+    margin: 0px auto;
+    padding: 30px;
+  }
+}
+
+.clearfix {
+  clear: both;
+}
+
+.form-item {
+  margin: 20px 0px;
+}
+
+.form-submit {
+background-color: $button_color !important;
+}
+
+.form-text {
+  caret-color: $button_color;
+}
+
+.mdc-text-field--focused {
+  .mdc-notched-outline__trailing{
+    border: 2px solid $button_color !important;
+    border-left: none !important;
+  }
+  .mdc-notched-outline__leading {
+    border: 2px solid $button_color !important;
+    border-right: none !important;
+  }
+  .mdc-notched-outline__notch {
+    border-bottom: 2px solid $button_color !important;
+    .mdc-floating-label--float-above {
+      color: $button_color;
+    }
+  }
+}
+
+.user-login-form,
+.user-pass {
+  label {
+    display: none;
+  }
+  .description {
+    display: none;
+  }
+  p {
+    display: none;
+  }
+  .form-item-name {
+    float: left;
+    width: 50%;
+  }
+  .form-item-pass {
+    float: left;
+    width: 50%;
+  }
+  .mdc-text-field-wrapper {
+    margin-right: 10px;
+  }
+  .mdc-password-field-wrapper {
+    margin-left: 10px;
+  }
+
+  #captcha {
+      border: $container_border;
+      border-radius: $container_radius;
+      padding: 30px;
+  }
+
+  .captcha {
+    clear: both;
+    .form-item-captcha-response {
+      width: 100%;
+      .mdc-text-field {
+        width: 100%;
+      }
+    }
+    .mdc-text-field {
+      margin-top: 10px;
+    }
+  }
+}
+
+form {
+  .login-actions {
+    padding: 20px 0;
+    .form-submit {
+      float: right;
+      background: $button_color;
+      color:$text_white;
+      height: auto;
+      padding: 15px 20px;
+    }
+    .login-form-links {
+      float: left;
+    }
+    .login-form-link {
+      margin: 10px 0;
+      a {
+        color: $button_color;
+        text-decoration: none;
+        &:hover {
+          color: #174ea6;
+        }
+      }
+    }
+  }
+}
+
+
+
+.plain-page-menu {
+  width: 720px;
+  margin: 0px auto;
+  padding: 30px;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+  }
+  li a:hover {
+      color: #4582F4;
+  }
+}
+
+/* add app form  */
+
+.developer-app-add-for-developer-form, .developer-app-edit-for-developer-form {
+  border: $container_border;
+  border-radius: $container_radius;
+  padding: 20px;
+
+  #edit-file-markup {
+    width: 46%;
+    padding: 0px 10px;
+    margin: 0px;
+    border: 1px solid #989898;
+    border-radius: $container_radius;
+  }
+
+
+.description, label {
+    display: none;
+  }
+
+  .js-form-type-radio, .js-form-type-checkbox {
+    label {
+      display: inline-block;
+    }
+  }
+
+  .form-item-json-file {
+    label {
+      display: inline-block;
+    }
+  }
+
+  .stu3-fields-panel {
+    display: none;
+    #edit-custom-attr-data-options {
+      display: flex;
+
+      .form-item {
+        margin-right: 20px;
+      }
+    }
+  }
+  .stu3-fields-panel-active {
+    display: block;
+  }
+  .field--name-field-fhir-storage-type {
+    display: none;
+  }
+  .custom_attrib {
+    display: none;
+  }
+
+  .field--name-field-fhirstore, .field--name-field-dataset, .field--name-field-project, .field--name-field-location {
+    width:50%;
+    float:left;
+  }
+
+  #edit-api-products--wrapper {
+    clear: both;
+  }
+  .form-actions {
+    text-align: center;
+  }
+}
+
+.developer-app-edit-for-developer-form {
+  .field--name-displayname, .field--name-callbackurl {
+    .mdc-text-field {
+      width: 100%;
+    }
+  }
+  .form-item-custom-attr-data-options {
+    float: left;
+  }
+  .field--name-field-fhirstore, .field--name-field-project  {
+    .form-item {
+      margin-right: 10px;
+    }
+  }
+  .field--name-field-dataset, .field--name-field-location {
+      .form-item {
+        margin-left: 10px;
+    }
+  }
+}
+
+.apigee-edge--form {
+  .form-checkboxes {
+    .form-item {
+      width:32%;
+    }
+  }
+}
+
+#openid-connect-login-form {
+  & > div {
+    text-align: right;
+  }
+  #edit-openid-connect-client-google-login{
+    background: #fff url("/themes/custom/mdc_theme/images/google-icon.png") no-repeat !important;
+    background-size: 16px !important;
+    background-position: 6px 8px !important;
+    padding: 8px 0 8px 20px;
+    display: inline-block;
+    white-space: inherit;
+    letter-spacing: 0.3px;
+    width: 160px;
+    align-items: inherit;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    text-shadow: 0px 0px #000;
+    outline: none;
+    cursor: pointer;
+    font-size: 10px;
+    color: #000000DE;
+    &:focus{
+      outline:none;
+      cursor: pointer;
+    }
+  }
+}
+
+
+// Swagger css changes
+.sidebar-main-content-wrapper {
+  .swagger-ui {
+    .opblock-description-wrapper {
+      p {
+        font-family: Roboto, Sans-Serif;
+      }
+    }
+    .parameters-container {
+      th {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $medium_font !important;
+      }
+    }
+    .opblock-body {
+      pre {
+        font-family: Roboto, Sans-Serif;
+      }
+    }
+    .model, input, .model-title, .parameter__name, .parameter__type, .parameter__deprecated, .parameter__in, .curl, .request-url, .response-col_status, td {
+      font-family: Roboto, Sans-Serif;
+    }
+    section.models, .opblock-section-header, .responses-inner {
+      h4 {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $medium_font !important;
+      }
+    }
+    .info {
+      .title {
+        font-weight: $regular_font;
+      }
+      .base-url {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $regular_font;
+        color: #00000099;
+      }
+      p {
+        color: $font_black;
+      }
+    }
+    .btn {
+      font-family: Roboto, Sans-Serif;
+      font-weight: $regular_font !important;
+    }
+    .opblock-tag-section {
+      span {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $regular_font !important;
+      }
+    }
+    .dialog-ux {
+      font-family: Roboto, Sans-Serif;
+      font-weight: $regular_font !important;
+      .modal-ux-header {
+        h3, h4, h2 {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $medium_font !important;
+        }
+        p {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $regular_font !important;
+        }
+      }
+      .modal-ux-content {
+        p {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $regular_font !important;
+        }
+        h3, h4, h2 {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $medium_font !important;
+        }
+      }
+    }
+    .scheme-container {
+      .schemes {
+        label {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $regular_font !important;
+          select {
+            border: 1px solid #D3D3D3 !important;
+            border-radius: 4px !important;
+            opacity: 1;
+            option {
+              color: $font_light_black !important;
+              font-family: Roboto, Sans-Serif;
+              font-weight: $regular_font !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.app-create-form {
+  border: $container_border;
+  border-radius: $container_radius;
+  padding: 20px;
+  width: 70%;
+  margin: 0px auto;
+  label {
+    display: none;
+  }
+  .form-checkboxes {
+    label {
+      display: inline-block;
+      font-size: 13px;
+    }
+  }
+  .mdc-text-field {
+    width: 100%;
+  }
+  #mdc-select-ul {
+    .mdc-select__anchor {
+      width: 100%;
+    }
+  }
+  .scope-panel {
+    display: none;
+    padding: 0px 30px;
+    fieldset {
+      margin: 10px 0px;
+    }
+  }
+  .standard-scope-panel {
+    display: block;
+  }
+  #edit-scopes {
+    padding: 0;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    legend {
+      display: none;
+    }
+  }
+  .scope-head {
+    padding: 15px 20px;
+    margin: 0;
+    background-color: #eee;
+    border-radius: 5px 5px 0px 0px;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  .scope-tabs-wrap {
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #eeeeee;
+    .scope-tab {
+      padding: 15px 20px;
+      position: relative;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .scope-tab-active {
+      color: #4285F4;
+    }
+    .scope-tab-active:before {
+      position: absolute;
+      content: "";
+      left: 0px;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+      background-color:#4285F4;
+    }
+  }
+  .scope-panel {
+    .form-item {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JSONThreatProtection async="false" continueOnError="false" enabled="true" name="HPX_JSONThreatProtection">
+    <DisplayName>HPX_JSONThreatProtection</DisplayName>
+    <Properties/>
+    <ArrayElementCount>30</ArrayElementCount>
+    <ContainerDepth>20</ContainerDepth>
+    <ObjectEntryCount>40</ObjectEntryCount>
+    <ObjectEntryNameLength>60</ObjectEntryNameLength>
+    <Source>request</Source>
+    <StringValueLength>-1</StringValueLength>
+</JSONThreatProtection>

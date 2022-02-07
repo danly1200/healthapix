@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="HPX_RF_FaultInvalidRequest">
+    <DisplayName>HPX_RF_FaultInvalidRequest</DisplayName>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{
+    "error": "@code#",
+    "error_description": "@detail#"
+}</Payload>
+            <StatusCode>{StatusCode}</StatusCode>
+            <!--<ReasonPhrase>{ReasonPhrase}</ReasonPhrase>-->
+        </Set>
+    </FaultResponse>
+</RaiseFault>

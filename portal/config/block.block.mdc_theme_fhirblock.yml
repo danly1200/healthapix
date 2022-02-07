@@ -1,0 +1,26 @@
+uuid: 31300613-25c8-4049-80a1-c17a52250cb7
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_blocks
+    - system
+  theme:
+    - mdc_theme
+id: mdc_theme_fhirblock
+theme: mdc_theme
+region: content
+weight: -13
+provider: null
+plugin: fhir_block
+settings:
+  id: fhir_block
+  label: 'FHIR block'
+  provider: fhir_blocks
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

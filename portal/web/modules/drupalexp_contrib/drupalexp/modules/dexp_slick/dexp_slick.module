@@ -1,0 +1,363 @@
+<?php
+
+/**
+ * @file
+ * Contains dexp_slick.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Template\Attribute;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * Implements hook_theme().
+ */
+function dexp_slick_theme() {
+  return array(
+    'dexp_slick_image' => [
+      'variables' => ['items' => '', 'settings' => ''],
+      'template' => 'dexp-slick-image',
+      'preprocess functions' => 'template_preprocess_dexp_slick_image',
+    ],
+  );
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function dexp_slick_library_info_alter(&$libraries, $extension) {
+  if ($extension == 'dexp_slick' && \Drupal::moduleHandler()->moduleExists('libraries')) {
+    if($path = libraries_get_path('slick')){
+      $libraries['slick']['js'] = [
+        '/' . $path . '/slick/slick.min.js' => [],
+      ];
+      $libraries['slick']['css']['base'] = ['/' . $path . '/slick/slick.css' => []];
+      $libraries['slick']['css']['theme'] = ['/' . $path . '/slick/slick-theme.css' => []];
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function template_preprocess_views_dexp_slick(&$variables) {
+  $id = Html::getUniqueId($variables['view']->element['#name'] . '-' . $variables['view']->element['#display_id']);
+  $uuid_service = \Drupal::service('uuid');
+  $uuid = $uuid_service->generate();
+  $variables['id'] = $id;
+  $variables['attributes']['data-uuid'] = $uuid;
+  $variables['attributes']['id'] = $id;
+  $variables['attributes']['class'][] = 'dexp-slick-carousel';
+  $variables['#attached']['library'][] = 'dexp_slick/dexp_slick';
+  $view = $variables['view'];
+  $options = $view->style_plugin->options;
+  $options = array_merge($options['slick_general'], $options['slick_carousel'], $options['slick_controls'], $options['slick_centermode']);
+  if($options['arrows'] && $options['arrows_position']){
+    $variables['attributes']['class'][] = 'arrows-' . $options['arrows_position'];
+  }
+  $variables['options'] = $options;
+  $items = [];
+  $rows_number = (int)$options["rows"];
+  foreach ($variables['rows'] as $result_index => $item) {
+    $i = $result_index % $rows_number;
+    $items[$i][] = $item;
+  }
+  if($options['hideControlOnEnd']){
+    $variables['attributes']['class'][] = 'hide-control-at-end';
+  }
+  if($options['centerMode'] && $options['mode'] == 'horizontal'){
+    $variables['attributes']['class'][] = 'slick-center-mode';
+  }
+  $variables['items'] = $items;
+  $variables['#attached']['drupalSettings']['dexp_slick'] = [
+      $uuid => $options,
+  ];
+}
+
+function template_preprocess_dexp_slick_image(&$variables){
+  $settings = $variables['settings']['slick_settings'];
+  $settings['lg'] = $settings['md'] = $settings['sm'] = $settings['xs'] = 1;
+  $uuid_service = \Drupal::service('uuid');
+  $uuid = $uuid_service->generate();
+  $variables['attributes']['data-uuid'] = $uuid;
+  $variables['#attached']['drupalSettings']['dexp_slick'] = [
+    $uuid => $settings,
+  ];
+  if(count($variables['items']) > 1){
+    $variables['attributes']['class'][] = 'dexp-slick-carousel';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dexp_slick_form_block_form_alter(&$form, FormStateInterface $form_state) {
+	$block = $form_state->getFormObject()->getEntity();
+  $dependencies = $block->get('dependencies');
+  if(isset($dependencies['content'])){
+    $value = explode(':', $dependencies['content'][0]);
+    if($value[0] == 'block_content'){
+      if(($bundle = $value[1]) == 'slick_carousel'){
+        $form['slick_carousel_settings'] = [
+          '#type' => 'details',
+          '#title' => t('Carousel Settings'),
+          '#weight' => 0,
+          '#open' => TRUE,
+        ];
+        
+        $form['slick_carousel_settings']['slick_general'] = [
+          '#type' => 'details',
+          '#title' => t('General'),
+          '#open' => TRUE,
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['mode'] = [
+          '#type' => 'select',
+          '#title' => t('Mode'),
+          '#description' => t('Type of transition between slides'),
+          '#options' => ['horizontal' => 'Horizontal', 'vertical' => 'Vertical', 'fade' => 'Fade'],
+          '#default_value' => $block->getThirdPartySetting('dexp_slick','mode', 'horizontal'),
+          '#parent' => 'slick_general',
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['rows'] = [
+          '#type' => 'number',
+          '#min' => 1,
+          '#title' => t('Rows'),
+          '#description' => t('Setting this to more than 1 initializes grid mode'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'rows', 1),
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['autoplay'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Auto Play'),
+          '#description' => t('Enables Autoplay'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'autoplay', 1),
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['autoplaySpeed'] = [
+          '#type' => 'number',
+          '#title' => t('Auto Play Speed'),
+          '#description' => t('Autoplay Speed in milliseconds'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick','autoplaySpeed', 5000),
+          '#states' => [
+            'visible' => [
+              ':input[name*=autoplay]' => ['checked' => TRUE]
+            ]
+          ]
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['pauseOnHover'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Pause on hover'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'pauseOnHover'),
+          '#states' => [
+            'visible' => [
+              ':input[name*=autoplay]' => ['checked' => TRUE]
+            ]
+          ]
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['speed'] = [
+          '#type' => 'textfield',
+          '#title' => t('Transition duration'),
+          '#description' => t('Slide transition duration (in ms)'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'speed', 500),
+        ];
+
+        $form['slick_carousel_settings']['slick_general']['slideMargin'] = [
+          '#type' => 'number',
+          '#title' => t('Slide Margin'),
+          '#min' => 0,
+          '#field_suffix' => 'px',
+          '#description' => t('Margin between each slide'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'slideMargin', 0),
+        ];
+
+        $form['slick_carousel_settings']['slick_general']['initialSlide'] = [
+          '#type' => 'number',
+          '#title' => t('Start Slide'),
+          '#description' => t('Starting slide index (zero-based)'),
+          '#min' => 0,
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'initialSlide', 0),
+          '#states' => [
+            'visible' => [
+              ':input[name*=randomStart]' => ['checked' => FALSE]
+            ]
+          ]
+        ];
+
+        $form['slick_carousel_settings']['slick_general']['infinite'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Infinite Loop'),
+          '#description' => t('If checked, clicking "Next" while on the last slide will transition to the first slide and vice-versa'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'infinite', 1),
+        ];
+
+        $form['slick_carousel_settings']['slick_general']['hideControlOnEnd'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Hide control on last slide item'),
+          '#description' => t('If checked, "Next" control will be hidden on last slide and vice-versa'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'hideControlOnEnd'),
+          '#states' => [
+            'visible' => [
+              ':input[name*=infinite]' => ['checked' => FALSE]
+            ]
+          ]
+        ];
+    
+        $form['slick_carousel_settings']['slick_general']['swipe'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Touch enable'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'swipe', 1),
+        ];
+
+        $form['slick_carousel_settings']['slick_carousel'] = [
+          '#type' => 'details',
+          '#title' => t('Carousel'),
+        ];
+
+        $form['slick_carousel_settings']['slick_carousel']['lg'] = [
+          '#type' => 'number',
+          '#title' => t('Items on large screen'),
+          '#min' => 1,
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'lg', 1),
+          '#description' => t('Number of items visible on large devices (desktops)'),
+        ];
+
+        $form['slick_carousel_settings']['slick_carousel']['md'] = [
+          '#type' => 'number',
+          '#min' => 1,
+          '#title' => t('Items on medium screen'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'md', 1),
+          '#description' => t('Number of items visible on medium devices (desktops)'),
+        ];
+
+        $form['slick_carousel_settings']['slick_carousel']['sm'] = [
+          '#type' => 'number',
+          '#min' => 1,
+          '#title' => t('Items on small screen'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'sm', 1),
+          '#description' => t('Number of items visible on small devices (tablet)'),
+        ];
+
+        $form['slick_carousel_settings']['slick_carousel']['xs'] = [
+          '#type' => 'number',
+          '#min' => 1,
+          '#title' => t('Items on extra small screen'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'xs', 1),
+          '#description' => t('Number of items visible on extra small devices (phone)'),
+        ];
+
+        $form['slick_carousel_settings']['slick_controls'] = [
+          '#type' => 'details',
+          '#title' => t('Controls'),
+        ];
+    
+        $form['slick_carousel_settings']['slick_controls']['arrows'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Show Next/Prev controls'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'arrows', 1),
+          '#description' => t('If checked, a pager will be added'),
+        ];
+        /*
+        $form['slick_carousel_settings']['slick_controls']['arrows_position'] = [
+          '#type' => 'select',
+          '#title' => t('Next/Prev controls position'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'arrows_position'),
+          '#options' => [
+            '' => t('Not set'),
+            'left-right-center' => t('Left/Right - Center'),
+            'center-bottom' => t('Center - Bottom'),
+            'left-top' => t('Left - Top'),
+            'right-top' => t('Right - Top'),
+            'left-bottom' => t('Left - Bottom'),
+            'right-bottom' => t('Right - Bottom'),
+          ],
+          '#states' => [
+            'visible' => [
+              ':input[name="slick_carousel_settings[slick_controls][arrows]"]' => [
+                'checked' => true,
+              ]
+            ]
+          ],
+        ];
+        */
+        $form['slick_carousel_settings']['slick_controls']['dots'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Show Pager'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'dots', 1),
+          '#description' => t('If checked, a pager will be added'),
+        ];
+    
+        $form['slick_carousel_settings']['slick_centermode'] = [
+          '#type' => 'details',
+          '#title' => t('Center mode'),
+        ];
+    
+        $form['slick_carousel_settings']['slick_centermode']['centerMode'] = [
+          '#type' => 'checkbox',
+          '#title' => t('Enable center mode'),
+          '#description' => t('Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'centerMode'),
+        ];
+   
+        $form['slick_carousel_settings']['slick_centermode']['centerPadding'] = [
+          '#type' => 'textfield',
+          '#title' => t('Center padding'),
+          '#description' => t('Side padding when in center mode (px or %)'),
+          '#default_value' => $block->getThirdPartySetting('dexp_slick', 'centerPadding', '50px'),
+        ];
+        
+        $form['actions']['submit']['#submit'][] = 'dexp_slick_block_settings_form_submit';
+      }
+    }
+  }
+}
+
+function dexp_slick_block_settings_form_submit(&$form, FormStateInterface $form_state){
+  $block = $form_state->getFormObject()->getEntity();
+  $values = $form_state->getValues();
+	$slick_general = $values['slick_carousel_settings']['slick_general'];
+	$slick_carousel = $values['slick_carousel_settings']['slick_carousel'];
+	$slick_controls = $values['slick_carousel_settings']['slick_controls'];
+  $slick_centermode = $values['slick_carousel_settings']['slick_centermode'];
+	
+	$settings = array_merge($slick_general, $slick_carousel, $slick_controls, $slick_centermode);
+  foreach($settings as $setting_key => $setting_value){
+		$block->setThirdPartySetting('dexp_slick', $setting_key, $setting_value);
+	}
+  $block->save();
+}
+
+/*
+** Implement hook_preprocess_block
+ */
+function dexp_slick_preprocess_block(&$variables){
+  if (!empty($variables['elements']['#id'])) {
+    $blockType = $variables['elements']['#configuration']['provider'];
+    if ($blockType == "block_content") {
+      $bundle = $variables['elements']['content']['#block_content']->bundle();
+      if($bundle == 'slick_carousel'){
+        $block = Block::load($variables['elements']['#id']);
+        $options = $block->getThirdPartySettings('dexp_slick');
+        $uuid_service = \Drupal::service('uuid');
+        $uuid = $uuid_service->generate();
+        $variables['#attached']['drupalSettings']['dexp_slick'] = [
+          $uuid => $options,
+        ];
+        $variables['content_attributes']['class'][] = 'dexp-slick-carousel';
+        $variables['content_attributes']['data-uuid'][] = $uuid;
+        $variables['#attached']['library'][] = 'dexp_slick/dexp_slick';
+      }
+    }
+  }
+}
+
+function dexp_slick_theme_suggestions_views_dexp_slick_alter(array &$suggestions, array $variables, $hook){
+  $suggestions = array_merge($suggestions, array(
+    $hook . '__' . $variables['view']->id(),
+    $hook . '__' . $variables['view']->id() . '__' . $variables['view']->current_display,
+  ));
+}

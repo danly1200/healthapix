@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_RenderErrorScreen">
+    <DisplayName>HPX_RenderErrorScreen</DisplayName>
+    <Remove>
+        <Payload>true</Payload>
+    </Remove>
+    <Set>
+        <Headers>
+            <Header name="Location">/openid/errorflow?error={flowError}&amp;discription=Internal%20Server%20Error</Header>
+        </Headers>
+        <StatusCode>302</StatusCode>
+        <ReasonPhrase>Found</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

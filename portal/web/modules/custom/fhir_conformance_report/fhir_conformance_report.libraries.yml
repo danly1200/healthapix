@@ -1,0 +1,6 @@
+fhir_conformance_report.displayData:
+  js:
+    js/conformance.js: {}
+  css:
+    theme:
+      css/conformance.css: {}

@@ -1,0 +1,445 @@
+diff --git ./web/libraries/swagger-ui/src/core/components/auth/authorize-btn.jsx ./web/libraries/swagger-ui/src/core/components/auth/authorize-btn.jsx
+index 57a1b2bc..40bcc77c 100644
+--- ./web/libraries/swagger-ui/src/core/components/auth/authorize-btn.jsx
++++ ./web/libraries/swagger-ui/src/core/components/auth/authorize-btn.jsx
+@@ -17,12 +17,13 @@ export default class AuthorizeBtn extends React.Component {
+
+     return (
+       <div className="auth-wrapper">
+-        <button className={isAuthorized ? "btn authorize locked" : "btn authorize unlocked"} onClick={onClick}>
+-          <span>Authorize</span>
++        <button className={isAuthorized ? "btn authorize b2b-authorize-btn locked" : "btn authorize b2b-authorize-btn unlocked"} onClick={onClick}>
++          <span>Show OAuth2 Access Token</span>
+           <svg width="20" height="20">
+             <use href={ isAuthorized ? "#locked" : "#unlocked" } xlinkHref={ isAuthorized ? "#locked" : "#unlocked" } />
+           </svg>
+         </button>
++
+       { showPopup && <AuthorizationPopup /> }
+       </div>
+     )
+diff --git ./web/libraries/swagger-ui/src/core/components/auth/auths.jsx ./web/libraries/swagger-ui/src/core/components/auth/auths.jsx
+index 98074512..edd35db0 100644
+--- ./web/libraries/swagger-ui/src/core/components/auth/auths.jsx
++++ ./web/libraries/swagger-ui/src/core/components/auth/auths.jsx
+@@ -64,6 +64,7 @@ export default class Auths extends React.Component {
+     let oauthDefinitions = definitions.filter( schema => schema.get("type") === "oauth2")
+
+     return (
++      <div id={oauthDefinitions._root.entries[0][0]}>
+       <div className="auth-container">
+         {
+           !!nonOauthDefinitions.size && <form onSubmit={ this.submitAuth }>
+@@ -111,6 +112,7 @@ export default class Auths extends React.Component {
+         }
+
+       </div>
++      </div>
+     )
+   }
+
+diff --git ./web/libraries/swagger-ui/src/core/components/auth/oauth2.jsx ./web/libraries/swagger-ui/src/core/components/auth/oauth2.jsx
+index a4cb6a79..23c3e59f 100644
+--- ./web/libraries/swagger-ui/src/core/components/auth/oauth2.jsx
++++ ./web/libraries/swagger-ui/src/core/components/auth/oauth2.jsx
+@@ -18,13 +18,14 @@ export default class Oauth2 extends React.Component {
+
+   constructor(props, context) {
+     super(props, context)
+-    let { name, schema, authorized, authSelectors } = this.props
++    let {name, schema, authorized, authSelectors} = this.props
+     let auth = authorized && authorized.get(name)
+     let authConfigs = authSelectors.getConfigs() || {}
+     let username = auth && auth.get("username") || ""
+     let clientId = auth && auth.get("clientId") || authConfigs.clientId || ""
+     let clientSecret = auth && auth.get("clientSecret") || authConfigs.clientSecret || ""
+     let passwordType = auth && auth.get("passwordType") || "basic"
++    let path = location.protocol + '//' + location.host
+
+     this.state = {
+       appName: authConfigs.appName,
+@@ -35,41 +36,88 @@ export default class Oauth2 extends React.Component {
+       clientSecret: clientSecret,
+       username: username,
+       password: "",
+-      passwordType: passwordType
++      passwordType: passwordType,
++      items: [],
++      error: null,
++      isLoaded: false,
++      headers: "",
++      userId: username,
++      selectValue: '',
++      consumerKey: '',
++      consumerSecret: '',
++      path: path,
++      applistuser:[],
++      appListName:'',
+     }
+   }
+
+   close = (e) => {
+     e.preventDefault()
+-    let { authActions } = this.props
++    let {authActions} = this.props
+
+     authActions.showDefinitions(false)
+   }
+
+-  authorize =() => {
+-    let { authActions, errActions, getConfigs, authSelectors } = this.props
++  authorize = () => {
++    let {authActions, errActions, getConfigs, authSelectors} = this.props
+     let configs = getConfigs()
+     let authConfigs = authSelectors.getConfigs()
+
+-    errActions.clear({authId: name,type: "auth", source: "auth"})
+-    oauth2Authorize({auth: this.state, authActions, errActions, configs, authConfigs })
++    errActions.clear({authId: name, type: "auth", source: "auth"})
++    oauth2Authorize({auth: this.state, authActions, errActions, configs, authConfigs})
++  }
++
++  // Get developer
++  // applist from drupal and get credentials from it
++  componentDidMount() {
++    fetch(this.state.path + "/fhir_apigee_apps")
++      .then(res => res.json())
++      .then(
++        (result) => {
++          this.setState(
++            prevState => ({
++              isLoaded: true,
++              applistuser:  result,
++            }),
++            () => {
++
++            }
++          );
++        },
++        // Note: it's important to handle errors here
++        // instead of a catch() block so that we don't swallow
++        // exceptions from actual bugs in components.
++        (error) => {
++          this.setState({
++            isLoaded: true,
++            error
++          });
++        }
++      )
++  }
++
++  componentWillUnmount() {
++    this.setState({
++      applistuser: []
++    })
+   }
+
+-  onScopeChange =(e) => {
+-    let { target } = e
+-    let { checked } = target
++
++  onScopeChange = (e) => {
++    let {target} = e
++    let {checked} = target
+     let scope = target.dataset.value
+
+-    if ( checked && this.state.scopes.indexOf(scope) === -1 ) {
++    if (checked && this.state.scopes.indexOf(scope) === -1) {
+       let newScopes = this.state.scopes.concat([scope])
+-      this.setState({ scopes: newScopes })
+-    } else if ( !checked && this.state.scopes.indexOf(scope) > -1) {
+-      this.setState({ scopes: this.state.scopes.filter((val) => val !== scope) })
++      this.setState({scopes: newScopes})
++    } else if (!checked && this.state.scopes.indexOf(scope) > -1) {
++      this.setState({scopes: this.state.scopes.filter((val) => val !== scope)})
+     }
+   }
+
+-  onInputChange =(e) => {
+-    let { target : { dataset : { name }, value } } = e
++  onInputChange = (e) => {
++    let {target: {dataset: {name}, value}} = e
+     let state = {
+       [name]: value
+     }
+@@ -77,14 +125,30 @@ export default class Oauth2 extends React.Component {
+     this.setState(state)
+   }
+
+-  logout =(e) => {
++  logout = (e) => {
+     e.preventDefault()
+-    let { authActions, errActions, name } = this.props
++    let {authActions, errActions, name} = this.props
+
+     errActions.clear({authId: name, type: "auth", source: "auth"})
+-    authActions.logout([ name ])
++    authActions.logout([name])
+   }
+
++  credApply = (event) => {
++    let app_cred_array = [];
++    this.state.applistuser.forEach(credLoopFunction);
++
++    function credLoopFunction(value, index, array) {
++      app_cred_array[value.appName] = new Array({"consumerKey": value.consumerKey, "consumerSecret": value.consumerSecret});
++    }
++
++    let app_key = app_cred_array[event.target.value][0].consumerKey;
++    let app_secret = app_cred_array[event.target.value][0].consumerSecret;
++
++    this.setState({selectValue: event.target.value});
++    this.setState({clientId: app_key});
++    this.setState({clientSecret: app_secret});
++  };
++
+   render() {
+     let {
+       schema, getComponent, authSelectors, errSelectors, name, specSelectors
+@@ -95,11 +159,9 @@ export default class Oauth2 extends React.Component {
+     const Button = getComponent("Button")
+     const AuthError = getComponent("authError")
+     const JumpToPath = getComponent("JumpToPath", true)
+-    const Markdown = getComponent( "Markdown" )
+-
+-    const { isOAS3 } = specSelectors
++    const Markdown = getComponent("Markdown")
++    const {isOAS3} = specSelectors
+
+-    // Auth type consts
+     const IMPLICIT = "implicit"
+     const PASSWORD = "password"
+     const ACCESS_CODE = isOAS3() ? "authorizationCode" : "accessCode"
+@@ -109,21 +171,33 @@ export default class Oauth2 extends React.Component {
+     let scopes = schema.get("allowedScopes") || schema.get("scopes")
+     let authorizedAuth = authSelectors.authorized().get(name)
+     let isAuthorized = !!authorizedAuth
+-    let errors = errSelectors.allErrors().filter( err => err.get("authId") === name)
+-    let isValid = !errors.filter( err => err.get("source") === "validation").size
++    let errors = errSelectors.allErrors().filter(err => err.get("authId") === name)
++    let isValid = !errors.filter(err => err.get("source") === "validation").size
+     let description = schema.get("description")
++    let arrayOfData = this.state.applistuser
++    let arrayOfDataName =[];
++
++
++    if(arrayOfData && arrayOfData.length > 0) {
++      arrayOfData.map((item, key) =>
++       // console.log('output Name: ',item.appName)
++        arrayOfDataName.push(item.appName)
++      );
++    }
+
+     return (
+       <div>
+-        <h4>{name} (OAuth2, { schema.get("flow") }) <JumpToPath path={[ "securityDefinitions", name ]} /></h4>
+-        { !this.state.appName ? null : <h5>Application: { this.state.appName } </h5> }
+-        { description && <Markdown source={ schema.get("description") } /> }
++        <h4>{name} (OAuth2, {schema.get("flow")}) <JumpToPath path={["securityDefinitions", name]}/></h4>
++        {!this.state.appName ? null : <h5>Application: {this.state.appName} </h5>}
++        {description && <Markdown source={schema.get("description")}/>}
+
+-        { isAuthorized && <h6>Authorized</h6> }
++        {isAuthorized && <h6>Authorized</h6>}
+
+-        { ( flow === IMPLICIT || flow === ACCESS_CODE ) && <p>Authorization URL: <code>{ schema.get("authorizationUrl") }</code></p> }
+-        { ( flow === PASSWORD || flow === ACCESS_CODE || flow === APPLICATION ) && <p>Token URL:<code> { schema.get("tokenUrl") }</code></p> }
+-        <p className="flow">Flow: <code>{ schema.get("flow") }</code></p>
++        {(flow === IMPLICIT || flow === ACCESS_CODE) &&
++        <p>Authorization URL: <code>{schema.get("authorizationUrl")}</code></p>}
++        {(flow === PASSWORD || flow === ACCESS_CODE || flow === APPLICATION) &&
++        <p>Token URL:<code> {schema.get("tokenUrl")}</code></p>}
++        <p className="flow">Flow: <code>{schema.get("flow")}</code></p>
+
+         {
+           flow !== PASSWORD ? null
+@@ -131,9 +205,9 @@ export default class Oauth2 extends React.Component {
+               <Row>
+                 <label htmlFor="oauth_username">username:</label>
+                 {
+-                  isAuthorized ? <code> { this.state.username } </code>
++                  isAuthorized ? <code> {this.state.username} </code>
+                     : <Col tablet={10} desktop={10}>
+-                      <input id="oauth_username" type="text" data-name="username" onChange={ this.onInputChange }/>
++                      <input id="oauth_username" type="text" data-name="username" onChange={this.onInputChange}/>
+                     </Col>
+                 }
+               </Row>
+@@ -145,16 +219,16 @@ export default class Oauth2 extends React.Component {
+                 {
+                   isAuthorized ? <code> ****** </code>
+                     : <Col tablet={10} desktop={10}>
+-                      <input id="oauth_password" type="password" data-name="password" onChange={ this.onInputChange }/>
++                      <input id="oauth_password" type="password" data-name="password" onChange={this.onInputChange}/>
+                     </Col>
+                 }
+               </Row>
+               <Row>
+                 <label htmlFor="password_type">Client credentials location:</label>
+                 {
+-                  isAuthorized ? <code> { this.state.passwordType } </code>
++                  isAuthorized ? <code> {this.state.passwordType} </code>
+                     : <Col tablet={10} desktop={10}>
+-                      <select id="password_type" data-name="passwordType" onChange={ this.onInputChange }>
++                      <select id="password_type" data-name="passwordType" onChange={this.onInputChange}>
+                         <option value="basic">Authorization header</option>
+                         <option value="request-body">Request body</option>
+                       </select>
+@@ -163,81 +237,112 @@ export default class Oauth2 extends React.Component {
+               </Row>
+             </Row>
+         }
++        {/*Field is added to choose app name from the list*/}
+         {
+-          ( flow === APPLICATION || flow === IMPLICIT || flow === ACCESS_CODE || flow === PASSWORD ) &&
+-          ( !isAuthorized || isAuthorized && this.state.clientId) && <Row>
+-            <label htmlFor="client_id">client_id:</label>
++          (flow === APPLICATION || flow === IMPLICIT || flow === ACCESS_CODE || flow === PASSWORD) &&
++          (!isAuthorized || isAuthorized && this.state.selectValue) && <Row>
++            <label htmlFor="app_name">App name:</label>
+             {
+               isAuthorized ? <code> ****** </code>
+-                           : <Col tablet={10} desktop={10}>
+-                               <input id="client_id"
+-                                      type="text"
+-                                      required={ flow === PASSWORD }
+-                                      value={ this.state.clientId }
+-                                      data-name="clientId"
+-                                      onChange={ this.onInputChange }/>
+-                             </Col>
++                : <Col tablet={10} desktop={10}>
++                  <select value={this.state.selectValue} onChange={this.credApply}>
++                    <option disabled>- Select -</option>
++                    {arrayOfDataName.map((value, index) =>
++                      <option
++                        key={index}
++                        value={value}
++                      >
++                        {value}
++                      </option>
++                      // {console.log("Check inside rhe map : ", value)},
++                     // {value.appName}
++                    )}
++                  </select>
++                </Col>
+             }
+           </Row>
+         }
+
+         {
+-          ( (flow === APPLICATION || flow === ACCESS_CODE || flow === PASSWORD) && <Row>
+-            <label htmlFor="client_secret">client_secret:</label>
++          (flow === APPLICATION || flow === IMPLICIT || flow === ACCESS_CODE || flow === PASSWORD) &&
++          (!isAuthorized || isAuthorized && this.state.clientId) && <Row>
++            <label htmlFor="client_id">client_id:</label>
+             {
+               isAuthorized ? <code> ****** </code>
+-                           : <Col tablet={10} desktop={10}>
+-                               <input id="client_secret"
+-                                      value={ this.state.clientSecret }
+-                                      type="text"
+-                                      data-name="clientSecret"
+-                                      onChange={ this.onInputChange }/>
+-                             </Col>
++                : <Col tablet={10} desktop={10}>
++                  <input id="client_id"
++                         type="text"
++                         required={flow === PASSWORD}
++                         value={this.state.clientId}
++                         data-name="clientId"
++                         onChange={this.onInputChange}
++                  />
++                </Col>
+             }
+-
+           </Row>
+-        )}
++        }
++
++        {
++          ((flow === APPLICATION || flow === ACCESS_CODE || flow === PASSWORD) && <Row>
++              <label htmlFor="client_secret">client_secret:</label>
++              {
++                isAuthorized ? <code> ****** </code>
++                  : <Col tablet={10} desktop={10}>
++                    <input id="client_secret"
++                           value={this.state.clientSecret}
++                           type="text"
++                           data-name="clientSecret"
++                           onChange={this.onInputChange}
++                    />
++                  </Col>
++              }
++
++            </Row>
++          )}
+
+         {
+           !isAuthorized && scopes && scopes.size ? <div className="scopes">
+             <h2>Scopes:</h2>
+-            { scopes.map((description, name) => {
++            {scopes.map((description, name) => {
+               return (
+-                <Row key={ name }>
++                <Row key={name}>
+                   <div className="checkbox">
+-                    <Input data-value={ name }
+-                          id={`${name}-${flow}-checkbox-${this.state.name}`}
+-                           disabled={ isAuthorized }
++                    <Input data-value={name}
++                           id={`${name}-${flow}-checkbox-${this.state.name}`}
++                           disabled={isAuthorized}
+                            type="checkbox"
+-                           onChange={ this.onScopeChange }/>
+-                         <label htmlFor={`${name}-${flow}-checkbox-${this.state.name}`}>
+-                           <span className="item"></span>
+-                           <div className="text">
+-                             <p className="name">{name}</p>
+-                             <p className="description">{description}</p>
+-                           </div>
+-                         </label>
++                           onChange={this.onScopeChange}/>
++                    <label htmlFor={`${name}-${flow}-checkbox-${this.state.name}`}>
++                      <span className="item"></span>
++                      <div className="text">
++                        <p className="name">{name}</p>
++                        <p className="description">{description}</p>
++                      </div>
++                    </label>
+                   </div>
+                 </Row>
+               )
+-              }).toArray()
++            }).toArray()
+             }
+           </div> : null
+         }
+
+         {
+-          errors.valueSeq().map( (error, key) => {
+-            return <AuthError error={ error }
+-                              key={ key }/>
+-          } )
++          errors.valueSeq().map((error, key) => {
++            return <AuthError error={error}
++                              key={key}/>
++          })
+         }
+         <div className="auth-btn-wrapper">
+-        { isValid &&
+-          ( isAuthorized ? <Button className="btn modal-btn auth authorize" onClick={ this.logout }>Logout</Button>
+-        : <Button className="btn modal-btn auth authorize" onClick={ this.authorize }>Authorize</Button>
++          {isValid &&
++          (isAuthorized ? <Button className="btn modal-btn auth authorize btn-done" onClick={(e) => {
++                this.logout(e);
++                this.close(e);
++              }}>Logout</Button>
++              : <Button className="btn modal-btn auth authorize" onClick={this.authorize}>Authorize</Button>
+           )
+-        }
+-          <Button className="btn modal-btn auth btn-done" onClick={ this.close }>Close</Button>
++          }
++          <Button className="btn modal-btn auth btn-done" onClick={this.close}>Close</Button>
+         </div>
+
+       </div>

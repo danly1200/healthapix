@@ -1,0 +1,31 @@
+uuid: e53e5378-7671-4c34-9c6b-faa58c1b03a2
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:0b0a5790-461b-4227-a21c-5bacfb7360e3'
+  module:
+    - block_content
+    - block_visibility_groups
+  theme:
+    - mdc_theme
+id: footerfhirlogo
+theme: mdc_theme
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:0b0a5790-461b-4227-a21c-5bacfb7360e3'
+settings:
+  id: 'block_content:0b0a5790-461b-4227-a21c-5bacfb7360e3'
+  label: 'footer fhir logo'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

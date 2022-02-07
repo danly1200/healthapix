@@ -1,0 +1,22 @@
+uuid: 3771c79c-5631-48d5-bf82-a0f7faa0f1a5
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - fhir_responsive_theme
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: fhir_responsive_theme_help
+theme: fhir_responsive_theme
+region: content
+weight: -4
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

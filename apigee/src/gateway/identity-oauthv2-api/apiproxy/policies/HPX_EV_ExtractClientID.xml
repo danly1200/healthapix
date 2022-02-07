@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_EV_ExtractClientID">
+    <DisplayName>HPX_EV_ExtractClientID</DisplayName>
+    <FormParam name="client_id">
+        <Pattern>{client_id}</Pattern>
+    </FormParam>
+    <FormParam name="client_secret">
+        <Pattern>{private.client_secret}</Pattern>
+    </FormParam>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

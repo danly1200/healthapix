@@ -1,0 +1,23 @@
+uuid: 2cfb6d95-a537-4fe8-8aa3-5b52d2e61921
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.large_image
+    - field.field.node.webform.body
+    - node.type.webform
+  module:
+    - user
+id: node.webform.large_image
+targetEntityType: node
+bundle: webform
+mode: large_image
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_webform: true

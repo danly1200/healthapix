@@ -1,0 +1,71 @@
+
+  <div class="container main login" style="width: 100%; height:auto">
+    <!-- Registration Page Template -->
+          <h4 class="register-form-title"><%= req.__('text.register.form_title')%></h4>
+       
+          <div style="display: <%= showErrorMessage%>;"><font color="red"><%= error%></font></div>
+          <form name="registration-form" role="form" action="<%=req.query.basepath%>/create?sessionid=<%= sessionid%>" method="post" onsubmit="return register()">
+            <div class="input-group-container">
+
+              <div class="input-group input-group-lg">
+              <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user"></span></span>
+              <input name="name" class="form-control" placeholder="<%=req.__('text.register.lable.firstname')%>" type="text">
+              </div> 
+            
+              <div class="input-group input-group-lg">
+              <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user "></span></span>
+              <input name="lastName" class="form-control" placeholder="<%=req.__('text.register.lable.lastname')%>" type="text">
+              </div> 
+            
+              <div class="input-group input-group-lg">
+              <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-envelope"></span></span>
+              <input name="username" class="form-control" placeholder="<%=req.__('text.register.lable.emailId')%>" type="email" oninvalid="this.setCustomValidity('<%= req.__('text.error.email_field_empty')%>')"
+                     oninput="this.setCustomValidity('')"  required >
+              </div> 
+           <!-- While masking Pin Validation functionality, pin is not needed to be sent to phone number, hence phone details are not captured -->
+             <!--  <div class="input-group input-group-lg">  
+                <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-phone"></span></span>
+              <input name="msisdn" class="form-control" placeholder="Phone Number" type="tel">
+              </div>  -->
+			  
+			  <div class="input-group input-group-lg">
+              <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user "></span></span>
+              <input name="patientId" class="form-control" placeholder="<%=req.__('text.register.lable.patientId')%>" type="text">
+              </div>
+            
+              <div class="input-group input-group-lg">
+              <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
+              <input id="password" name="password" class="form-control" placeholder="<%=req.__('text.register.lable.password')%>" type="password" oninvalid="this.setCustomValidity('<%= req.__('text.error.password_field_empty')%>')"
+                     oninput="this.setCustomValidity('')"  required>
+              </div> 
+
+              <div class="input-group input-group-lg">
+              <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
+              <input id="confirmpassword" name="confirmPass" class="form-control" placeholder="<%=req.__('text.register.lable.confirmPass')%>" onfocusout="register()" type="password" oninvalid="this.setCustomValidity('<%= req.__('text.error.password_match')%>')"
+                     oninput="this.setCustomValidity('')"  required>
+              </div>
+              <div id="checkconfirm"></div>
+            </div>
+            <div class="input-group-container">
+                  <button type="submit"  class="btn btn-warning btn-group-lg btn-block"><%= req.__('text.layout.register')%></button>
+              
+                  <button type="button" class="btn btn-warning btn-group-lg btn-block" onclick="window.location='<%=req.query.basepath%>/index?sessionid=<%= sessionid%>'" ><%= req.__('label.cancel')%></button>
+            </div>
+          </form>
+  </div>
+
+  <script>
+    function register() {
+
+      var password= document.getElementById('password').value ;
+      var confirm= document.getElementById('confirmpassword').value;
+      var field = document.getElementById("checkconfirm")
+      if (confirm!=password){
+        field.innerHTML = '<%= req.__('text.error.match_password')%>';
+        return false;
+      }else{
+        field.innerHTML = '';
+        return true;
+      }
+    }
+  </script>

@@ -1,0 +1,11 @@
+name: DrupalExp Block
+type: module
+description: Provide custom block types
+core: 8.x
+version: 8.x-1.1
+package: DrupalExp
+dependencies:
+  - block_content
+  - field_collection
+  - views
+  - text

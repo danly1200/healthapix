@@ -1,0 +1,33 @@
+uuid: 56444da8-53c4-4524-907d-07577fa6409d
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_visibility_groups
+    - node
+  theme:
+    - mdc_theme
+id: testdataapitabs
+theme: mdc_theme
+region: content
+weight: -9
+provider: null
+plugin: testdata_api_tabs
+settings:
+  id: testdata_api_tabs
+  label: 'Test data API Tabs'
+  provider: fhir_customizations
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      test_data: test_data
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

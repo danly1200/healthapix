@@ -1,0 +1,17 @@
+<div class="footer-block">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-keep-in-touch mdc-layout-grid__cell mdc-layout-grid__cell--span-1s-desktop">
+        <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+          <img src="{{ content.footer_logo }}" />
+        </a>
+    </div>
+  </div>
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-footer-menu mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+      {{ content.footer_main_menu }}
+    </div>
+    <div class="mdc-footer-social-logo mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+      {{ content.footer_social }}
+    </div>
+  </div>
+</div>

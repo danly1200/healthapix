@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractNewPatientConsentId">
+    <DisplayName>HPX_ExtractNewPatientConsentId</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="consent_id">
+            <JSONPath>$.consent_id</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="true">createPatientConsentResponse</Source>
+</ExtractVariables>

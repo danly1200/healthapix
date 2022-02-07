@@ -1,0 +1,505 @@
+<?php
+
+/**
+ * @file
+ * Contains dexp_block_settings.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
+use Drupal\block\Entity\Block;
+/**
+ * Implements hook_help().
+ */
+function dexp_block_settings_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dexp_block_settings module.
+    case 'help.page.dexp_block_settings':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provide Advanced Block Settings') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dexp_block_settings_theme() {
+  $theme = [];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dexp_block_settings_form_block_form_alter(&$form, FormStateInterface $form_state) {
+	$block = $form_state->getFormObject()->getEntity();
+  $config = \Drupal::service('config.factory')->getEditable('dexp_block_settings.settings');
+  $form['dexp_block_settings'] = [
+		'#type' => 'details',
+		'#title' => t('DrupalExp Block Settings'),
+		'#weight' => 0,
+		'#open' => TRUE,
+	];
+  if(!$config->get('disable_animation')){
+    $form['dexp_block_settings']['animate_settings'] = [
+      '#type' => 'details',
+      '#title' => t('Animate'),
+    ];
+
+    $form['dexp_block_settings']['animate_settings']['animate'] = [
+      '#type' => 'select',
+      '#title' => t('Block appears effect'),
+      '#options' => _dexp_block_settings_effects(),
+      '#default_value' => $block->getThirdPartySetting('dexp_block_settings', 'animate'),
+      //'#default_value' => $block->getThirdPartySetting('dexp_block_settings','animate'),
+      '#suffix' => '<div id="animate-sample"><div></div></div>',
+    ];
+    $form['dexp_block_settings']['animate_settings']['animate_duration'] = [
+      '#type' => 'number',
+      '#title' => t('Animate duration'),
+      '#min' => 0,
+      '#field_suffix' => 'ms',
+      '#description' => t('Duration of animation'),
+      '#default_value' => $block->getThirdPartySetting('dexp_block_settings', 'animate_duration', 1000),//$block->getThirdPartySetting('dexp_block_settings','animate_delay', 0),
+    ];
+    $form['dexp_block_settings']['animate_settings']['animate_delay'] = [
+      '#type' => 'number',
+      '#title' => t('Animate delay'),
+      '#min' => 0,
+      '#field_suffix' => 'ms',
+      '#description' => t('Delay time before animate effect starts in millisecond'),
+      '#default_value' => $block->getThirdPartySetting('dexp_block_settings', 'animate_delay', 0),//$block->getThirdPartySetting('dexp_block_settings','animate_delay', 0),
+    ];
+  }
+	$form['dexp_block_settings']['background_settings'] = [
+		'#type' => 'details',
+		'#title' => t('Background'),
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_color'] = [
+		'#type' => 'textfield',
+		'#title' => t('Background Color'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings', 'background_color'),
+	];
+
+	$fid = $block->getThirdPartySetting('dexp_block_settings','background_image');
+  if($fid == NULL) $fid = 'file:0';
+	$fid = 'file:' . str_replace('file:', '', $fid);
+	$form['dexp_block_settings']['background_settings']['background_image'] = [
+		'#type' => 'image_browser',
+		'#title' => t('Background image'),
+		'#default_value' => $fid,
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_position'] = [
+		'#type' => 'select',
+		'#title' => t('Background Position'),
+    '#default_value' => $block->getThirdPartySetting('dexp_block_settings', 'background_position'),
+		'#options' => [
+      '' => t('Not set'),
+      'left top' => 'left top', 
+      'left center' =>'left center', 
+      'left bottom' => 'left bottom', 
+      'right top' => 'right top', 
+      'right center' => 'right center',
+      'right bottom' => 'right bottom',
+      'center top' => 'center top',
+      'center center' => 'center center',
+      'center bottom' => 'center bottom',
+    ],
+  ];
+
+	$form['dexp_block_settings']['background_settings']['background_image_type'] = [
+		'#type' => 'select',
+		'#title' => t('Background Image Type'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_image_type'),
+		'#options' => ['default' => 'Default', 'fixed' =>'Fixed', 'parallax' => 'Parallax'],
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_repeat'] = [
+		'#type' => 'select',
+		'#title' => t('Background Image Repeat'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_repeat'),
+		'#options' => ['no-repeat' => 'no-repeat', 'repeat' => 'repeat', 'repeat-x'=>'repeat-x', 'repeat-y' => 'repeat-y'],
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_size'] = [
+		'#type' => 'select',
+		'#title' => t('Background Image Size'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_size'),
+		'#options' => ['auto' => 'auto', 'cover' => 'cover', 'contain' => 'contain'],
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_video'] = [
+		'#type' => 'textfield',
+		'#title' => t('Background Video'),
+		'#description' => t('Support youtube video only'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_video'),
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_video_controls'] = [
+		'#type' => 'checkbox',
+		'#title' => t('Show Controls'),
+		'#description' => t('Show Play/Pause/Mute button'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_video_controls'),
+		'#states' => [
+			'invisible' => [
+				':input[name="dexp_block_settings[background_settings][background_video]"]' => [
+					'value' => ''
+				],
+			]
+		],
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_video_mute'] = [
+		'#type' => 'checkbox',
+		'#title' => t('Mute?'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_video_mute'),
+		'#states' => [
+			'invisible' => [
+				':input[name="dexp_block_settings[background_settings][background_video]"]' => [
+					'value' => ''
+				],
+			]
+		],
+	];
+
+	$form['dexp_block_settings']['background_settings']['background_video_start_at'] = [
+		'#type' => 'textfield',
+		'#title' => t('Start at'),
+		'#field_suffix' => t('s'),
+		'#description' => t('Video start at time'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','background_video_start_at'),
+		'#states' => [
+			'invisible' => [
+				':input[name="dexp_block_settings[background_settings][background_video]"]' => [
+					'value' => ''
+				],
+			]
+		],
+	];
+
+  $form['dexp_block_settings']['background_settings']['exclude_block_title'] = [
+		'#type' => 'checkbox',
+		'#title' => t('Exclude block title'),
+		'#description' => t('Apply settings for block content only'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','exclude_block_title'),
+	];
+
+	$form['dexp_block_settings']['custom_style'] = [
+		'#type' => 'details',
+		'#title' => t('Custom style'),
+	];
+
+	$form['dexp_block_settings']['custom_style']['custom_class'] = [
+		'#type' => 'textfield',
+		'#title' => t('Custom classes'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','custom_class'),
+    '#description' => t('Custom classes for whole block inlcude block title'),
+	];
+
+  $form['dexp_block_settings']['custom_style']['custom_content_class'] = [
+		'#type' => 'textfield',
+		'#title' => t('Block content custom classes'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','custom_content_class'),
+    '#description' => t('Custom classes for block content only'),
+	];
+
+  $form['dexp_block_settings']['custom_style']['custom_css'] = [
+		'#type' => 'textarea',
+		'#title' => t('Custom CSS'),
+		'#default_value' => $block->getThirdPartySetting('dexp_block_settings','custom_css'),
+	];
+  $form['#attached']['library'][] = 'dexp_block_settings/animate';
+  $form['#attached']['library'][] = 'dexp_block_settings/animate_admin';
+	$form['actions']['submit']['#submit'][] = 'dexp_block_settings_submit';
+}
+
+function dexp_block_settings_submit(&$form, FormStateInterface $form_state){
+  $block = $form_state->getFormObject()->getEntity();
+  $values = $form_state->getValues();
+	$animate_settings = $values['dexp_block_settings']['animate_settings'];
+	$background_settings = $values['dexp_block_settings']['background_settings'];
+	$custom_style = $values['dexp_block_settings']['custom_style'];
+  if(!empty($background_settings['background_image'])){
+    $fid = $background_settings['background_image'];
+    $fid = str_replace('file:', '', $fid);
+		if($file = File::load($fid)){
+      $file->set('status', FILE_STATUS_PERMANENT);
+      $file->save();
+      $file_usage = \Drupal::service('file.usage');
+      $file_usage->add($file, 'dexp_block_settings', 'block', $values['id']);
+    }
+	}
+	$settings = array_merge($animate_settings, $background_settings, $custom_style);
+	foreach($settings as $setting_key => $setting_value){
+    $block->setThirdPartySetting('dexp_block_settings', $setting_key, $setting_value);
+	}
+  $block->save();
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+
+function dexp_block_settings_preprocess_block(&$variables) {
+  if (!empty($variables['elements']['#id'])) {
+		$block = Block::load($variables['elements']['#id']);
+    $config = \Drupal::service('config.factory')->getEditable('dexp_block_settings.settings');
+    $variables['#attached']['drupalSettings']['dexp_block_settings']['disbale_animation_mobile'] = ($config->get('disable_animation') || $config->get('disable_animation_mobile'));
+		$variables['#attached']['drupalSettings']['dexp_block_settings']['disbale_animation'] = (bool)$config->get('disable_animation');
+		$variables['#attached']['drupalSettings']['dexp_block_settings']['animation_once'] = (bool)$config->get('animation_once');
+		if(($animate = $block->getThirdPartySetting('dexp_block_settings', 'animate')) && !$config->get('disable_animation')){
+      $animate_delay = $block->getThirdPartySetting('dexp_block_settings', 'animate_delay', 0);
+      $animate_duration = $block->getThirdPartySetting('dexp_block_settings', 'animate_duration', 1000);
+			$variables['attributes']['data-aos'] = $animate;
+      $variables['attributes']['data-aos-delay'] = $animate_delay;
+      $variables['attributes']['data-aos-duration'] = $animate_duration;
+			$variables['#attached']['library'][] = 'dexp_block_settings/animate';
+      if($animate_duration > 3000 || $animate_duration % 50 != 0){
+        $variables['attributes']['style'][] = "transition-duration:{$animate_duration}ms;";
+      }
+		}
+		//Background Color
+    $exclude_block_title = $block->getThirdPartySetting('dexp_block_settings', 'exclude_block_title');
+    $element = 'attributes';
+    if($exclude_block_title){
+      //Settings apply for block content
+      $element = 'content_attributes';
+    }
+
+		if($background_color = $block->getThirdPartySetting('dexp_block_settings', 'background_color')){
+			$variables[$element]['style'][] = 'background-color: '.$background_color.';';
+		}
+		//Background Image
+		if($fid = $block->getThirdPartySetting('dexp_block_settings', 'background_image')){
+      $fid = str_replace('file:', '', $fid);
+			$background_image = File::load($fid);
+      if($background_image){
+        $image = \Drupal::service('image.factory')->get($background_image->getFileUri());
+        $variables[$element]['style'][] = 'background-image:url('.file_create_url($background_image->getFileUri()).');';
+        //Background Position
+				if($background_position = $block->getThirdPartySetting('dexp_block_settings', 'background_position')){
+					$variables[$element]['style'][] = 'background-position:'.$background_position.';';
+				}
+				//Background Image Repeat
+				if($background_repeat = $block->getThirdPartySetting('dexp_block_settings', 'background_repeat')){
+					$variables[$element]['style'][] = 'background-repeat:'.$background_repeat.';';
+				}
+				//Background Image Size
+				if($background_size = $block->getThirdPartySetting('dexp_block_settings', 'background_size')){
+					$variables[$element]['style'][] = 'background-size:'.$background_size.';';
+				}
+				//Background Parallax
+				if('parallax' == $block->getThirdPartySetting('dexp_block_settings', 'background_image_type')){
+					$variables[$element]['data-bg-width'] = $image->getWidth();
+        	$variables[$element]['data-bg-height'] = $image->getHeight();
+					$variables[$element]['class'][] = 'dexp-parallax';
+					$variables['#attached']['library'][] = 'dexp_block_settings/parallax';
+				}elseif('fixed' == $block->getThirdPartySetting('dexp_block_settings', 'background_image_type')){
+					$variables[$element]['style'][] = 'background-attachment:fixed;';
+				}
+			}
+		}
+		//Background Video
+		if($video_background = $block->getThirdPartySetting('dexp_block_settings','background_video')){
+			$variables['#attached']['library'][] = 'dexp_block_settings/jquery-ytplayer';
+			$variables['#attached']['library'][] = 'dexp_block_settings/videobg';
+			$variables[$element]['class'][] = 'dexp-video-background';
+			$start_at = $block->getThirdPartySetting('dexp_block_settings', 'background_video_start_at', 0);
+			$controls = $block->getThirdPartySetting('dexp_block_settings','background_video_controls', 0);
+			$controls = $controls ? 'true' : 'false';
+			$mute = $block->getThirdPartySetting('dexp_block_settings','background_video_mute', 0);
+			$mute = $mute ? 'true' : 'false';
+			$variables[$element]['data-property'] = '{videoURL:\''.$video_background.'\',containment:\'#'.$variables['attributes']['id'].'\',showControls:'.$controls.',autoPlay:true,showYTLogo:false,mute:' . $mute . ',startAt:'.$start_at.',opacity:1}';
+		}
+    //Custom class
+    if($custom_class = $block->getThirdPartySetting('dexp_block_settings', 'custom_class')){
+      $variables['attributes']['class'][] = $custom_class;
+    }
+    //Custom block content class
+    if($custom_content_class = $block->getThirdPartySetting('dexp_block_settings', 'custom_content_class')){
+      $variables['content_attributes']['class'][] = $custom_content_class;
+    }
+    //Custom css
+    if($custom_css = $block->getThirdPartySetting('dexp_block_settings', 'custom_css')){
+      $variables['attributes']['style'][] = $custom_css . ';';
+    }
+    if(is_string($variables['label'])){
+      $block_title = explode('~', $variables['label']);
+      $variables['label'] = $block_title[0];
+      $variables['subtitle'] = isset($block_title[1])?$block_title[1]:'';
+    }
+	}
+}
+
+/**
+ * Helper: return an array of effects
+ */
+function _dexp_block_settings_effects(){
+  return [
+    '' => t('None'),
+    'Fade animations' => [
+      'fade' => 'fade',
+      'fade-up' => 'fade-up',
+      'fade-down' => 'fade-down',
+      'fade-left' => 'fade-left',
+      'fade-right' => 'fade-right',
+      'fade-up-right' => 'fade-up-right',
+      'fade-up-left' => 'fade-up-left',
+      'fade-down-right' => 'fade-down-right',
+      'fade-down-left' => 'fade-down-left',
+    ],
+    'Flip animations' => [
+      'flip-up' => 'flip-up',
+      'flip-down' => 'flip-down',
+      'flip-left' => 'flip-left',
+      'flip-right' => 'flip-right',
+    ],
+    'Slide animations' => [
+      'slide-up' => 'slide-up',
+      'slide-down' => 'slide-down',
+      'slide-left' => 'slide-left',
+      'slide-right' => 'slide-right',
+    ],
+    'Zoom animations' => [
+      'zoom-in' => 'zoom-in',
+      'zoom-in-up' => 'zoom-in-up',
+      'zoom-in-down' => 'zoom-in-down',
+      'zoom-in-left' => 'zoom-in-left',
+      'zoom-in-right' => 'zoom-in-right',
+      'zoom-out' => 'zoom-out',
+      'zoom-out-up' => 'zoom-out-up',
+      'zoom-out-down' => 'zoom-out-down',
+      'zoom-out-left' => 'zoom-out-left',
+      'zoom-out-right' => 'zoom-out-right',
+    ],
+  ];
+	return [
+    '' => 'None',
+		'Attention Seekers' => [
+			'bounce' => 'bounce',
+			'flash' => 'flash',
+			'pulse' => 'pulse',
+			'rubberBand' => 'rubberBand',
+			'shake' => 'shake',
+			'swing' => 'swing',
+			'tada' => 'tada',
+			'wobble' => 'wobble',
+			'jello' => 'jello',
+		],
+
+		'Bouncing Entrances' => [
+			'bounceIn' => 'bounceIn',
+			'bounceInDown' => 'bounceInDown',
+			'bounceInLeft' => 'bounceInLeft',
+			'bounceInRight' => 'bounceInRight',
+			'bounceInUp' => 'bounceInUp',
+		],
+    /*
+		'Bouncing Exits' => [
+			'bounceOut' => 'bounceOut',
+			'bounceOutDown' => 'bounceOutDown',
+			'bounceOutLeft' => 'bounceOutLeft',
+			'bounceOutRight' => 'bounceOutRight',
+			'bounceOutUp' => 'bounceOutUp',
+		],
+    */
+		'Fading Entrances' => [
+			'fadeIn' => 'fadeIn',
+			'fadeInDown' => 'fadeInDown',
+			'fadeInDownBig' => 'fadeInDownBig',
+			'fadeInLeft' => 'fadeInLeft',
+			'fadeInLeftBig' => 'fadeInLeftBig',
+			'fadeInRight' => 'fadeInRight',
+			'fadeInRightBig' => 'fadeInRightBig',
+			'fadeInUp' => 'fadeInUp',
+			'fadeInUpBig' => 'fadeInUpBig',
+		],
+    /*
+		'Fading Exits' => [
+			'fadeOut' => 'fadeOut',
+			'fadeOutDown' => 'fadeOutDown',
+			'fadeOutDownBig' => 'fadeOutDownBig',
+			'fadeOutLeft' => 'fadeOutLeft',
+			'fadeOutLeftBig' => 'fadeOutLeftBig',
+			'fadeOutRight' => 'fadeOutRight',
+			'fadeOutRightBig' => 'fadeOutRightBig',
+			'fadeOutUp' => 'fadeOutUp',
+			'fadeOutUpBig' => 'fadeOutUpBig',
+		],
+    */
+		'Flippers' => [
+			'flip' => 'flip',
+			'flipInX' => 'flipInX',
+			'flipInY' => 'flipInY',
+			'flipOutX' => 'flipOutX',
+			'flipOutY' => 'flipOutY',
+		],
+
+		'Lightspeed' => [
+			'lightSpeedIn' => 'lightSpeedIn',
+			'lightSpeedOut' => 'lightSpeedOut',
+		],
+
+		'Rotating Entrances' => [
+			'rotateIn' => 'rotateIn',
+			'rotateInDownLeft' => 'rotateInDownLeft',
+			'rotateInDownRight' => 'rotateInDownRight',
+			'rotateInUpLeft' => 'rotateInUpLeft',
+			'rotateInUpRight' => 'rotateInUpRight',
+		],
+    /*
+		'Rotating Exits' => [
+			'rotateOut' => 'rotateOut',
+			'rotateOutDownLeft' => 'rotateOutDownLeft',
+			'rotateOutDownRight' => 'rotateOutDownRight',
+			'rotateOutUpLeft' => 'rotateOutUpLeft',
+			'rotateOutUpRight' => 'rotateOutUpRight',
+		],
+    */
+		'Sliding Entrances' => [
+			'slideInUp' => 'slideInUp',
+			'slideInDown' => 'slideInDown',
+			'slideInLeft' => 'slideInLeft',
+			'slideInRight' => 'slideInRight',
+
+		],
+    /*
+		'Sliding Exits' => [
+			'slideOutUp' => 'slideOutUp',
+			'slideOutDown' => 'slideOutDown',
+			'slideOutLeft' => 'slideOutLeft',
+			'slideOutRight' => 'slideOutRight',
+
+		],
+    */
+		'Zoom Entrances' => [
+			'zoomIn' => 'zoomIn',
+			'zoomInDown' => 'zoomInDown',
+			'zoomInLeft' => 'zoomInLeft',
+			'zoomInRight' => 'zoomInRight',
+			'zoomInUp' => 'zoomInUp',
+		],
+    /*
+		'Zoom Exits' => [
+			'zoomOut' => 'zoomOut',
+			'zoomOutDown' => 'zoomOutDown',
+			'zoomOutLeft' => 'zoomOutLeft',
+			'zoomOutRight' => 'zoomOutRight',
+			'zoomOutUp' => 'zoomOutUp',
+		],
+    */
+		'Specials' => [
+			'hinge' => 'hinge',
+			'rollIn' => 'rollIn',
+			'rollOut' => 'rollOut',
+		],
+	];
+}

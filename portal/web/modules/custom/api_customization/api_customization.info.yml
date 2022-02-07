@@ -1,0 +1,5 @@
+name: 'api_customization'
+type: module
+description: 'Module to have the customization in the api block'
+core: 8.x
+package: 'Custom'

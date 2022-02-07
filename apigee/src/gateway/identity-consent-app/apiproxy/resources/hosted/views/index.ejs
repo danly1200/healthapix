@@ -1,0 +1,150 @@
+<% layout('layout') -%>
+
+
+<div class="container main login" style="width: 100%; height:auto;">
+    <div style="padding: 50% 5%;">
+    <span class="signin-label"><%=  req.__('text.login.login') %> </span>
+
+    <!-- Social Login -->
+
+    <% if (socialLoginVisible == true) { %>
+        <p class="singin-text">
+            <%=  req.__('text.login.login_with_social') %>
+        </p>
+        <div class="g-icon-div" id="googleplus" value="googleplus">
+            <img class="g-icon" src="<%= req.query.basepath%>/ui/images/gLogo.png">
+            <button type="Submit" class="btn btn-raised btn-lg btn-block"><%=  req.__('text.login.login_with_google') %></button>
+        </div>
+        
+        <div id="error-container" class="clearfix" style="display: <%= showInvalidLoginMessage%>;">
+  <div class="error-container-div" align="center">
+      <svg class="bi bi-exclamation-circle-fill" align="center" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 4a.905.905 0 00-.9.995l.35 3.507a.552.552 0 001.1 0l.35-3.507A.905.905 0 008 4zm.002 6a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/>
+</svg>
+  </div>
+  <p class="singin-text error-container-div error-container-msg"><%=  req.__('text.login.invalid_username_or_password') %></p>
+</div>
+       
+       <!--  <div  style="width: auto; height:20%" align="center">
+            <a href="javascript:void(0);"><img id="googleplus" value="googleplus" class="img-responsive" src="<%= req.query.basepath%>/ui/images/googleplus-circle.png"></a>
+        </div> -->
+    <% } %>
+
+    <!-- SMS Login -->
+
+    <!-- <% if (smsLoginVisible == true) { %>
+
+        <div class="divider clearfix">
+            <span class="arrow"></span>
+            <span class="content">ó</span>
+            <span class="arrow"></span>
+        </div>
+        <p class="help-text register-bottom">
+            <%=  req.__('text.register.if_prefer_phone') %>
+        </p>
+
+        <form role="form" action="<%=req.query.basepath%>/msisdnsubmit?sessionid=<%= sessionid%>" method="post">
+            <div class="input-group-container">
+
+                <div style="display: <%= showInvalidMsisdnMessage%>;"><font color="red">Invalid phone number</font></div>
+                <input class="form-control" placeholder="+4973517390347" name="msisdn" type="text">
+                <span class="help-block">By clicking on ''Submit'', a text message with a PIN code will be sent to your mobile. Standard message and data rates may apply.</span>
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg btn-block">Submit</button>
+
+
+        </form>
+
+    <% } %> -->
+</div>
+    <!-- Email Login -->
+
+    <!-- <% if (emailLoginVisible == true) { %>
+
+        <div class="divider clearfix">
+            <span class="arrow"></span>
+            <span class="content">ó</span>
+            <span class="arrow"></span>
+        </div>
+        <p class="help-text register-bottom">
+            <%=  req.__('text.register.if_prefer_email') %>
+        </p>
+        <div id="error-container" class="clearfix" style="display: <%= showInvalidLoginMessage%>;">
+            <img class="img-responsive close-img" src="<%= req.query.basepath%>/ui/images/error-info.png">
+            <p><%=  req.__('text.login.invalid_username_or_password') %></p>
+        </div>
+
+        <form role="form" action="<%=req.query.basepath%>/login?sessionid=<%= sessionid%>" method="post">
+            <div class="input-group-container">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-envelope"></span></span>
+                    <input type="email" oninvalid="this.setCustomValidity('<%= req.__('text.error.email_field_empty')%>')"
+                           oninput="this.setCustomValidity('')"  required id="txtName" name="username" class="form-control" value="<%= email_to_prefill%>" placeholder="<%=  req.__('text.placeholder.eg_email') %>"/>
+
+                </div>
+                <div class="inline-error">
+                    <p><%= req.__('text.error.email_field_empty')%></p>
+                </div>
+            </div>
+            <div class="input-group-container">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
+                    <input type="password" oninvalid="this.setCustomValidity(<%= req.__('text.error.password_field_empty')%>)"
+                           oninput="this.setCustomValidity('')"  required id="txtPassword" name="password" class="form-control" placeholder="<%=  req.__('text.placeholder.password') %>"/>
+                </div>
+
+                <div class="inline-error">
+                    <p><%= req.__('text.error.password_field_empty')%></p>
+                </div>
+            </div>
+            <a href="<%=req.query.basepath%>/recovery?sessionid=<%= sessionid%>"> <%=  req.__('text.login.forgot_password') %></a>
+            <button type="Submit" id="btnLogin" class="btn btn-raised btn-warning btn-lg btn-block"><%=  req.__('text.login.login_with_grass') %></button>
+        </form>
+        <div class="login-bottom">
+            <p ><%=  req.__('text.layout.have_grass_id') %> <a href="<%=req.query.basepath%>/register?sessionid=<%= sessionid%>"><%=  req.__('text.layout.register') %></a></p></div>
+</div>
+
+<% } %>
+</div> -->
+
+</div>
+
+
+<script type="text/javascript">
+    $(function() {
+        var win;
+        var checkConnect;
+        var $connect = $("#googleplus");
+        var oAuthURL  = "https://accounts.google.com/o/oauth2/v2/auth?response_type=id_token&redirect_uri=<%=google_auth_redirect_uri%>&scope=email%20profile%20openid&client_id=<%=google_auth_client_id%>&state=<%=sessionid%>&nonce=<%=sessionid%>&prompt=select_account";
+
+        $connect.click(function() {
+            win = window.open(oAuthURL, '_self', 'width=972,height=660,modal=yes,alwaysRaised=yes');
+        });
+
+        checkConnect = setInterval(function() {
+            if (!win || !win.closed) return;
+            clearInterval(checkConnect);
+            window.location.href = "UserDetails";
+        }, 100);
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

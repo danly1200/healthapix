@@ -1,0 +1,7 @@
+services:
+  logger.channel.ghc_app_scopes_configurations:
+    parent: logger.channel_base
+    arguments: ['ghc_app_scopes_configurations']
+  ghc_app_scopes_configurations.default:
+    class: Drupal\ghc_app_scopes_configurations\DefaultService
+    arguments: []

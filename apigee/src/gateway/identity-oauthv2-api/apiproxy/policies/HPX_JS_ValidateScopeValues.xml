@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="HPX_JS_ValidateScopeValues">
+<DisplayName>HPX_JS_ValidateScopeValues</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://HPX_ValidateScope.js</ResourceURL>
+</Javascript>

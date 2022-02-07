@@ -1,0 +1,34 @@
+uuid: e8549676-e706-4bf0-a3d8-fd9d19773b2e
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fhir_overview
+  config:
+    - field.storage.node.field_section
+    - node.type.overview_page
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: node.overview_page.field_section
+field_name: field_section
+entity_type: node
+bundle: overview_page
+label: Section
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      section:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

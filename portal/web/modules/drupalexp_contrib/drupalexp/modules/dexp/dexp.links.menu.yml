@@ -1,0 +1,6 @@
+# Slider menu items definition
+dexp.config:
+  title: 'DrupalExp'
+  route_name: dexp.settings
+  description: 'List Slider entities'
+  parent: system.admin_config

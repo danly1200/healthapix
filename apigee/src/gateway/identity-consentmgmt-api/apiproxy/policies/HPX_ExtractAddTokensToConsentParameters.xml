@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractAddTokensToConsentParameters">
+    <DisplayName>HPX_ExtractAddTokensToConsentParameters</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="access_token">
+            <JSONPath>$.access_token</JSONPath>
+        </Variable>
+        <Variable name="refresh_token">
+            <JSONPath>$.refresh_token</JSONPath>
+        </Variable>
+        <Variable name="consent_id">
+            <JSONPath>$.consent_id</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * Contains fhir_datasets.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function fhir_datasets_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the fhir_datasets module.
+    case 'help.page.fhir_datasets':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Fhir Datasets') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function fhir_datasets_theme($existing, $type, $theme, $path) {
+  return [
+    'fhir_datasets_listing' => [
+      'render element' => 'children',
+      'template' => 'fhir-datasets-listing',
+      'path' => $path . '/templates',
+      'variables' => [
+        'datasets' => '',
+        'apps_count' => '',
+      ],
+    ],
+  ];
+}
+/**
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ *
+ */
+function fhir_datasets_form_alter(&$form, $form_state, $form_id) {
+  if($form_id=='node_fhir_servers_form' || $form_id == 'node_fhir_servers_edit_form' || $form_id == 'node_fhir_servers_delete_form') {
+    $form['actions']['submit']['#submit'][] = 'fhir_node_save_redirect';
+    $form['actions']['cancel'][] = 'fhir_node_save_redirect';
+  }
+}
+/*
+ * Implements of sumbit handler.
+ */
+function fhir_node_save_redirect() {
+  //fhir_datasets.listing_datasets
+  $fhir_page = new RedirectResponse(URL::fromUserInput('/fhir-datasets')->toString());
+  $fhir_page->send();
+  //return new RedirectResponse(\Drupal::url('fhir_datasets.listing_datasets'));
+}
+
+function fhir_datasets_node_access(\Drupal\node\NodeInterface $node, $op, \Drupal\Core\Session\AccountInterface $account) {
+  if($node->bundle() == 'fhir_servers') {
+    if($op == 'delete') {
+      $nid = $node->id();
+      $apps_count = get_fhir_server_associated_apps();
+      foreach($apps_count as $item => $value) {
+        if($item == $nid) {
+          return  \Drupal\Core\Access\AccessResult::forbidden();
+        }
+      }
+    }
+  }
+}
+
+function get_fhir_server_associated_apps() {
+  // Get the list of the apps of all the server
+  $developerApps = \Drupal::entityTypeManager()
+    ->getStorage('developer_app')->loadMultiple();
+  $apps = [];
+
+  if ($developerApps) {
+    foreach ($developerApps as $key => $app)  {
+      $server_id = $app->get('field_fhir_server_id')->value;
+      $apps[$server_id][] = $server_id;
+    }
+  }
+  $apps_count = [];
+  foreach ($apps as $nid => $each_apps) {
+    $apps_count[$nid] = count($each_apps);
+  }
+  return $apps_count;
+}

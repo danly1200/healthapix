@@ -1,0 +1,21 @@
+uuid: b5f89386-7fa6-44c8-a464-8ea8dd461086
+langcode: en
+status: true
+dependencies:
+  module:
+    - dexp_block
+    - field_collection
+_core:
+  default_config_hash: o0U8tgvQshuKjvQodd1nlBl-8hbggXfR-EwOr3HDgso
+id: field_collection_item.field_column_view_embed
+field_name: field_column_view_embed
+entity_type: field_collection_item
+type: dexp_field_view_embed
+settings: {  }
+module: dexp_block
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

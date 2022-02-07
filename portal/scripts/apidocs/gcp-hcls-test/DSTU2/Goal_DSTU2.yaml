@@ -1,0 +1,435 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0-oas3
+  title: HL7® FHIR® Goal resource API documentation
+  description: |
+    "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® DSTU2 API docs are part of the FHIR® Specifications (v1.0.2: DSTU 2). The current version which supercedes this version is 4.0.1 (R4). This section contains API docs for the few commonly used DSTU2 resources. API docs for other resources can be added by API publishers on request.",
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/dstu2
+tags:
+- name: Goal
+paths:
+  /Goal:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: _content
+        in: query
+        description: Search the contents of the resource's data using a fulltext search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _filter
+        in: query
+        description: Search the contents of the resource's data using a filter
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _has
+        in: query
+        description: Return resources linked to by the given target
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _language
+        in: query
+        description: The language of the resource
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _lastUpdated
+        in: query
+        description: Only return resources which were last updated as specified by
+          the given range
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+      - name: _profile
+        in: query
+        description: Search for resources which have the given profile
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _security
+        in: query
+        description: Search for resources which have the given security labels
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _tag
+        in: query
+        description: Search for resources which have the given tag
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _text
+        in: query
+        description: Search the contents of the resource's narrative using a fulltext
+          search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: patient
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: subject
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: targetdate
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+      - name: _format
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        "200":
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Goal'
+      security:
+      - OAuthV2B2B:
+        - system/Goal.read
+    post:
+      tags:
+      - Goal
+      requestBody:
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Goal'
+        required: false
+      responses:
+        "200":
+          description: Success
+          content: {}
+      security:
+      - OAuthV2B2B:
+        - system/Goal.write
+      x-codegen-request-body-name: body
+  /Goal/{id}:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Goal'
+      security:
+      - OAuthV2B2B:
+        - system/Goal.read
+    put:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Goal'
+        required: false
+      responses:
+        "200":
+          description: Success
+          content: {}
+      security:
+      - OAuthV2B2B:
+        - system/Goal.write
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content: {}
+      security:
+      - OAuthV2B2B:
+        - system/Goal.write
+  /Goal/{id}/_history:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: _count
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: _since
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content: {}
+      security:
+      - OAuthV2B2B:
+        - system/Goal.read
+  /Goal/{id}/_history/{vid}:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Goal'
+      security:
+      - OAuthV2B2B:
+        - system/Goal.read
+components:
+  schemas:
+    Goal:
+      required:
+      - addresses
+      - description
+      - extension
+      - id
+      - resourceType
+      - status
+      - subject
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          $ref: '#/components/schemas/Goal_text'
+        extension:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Goal_extension_1'
+        subject:
+          $ref: '#/components/schemas/Goal_subject'
+        description:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+        addresses:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Goal_subject'
+    Goal_text:
+      required:
+      - div
+      - status
+      type: object
+      properties:
+        status:
+          minLength: 1
+          type: string
+        div:
+          minLength: 1
+          type: string
+    Goal_valueCodeableConcept_coding:
+      required:
+      - code
+      - display
+      - system
+      type: object
+      properties:
+        system:
+          minLength: 1
+          type: string
+        code:
+          minLength: 1
+          type: string
+        display:
+          minLength: 1
+          type: string
+    Goal_valueCodeableConcept:
+      required:
+      - coding
+      type: object
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Goal_valueCodeableConcept_coding'
+    Goal_extension:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          minLength: 1
+          type: string
+        valueCodeableConcept:
+          $ref: '#/components/schemas/Goal_valueCodeableConcept'
+    Goal_extension_1:
+      required:
+      - url
+      type: object
+      properties:
+        extension:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Goal_extension'
+        url:
+          minLength: 1
+          type: string
+    Goal_subject:
+      required:
+      - display
+      - reference
+      type: object
+      properties:
+        reference:
+          minLength: 1
+          type: string
+        display:
+          minLength: 1
+          type: string
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials
+          scopes:
+            system/Goal.read: Read permissions for Goal demographics.
+            system/Goal.write: Write permissions for Goal demographics.
+

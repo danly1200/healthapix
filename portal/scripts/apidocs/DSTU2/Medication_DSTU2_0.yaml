@@ -1,0 +1,351 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0-oas3
+  title: HL7® FHIR® Medication resource API documentation
+  description: |
+    "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® DSTU2 API docs are part of the FHIR® Specifications (v1.0.2: DSTU 2). The current version which supercedes this version is 4.0.1 (R4). This section contains API docs for the few commonly used DSTU2 resources. API docs for other resources can be added by API publishers on request.",
+servers:
+- url: https://org-env.apigee.net/v1/ghc/dstu2
+tags:
+- name: Medication
+paths:
+  /Medication:
+    get:
+      tags:
+      - Medication
+      parameters:
+      - name: _content
+        in: query
+        description: Search the contents of the resource's data using a fulltext search
+        schema:
+          type: string
+      - name: _filter
+        in: query
+        description: Search the contents of the resource's data using a filter
+        schema:
+          type: string
+      - name: _has
+        in: query
+        description: Return resources linked to by the given target
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: _lastUpdated
+        in: query
+        description: Only return resources which were last updated as specified by
+          the given range
+        schema:
+          type: string
+          format: date
+      - name: _profile
+        in: query
+        description: Search for resources which have the given profile
+        schema:
+          type: string
+      - name: _security
+        in: query
+        description: Search for resources which have the given security labels
+        schema:
+          type: string
+      - name: _tag
+        in: query
+        description: Search for resources which have the given tag
+        schema:
+          type: string
+      - name: _text
+        in: query
+        description: Search the contents of the resource's narrative using a fulltext
+          search
+        schema:
+          type: string
+      - name: code
+        in: query
+        schema:
+          type: string
+      - name: container
+        in: query
+        schema:
+          type: string
+      - name: content
+        in: query
+        schema:
+          type: string
+      - name: form
+        in: query
+        schema:
+          type: string
+      - name: ingredient
+        in: query
+        schema:
+          type: string
+      - name: manufacturer
+        in: query
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Medication'
+      security:
+      - OAuthV2B2B:
+        - system/Medication.read
+    post:
+      tags:
+      - Medication
+      requestBody:
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Medication'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+      - OAuthV2B2B:
+        - system/Medication.write
+  /Medication/{id}:
+    get:
+      tags:
+      - Medication
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Medication'
+      security:
+      - OAuthV2B2B:
+        - system/Medication.read
+    put:
+      tags:
+      - Medication
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Medication'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+      - OAuthV2B2B:
+        - system/Medication.write
+    delete:
+      tags:
+      - Medication
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+      - OAuthV2B2B:
+        - system/Medication.write
+  /Medication/{id}/_history:
+    get:
+      tags:
+      - Medication
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+      - OAuthV2B2B:
+        - system/Medication.read
+  /Medication/{id}/_history/{vid}:
+    get:
+      tags:
+      - Medication
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Medication'
+      security:
+      - OAuthV2B2B:
+        - system/Medication.read
+components:
+  schemas:
+    Medication:
+      required:
+      - code
+      - id
+      - isBrand
+      - package
+      - resourceType
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        code:
+          required:
+          - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+                  _display:
+                    required:
+                    - fhir_comments
+                    type: object
+                    properties:
+                      fhir_comments:
+                        type: array
+                        items:
+                          type: object
+                          properties: {}
+        isBrand:
+          type: boolean
+        package:
+          required:
+          - container
+          - fhir_comments
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                type: object
+                properties: {}
+            container:
+              required:
+              - coding
+              type: object
+              properties:
+                coding:
+                  minItems: 1
+                  uniqueItems: true
+                  type: array
+                  items:
+                    required:
+                    - code
+                    - display
+                    - system
+                    type: object
+                    properties:
+                      system:
+                        minLength: 1
+                        type: string
+                      code:
+                        minLength: 1
+                        type: string
+                      display:
+                        minLength: 1
+                        type: string
+      description: ""
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Medication.read: Read permissions for Medication demographics.
+            system/Medication.write: Write permissions for Medication demographics.

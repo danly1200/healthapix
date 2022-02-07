@@ -1,0 +1,14 @@
+uuid: 74924a03-2afc-4da2-aba9-4eebb05162b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.healthcare_site_user
+  module:
+    - user
+id: user_add_role_action.healthcare_site_user
+label: 'Add the healthcare_site_user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: healthcare_site_user

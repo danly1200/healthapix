@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: HL7® FHIR® BaseEndPoints resource API documentation
+  description: |-
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced
+    "Fire") defines a set of "Resources" that represent granular clinical concepts.
+    The resources can be managed in isolation, or aggregated into complex documents.
+    Technically, FHIR® is designed for the web; the resources are based on simple
+    JSON structures, with an http-based RESTful protocol where each resource
+    has predictable URL. Where possible, open internet standards are used for data
+    representation. The FHIR® DSTU2 API docs are part of the FHIR® Specifications
+    (v1.0.2: DSTU2). The current version which supercedes this version is 4.0.1 (R4).
+    This section contains API docs for the few commonly used DSTU2 resources. API
+    docs for other resources can be added by API publishers on request.
+servers:
+  - url: 'https://org-env.apigee.net/v1/ghc/dstu2'
+paths:
+  /metadata:
+    get:
+      description: |-
+        Retrieves the server's conformance statement that defines how it
+        supports resources and operations.
+      operationId: Conformance Statement
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: |-
+            The Accept request-header field can be used to specify certain
+            media types which are acceptable for the response.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Conformance resource
+        default:
+          description: unexpected error
+      security:
+        - OAuthV2B2B: []
+  /$meta:
+    get:
+      description: |-
+        Retrieves a summary of the profiles, tags, and security labels
+        used by the system.
+      operationId: Resources Metadata
+      parameters:
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: |-
+            The Accept request-header field can be used to specify certain
+            media types which are acceptable for the response.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: |-
+            Retrieves a summary of the profiles, tags, and security labels
+            used by the system.
+        default:
+          description: unexpected error
+      security:
+        - OAuthV2B2B: []
+components:
+  schemas: {}
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/BaseEndPoint.read: Read permissions for BaseEndPoint demographics.
+            system/BaseEndPoint.write: Write permissions for BaseEndPoint demographics.

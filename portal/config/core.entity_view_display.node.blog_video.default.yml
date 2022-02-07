@@ -1,0 +1,44 @@
+uuid: 2e3d00dc-f9e3-4972-8f38-82426fd632d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment_node_blog_video.default
+    - field.field.node.blog_video.body
+    - field.field.node.blog_video.comment_node_blog_video
+    - field.field.node.blog_video.field_content_tag
+    - field.field.node.blog_video.field_video
+    - node.type.blog_video
+  module:
+    - comment
+    - text
+    - user
+id: node.blog_video.default
+targetEntityType: node
+bundle: blog_video
+mode: default
+content:
+  body:
+    label: hidden
+    weight: 0
+    type: text_default
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  comment_node_blog_video:
+    label: hidden
+    type: comment_default
+    weight: 20
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_content_tag: true
+  field_video: true

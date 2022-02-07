@@ -1,0 +1,29 @@
+uuid: 38958c6f-5e8f-4cdb-9775-5310dd5c2941
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_interoperability_api_tag
+    - node.type.oauth_swagger_api
+    - taxonomy.vocabulary.interoperability_api_s
+id: node.oauth_swagger_api.field_interoperability_api_tag
+field_name: field_interoperability_api_tag
+entity_type: node
+bundle: oauth_swagger_api
+label: 'Interoperability API Tag'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      interoperability_api_s: interoperability_api_s
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

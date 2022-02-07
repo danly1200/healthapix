@@ -1,0 +1,441 @@
+taxonomies:
+  api_version:
+    -
+      vid: api_version
+      tid: '25'
+      langcode: en
+      name: DSTU2
+      description__value: "<p>Version STU2 for swaggers</p>\r\n"
+      description__format: basic_html
+      weight: '2'
+      parent: '0'
+      uuid: 92461c9a-fd24-431e-a2e0-43d1cd572f44
+    -
+      vid: api_version
+      tid: '30'
+      langcode: en
+      name: R4
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: b3e34856-eb41-4577-a94c-db58b791494e
+    -
+      vid: api_version
+      tid: '26'
+      langcode: en
+      name: STU3
+      description__value: "<p>Version STU3&nbsp;for swaggers</p>\r\n"
+      description__format: basic_html
+      weight: '1'
+      parent: '0'
+      uuid: 91b807bc-0022-4e51-bb10-7d07ef2e764a
+  app_categories: {  }
+  fhir_datasets:
+    -
+      vid: fhir_datasets
+      tid: '27'
+      langcode: en
+      name: DSTU2
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6e758a27-df21-47e4-9f3b-3cd25cca84a8
+    -
+      vid: fhir_datasets
+      tid: '29'
+      langcode: en
+      name: R4
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '0'
+      uuid: 8e804707-0c15-4cc4-adf0-9bef63a5ba59
+    -
+      vid: fhir_datasets
+      tid: '28'
+      langcode: en
+      name: STU3
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '0'
+      uuid: 80b9abcd-720f-4ad6-9292-3846d5e2e6b9
+  interoperability_api_s:
+    -
+      vid: interoperability_api_s
+      tid: '46'
+      langcode: en
+      name: 'Claims & Encounter APIs (CARIN)'
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '42'
+      uuid: af173c40-d765-4b3a-9aed-7a472c120e88
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '45'
+      langcode: en
+      name: 'Clinical API''s (USCDI)'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '42'
+      uuid: 9b9a6255-9a9b-4294-b180-9780abc7c102
+      field_api_content_link:
+        -
+          uri: 'entity:node/812'
+          title: ''
+          options: {  }
+    -
+      vid: interoperability_api_s
+      tid: '47'
+      langcode: en
+      name: 'Drug Formulary APIs (DaVinci)'
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '42'
+      uuid: 12e0bdf4-46b6-4902-bf82-68297aac1531
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '51'
+      langcode: en
+      name: 'FHIR DSTU2 APIs'
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '44'
+      uuid: 5fdc9369-58db-4258-a279-5526672862de
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '49'
+      langcode: en
+      name: 'FHIR R4 APIs'
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '44'
+      uuid: 5864e8d5-653b-4266-af7c-b4ede7a9345b
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '50'
+      langcode: en
+      name: 'FHIR STU3 APIs'
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '44'
+      uuid: b6433095-13cd-4aa6-a35e-f2f5b23576a1
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '48'
+      langcode: en
+      name: 'OAuth2.0 APIs'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '44'
+      uuid: 6f5d8dfe-f4c5-4e3a-81cf-180c85fb75e5
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '42'
+      langcode: en
+      name: 'Patient Access API''s'
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '0'
+      uuid: f2cf6c9e-cd21-40ef-95a3-879d9862e083
+      field_api_content_link:
+        -
+          uri: 'entity:node/811'
+          title: ''
+          options: {  }
+    -
+      vid: interoperability_api_s
+      tid: '52'
+      langcode: en
+      name: 'Payer-to-Payer Data Exchange on FHIR'
+      description__value: null
+      description__format: null
+      weight: '7'
+      parent: '0'
+      uuid: 907bc10c-2357-4928-a722-2d06c0ed7391
+      field_api_content_link: {  }
+    -
+      vid: interoperability_api_s
+      tid: '43'
+      langcode: en
+      name: 'Provider Directory API''s'
+      description__value: null
+      description__format: null
+      weight: '5'
+      parent: '0'
+      uuid: 8019e739-bab8-4893-a1cd-475db0ed7fc8
+      field_api_content_link:
+        -
+          uri: 'entity:node/813'
+          title: ''
+          options: {  }
+    -
+      vid: interoperability_api_s
+      tid: '44'
+      langcode: en
+      name: 'Smart on FHIR API''s'
+      description__value: null
+      description__format: null
+      weight: '9'
+      parent: '0'
+      uuid: a4a40646-4565-4b9a-9e59-9dc2bd4382bd
+      field_api_content_link: {  }
+menus:
+  -
+    menu_name: main
+    title: 'FHIR Server'
+    parent: null
+    uri: 'internal:/fhir-datasets'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '-45'
+    langcode: en
+    uuid: e8809aa6-704b-46f2-a40d-67e962cb36be
+  -
+    menu_name: main
+    title: 'My Apps'
+    parent: null
+    uri: 'internal:/user/my-apps'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '-41'
+    langcode: en
+    uuid: 46e0c505-5a83-4d7c-8b45-8b3a0635f6af
+  -
+    menu_name: main
+    title: 'FHIR Conformance'
+    parent: null
+    uri: 'internal:/conformance-report'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '-46'
+    langcode: en
+    uuid: 03909770-15ef-4e93-9842-a38106052d88
+  -
+    menu_name: main
+    title: 'API Documentation'
+    parent: null
+    uri: 'entity:node/808'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '-47'
+    langcode: en
+    uuid: 5d8a4e0c-8d6a-445c-a515-7c6f25a0c172
+blocks:
+  -
+    info: 'Health Care FHIR Services'
+    langcode: en
+    uuid: 049c59c4-899c-44f5-b97f-be86a7a61f9f
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body: {  }
+  -
+    info: 'Home Page features'
+    langcode: en
+    uuid: 18d068f9-7b98-45bd-91c0-013999e04257
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "[dexp_builder_empty_space height='50' class=''][/dexp_builder_empty_space][dexp_builder_row class='' wrapper='0' wrapper_class='' background_color='' background_image='file:' background_type='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_right='' margin_bottom='' margin_left='' padding_top='' padding_right='' padding_bottom='' padding_left='' border_top='' border_right='' border_bottom='' border_left='' border_color='#000000' border_style='solid' border_radius='' animate='' animate_delay='0'][dexp_builder_col xs='12' sm='not-set' md='' lg='not-set' xl='not-set' class='' background_color='' background_image='file:file:' background_type='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_right='' margin_bottom='' margin_left='' padding_top='' padding_right='' padding_bottom='' padding_left='' border_top='' border_right='' border_bottom='' border_left='' border_color='#000000' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='Accelerate Interoperability' render_el='h3' icon_type='icon' icon='fa fa-dashboard' icon_library='fontawesome' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:file:file:file:file:file:file:file:file:file:file:file:file:file:file:file:file:file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='#000000' border_style='solid' border_radius='' animate='fade-up' animate_delay='0']</p>\r\n\r\n<p>Use our pre-packaged proxies and configuration to accelerate delivery of FHIR APIs.</p>\r\n\r\n<p><a href=\"fraud-protection\">read more ›</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>[/dexp_builder_box][/dexp_builder_col][dexp_builder_col xs='12' sm='not-set' md='' lg='not-set' xl='not-set' class='' background_color='' background_image='file:file:' background_type='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_right='' margin_bottom='' margin_left='' padding_top='' padding_right='' padding_bottom='' padding_left='' border_top='' border_right='' border_bottom='' border_left='' border_color='#000000' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='Health Data Protection' render_el='h3' icon_type='icon' icon='fa fa-umbrella' icon_library='fontawesome' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:file:file:file:file:file:file:file:file:file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='#000000' border_style='solid' border_radius='' animate='fade-up' animate_delay='200']<p>Support for SMART on FHIR to increase API security and enhance data protection.</p>\r\n\r\n<p><a href=\"payment-apis\">read more ›</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n[/dexp_builder_box][/dexp_builder_col][dexp_builder_col xs='12' sm='not-set' md='' lg='not-set' xl='not-set' class='' background_color='' background_image='file:file:' background_type='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_right='' margin_bottom='' margin_left='' padding_top='' padding_right='' padding_bottom='' padding_left='' border_top='' border_right='' border_bottom='' border_left='' border_color='#000000' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='Simplify On-boarding' render_el='h3' icon_type='icon' icon='fa fa-chrome' icon_library='fontawesome' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:file:file:file:file:file:file:file:file:file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='#000000' border_style='solid' border_radius='' animate='fade-up' animate_delay='400']<p>Developer self-service and on-boarding to quickly discover APIs and register and test SMART apps against Google’s Cloud Healthcare FHIR API..</p>\r\n\r\n<p><a href=\"consumer-analytics\">read more ›</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n[/dexp_builder_box][/dexp_builder_col][dexp_builder_col xs='12' sm='not-set' md='' lg='not-set' xl='not-set' class='' background_color='' background_image='file:file:' background_type='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_right='' margin_bottom='' margin_left='' padding_top='' padding_right='' padding_bottom='' padding_left='' border_top='' border_right='' border_bottom='' border_left='' border_color='#000000' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='FHIR API Documentation' render_el='h3' icon_type='icon' icon='fa fa-ambulance' icon_library='fontawesome' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:file:file:file:file:file:file:file:file:file:file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='#000000' border_style='solid' border_radius='' animate='fade-up' animate_delay='400']<p>Publish easy to use FHIR documentation and API Product catalog using the developer portal.</p>\r\n\r\n<p><a href=\"sandbox-testing\">read more ›</a></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n[/dexp_builder_box][/dexp_builder_col][/dexp_builder_row]"
+          summary: ''
+          format: drupalexp_builder
+  -
+    info: 'What We provide'
+    langcode: en
+    uuid: c825effa-7b58-43d7-9557-4cb545f29f77
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "[dexp_builder_empty_space height='50' class=''][/dexp_builder_empty_space][dexp_builder_tabs fade='' class=''][dexp_builder_tab title='Healthcare Services' title_icon='' icon_library='' custom_class=''][dexp_builder_row class='' equal_height='0' wrapper='0' wrapper_class='' html_id='' background_color='' background_image='file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' animate='' animate_delay='0'][dexp_builder_col xs='12' sm='12' md='' lg='not-set'][dexp_builder_box title='Healthcare Catalog' render_el='h3' icon_type='icon' icon='glyphicon glyphicon-barcode' icon_library='glyphicons' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' animate='' animate_delay='0']</p>\r\n\r\n<p>Select from a variety of catalogue services fitting your profile needs. No matter what type of business you have.</p>\r\n\r\n<p>[/dexp_builder_box][/dexp_builder_col][dexp_builder_col xs='' sm='' md='' lg='' xl='not-set' class='' background_color='' background_image='file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='Being a Partner' render_el='h3' icon_type='icon' icon='glyphicon glyphicon-user' icon_library='glyphicons' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' animate='' animate_delay='0']</p>\r\n\r\n<p>As a partner, self-servicing across all phases of on-boarding is provided, certification, API validation and post-production.</p>\r\n\r\n<p>[/dexp_builder_box][/dexp_builder_col][dexp_builder_col xs='' sm='' md='' lg='' xl='not-set' class='' background_color='' background_image='file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='Join the Community' render_el='h3' icon_type='icon' icon='glyphicon glyphicon-home' icon_library='glyphicons' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' animate='' animate_delay='0']</p>\r\n\r\n<p>As a partner, being able to have access to support sefl-service like; tips, guides, service enables is critical.</p>\r\n\r\n<p>[/dexp_builder_box][/dexp_builder_col][dexp_builder_col xs='' sm='' md='' lg='' xl='not-set' class='' background_color='' background_image='file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' custom_css='' animate='' animate_delay='0'][dexp_builder_box title='360 Metrics' render_el='h3' icon_type='icon' icon='glyphicon glyphicon-stats' icon_library='glyphicons' icon_text='' icon_image='' icon_size='' icon_class='' add_link='0' readmore_text='Readmore' readmore_link='#' readmore_link_title='' readmore_link_target='_self' readmore_link_class='' layout='layout_1' icon_alignment='left' class='' background_color='' background_image='file:file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' animate='' animate_delay='0']</p>\r\n\r\n<p>Knowing if service problems are going to occur and enabling corrective measures is paramount to your success.</p>\r\n\r\n<p>[/dexp_builder_box][/dexp_builder_col][/dexp_builder_row][/dexp_builder_tab][dexp_builder_tab title='Community Services' title_icon='' icon_library='' custom_class=''][dexp_builder_row class='' equal_height='0' wrapper='0' wrapper_class='' html_id='' background_color='' background_image='file:' background_type='default' background_position='default' background_repeat='no-repeat' background_size='auto' margin_top='' margin_left='' margin_right='' margin_bottom='' padding_top='' padding_left='' padding_right='' padding_bottom='' border_top='' border_left='' border_right='' border_bottom='' border_color='' border_style='solid' border_radius='' animate='' animate_delay='0'][dexp_builder_col xs='12' sm='12' md='' lg='not-set'][/dexp_builder_col][/dexp_builder_row][/dexp_builder_tab][/dexp_builder_tabs]"
+          summary: ''
+          format: drupalexp_builder
+  -
+    info: 'SIGN WITH GOOGLE'
+    langcode: en
+    uuid: 98497cf5-a8a9-4efc-9ab8-89ceaa6a1fc2
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<div class=\"google-btn\">\r\n<div class=\"google-icon-wrapper\"><img alt=\"\" class=\"google-icon\" data-entity-type=\"\" data-entity-uuid=\"\" src=\"https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg\" /></div>\r\n\r\n<p class=\"btn-text\"><b><a href=\"/user/login/google\">SIGN IN WITH GOOGLE</a></b></p>\r\n</div>\r\n\r\n"
+          summary: ''
+          format: full_html
+  -
+    info: 'footer fhir logo'
+    langcode: en
+    uuid: 0b0a5790-461b-4227-a21c-5bacfb7360e3
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<div class=\"footer-logo2\"><a data-entity-type=\"file\" data-entity-uuid=\"f9b0d753-7739-42f7-849c-d4eb2a1678bb\" href=\"https://smarthealthit.org\"><img alt=\"SMARTTM and the SMART logos are trademarks of The Children’s Medical Center Corporation.  Used with permission.\" data-entity-type=\"file\" data-entity-uuid=\"f9b0d753-7739-42f7-849c-d4eb2a1678bb\" height=\"56\" src=\"/themes/custom/mdc_theme/images/smart-logo.png\" width=\"106\" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a data-entity-type=\"file\" data-entity-uuid=\"494dec6b-19f9-4f6a-9a53-c52ddfde7e3b\" href=\"https://www.hl7.org/fhir/index.html\"><img alt=\"HL7® FHIR® standard\" data-entity-type=\"file\" data-entity-uuid=\"bbf34393-2077-4205-8794-989b86bd58e7\" height=\"57\" src=\"/themes/custom/mdc_theme/images/logo-fhir.png\" width=\"95\" /></a></div>\r\n"
+          summary: ''
+          format: full_html
+  -
+    info: 'Login & Consent App Credentials'
+    langcode: en
+    uuid: cebf7223-c0ce-4f1b-95aa-6e4012b6bbed
+    bundle: basic
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<div class=\"dummy-login-cred\">\r\n<div class=\"mdc-text-field-wrapper\">\r\n<div class=\"mdc-text-field mdc-text-field--outlined\"><input aria-describedby=\"edit-name--description\" class=\"form-text mdc-text-field__input\" data-drupal-selector=\"edit-name\" id=\"edit-name\" maxlength=\"60\" name=\"name\" readonly=\"readonly\" size=\"60\" type=\"text\" value=\"dummy@gmail.com\" />\r\n<div class=\"mdc-notched-outline mdc-notched-outline--upgraded\">\r\n<div class=\"mdc-notched-outline__leading\">&nbsp;</div>\r\n\r\n<div class=\"mdc-notched-outline__notch\" style=\"\"><label class=\"mdc-floating-label\" for=\"tf-outlined\" style=\"\">Username</label></div>\r\n\r\n<div class=\"mdc-notched-outline__trailing\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"mdc-text-field-wrapper\">\r\n<div class=\"mdc-text-field mdc-text-field--outlined\"><input aria-describedby=\"edit-name--description\" class=\"form-text mdc-text-field__input\" data-drupal-selector=\"edit-pass\" id=\"edit-pass\" maxlength=\"60\" pass=\"pass\" readonly=\"readonly\" size=\"60\" type=\"text\" value=\"XXXXXXXX\" />\r\n<div class=\"mdc-notched-outline mdc-notched-outline--upgraded\">\r\n<div class=\"mdc-notched-outline__leading\">&nbsp;</div>\r\n\r\n<div class=\"mdc-notched-outline__notch\" style=\"\"><label class=\"mdc-floating-label\" for=\"tf-outlined\" style=\"\">Password</label></div>\r\n\r\n<div class=\"mdc-notched-outline__trailing\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n"
+          summary: ''
+          format: full_html
+  -
+    info: 'keep in touch'
+    langcode: en
+    uuid: 1b6dfe36-46c9-47cf-87d7-2de6c64d4b83
+    bundle: home_page_blocks
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<p>The Apigee Healthcare APIx solution delivers FHIR (fast healthcare interoperability resources) API Products enabling data interoperability to healthcare teams. With Apigee healthcare APIx, healthcare enterprises can:</p>\r\n\r\n<ul>\r\n\t<li>Manage, secure, and scale APIs with an enterprise-grade platform that is FHIR-server agnostic</li>\r\n\t<li>Quickly close innovation gaps and keep up with digital advances</li>\r\n\t<li>Easily ingest healthcare data from internal, external, or open-source FHIR-ready partners</li>\r\n</ul>\r\n"
+          summary: ''
+          format: basic_html
+      field_button:
+        -
+          uri: 'internal:/node'
+          title: 'Technical overview'
+          options: {  }
+      field_content_title:
+        -
+          value: 'About Healthcare APIx solution'
+          format: basic_html
+      field_image:
+        -
+          target_id: '1049'
+          alt: 'About us '
+          title: ''
+          width: '1224'
+          height: '900'
+      field_image_label: {  }
+  -
+    info: Getstarted
+    langcode: en
+    uuid: b979d089-fd7f-4f13-83c2-4e1abe6a0ce7
+    bundle: home_page_blocks
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<p>Simplify and accelerate interoperability journey through APIs combined with cloud computing infrastructure</p>\r\n"
+          summary: ''
+          format: basic_html
+      field_button:
+        -
+          uri: 'internal:/getting-started'
+          title: 'Get Started'
+          options: {  }
+      field_content_title:
+        -
+          value: 'Health API Accelerator<br/> to deliver Patient Centric digital services'
+          format: basic_html
+      field_image:
+        -
+          target_id: '311'
+          alt: 'home page banner'
+          title: ''
+          width: '678'
+          height: '1069'
+      field_image_label: {  }
+  -
+    info: 'simplify block'
+    langcode: en
+    uuid: 664fc614-52ce-42a7-8bd7-931244e35e87
+    bundle: home_page_blocks
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<p>Apigee’s FHIR API-based solution helps you advance interoperability of patient data for personalized mobile apps</p>\r\n"
+          summary: ''
+          format: basic_html
+      field_button: {  }
+      field_content_title:
+        -
+          value: 'Simplify and accelerate interoperability journey'
+          format: basic_html
+      field_image:
+        -
+          target_id: '310'
+          alt: 'simplify image'
+          title: ''
+          width: '1634'
+          height: '932'
+      field_image_label:
+        -
+          value: 'Complete documentation for all APIs'
+          format: basic_html
+  -
+    info: Comprehensive
+    langcode: en
+    uuid: 6ce97234-c419-4ef5-8e71-a1da4240d596
+    bundle: home_page_blocks
+    revision_id: null
+    rev_id_current: null
+    fields:
+      body:
+        -
+          value: "<p>Leverage the power of APIs to build a comprehensive secure view of a Patient’s health record, including financials.</p>\r\n"
+          summary: ''
+          format: basic_html
+      field_button:
+        -
+          uri: 'internal:/node/646'
+          title: APIs
+          options: {  }
+      field_content_title:
+        -
+          value: 'Comprehensive Health Record'
+          format: basic_html
+      field_image:
+        -
+          target_id: '309'
+          alt: 'api image'
+          title: ''
+          width: '1102'
+          height: '1220'
+      field_image_label: {  }

@@ -1,0 +1,5 @@
+name: 'Fhir Datasets'
+type: module
+description: 'Fhir Datasets'
+core: 8.x
+package: 'GHC'

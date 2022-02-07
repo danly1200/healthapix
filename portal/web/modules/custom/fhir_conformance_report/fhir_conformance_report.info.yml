@@ -1,0 +1,6 @@
+name: 'Fhir Conformance page'
+type: module
+description: 'Fhir Conformance'
+core: 8.x
+package: 'GHC'
+configure: fhir_conformance_report.conformance_settings_form

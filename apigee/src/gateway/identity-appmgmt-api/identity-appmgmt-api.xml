@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="13" name="identity-appmgmt-api">
+    <Basepaths>/v1</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1610009515694</CreatedAt>
+    <CreatedBy>danush@digitalapicraft.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>identity-appmgmt-api</DisplayName>
+    <LastModifiedAt>1614617374501</LastModifiedAt>
+    <LastModifiedBy>shashank@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:4aa81163f40cc19de993768d848ea9a589ad727b14cd6e5a166b47fc8da5d86bb1885e5aa067466dfdbc345a91c05836e4d9fdfc49955b6ed40cb5cb28ff782b:ap-northeast-1</ManifestVersion>
+    <Policies>
+        <Policy>HPX_AM_AssignSuccessResponse</Policy>
+        <Policy>HPX_AM_SetCancelLinkResponse</Policy>
+        <Policy>HPX_AM_SetLinkResponse</Policy>
+        <Policy>HPX_IC_RequestHash</Policy>
+        <Policy>HPX_JS_ExtractCachedValues</Policy>
+        <Policy>HPX_JS_HPX_ExtractAppDetails</Policy>
+        <Policy>HPX_JS_HashRequest</Policy>
+        <Policy>HPX_JS_ValidateAppApprovalAction</Policy>
+        <Policy>HPX_JS_ValidateGetLinkRequest</Policy>
+        <Policy>HPX_KVM_AppMgmtConfig</Policy>
+        <Policy>HPX_KVM_MgmtCredentials</Policy>
+        <Policy>HPX_LC_RequestHash</Policy>
+        <Policy>HPX_PC_RequestHash</Policy>
+        <Policy>HPX_RF_FaultInvalidRequest</Policy>
+        <Policy>HPX_RF_InvalidCredentials</Policy>
+        <Policy>HPX_SC_GetAppDetails</Policy>
+        <Policy>HPX_SC_UpdateAppDetails</Policy>
+        <Policy>HPX_SC_UpdateAppStatus</Policy>
+        <Policy>HPX_VerifyApiKey</Policy>
+        <Policy>HPX__BA_AdminMgmtCredentials</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://HPX_ExtractAppDetails.js</Resource>
+        <Resource>jsc://HPX_ExtractCachedValues.js</Resource>
+        <Resource>jsc://HPX_HashRequest.js</Resource>
+        <Resource>jsc://HPX_ValidateAppApprovalAction.js</Resource>
+        <Resource>jsc://HPX_ValidateGetLinkRequest.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

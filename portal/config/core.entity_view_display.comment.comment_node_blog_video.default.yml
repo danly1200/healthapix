@@ -1,0 +1,27 @@
+uuid: 2445e042-1310-4f50-b03b-0d837b521f1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment_node_blog_video
+    - field.field.comment.comment_node_blog_video.comment_body
+  module:
+    - text
+id: comment.comment_node_blog_video.default
+targetEntityType: comment
+bundle: comment_node_blog_video
+mode: default
+content:
+  comment_body:
+    label: hidden
+    weight: 0
+    type: text_default
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

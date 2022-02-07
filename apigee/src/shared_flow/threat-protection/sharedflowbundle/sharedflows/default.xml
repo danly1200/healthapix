@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <FaultRules/>
+        <Name>HPX_URIRegexProtection</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_CheckQueryParamRegex</Name>
+    </Step>
+    <Step>
+        <Condition>(threatPresent = true)</Condition>
+        <FaultRules/>
+        <Name>HPX_Fault_ThreatDetected</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_CheckFormParamRegex</Name>
+    </Step>
+    <Step>
+        <Condition>(threatPresent = true)</Condition>
+        <FaultRules/>
+        <Name>HPX_Fault_ThreatDetected</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_CheckHeaderRegex</Name>
+    </Step>
+    <Step>
+        <Condition>(threatPresent = true)</Condition>
+        <FaultRules/>
+        <Name>HPX_Fault_ThreatDetected</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Condition>(request.verb = "POST" OR request.verb = "PUT" OR request.verb = "PATCH")</Condition>
+        <Name>HPX_BodyRegexProtection</Name>
+    </Step>
+    <Step>
+        <Condition>(request.verb = "POST" OR request.verb = "PUT" OR request.verb = "PATCH") AND (request.header.content-type ~ "*xml*")</Condition>
+        <FaultRules/>
+        <Name>HPX_XMLThreatProtection</Name>
+    </Step>
+    <Step>
+        <Condition>(request.verb = "POST" OR request.verb = "PUT" OR request.verb = "PATCH") AND (request.header.content-type ~ "*json*")</Condition>
+        <FaultRules/>
+        <Name>HPX_JSONThreatProtection</Name>
+    </Step>
+</SharedFlow>

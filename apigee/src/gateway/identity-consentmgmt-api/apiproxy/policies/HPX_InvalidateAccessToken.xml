@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="true" enabled="true" name="HPX_InvalidateAccessToken">
+    <DisplayName>HPX_InvalidateAccessToken</DisplayName>
+    <Properties/>
+    <Operation>InvalidateToken</Operation>
+    <Tokens>
+        <Token type="accesstoken" cascade="true">access_token</Token>
+    </Tokens>
+</OAuthV2>

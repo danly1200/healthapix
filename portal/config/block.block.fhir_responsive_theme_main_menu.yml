@@ -1,0 +1,27 @@
+uuid: a984773b-0d5e-4b27-bed4-93cf375c7ba2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - fhir_responsive_theme
+_core:
+  default_config_hash: ChCx7DYNUrPTt5uiRdQAPDKJQMc-_SyAQTrZh8H0o-c
+id: fhir_responsive_theme_main_menu
+theme: fhir_responsive_theme
+region: navigation_collapsible
+weight: -8
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

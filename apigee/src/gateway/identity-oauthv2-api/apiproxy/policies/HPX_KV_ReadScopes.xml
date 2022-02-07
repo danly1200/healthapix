@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="HPX_KV_ReadScopes" mapIdentifier="HPX_Config">
+    <DisplayName>HPX_KV_ReadScopes</DisplayName>
+    <Properties/>
+    <Get assignTo="r4.fhir.resources">
+        <Key>
+            <Parameter>r4.fhir.resources</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="stu3.fhir.resources">
+        <Key>
+            <Parameter>stu3.fhir.resources</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="dstu2.fhir.resources">
+        <Key>
+            <Parameter>dstu2.fhir.resources</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

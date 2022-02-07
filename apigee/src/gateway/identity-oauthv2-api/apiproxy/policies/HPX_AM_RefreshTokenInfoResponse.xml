@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_RefreshTokenInfoResponse">
+    <DisplayName>HPX_AM_RefreshTokenInfoResponse</DisplayName>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"active":"true","access_token":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.access_token#","expires_in":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.expires_in#","token_type":"Bearer","refresh_token":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.refresh_token#","id_token":"@jws#","fhirUser":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.accesstoken.fhirUser#","userId":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.accesstoken.fhirUser#","patient":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.accesstoken.patient#","aud":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.accesstoken.aud#","scope":"@oauthv2refreshtoken.HPX_GO_RefreshTokenInfo.accesstoken.scope#"}</Payload>
+        <StatusCode>200</StatusCode>
+        <ReasonPhrase>Ok</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

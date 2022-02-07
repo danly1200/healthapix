@@ -1,0 +1,31 @@
+uuid: 3cf08c0b-d132-4fef-9dec-64751e2331ed
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:home_page_blocks:1b6dfe36-46c9-47cf-87d7-2de6c64d4b83'
+  module:
+    - block_content
+    - block_visibility_groups
+  theme:
+    - mdc_theme
+id: keepintouch
+theme: mdc_theme
+region: home_content_footer
+weight: -24
+provider: null
+plugin: 'block_content:1b6dfe36-46c9-47cf-87d7-2de6c64d4b83'
+settings:
+  id: 'block_content:1b6dfe36-46c9-47cf-87d7-2de6c64d4b83'
+  label: 'keep in touch'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

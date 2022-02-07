@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the Locale module.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Implements hook_uninstall().
+ */
+function fhir_overview_uninstall() {
+  // Delete section paragraphs.
+  $paragraph_load_query = \Drupal::entityQuery('paragraph')
+    ->condition('type', 'section');
+  $pids = $paragraph_load_query->execute();
+  if ($pids) {
+    foreach ($pids as $pid) {
+      $paragraph_load = Paragraph::load($pid);
+      if ($paragraph_load) {
+        $paragraph_load->delete();
+      }
+    }
+  }
+  // Delete overview nodes.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'overview_page');
+  $nids = $query->execute();
+  if ($nids) {
+    foreach ($nids as $nid) {
+      $node_load = Node::load($nid);
+      if ($node_load) {
+        $node_load->delete();
+      }
+    }
+  }
+  // Delete overview page content type.
+  $content_type = \Drupal::entityTypeManager()
+    ->getStorage('node_type')
+    ->load('overview_page');
+  if ($content_type) {
+    $content_type->delete();
+  }
+  // Delete paragraph type.
+  $paragraphs_type = \Drupal::entityTypeManager()
+    ->getStorage('paragraphs_type')
+    ->load('section');
+  if ($paragraphs_type) {
+    $paragraphs_type->delete();
+  }
+}

@@ -1,0 +1,385 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Device resource API documentation
+  description: |
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire") defines a set of "Resources" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® STU3 API docs are part of the FHIR® Specifications (v3.0.2: STU 3). The current version which supercedes this version is 4.0.1 (R4) This section contains API docs for the few commonly used STU3 resources. API docs for other resources can be added by API publishers on request.
+servers:
+  - url: https://gcp-hcls-test.apigee.net/v1/ghc/stu3
+tags:
+- name: Device
+paths:
+  /Device:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: udi-di
+        in: query
+        description: The udi Device Identifier (DI)
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: Instance id from manufacturer, owner, and others
+        schema:
+          type: string
+      - name: udi-carrier
+        in: query
+        description: UDI Barcode (RFID or other technology) string either in HRF format
+          or AIDC format converted to base64 string.
+        schema:
+          type: string
+      - name: device-name
+        in: query
+        description: A server defined search that may match any of the string fields
+          in the Device.udi.name  or Device.type.coding.display or  Device.type.text
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: The type of the device
+        schema:
+          type: string
+      - name: url
+        in: query
+        description: Network address to contact device
+        schema:
+          type: string
+      - name: manufacturer
+        in: query
+        description: The manufacturer of the device
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Patient information, if the resource is affixed to a person
+        schema:
+          type: string
+      - name: organization
+        in: query
+        description: The organization responsible for the device
+        schema:
+          type: string
+      - name: location
+        in: query
+        description: A location, where the resource is found
+        schema:
+          type: string
+      - name: model
+        in: query
+        description: The model of the device
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: active | inactive | entered-in-error | unknown
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.read
+    post:
+      tags:
+      - Device
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.write
+  /Device/{id}:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Device'
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.read
+    put:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.write
+    delete:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.write
+  /Device/{id}/_history:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.read
+  /Device/{id}/_history/{vid}:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Device'
+      security:
+        - OAuthV2B2B:
+          - system/Coverage.read
+components:
+  schemas:
+    Device:
+      required:
+      - _id
+      - contact
+      - id
+      - identifier
+      - lotNumber
+      - manufacturer
+      - model
+      - note
+      - resourceType
+      - status
+      - text
+      - type
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        _id:
+          required:
+          - fhir_comments
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                type: object
+                properties: {}
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        status:
+          minLength: 1
+          type: string
+        type:
+          required:
+          - coding
+          - text
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+            text:
+              minLength: 1
+              type: string
+        lotNumber:
+          minLength: 1
+          type: string
+        manufacturer:
+          minLength: 1
+          type: string
+        model:
+          minLength: 1
+          type: string
+        contact:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        note:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - text
+            - time
+            type: object
+            properties:
+              authorReference:
+                required:
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+              time:
+                minLength: 1
+                type: string
+              text:
+                minLength: 1
+                type: string
+      description: ""
+  securitySchemes: 
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Device.read: Read permissions for Device demographics.
+            system/Device.write: Write permissions for Device demographics.

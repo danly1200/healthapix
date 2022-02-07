@@ -1,0 +1,245 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
+/**
+ * Implement hook_form_FORM_ID_alter()
+ * form_id: dexp_admin_settings defined in Drupal/dexp/Form/SettingsForm
+ */
+function dexp_menu_form_menu_link_content_form_alter(&$form, FormStateInterface $form_state){
+  $attributes = \Drupal::config('menu_link_attributes.config')->get('dexp_megamenu') ?: [];
+  $menu_link = $form_state->getFormObject()->getEntity();
+  $menu_link_options = $menu_link->link->first()->options ?: [];
+  $menu_link_mega = isset($menu_link_options['dexp_megamenu']) ? $menu_link_options['dexp_megamenu'] : [];
+
+  $form['options']['dexp_megamenu'] = [
+    '#type' => 'details',
+    '#title' => t('Mega Menu Settings'),
+    '#weight' => -2,
+    '#tree' => TRUE,
+  ];
+
+  $form['options']['dexp_megamenu']['dexp_megamenu_type'] = [
+    '#type' => 'select',
+    '#title' => t('Mega menu type'),
+    '#options' => ['' => 'Default','row' => 'Row', 'column' => 'Column'],
+    '#default_value' => isset($menu_link_mega['dexp_megamenu_type'])?$menu_link_mega['dexp_megamenu_type']:''
+  ];
+
+  $form['options']['dexp_megamenu']['dexp_megamenu_remove_link'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Remove menu link'),
+    '#default_value' => isset($menu_link_mega['dexp_megamenu_remove_link'])?$menu_link_mega['dexp_megamenu_remove_link']:0,
+    '#states' => [
+        'visible' => [':input[name*="dexp_megamenu_type"]' => ['value' => '']]
+    ]
+  ];
+
+  $form['options']['dexp_megamenu']['dexp_megamenu_width'] = [
+    '#type' => 'textfield',
+    '#title' => t('Menu width'),
+    '#default_value' => isset($menu_link_mega['dexp_megamenu_width'])?$menu_link_mega['dexp_megamenu_width']:'full-container',
+    '#description' => t('Possible value: full-width or exaclty pixel number like 500px'),
+    '#states' => [
+        'visible' => [':input[name*="dexp_megamenu_type"]' => ['value' => 'row']]
+    ]
+  ];
+
+  $form['options']['dexp_megamenu']['dexp_megamenu_show_column_title'] = [
+    '#type' => 'select',
+    '#title' => t('Show column title'),
+    '#options' => ['yes' => t('Yes'),'no' => t('No')],
+    '#default_value' => isset($menu_link_mega['dexp_megamenu_show_column_title'])?$menu_link_mega['dexp_megamenu_show_column_title']:'yes',
+    '#states' => [
+        'visible' => [':input[name*="dexp_megamenu_type"]' => ['value' => 'column']]
+    ]
+  ];
+
+  $form['options']['dexp_megamenu']['dexp_megamenu_column_width'] = [
+    '#type' => 'select',
+    '#title' => t('Menu width'),
+    '#options' => [1 => '1/12', 2 => '2/12', 3 => '3/12', 4 => '4/12', 6 =>'6/12', 12 => '12/12'],
+    '#default_value' => isset($menu_link_mega['dexp_megamenu_column_width'])?$menu_link_mega['dexp_megamenu_column_width']:6,
+    '#states' => [
+        'visible' => [':input[name*="dexp_megamenu_type"]' => ['value' => 'column']]
+    ]
+  ];
+
+	$form['options']['dexp_megamenu']['dexp_megamenu_icon'] = [
+    '#type' => 'textfield',
+    '#title' => t('Menu Icon'),
+		'#description' => t('Enter font icon class. Example: fa fa-home'),
+    '#default_value' => isset($menu_link_mega['dexp_megamenu_icon'])?$menu_link_mega['dexp_megamenu_icon']:'',
+    '#states' => [
+        'visible' => [':input[name*="dexp_megamenu_type"]' => ['value' => '']]
+    ]
+  ];
+
+  $form['actions']['submit']['#submit'][] = 'dexp_menu_menu_link_content_form_submit';
+}
+
+function dexp_menu_menu_link_content_form_submit($form, FormStateInterface $form_state){
+  $menu_link = $form_state->getFormObject()->getEntity();
+  $options = ['dexp_megamenu' => $form_state->getValue('dexp_megamenu')];
+  $menu_link_options = $menu_link->link->first()->options;
+
+  $menu_link->link->first()->options = array_merge($menu_link_options, $options);
+  $menu_link->save();
+}
+
+/**
+ * Implement hook_form_FORM_ID_alter()
+ * form_id: block_form
+ */
+function dexp_menu_form_block_form_alter(&$form, &$form_state, $form_id){
+  $block = $form_state->getFormObject()->getEntity();
+  if($block->getPlugin() instanceof \Drupal\system\Plugin\Block\SystemMenuBlock){
+    $form['dexp_menu_settings'] = [
+      '#type' => 'details',
+      '#title' => t('DrupalExp Menu Settings'),
+      '#weight' => 0,
+      '#open' => FALSE,
+    ];
+    $form['dexp_menu_settings']['mobile_menu_position'] = [
+      '#title' => t('Mobile menu position'),
+      '#type' => 'select',
+      '#options' => ['left' => t('Left'), 'right' => t('Right'), 'bottom' => t('Bottom')],
+      '#default_value' => $block->getThirdPartySetting('dexp_menu', 'mobile_menu_position', 'right'),
+    ];
+    $form['actions']['submit']['#submit'][] = 'dexp_menu_block_form_submit';
+  }
+  
+}
+
+function dexp_menu_block_form_submit(&$form, FormStateInterface $form_state){
+  $block = $form_state->getFormObject()->getEntity();
+  $values = $form_state->getValues();
+	$block->setThirdPartySetting('dexp_menu', 'mobile_menu_position', $values['dexp_menu_settings']['mobile_menu_position']);
+  $block->save();
+}
+
+/**
+ * Implement hook_form_FORM_ID_alter().
+ * form_id: menu_edit_form
+ */
+function dexp_menu_form_menu_edit_form_alter(&$form, FormStateInterface $form_state){
+  foreach($form['links']['links'] as $key => &$value){
+    if(strpos($key, 'menu_plugin_id:menu_link_content') === 0){
+      $menu_link = $value['#item'];
+      break;
+    }
+  }
+  $menu = $form_state->getFormObject()->getEntity();
+  $dexp_menu_settings = $menu->getThirdPartySettings('dexp_menu');
+  $form['links']['#weight'] = 2;
+  $form['dexp_megamenu'] = [
+      '#title' => t('Enable megamenu'),
+      '#type' => 'checkbox',
+      '#weight' => 1,
+      '#default_value' =>isset($dexp_menu_settings['dexp_megamenu'])?$dexp_menu_settings['dexp_megamenu']:0,
+  ];
+  $form['dexp_onepage_megamenu'] = [
+      '#title' => t('Enable onepage menu'),
+      '#type' => 'checkbox',
+      '#weight' => 1,
+      '#default_value' =>isset($dexp_menu_settings['dexp_onepage_megamenu'])?$dexp_menu_settings['dexp_onepage_megamenu']:0,
+  ];
+  $form['dexp_onepage_megamenu_offset'] = [
+      '#title' => t('Offset top'),
+      '#type' => 'number',
+      '#weight' => 1,
+      '#default_value' =>isset($dexp_menu_settings['dexp_onepage_megamenu_offset'])?$dexp_menu_settings['dexp_onepage_megamenu_offset']:0,
+      '#states' => [
+        'visible' => [
+          ':input[name=dexp_onepage_megamenu]' => [
+            'checked' => true,
+          ]
+        ]
+      ]
+  ];
+  $form['actions']['submit']['#submit'][] = 'dexp_menu_menu_edit_form_submit';
+}
+
+function dexp_menu_menu_edit_form_submit($form, FormStateInterface $form_state){
+  $menu = $form_state->getFormObject()->getEntity();
+  $menu->setThirdPartySetting('dexp_menu', 'dexp_megamenu', $form_state->getValue('dexp_megamenu'));
+  $menu->setThirdPartySetting('dexp_menu', 'dexp_onepage_megamenu', $form_state->getValue('dexp_onepage_megamenu'));
+  $menu->setThirdPartySetting('dexp_menu', 'dexp_onepage_megamenu_offset', $form_state->getValue('dexp_onepage_megamenu_offset'));
+  $menu->save();
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function dexp_menu_preprocess_menu(&$variables) {
+  $menu = Drupal\system\Entity\Menu::load($variables['menu_name']);
+  $dexp_menu_settings = $menu->getThirdPartySettings('dexp_menu');
+  if(isset($dexp_menu_settings['dexp_megamenu']) && $dexp_menu_settings['dexp_megamenu']){
+    $variables['#attached']['library'][] = 'dexp_menu/menu';
+    $variables['attributes']['class'][] = 'dexp-menu';
+    //$variables['attributes']['style'][] = 'display:none;';
+  }
+  if(isset($dexp_menu_settings['dexp_onepage_megamenu']) && $dexp_menu_settings['dexp_onepage_megamenu']){
+    $variables['attributes']['class'][] = 'dexp-onepage-menu';
+    $variables['#attached']['library'][] = 'dexp_menu/onepage';
+  }
+  if(isset($dexp_menu_settings['dexp_onepage_megamenu_offset']) && $dexp_menu_settings['dexp_onepage_megamenu_offset']){
+    $variables['attributes']['data-offset'][] = $dexp_menu_settings['dexp_onepage_megamenu_offset'];
+  }
+}
+
+function dexp_menu_link_alter(&$variables){
+  $megamenu = isset($variables['options']['dexp_megamenu'])?$variables['options']['dexp_megamenu']:[];
+  if(isset($megamenu['dexp_megamenu_type']) && $megamenu['dexp_megamenu_type']){
+    $variables['options']['attributes']['data-mega-menu'] = json_encode($variables['options']['dexp_megamenu']);
+    $variables['#attached']['library'][] = 'dexp_menu/menu';  
+  }
+  if(isset($megamenu['dexp_megamenu_icon']) && $megamenu['dexp_megamenu_icon']){
+    $variables['text'] = \Drupal\Core\Render\Markup::create('<i class="' . $megamenu['dexp_megamenu_icon'] . '"></i> ' . $variables['text']);
+  }
+}
+
+/**
+ * Implement hook_theme_suggestions_HOOK_alter
+ */
+function dexp_menu_theme_suggestions_menu_alter(array &$suggestions, array &$variables){
+  if(isset($variables['menu_name']) && ($menu = Drupal\system\Entity\Menu::load($variables['menu_name']))){
+    $dexp_menu_settings = $menu->getThirdPartySettings('dexp_menu');
+    if(isset($dexp_menu_settings['dexp_megamenu']) && $dexp_menu_settings['dexp_megamenu']){
+      $suggestions[] = 'dexp_menu';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function dexp_menu_theme_registry_alter(&$theme_registry) {
+  //$path = drupal_get_path('module', 'dexp_menu');
+  //$theme_registry['menu']['path'] = $path . '/templates';
+}
+
+/**
+ * Implement hook_theme
+ */
+/*
+function dexp_menu_theme(){
+  return array(
+    'dexp_menu' => [
+      'variables' => [],
+      'base hook' => 'menu',
+    ],
+  );
+}
+*/
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+
+function dexp_menu_preprocess_block(&$variables) {
+  $block = Block::load($variables['elements']['#id']);
+  if($block->getPlugin() instanceof \Drupal\system\Plugin\Block\SystemMenuBlock){
+    $mobile_menu_position = $block->getThirdPartySetting('dexp_menu', 'mobile_menu_position', 'right');
+    $variables['attributes']['class'][] = 'mobile-' . $mobile_menu_position;
+  }
+}

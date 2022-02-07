@@ -1,0 +1,18 @@
+uuid: 899f66ad-325a-4e5c-becd-e9708dd7cba4
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'FHIR Servers'
+type: fhir_servers
+description: 'Add fhir server for fhir versions'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

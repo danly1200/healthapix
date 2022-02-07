@@ -1,0 +1,27 @@
+uuid: bee66cdd-6e11-4249-8e7e-50b66db37d09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_server_file
+    - node.type.fhir_servers
+  module:
+    - file
+id: node.fhir_servers.field_server_file
+field_name: field_server_file
+entity_type: node
+bundle: fhir_servers
+label: 'BROWSE FILE'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'yaml json'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

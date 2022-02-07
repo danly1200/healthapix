@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetPatientConsentInfoRequest">
+    <DisplayName>HPX_SetPatientConsentInfoRequest</DisplayName>
+    <Properties/>
+    <Remove>
+        <Payload>true</Payload>
+    </Remove>
+    <Set>
+        <QueryParams>
+            <QueryParam name="actor">{device_id}</QueryParam>
+            <QueryParam name="patient">{patient_id}</QueryParam>
+            <QueryParam name="status">active</QueryParam>
+        </QueryParams>
+        <Headers>
+            <Header name="Authorization">{googleToken}</Header>
+        </Headers>
+        <Verb>GET</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>targetSuffixURI</Name>
+        <Value>Consent</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

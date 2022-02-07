@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="3" name="threat-protection">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1568702193456</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared Flow for Threat Protection to perform validation on incoming requests to identify potential script/sql injection attacks and stop any such request on gateway itself.</Description>
+    <DisplayName>threat-protection</DisplayName>
+    <LastModifiedAt>1571035854328</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:3d5a4a8fbd8966867921e8561ca0eb9fbad104b09e56f13ed2d00f3cdde9109991306bf8014064cc39cae192836f53ddc3e69637502cd0647c4e6dad1c5e2228</ManifestVersion>
+    <Policies>
+        <Policy>HPX_BodyRegexProtection</Policy>
+        <Policy>HPX_CheckFormParamRegex</Policy>
+        <Policy>HPX_CheckHeaderRegex</Policy>
+        <Policy>HPX_CheckQueryParamRegex</Policy>
+        <Policy>HPX_Fault_ThreatDetected</Policy>
+        <Policy>HPX_JSONThreatProtection</Policy>
+        <Policy>HPX_URIRegexProtection</Policy>
+        <Policy>HPX_XMLThreatProtection</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_CheckFormParamRegex.js</Resource>
+        <Resource>jsc://HPX_CheckHeaderRegex.js</Resource>
+        <Resource>jsc://HPX_CheckQueryParamRegex.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

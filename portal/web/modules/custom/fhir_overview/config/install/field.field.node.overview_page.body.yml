@@ -1,0 +1,25 @@
+uuid: bdfc25d5-fd5a-4f5e-b9f7-f3e547aa4c08
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fhir_overview
+  config:
+    - field.storage.node.body
+    - node.type.overview_page
+  module:
+    - text
+id: node.overview_page.body
+field_name: body
+entity_type: node
+bundle: overview_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

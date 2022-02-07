@@ -1,0 +1,21 @@
+<div class="comprehensive-block">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop">
+    </div>
+    <div class="mdc-comprehensive-left-content mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+      <div class="get-started-image comprehensive-img"> {{ content.field_image }}</div>
+    </div>
+
+    <div class="mdc-comprehensive-right-content mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop">
+        <h3 class="mdc-typography--headline3 comprehensive-title">{{ content.field_content_title }}</h3>
+        <div class="mdc-typography--body1 right-content">
+          {{ content.body }}
+        </div>
+        {% if content.field_button %}
+          <div class="api-button">{{ content.field_button }}</div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,67 @@
+uuid: 394f7e39-6778-4a7a-b427-adf9581df111
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.smartdocs.field_api_version
+    - field.field.node.smartdocs.field_description
+    - field.field.node.smartdocs.field_interoperability_api_tag
+    - field.field.node.smartdocs.field_redoc_file
+    - field.field.node.smartdocs.field_smartdocs
+    - node.type.smartdocs
+  module:
+    - file
+_core:
+  default_config_hash: zoTqDIKgVZWYAsXoPspTuBPC7_JmqMzqru56KIoZKjg
+id: node.smartdocs.default
+targetEntityType: node
+bundle: smartdocs
+mode: default
+content:
+  field_api_version:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_interoperability_api_tag:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_smartdocs:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_description: true
+  field_redoc_file: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true
+  url_redirects: true

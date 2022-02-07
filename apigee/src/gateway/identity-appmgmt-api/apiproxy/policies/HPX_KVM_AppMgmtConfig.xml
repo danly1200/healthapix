@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="HPX_KVM_AppMgmtConfig" mapIdentifier="HPX_Config">
+    <DisplayName>HPX_KVM_AppMgmtConfig</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Get assignTo="HPX.CacheTimeOut" index="1">
+        <Key>
+            <Parameter ref="CacheTimeOut"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

@@ -1,0 +1,31 @@
+uuid: 893225d6-95c0-4132-af87-4747bea31bea
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:home_page_blocks:6ce97234-c419-4ef5-8e71-a1da4240d596'
+  module:
+    - block_content
+    - block_visibility_groups
+  theme:
+    - mdc_theme
+id: comprehensive
+theme: mdc_theme
+region: home_content
+weight: -23
+provider: null
+plugin: 'block_content:6ce97234-c419-4ef5-8e71-a1da4240d596'
+settings:
+  id: 'block_content:6ce97234-c419-4ef5-8e71-a1da4240d596'
+  label: Comprehensive
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_MetadataWorkAroundToken">
+    <DisplayName>HPX_MetadataWorkAroundToken</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">Bearer {IAM.access_token}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>

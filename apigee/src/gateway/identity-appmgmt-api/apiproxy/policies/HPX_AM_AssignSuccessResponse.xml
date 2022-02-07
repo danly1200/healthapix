@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_AssignSuccessResponse">
+    <DisplayName>HPX_AM_AssignSuccessResponse</DisplayName>
+    <Properties/>
+    <Remove>
+        <QueryParams/>
+    </Remove>
+    <Set>
+        <Payload Content-type="text/html">
+            &lt;html&gt;
+            &lt;head&gt;&lt;script&gt;function closeWin() {window.open('', '_self', '');window.close();}&lt;/script&gt;&lt;/head&gt;
+            &lt;body&gt;
+                &lt;p&gt;Success!&lt;/p&gt;
+                &lt;button onclick="closeWin()"&gt;Close this window.&lt;/button&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;            
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

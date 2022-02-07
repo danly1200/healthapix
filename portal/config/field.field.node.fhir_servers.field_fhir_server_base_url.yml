@@ -1,0 +1,19 @@
+uuid: 7376b398-2d03-40ba-8033-f8c22b19e287
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fhir_server_base_url
+    - node.type.fhir_servers
+id: node.fhir_servers.field_fhir_server_base_url
+field_name: field_fhir_server_base_url
+entity_type: node
+bundle: fhir_servers
+label: 'FHIR Server url'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

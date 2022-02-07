@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache enabled="true" continueOnError="false" async="false" name="SoF_PopulateJwksCache">
+    <DisplayName>SoF_PopulateJwksCache</DisplayName>
+    <CacheResource>sof-jwks-cache</CacheResource>
+    <Source>publicKeyJwks</Source>
+    <Scope>Application</Scope>
+    <CacheKey>
+        <KeyFragment ref="idpJwks.url"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec ref="JWKS_CACHE_TIMEOUT_SECONDS">600</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="SoF_AM_CreateBERequest">
+    <DisplayName>SoF_AM_CreateBERequest</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">Bearer {IAM.access_token}</Header>
+            <Header name="X-Authorization-Issuer">{X-Authorization-Issuer}</Header>
+            <Header name="X-Authorization-Subject">{X-Authorization-Subject}</Header>
+            <Header name="X-Authorization-Scope">{X-Authorization-Scope}</Header>
+            <Header name="Accept">application/fhir+json</Header>
+            <Header name="Content-Type">application/json</Header>
+        </Headers>
+        <Verb>GET</Verb>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>

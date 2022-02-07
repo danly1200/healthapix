@@ -1,0 +1,490 @@
+{% set apiProductsMap = {} %}
+{% set apiProducts = {} %}
+{% set apiProductStatus = {} %}
+
+<div class="mdc-layout-grid">
+
+  <div class="mdc-layout-grid__inner">
+
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+
+      <div class="mdc-tab-bar app-btn-group" role="tablist">
+        <div class="mdc-tab-scroller">
+          <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
+              <button id="my-app-btn-smart-app" class="mdc-tab mdc-tab--active active" role="tab" aria-selected="true"
+                      tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">My Smart Apps</span>
+                </span><span class="mdc-tab-indicator mdc-tab-indicator--active">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
+              <button id="my-app-btn-normal-app" class="mdc-tab" role="tab" aria-selected="false" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">My Apps</span>
+                </span>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+    </div>
+
+
+    <div class="version-select mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop">
+      <div class="mdc-select mdc-select--outlined">
+        <div class="mdc-select__anchor">
+          <i class="mdc-select__dropdown-icon"></i>
+          <div id="demo-selected-text" class="mdc-select__selected-text" aria-labelledby="outlined-select-label"></div>
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <span id="outlined-select-label" class="mdc-floating-label">Choose Version</span>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+
+        <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+          <ul class="version-list mdc-list">
+            <li class="mdc-list-item mdc-list-item--selected" data-value="all" role="option">
+              -- All --
+            </li>
+            {% if dataset_filter is not empty %}
+              {% for id, name in dataset_filter %}
+                <li class="mdc-list-item" data-value="{{ name }}" data-server-version="{{ name }}" role="option">
+                  {{ name }}
+                </li>
+              {% endfor %}
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="register_smartapp mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
+      <a id="register-app-a" href="/app/smart/add">
+        <button class="mdc-button mdc-button--outlined">
+          <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+          <span class="mdc-button__label">
+          REGISTER A NEW APP
+        </span>
+        </button>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="myapps-wrapper">
+  {% if my_apps is not empty %}
+    <div class="no-results"></div>
+    <div class="acc-content">
+      <div class="acc">
+        {% for key, developerApp in my_apps %}
+          {% set app_id  = developerApp.appId %}
+          {% set app_type = 'normal' %}
+          {% set version = " " %}
+          {% set hidden_class = 'card-hidden' %}
+          {% set  attr_app_type = " " %}
+          {% set  smart_launch_url = " " %}
+          {% set  redirect_url = " " %}
+          {% set  jwks_uri = " " %}
+          {% set  patient_scopes = " " %}
+          {% set  patient_scopes_url = " " %}
+          {% set  standard_scopes = " " %}
+          {% set  standard_scopes_url = " " %}
+          {% set  user_scopes = " " %}
+          {% set  user_scopes_url = " " %}
+          {% if developerApp.attributes is not empty %}
+            {% for key,value in developerApp.attributes %}
+              {% if key == 'fhir_app_type' %}
+                {% if value is not empty %}
+                  {% set app_type  = value %}
+                  {% if value == 'smart' %}
+                    {% set hidden_class = '' %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+              {% if key == 'fhir_version' %}
+                {% set version  = value|trim('"') %}
+              {% endif %}
+              {% if key == 'app_type' %}
+                {% set attr_app_type  = value %}
+              {% endif %}
+              {% if key ==  'redirect_url' %}
+                {% set redirect_url  = value %}
+              {% endif %}
+              {% if key ==  'jwks_uri' %}
+                {% set jwks_uri  = value %}
+              {% endif %}
+              {% if key == 'smart_launch_url' %}
+                {% set smart_launch_url  = value %}
+              {% endif %}
+              {% if key == 'patient_scopes' %}
+                {% set patient_scopes  = value|replace({' ': ", "}) %}
+                {% set patient_scopes_url  = value %}
+              {% endif %}
+              {% if key == 'standard_scopes' %}
+                {% set standard_scopes  = value|replace({' ': ", "}) %}
+                {% set standard_scopes_url  = value %}
+              {% endif %}
+              {% if key == 'user_scopes' %}
+                {% set user_scopes  = value|replace({' ': ", "}) %}
+                {% set user_scopes_url  = value %}
+              {% endif %}
+
+            {% endfor %}
+          {% endif %}
+
+          <div class="acc__card {{ hidden_class }}" data-server-version="{{ version }}" data-app-type="{{ app_type }}"
+               data-app-title="{{ developerApp.displayName }}">
+            <div class="acc__title">
+              <a class="app-title"
+                 href="#{{ developerApp.displayName|replace(' ','-') }}"><span>{{ developerApp.displayName }}</span></a>
+            </div>
+            {% for credential in developerApp.Credentials %}
+              {{ credentials }}
+            {% endfor %}
+            {{ app_proxy.app_id }}
+            <div class="title-rightside">
+              {% for credential in developerApp.Credentials %}
+                {% if credential.apiProducts is not empty %}
+                  {% for apiProduct in credential.apiProducts %}
+                    {% set apiProductStatus = apiProduct.getStatus() %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+              <span class="label label-success">{{ apiProductStatus }}</span>
+              <a class="edit-tab" href="/app/edit/{{ developerApp.appId }}">
+                <span class="mdc-list-item__meta material-icons">edit</span></a>
+              <a class="analytics-tab" href="/user/myapps/{{ developerApp.name }}/analytics">Analytics</a>
+              <a class="use-ajax delete-tab" data-dialog-type="modal"
+                 href="{{ url('entity.developer_app.delete_form_for_developer',{'user': user_id,'app': developerApp.name},{'query':{'destination':'user/my-apps#'~ app_type }}) }}">
+                <span class="mdc-list-item__meta material-icons">delete</span></a>
+              {% for keyproxy, proxy in app_proxy %}
+                {% if key == keyproxy %}
+                  {% set proxurl  = proxy %}
+                  <button class="launch-app mdc-button mdc-button--outlined">
+                    <span class="mdc-button__label"><a href="{{ smart_launch_url }}?aud={{ proxy }}&scope={{ standard_scopes_url|trim('"') }} {{patient_scopes_url|trim('"') }} {{ user_scopes_url|trim('"') }}" target="_blank">Launch APP</a></span>
+                  </button>
+                {% endif %}
+              {% endfor %}
+
+            </div>
+
+            <div class="acc__panel">
+
+              <div class="mdc-layout-grid">
+
+                <div class="mdc-layout-grid__inner">
+
+                  <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+
+                    <div class="mdc-data-table my-app-keys" id="my-app-keys-{{ developerApp.name|replace('_','-') }}">
+                      {% if developerApp.Credentials is not empty %}
+                        {% for credential in developerApp.Credentials %}
+                          <div class="my-apps-keys">
+                            <table class="mdc-data-table__table">
+                              <thead>
+                              <tr class="mdc-data-table__header-row app-table-header">
+                                <th style="width:29%" class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                                  <span><strong>Keys</strong></span>
+                                </th>
+                                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                              </tr>
+                              </tr>
+                              </thead>
+                              <tbody class="mdc-data-table__content">
+                              <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Consumer Key</th>
+                                <td class="mdc-data-table__cell consumer-key-cell" >
+{#                                  <a class="key-show-hide" href=javascript:void(0)>Show</a>#}
+                                  <span id="ghc-consumer-key" class="hide">{{ credential.consumerKey }}</span>
+                                  <span id="my-apps-dots" class="show">••••••••</span>
+                                  <span class="consumer-utilities">
+                                    <span class="show-consumer-key">
+                                      <svg aria-hidden="true" class="stUf5b" fill="grey" focusable="false" width="24px" height="24px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                        <path d="M12,7c-2.48,0-4.5,2.02-4.5,4.5S9.52,16,12,16s4.5-2.02,4.5-4.5S14.48,7,12,7z M12,14.2c-1.49,0-2.7-1.21-2.7-2.7 c0-1.49,1.21-2.7,2.7-2.7s2.7,1.21,2.7,2.7C14.7,12.99,13.49,14.2,12,14.2z"></path>
+                                        <path d="M12,4C7,4,2.73,7.11,1,11.5C2.73,15.89,7,19,12,19s9.27-3.11,11-7.5C21.27,7.11,17,4,12,4z M12,17 c-3.79,0-7.17-2.13-8.82-5.5C4.83,8.13,8.21,6,12,6s7.17,2.13,8.82,5.5C19.17,14.87,15.79,17,12,17z"></path>
+                                      </svg>
+                                    </span>
+                                    <span class="hide-consumer-key hide" >
+                                      <svg aria-hidden="true" class="stUf5b" fill="grey" focusable="false" width="24px" height="24px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                        <path d="M10.58,7.25l1.56,1.56c1.38,0.07,2.47,1.17,2.54,2.54l1.56,1.56C16.4,12.47,16.5,12,16.5,11.5C16.5,9.02,14.48,7,12,7 C11.5,7,11.03,7.1,10.58,7.25z"></path>
+                                        <path d="M12,6c3.79,0,7.17,2.13,8.82,5.5c-0.64,1.32-1.56,2.44-2.66,3.33l1.42,1.42c1.51-1.26,2.7-2.89,3.43-4.74 C21.27,7.11,17,4,12,4c-1.4,0-2.73,0.25-3.98,0.7L9.63,6.3C10.4,6.12,11.19,6,12,6z"></path>
+                                        <path d="M16.43,15.93l-1.25-1.25l-1.27-1.27l-3.82-3.82L8.82,8.32L7.57,7.07L6.09,5.59L3.31,2.81L1.89,4.22l2.53,2.53 C2.92,8.02,1.73,9.64,1,11.5C2.73,15.89,7,19,12,19c1.4,0,2.73-0.25,3.98-0.7l4.3,4.3l1.41-1.41l-3.78-3.78L16.43,15.93z M11.86,14.19c-1.38-0.07-2.47-1.17-2.54-2.54L11.86,14.19z M12,17c-3.79,0-7.17-2.13-8.82-5.5c0.64-1.32,1.56-2.44,2.66-3.33 l1.91,1.91C7.6,10.53,7.5,11,7.5,11.5c0,2.48,2.02,4.5,4.5,4.5c0.5,0,0.97-0.1,1.42-0.25l0.95,0.95C13.6,16.88,12.81,17,12,17z"></path>
+                                      </svg>
+                                    </span>
+                                    <button class="ghc-my-apps-copy-btn" data-clipboard-text={{ credential.consumerKey }}>
+                                      <img src="/themes/custom/mdc_theme/images/copy-image.png">
+                                    </button>
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Consumer Secret</th>
+                                <td class="mdc-data-table__cell consumer-secret-cell" >
+{#                                  <a class="key-show-hide" href=javascript:void(0)>Show</a>#}
+                                  <span id="ghc-consumer-secret" class="hide">{{ credential.consumerSecret }}</span>
+                                  <span id="my-apps-dots" class="show">••••••••</span>
+                                  <span class="consumer-utilities">
+                                    <span class="show-consumer-key">
+                                      <svg aria-hidden="true" class="stUf5b" fill="grey" focusable="false" width="24px" height="24px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                        <path d="M12,7c-2.48,0-4.5,2.02-4.5,4.5S9.52,16,12,16s4.5-2.02,4.5-4.5S14.48,7,12,7z M12,14.2c-1.49,0-2.7-1.21-2.7-2.7 c0-1.49,1.21-2.7,2.7-2.7s2.7,1.21,2.7,2.7C14.7,12.99,13.49,14.2,12,14.2z"></path>
+                                        <path d="M12,4C7,4,2.73,7.11,1,11.5C2.73,15.89,7,19,12,19s9.27-3.11,11-7.5C21.27,7.11,17,4,12,4z M12,17 c-3.79,0-7.17-2.13-8.82-5.5C4.83,8.13,8.21,6,12,6s7.17,2.13,8.82,5.5C19.17,14.87,15.79,17,12,17z"></path>
+                                      </svg>
+                                    </span>
+                                    <span class="hide-consumer-key hide">
+                                      <svg aria-hidden="true" class="stUf5b" fill="grey" focusable="false" width="24px" height="24px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                        <path d="M10.58,7.25l1.56,1.56c1.38,0.07,2.47,1.17,2.54,2.54l1.56,1.56C16.4,12.47,16.5,12,16.5,11.5C16.5,9.02,14.48,7,12,7 C11.5,7,11.03,7.1,10.58,7.25z"></path>
+                                        <path d="M12,6c3.79,0,7.17,2.13,8.82,5.5c-0.64,1.32-1.56,2.44-2.66,3.33l1.42,1.42c1.51-1.26,2.7-2.89,3.43-4.74 C21.27,7.11,17,4,12,4c-1.4,0-2.73,0.25-3.98,0.7L9.63,6.3C10.4,6.12,11.19,6,12,6z"></path>
+                                        <path d="M16.43,15.93l-1.25-1.25l-1.27-1.27l-3.82-3.82L8.82,8.32L7.57,7.07L6.09,5.59L3.31,2.81L1.89,4.22l2.53,2.53 C2.92,8.02,1.73,9.64,1,11.5C2.73,15.89,7,19,12,19c1.4,0,2.73-0.25,3.98-0.7l4.3,4.3l1.41-1.41l-3.78-3.78L16.43,15.93z M11.86,14.19c-1.38-0.07-2.47-1.17-2.54-2.54L11.86,14.19z M12,17c-3.79,0-7.17-2.13-8.82-5.5c0.64-1.32,1.56-2.44,2.66-3.33 l1.91,1.91C7.6,10.53,7.5,11,7.5,11.5c0,2.48,2.02,4.5,4.5,4.5c0.5,0,0.97-0.1,1.42-0.25l0.95,0.95C13.6,16.88,12.81,17,12,17z"></path>
+                                      </svg>
+                                    </span>
+                                    <button class="ghc-my-apps-copy-btn" data-clipboard-text={{ credential.consumerSecret }}>
+                                      <img src="/themes/custom/mdc_theme/images/copy-image.png">
+                                    </button>
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Key Issued</th>
+                                <td class="mdc-data-table__cell">
+                                  {% if credential.issuedAt is not null %}
+                                    {{ credential.issuedAt.date|date('M, m/d/Y - h:i') }}
+                                  {% else %}
+                                    {{ never }}
+                                  {% endif %}
+                                </td>
+                              </tr>
+                              <tr class="mdc-data-table__row">
+                                <th class="mdc-data-table__cell" scope="row">Expires</th>
+                                <td class="mdc-data-table__cell">
+                                  {% if credential.expiresAt is not null %}
+                                    {{ credential.expiresAt.date|date('M, m/d/Y - h:i') }}
+                                  {% else %}
+                                    {{ never }}
+                                  {% endif %}
+                                </td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          {% if credential.apiProducts is not empty %}
+                            {% for apiProduct in credential.apiProducts %}
+
+                              {% set apiProductsMap = apiProductsMap|merge([[apiProduct.apiproduct,apiProduct.status]]) %}
+                              {% set apiProducts = apiProducts|merge([apiProduct.apiproduct]) %}
+                            {% endfor %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+
+                  </div>
+
+
+                  <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+                    <div class="mdc-data-table my-app-api-products"
+                         id="my-app-api-products-{{ developerApp.name|replace('_','-') }}">
+                      {% if apiProductsMap is not empty %}
+                        <table class="mdc-data-table__table">
+                          <thead>
+                          <tr class="mdc-data-table__header-row app-table-header">
+                            <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                              <strong>API Product</strong>
+                            </th>
+{#                            <th class="mdc-data-table__header-cell" role="columnheader" scope="col">#}
+{#                              <strong><strong>Status </strong></strong>#}
+{#                            </th>#}
+                          </tr>
+                          </thead>
+                          <tbody class="mdc-data-table__content">
+                          {% for value in apiProductsMap %}
+                            <tr class="mdc-data-table__row">
+                              {% if value[0] is defined %}
+                                <th class="mdc-data-table__cell" scope="row">
+                                  {{ value[0] }}
+                                </th>
+                              {% endif %}
+{#                              {% if value[1] is defined %}#}
+{#                                <td class="mdc-data-table__cell">#}
+{#                                  &nbsp;{{ value[1] }}#}
+{#                                </td>#}
+{#                              {% endif %}#}
+                            </tr>
+                          {% endfor %}
+
+                          </tbody>
+                        </table>
+                      {% endif %}
+
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+                      <div class="mdc-data-table my-app-api-products"
+                           id="my-app-api-products-{{ developerApp.name|replace('_','-') }}">
+                        {% if apiProductsMap is not empty %}
+                          <table class="mdc-data-table__table">
+                            <thead>
+                            <tr class="mdc-data-table__header-row app-table-header">
+                              <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                                <strong>API End Point</strong>
+                              </th>
+                            </tr>
+                            </thead>
+                            <tbody class="mdc-data-table__content">
+
+                            {% for keyproxy, proxy in app_proxy %}
+                              {% if key == keyproxy %}
+                              <tr class="mdc-data-table__row">
+                                {% if proxy is defined %}
+                                  <td class="mdc-data-table__cell" scope="row">
+                                    {{ proxy }}
+                                  </td>
+                                {% endif %}
+                              </tr>
+                            {% endif %}
+                            {% endfor %}
+
+                            </tbody>
+                          </table>
+                        {% endif %}
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                    <div class="my-app-details">
+                      <div class="mdc-data-table">
+                        <table class="mdc-data-table__table">
+                          <thead>
+                          <tr class="mdc-data-table__header-row app-table-header">
+                            <th colspan="2" class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                              <strong>Details</strong>
+                            </th>
+                          </tr>
+                          </thead>
+                          <tbody class="mdc-data-table__content">
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Application Name</th>
+                            <td class="mdc-data-table__cell">{{ developerApp.displayName }}</td>
+                          </tr>
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Redirect URL</th>
+                            <td class="mdc-data-table__cell">{{ redirect_url }}</td>
+                          </tr>
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Jwks-Uri</th>
+                            <td class="mdc-data-table__cell">{{ jwks_uri }}</td>
+                          </tr>
+                          {% if app_type == 'smart' %}
+                            <tr class="mdc-data-table__row">
+                              <th class="mdc-data-table__cell" scope="row">Smart Launch URL</th>
+                              <td class="mdc-data-table__cell">{{ smart_launch_url }}</td>
+                            </tr>
+                            <tr class="mdc-data-table__row">
+                              <th class="mdc-data-table__cell" scope="row">App Type</th>
+                              <td class="mdc-data-table__cell">{{ attr_app_type }}</td>
+                            </tr>
+                            <tr class="mdc-data-table__row">
+                              <th class="mdc-data-table__cell" scope="row">Standard Scopes</th>
+                              <td class="mdc-data-table__cell">{{ standard_scopes|trim('"') }}</td>
+                            </tr>
+                            <tr class="mdc-data-table__row">
+                              <th class="mdc-data-table__cell" scope="row">User Scopes</th>
+                              <td class="mdc-data-table__cell">{{ user_scopes|trim('"') }}</td>
+                            </tr>
+                            <tr class="mdc-data-table__row">
+                              <th class="mdc-data-table__cell" scope="row">Patient Scopes</th>
+                              <td class="mdc-data-table__cell">{{ patient_scopes|trim('"') }}</td>
+                            </tr>
+                          {% endif %}
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  {% if app_type == 'smart' %}
+                  <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
+                    <div class="my-app-details">
+                      <div class="mdc-data-table">
+                        <table class="mdc-data-table__table">
+                          <thead>
+                          <tr class="mdc-data-table__header-row app-table-header">
+                            <th colspan="2" class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                              <strong>Authorization URL's</strong>
+                            </th>
+                          </tr>
+                          </thead>
+                          <tbody class="mdc-data-table__content">
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Authorization URL</th>
+                                {% if  launch_url_array[key] is defined %}
+                                  <td class="mdc-data-table__cell">{{ launch_url_array[key] }}oauth/v2/authorize{{ launch_url.key }}</td>
+                                {% endif %}
+                          </tr>
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Access Token URL</th>
+                            {% if  launch_url_array[key] is defined %}
+                              <td class="mdc-data-table__cell">{{ launch_url_array[key] }}oauth/v2/accesstoken</td>
+                            {% endif %}
+                          </tr>
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Backed Token URL</th>
+                            {% if  launch_url_array[key] is defined %}
+                              <td class="mdc-data-table__cell">{{ launch_url_array[key] }}oauth/v2/token</td>
+                            {% endif %}
+                          </tr>
+                            <tr class="mdc-data-table__row">
+                              <th class="mdc-data-table__cell" scope="row">Refresh token URL</th>
+                              {% if  launch_url_array[key] is defined %}
+                                <td class="mdc-data-table__cell">{{ launch_url_array[key] }}oauth/v2/refreshtoken</td>
+                              {% endif %}
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          {#      {% endfor %}#}
+          {#    {% endif %}#}
+          {% set apiProducts = {} %}
+          {% set apiProductsMap = {} %}
+        {% endfor %}
+
+      </div>
+    </div>
+  {% else %}
+    <h2 class="no-apps-msg">You don't have any apps registered with us.</h2>
+  {% endif %}
+</div>
+

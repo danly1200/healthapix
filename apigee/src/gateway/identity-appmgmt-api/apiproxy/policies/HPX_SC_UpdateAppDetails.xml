@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_SC_UpdateAppDetails">
+    <DisplayName>HPX_SC_UpdateAppDetails</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="HPX_SC_UpdateAppDetails">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{adminCredentials}</Header>
+            </Headers>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                 "attributes": @updateAppAttribute#
+            }
+            </Payload>
+            <Verb>PUT</Verb>
+        </Set>
+    </Request>
+    <Response>GetAppDetailsCalloutResponse</Response>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="ApigeeMgmtServer"/>
+        </LoadBalancer>
+        <Path>{{ appStatus_path }}</Path>
+    </HTTPTargetConnection>
+</ServiceCallout>

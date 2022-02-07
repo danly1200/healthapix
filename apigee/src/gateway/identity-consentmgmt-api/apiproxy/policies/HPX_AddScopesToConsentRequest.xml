@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AddScopesToConsentRequest">
+    <DisplayName>HPX_AddScopesToConsentRequest</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{googleToken}</Header>
+        </Headers>
+        <Verb>PATCH</Verb>
+        <!--<Payload contentType="application/json-patch+json" variablePrefix="@" variableSuffix="#">[{"op":"remove","path":"/except/0/class/1"},{"op":"remove","path":"/except/0/class/1"},{"op":"replace","path":"/except/0/class/0","value":{"code":"[@combined_scopes#]","system":"http: //hl7.org/fhir/smart/scopes"}},{"op":"replace","path":"/period/end","value":"@consent_window_end_time#"}]</Payload>-->
+        <Payload contentType="application/json-patch+json" variablePrefix="@" variableSuffix="#">[{"op":"replace","path":"/except/0/class/0","value":{"code":"[@combined_scopes#]","system":"http: //hl7.org/fhir/smart/scopes"}},{"op":"replace","path":"/period/end","value":"@consent_window_end_time#"}]</Payload>
+    </Set>
+    <AssignVariable>
+        <Name>targetSuffixURI</Name>
+        <Template>Consent/{consent_id}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

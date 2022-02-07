@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractValidateConsentParameters">
+    <DisplayName>HPX_ExtractValidateConsentParameters</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="scopes">
+            <JSONPath>$.scopes</JSONPath>
+        </Variable>
+        <Variable name="client_id">
+            <JSONPath>$.client_id</JSONPath>
+        </Variable>
+        <Variable name="patient_id">
+            <JSONPath>$.patient_id</JSONPath>
+        </Variable>
+        <Variable name="developer_email">
+            <JSONPath>$.developer_email</JSONPath>
+        </Variable>
+        <Variable name="app_display_name">
+            <JSONPath>$.app_display_name</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

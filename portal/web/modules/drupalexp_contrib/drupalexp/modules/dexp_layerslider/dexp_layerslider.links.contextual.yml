@@ -1,0 +1,12 @@
+dexp_layerslider_block_edit:
+  title: 'Edit Slides'
+  route_name: entity.dexp_slider.edit_slides_form
+  group: dexp_layerslider
+dexp_layerslider_block_settings:
+  title: 'Slider Settings'
+  route_name: entity.dexp_slider.settings_form
+  group: dexp_layerslider
+dexp_layerslider_block_export:
+  title: 'Export Slider'
+  route_name: dexp_slider.export
+  group: dexp_layerslider

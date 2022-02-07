@@ -1,0 +1,20 @@
+uuid: 00264266-a0b2-4f99-a90e-0caec3425727
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_standard_scopes
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_standard_scopes
+field_name: field_standard_scopes
+entity_type: developer_app
+bundle: developer_app
+label: 'Standard Scopes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,7 @@
+dexp_grid.dexp_grid_masonry_save_controller:
+  path: 'dexp-grid/update'
+  defaults:
+    _controller: '\Drupal\dexp_grid\Controller\DexpGridController::update'
+    _title: 'Masonry Item Update'
+  requirements:
+    _permission: 'administer dexp grid masonry'

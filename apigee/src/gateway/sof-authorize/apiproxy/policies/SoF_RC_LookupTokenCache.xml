@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ResponseCache async="false" continueOnError="false" enabled="true" name="SoF_RC_LookupTokenCache">
+    <DisplayName>SoF_RC_LookupTokenCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="_hashed_token" type="string"/>
+    </CacheKey>
+    <Scope>Proxy</Scope>
+    <ExpirySettings>
+        <TimeoutInSec ref="CALCULATED_TOKEN_CACHE_EXPIRY">300</TimeoutInSec>
+    </ExpirySettings>
+</ResponseCache>

@@ -1,0 +1,18 @@
+uuid: 8b8837b4-0635-4fc7-bf8b-9df92258d04a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.devconnect_blog
+id: node.devconnect_blog.title
+field_name: title
+entity_type: node
+bundle: devconnect_blog
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

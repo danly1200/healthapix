@@ -1,0 +1,22 @@
+uuid: c0d06c13-08ae-4d60-a433-284cd185b734
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.test_data.field_payload_collection
+    - node.type.test_data
+  module:
+    - user
+id: node.test_data.teaser
+targetEntityType: node
+bundle: test_data
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_payload_collection: true

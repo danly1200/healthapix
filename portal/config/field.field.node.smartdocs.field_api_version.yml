@@ -1,0 +1,25 @@
+uuid: d04327db-1c11-408c-821f-a05b89f91d81
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_api_version
+    - node.type.smartdocs
+id: node.smartdocs.field_api_version
+field_name: field_api_version
+entity_type: node
+bundle: smartdocs
+label: 'API Version'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: api_version_list
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

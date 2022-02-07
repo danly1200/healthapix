@@ -1,0 +1,18 @@
+uuid: 5c5ee210-6f24-4373-b19b-97efed7b7d57
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.apps
+id: node.apps.title
+field_name: title
+entity_type: node
+bundle: apps
+label: Apps
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

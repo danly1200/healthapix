@@ -1,0 +1,10 @@
+uuid: 552f2a0b-0880-4bdc-b7d7-ee2b174adb89
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: yoNVreoTdTZTY7GuE8fI9Jmxqdz8vlo4ZJKixMNSosw
+name: 'Community Popular Topics'
+vid: tags
+description: 'Use tags to group articles on similar topics into categories.'
+weight: 0

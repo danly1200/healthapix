@@ -1,0 +1,1332 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® ExplanationOfBenefit resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+- url: https://org-env.apigee.net/v1/ghc/r4
+tags:
+- name: ExplanationOfBenefit
+paths:
+  /ExplanationOfBenefit:
+    get:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: _content
+        in: query
+        description: Search the contents of the resource's data using a fulltext search
+        schema:
+          type: string
+      - name: _tag
+        in: query
+        description: Search for resources which have the given tag
+        schema:
+          type: string
+      - name: _lastUpdated
+        in: query
+        description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+        schema:
+          type: string
+          format: date
+      - name: _security
+        in: query
+        description: Search for resources which have the given security labels
+        schema:
+          type: string
+      - name: _profile
+        in: query
+        description: Search for resources which have the given profile
+        schema:
+          type: string
+      - name: _text
+        in: query
+        description: Search the contents of the resource's narrative using a fulltext search
+        schema:
+          type: string
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: care-team
+        in: query
+        description: Member of the CareTeam
+        schema:
+          type: string
+      - name: coverage
+        in: query
+        description: The plan under which the claim was adjudicated
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: The business identifier of the Explanation of Benefit
+        schema:
+          type: string
+      - name: created
+        in: query
+        description: The creation date for the EOB
+        schema:
+          type: string
+          format: date
+      - name: encounter
+        in: query
+        description: Encounters associated with a billed line item
+        schema:
+          type: string
+      - name: payee
+        in: query
+        description: The party receiving any payment for the Claim
+        schema:
+          type: string
+      - name: disposition
+        in: query
+        description: The contents of the disposition message
+        schema:
+          type: string
+      - name: provider
+        in: query
+        description: The reference to the provider
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: The reference to the patient
+        schema:
+          type: string
+      - name: insurer
+        in: query
+        schema:
+          type: string
+      - name: detail-udi
+        in: query
+        description: UDI associated with a line item detail product or service
+        schema:
+          type: string
+      - name: claim
+        in: query
+        description: The reference to the claim
+        schema:
+          type: string
+      - name: enterer
+        in: query
+        description: The party responsible for the entry of the Claim
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: procedure-udi
+        in: query
+        description: UDI associated with a procedure
+        schema:
+          type: string
+      - name: subdetail-udi
+        in: query
+        description: UDI associated with a line item detail subdetail product or service
+        schema:
+          type: string
+      - name: facility
+        in: query
+        description: Facility responsible for the goods and services
+        schema:
+          type: string
+      - name: item-udi
+        in: query
+        description: UDI associated with a line item product or service
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Status of the instance
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExplanationOfBenefit'
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+    post:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/ExplanationOfBenefit'
+        required: false
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: ExplanationOfBenefit could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: ExplanationOfBenefit not found.
+          content: {}
+        '422':
+          description: The ExplanationOfBenefit resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}:
+    get:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/ExplanationOfBenefit'
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+    put:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/ExplanationOfBenefit'
+        required: false
+      responses:
+        '200':
+          description: ExplanationOfBenefit Updated.
+          content: {}
+        '201':
+          description: ExplanationOfBenefit Created.
+          content: {}
+        '400':
+          description: ExplanationOfBenefit could not be parsed or failed basic FHIR validation rules (or multiple matches were found).
+          content: {}
+        '403':
+          description: Not Authorized.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+    delete:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: No Content.
+          content: {}
+        '204':
+          description: No Content.
+          content: {}
+        '404':
+          description: ExplanationOfBenefit not found.
+          content: {}
+        '405':
+          description: Method not allowed.
+          content: {}
+        '409':
+          description: Conflict Error.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/_history:
+    get:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/_history/{vid}:
+    get:
+      tags:
+      - ExplanationOfBenefit
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/ExplanationOfBenefit'
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/$meta:
+    get:
+      tags:
+        - ExplanationOfBenefit
+      description: 'Retrieves a summary of the profiles, tags, and security labels for ExplanationOfBenefit.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: ExplanationOfBenefit Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for ExplanationOfBenefit'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/$meta:
+    get:
+      tags:
+        - ExplanationOfBenefit
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given ExplanationOfBenefit resource.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: ExplanationOfBenefits Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/_history/{vid}/$meta:
+    get:
+      tags:
+        - ExplanationOfBenefit
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given version of the ExplanationOfBenefit.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: ExplanationOfBenefit Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated version of the resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/{type}:
+    get:
+      tags:
+        - ExplanationOfBenefit
+      description: 'Search the specified resource type in ExplanationOfBenefit compartment.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: ' Compartment Search'
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: The set of resources associated with a particular ExplanationOfBenefit
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/_search:
+    post:
+      tags:
+        - ExplanationOfBenefit
+      description: 'This interaction searches a set of ExplanationOfBenefit based on some filter criteria. Search interactions take a series of parameters of name''=''value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: ExplanationOfBenefit Search using POST
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: Search the contents of the resource's narrative using a fulltext search
+          schema:
+            type: string
+        - name: actor
+          in: query
+          description: 'The individual(HealthcareService, Practitioner, Location, ...) to find a ExplanationOfBenefit for'
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Search for ExplanationOfBenefit resources that have a period that contains this date specified. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: identifier
+          in: query
+          description: A ExplanationOfBenefit Identifier
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: The type of appointments that can be booked into associated slot(s)
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                _content:
+                  type: string
+                  description: Search the contents of the resource's data using a fulltext search
+                _id:
+                  type: string
+                  description: The resource identity
+                _language:
+                  type: string
+                  description: The resource language
+                _lastUpdated:
+                  type: string
+                  description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                _profile:
+                  type: string
+                  description: Search for resources which have the given profile
+                _security:
+                  type: string
+                  description: Search for resources which have the given security labels
+                _tag:
+                  type: string
+                  description: Search for resources which have the given tag
+                _text:
+                  type: string
+                  description: Search the contents of the resource's narrative using a fulltext search
+                actor:
+                  type: string
+                  description: 'The individual(HealthcareService, Practitioner, Location, ...) to find a ExplanationOfBenefit for'
+                date:
+                  type: string
+                  description: 'Search for ExplanationOfBenefit resources that have a period that contains this date specified. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                identifier:
+                  type: string
+                  description: A ExplanationOfBenefit Identifier
+                type:
+                  type: string
+                  description: The type of appointments that can be booked into associated slot(s)
+      responses:
+        '200':
+          description: ExplanationOfBenefit bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExplanationOfBenefit'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.read
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/$meta-add:
+    post:
+      tags:
+        - ExplanationOfBenefit
+      description: 'Add a metadata info ExplanationOfBenefit with specified id.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: Add ExplanationOfBenefit metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: ExplanationOfBenefit creation
+          content: {}
+        '400':
+          description: ExplanationOfBenefit could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: ExplanationOfBenefit not found.
+          content: {}
+        '422':
+          description: The ExplanationOfBenefit resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.write
+  /ExplanationOfBenefit/{id}/_history/{vid}/$meta-add:
+    post:
+      tags:
+        - ExplanationOfBenefit
+      description: 'Add metadata info to specified ExplanationOfBenefit resource.<p><a href = ''https://www.hl7.org/fhir/explanationofbenefit.html''>FHIR documentation for ExplanationOfBenefit.</a></p>'
+      operationId: Add ExplanationOfBenefit Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: ExplanationOfBenefit could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: ExplanationOfBenefit not found.
+          content: {}
+        '422':
+          description: The ExplanationOfBenefit resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/ExplanationOfBenefit.write
+components:
+  schemas:
+    ExplanationOfBenefit:
+      required:
+      - careTeam
+      - claim
+      - claimResponse
+      - created
+      - disposition
+      - enterer
+      - facility
+      - id
+      - identifier
+      - insurance
+      - insurer
+      - item
+      - meta
+      - outcome
+      - patient
+      - payee
+      - provider
+      - resourceType
+      - status
+      - text
+      - total
+      - type
+      - use
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        status:
+          minLength: 1
+          type: string
+        type:
+          required:
+          - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+        use:
+          minLength: 1
+          type: string
+        patient:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        created:
+          minLength: 1
+          type: string
+        enterer:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        insurer:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        provider:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        payee:
+          required:
+          - party
+          - type
+          type: object
+          properties:
+            type:
+              required:
+              - coding
+              type: object
+              properties:
+                coding:
+                  minItems: 1
+                  uniqueItems: true
+                  type: array
+                  items:
+                    required:
+                    - code
+                    - system
+                    type: object
+                    properties:
+                      system:
+                        minLength: 1
+                        type: string
+                      code:
+                        minLength: 1
+                        type: string
+            party:
+              required:
+              - reference
+              type: object
+              properties:
+                reference:
+                  minLength: 1
+                  type: string
+        facility:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        claim:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        claimResponse:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        outcome:
+          minLength: 1
+          type: string
+        disposition:
+          minLength: 1
+          type: string
+        careTeam:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - sequence
+            type: object
+            properties:
+              sequence:
+                type: number
+              provider:
+                required:
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+        insurance:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - focal
+            type: object
+            properties:
+              focal:
+                type: boolean
+              coverage:
+                required:
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+        item:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - sequence
+            - servicedDate
+            type: object
+            properties:
+              sequence:
+                type: number
+              careTeamSequence:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              productOrService:
+                required:
+                - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - code
+                      - system
+                      type: object
+                      properties:
+                        system:
+                          minLength: 1
+                          type: string
+                        code:
+                          minLength: 1
+                          type: string
+              servicedDate:
+                minLength: 1
+                type: string
+              unitPrice:
+                required:
+                - currency
+                - value
+                type: object
+                properties:
+                  value:
+                    type: number
+                  currency:
+                    minLength: 1
+                    type: string
+              net:
+                required:
+                - currency
+                - value
+                type: object
+                properties:
+                  value:
+                    type: number
+                  currency:
+                    minLength: 1
+                    type: string
+              udi:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - reference
+                  type: object
+                  properties:
+                    reference:
+                      minLength: 1
+                      type: string
+              encounter:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - reference
+                  type: object
+                  properties:
+                    reference:
+                      minLength: 1
+                      type: string
+              adjudication:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    category:
+                      required:
+                      - coding
+                      type: object
+                      properties:
+                        coding:
+                          minItems: 1
+                          uniqueItems: true
+                          type: array
+                          items:
+                            required:
+                            - code
+                            type: object
+                            properties:
+                              code:
+                                minLength: 1
+                                type: string
+                    amount:
+                      required:
+                      - currency
+                      - value
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                        currency:
+                          minLength: 1
+                          type: string
+        total:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                required:
+                - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - code
+                      type: object
+                      properties:
+                        code:
+                          minLength: 1
+                          type: string
+              amount:
+                required:
+                - currency
+                - value
+                type: object
+                properties:
+                  value:
+                    type: number
+                  currency:
+                    minLength: 1
+                    type: string
+        meta:
+          required:
+          - tag
+          type: object
+          properties:
+            tag:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+    metaBody:
+      type: string
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://org-env.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/ExplanationOfBenefit.read: Read permissions for ExplanationOfBenefit demographics.
+            system/ExplanationOfBenefit.write: Write permissions for ExplanationOfBenefit demographics.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/ExplanationOfBenefit.read: Read permissions for ExplanationOfBenefit demographics.
+            system/ExplanationOfBenefit.write: Write permissions for ExplanationOfBenefit demographics.

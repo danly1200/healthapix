@@ -1,0 +1,5 @@
+dexp_block_settings.config:
+  title: 'Block animation settings'
+  description: 'Control settings for block animation'
+  route_name: dexp_block_settings.settings
+  parent: system.admin_config_ui

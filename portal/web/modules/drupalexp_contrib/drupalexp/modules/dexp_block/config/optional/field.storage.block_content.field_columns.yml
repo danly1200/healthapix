@@ -1,0 +1,19 @@
+uuid: 9c9238eb-cb73-4544-8694-d8f19dde3b63
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - field_collection
+id: block_content.field_columns
+field_name: field_columns
+entity_type: block_content
+type: field_collection
+settings: {  }
+module: field_collection
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

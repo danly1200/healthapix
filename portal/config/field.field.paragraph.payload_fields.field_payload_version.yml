@@ -1,0 +1,29 @@
+uuid: 0747d25b-6853-4c9e-a7da-4bbe1f04ce25
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_payload_version
+    - paragraphs.paragraphs_type.payload_fields
+    - taxonomy.vocabulary.api_version
+id: paragraph.payload_fields.field_payload_version
+field_name: field_payload_version
+entity_type: paragraph
+bundle: payload_fields
+label: 'payload version'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      api_version: api_version
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

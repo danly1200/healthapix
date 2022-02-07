@@ -1,0 +1,47 @@
+dexp_builder.settings:
+  path: 'admin/config/content/dexp_builder'
+  defaults:
+    _form: '\Drupal\dexp_builder\Form\SettingsForm'
+    _title: 'Builder Settings'
+  requirements:
+    _permission: 'administer filters'
+
+dexp_builder.shortcode_parse:
+  path: 'dexp_builder/parse'
+  defaults:
+    _controller: '\Drupal\dexp_builder\Controller\BuilderController::parse'
+    _title: 'Admin Shortcode Parse'
+  requirements:
+    _permission: 'use text format drupalexp_builder'
+
+dexp_builder.shortcode_list:
+  path: 'dexp_builder/shortcode_list'
+  defaults:
+    _form: '\Drupal\dexp_builder\Form\ShortcodeSelectForm'
+    _title: 'Choose element'
+  requirements:
+    _permission: 'use text format drupalexp_builder'
+    
+dexp_builder.shortcode_settings:
+  path: 'dexp_builder/shortcode_settings/{shortcode_id}/{action}'
+  defaults:
+    _form: '\Drupal\dexp_builder\Form\ShortcodeSettingsForm'
+    _title: 'Settings'
+  requirements:
+    _permission: 'use text format drupalexp_builder'
+    
+dexp_builder.icon_list:
+  path: 'dexp_buider/icons'
+  defaults:
+    _form: '\Drupal\dexp_builder\Form\IconSelectForm'
+    _title: 'Choose Icon'
+  requirements:
+    _permission: 'use text format drupalexp_builder'
+
+dexp_builder.custom_css:
+  path: 'dexp_builder/custom_css'
+  defaults:
+    _form: '\Drupal\dexp_builder\Form\CustomCssForm'
+    _title: 'Custom CSS'
+  requirements:
+    _permission: 'use text format drupalexp_builder'

@@ -1,0 +1,19 @@
+uuid: cc30c22d-dc29-4b1e-af81-d073a85254b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_one_liner
+    - node.type.apps
+id: node.apps.field_one_liner
+field_name: field_one_liner
+entity_type: node
+bundle: apps
+label: 'One Liner'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

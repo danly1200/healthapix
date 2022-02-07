@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="HPX_ModifyNodeTargetRequestForIdentifiedUser">
+    <DisplayName>ModifyNodeTargetRequestForIdentifiedUser</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+    <Set>
+        <QueryParams>
+            <QueryParam name="userid">{user_id}</QueryParam>
+            <QueryParam name="renderConsentScreen">{renderConsentScreen}</QueryParam>
+            <QueryParam name="display">{display}</QueryParam>
+            <QueryParam name="lastName">{create_lastName}</QueryParam>
+            <QueryParam name="userEmail">{create_email}</QueryParam>
+        </QueryParams>
+    </Set>
+</AssignMessage>

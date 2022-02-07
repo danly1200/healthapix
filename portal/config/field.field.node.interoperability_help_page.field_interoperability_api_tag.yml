@@ -1,0 +1,29 @@
+uuid: de1b47d5-24f8-4e89-b609-d74d16b32706
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_interoperability_api_tag
+    - node.type.interoperability_help_page
+    - taxonomy.vocabulary.interoperability_api_s
+id: node.interoperability_help_page.field_interoperability_api_tag
+field_name: field_interoperability_api_tag
+entity_type: node
+bundle: interoperability_help_page
+label: 'Interoperability API Tag'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      interoperability_api_s: interoperability_api_s
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

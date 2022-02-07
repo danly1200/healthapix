@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="spike-arrest">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1568698327245</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared Flow for handling OPTIONS call from browsers and prevention of DDoS Attacks on backends.</Description>
+    <DisplayName>spike-arrest</DisplayName>
+    <LastModifiedAt>1576737231461</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:cede4a4afe0af5ebac7269aad4ec253fd50f47d16516a687272656b4ace74c8973388cddb1daf3d2045799769c8c98a6bd904d30e372e4aa6ee794637fbcf706</ManifestVersion>
+    <Policies>
+        <Policy>HPX_CollectVolatileHeadersForPagination</Policy>
+        <Policy>HPX_EnforceRateLimit</Policy>
+        <Policy>HPX_HandleOPTIONSRequest</Policy>
+        <Policy>HPX_ReadConfigKVM</Policy>
+        <Policy>HPX_SetDefaultPathSuffix</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

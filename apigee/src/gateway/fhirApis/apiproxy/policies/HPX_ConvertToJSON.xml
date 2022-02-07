@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XMLToJSON name="HPX_ConvertToJSON">
+    <DisplayName>HPX_ConvertToJSON</DisplayName>
+    <Options/>
+    <OutputVariable>apiProductJSON</OutputVariable>
+    <Source>AccessEntity.HPX_GetApiProduct</Source>
+</XMLToJSON>

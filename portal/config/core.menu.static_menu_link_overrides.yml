@@ -1,0 +1,21 @@
+definitions:
+  standard__front_page:
+    weight: -39
+    menu_name: main
+    parent: ''
+    expanded: false
+    enabled: false
+  apigee_edge__apps:
+    enabled: true
+    menu_name: account
+    parent: ''
+    expanded: false
+    weight: -30
+  user__page:
+    enabled: true
+    menu_name: account
+    parent: ''
+    weight: -10
+    expanded: false
+_core:
+  default_config_hash: o4bYR9ZupWb3AsOIizTUG4g-nu1mdJqA59UB7QT-ifQ

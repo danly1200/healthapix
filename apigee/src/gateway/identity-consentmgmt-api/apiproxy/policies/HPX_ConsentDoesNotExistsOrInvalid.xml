@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="HPX_ConsentDoesNotExistsOrInvalid">
+    <DisplayName>HPX_ConsentDoesNotExistsOrInvalid</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"valid":false, "exists":false, "id":null, "new_scopes":[], "existing_scopes":[]}</Payload>
+            <StatusCode>200</StatusCode>
+            <ReasonPhrase>OK</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

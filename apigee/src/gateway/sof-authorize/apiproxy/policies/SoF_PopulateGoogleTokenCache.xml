@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="SoF_PopulateGoogleTokenCache">
+    <DisplayName>SoF_PopulateGoogleTokenCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="SERVICE_ACCOUNT_NAME"/>
+    </CacheKey>
+    <CacheResource>sof-resources-cache</CacheResource>
+    <Scope>Exclusive</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>3300</TimeoutInSec>
+    </ExpirySettings>
+    <Source>backend.config</Source>
+</PopulateCache>

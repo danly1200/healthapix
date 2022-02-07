@@ -1,0 +1,11 @@
+name: 'DrupalExp Block Settings'
+type: module
+description: 'Provide Advanced Block Settings'
+core: 8.x
+version: 8.x-1.0
+package: DrupalExp
+dependencies:
+  - image_browser
+'project status url': 'https://projects.drupalexp.com/updates'
+project: dexp_block_settings
+datestamp: 1529398017

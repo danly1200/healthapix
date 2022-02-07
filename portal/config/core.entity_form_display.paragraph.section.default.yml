@@ -1,0 +1,41 @@
+uuid: 1a76c563-c7e7-4ef3-b3bb-08636304499e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section.field_description
+    - field.field.paragraph.section.field_title
+    - paragraphs.paragraphs_type.section
+  enforced:
+    module:
+      - fhir_overview
+  module:
+    - text
+_core:
+  default_config_hash: IcejRI-yp0I05tzSuopRvrhDLrxlC23MDPzYhnAlw5c
+id: paragraph.section.default
+targetEntityType: paragraph
+bundle: section
+mode: default
+content:
+  field_description:
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

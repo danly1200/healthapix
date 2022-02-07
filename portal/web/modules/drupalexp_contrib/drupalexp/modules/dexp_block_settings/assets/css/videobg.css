@@ -1,0 +1,37 @@
+.mb_YTPTime{
+    display:none;
+}
+.mb_YTPBar{
+    right: 10px;
+    bottom: 10px;
+}
+.mb_YTPBar .mb_YTPPlaypause,
+.mb_YTPBar .mb_YTPMuteUnmute{
+    font-size: 0;
+}
+.mb_YTPBar .mb_OnlyYT{
+    display: none;
+}
+.mb_YTPBar .mb_YTPPlaypause::after,
+.mb_YTPBar .mb_YTPMuteUnmute::after{
+    font-family: FontAwesome;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+.mb_YTPBar .mb_YTPPlaypause::after{
+    content: "\f04c";
+}
+.mb_YTPBar .YTPPause .mb_YTPPlaypause::after{
+    content: "\f04b";
+}
+.mb_YTPBar .mb_YTPMuteUnmute::after{
+    content: "\f026";
+}
+.mb_YTPBar .YTPUnmuted .mb_YTPMuteUnmute::after{
+    content: "\f028";
+}

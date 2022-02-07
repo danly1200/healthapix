@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="HPX_SetFlowErrorForInvalidCode">
+    <DisplayName>SetFlowErrorForInvalidCode</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>flowError</Name>
+        <Ref>errorMessage</Ref>
+        <Value>INTERNAL_SERVER_ERROR</Value>
+    </AssignVariable>
+</AssignMessage>

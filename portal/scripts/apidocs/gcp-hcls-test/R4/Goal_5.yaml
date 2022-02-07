@@ -1,0 +1,610 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Goal resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/r4
+tags:
+- name: Goal
+paths:
+  /Goal:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: External Ids for this goal
+        schema:
+          type: string
+      - name: lifecycle-status
+        in: query
+        description: proposed | planned | accepted | active | on-hold | completed
+          | cancelled | entered-in-error | rejected
+        schema:
+          type: string
+      - name: achievement-status
+        in: query
+        description: in-progress | improving | worsening | no-change | achieved |
+          sustaining | not-achieved | no-progress | not-attainable
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Who this goal is intended for
+        schema:
+          type: string
+      - name: subject
+        in: query
+        description: Who this goal is intended for
+        schema:
+          type: string
+      - name: start-date
+        in: query
+        description: When goal pursuit begins
+        schema:
+          type: string
+          format: date
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: E.g. Treatment, dietary, behavioral, etc.
+        schema:
+          type: string
+      - name: target-date
+        in: query
+        description: Reach goal on or before
+        schema:
+          type: string
+          format: date
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Goal'
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+    post:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Goal'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+  /Goal/{id}:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Goal'
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+    put:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Goal'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+    delete:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+  /Goal/{id}/_history:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+  /Goal/{id}/_history/{vid}:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Goal'
+      security:
+        - OAuthV2B2B:
+            - system/Goal.read
+            - system/Goal.write
+components:
+  schemas:
+    Goal:
+      required:
+      - addresses
+      - category
+      - description
+      - expressedBy
+      - id
+      - identifier
+      - lifecycleStatus
+      - meta
+      - outcomeReference
+      - priority
+      - resourceType
+      - startDate
+      - statusDate
+      - statusReason
+      - subject
+      - target
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - value
+            type: object
+            properties:
+              value:
+                minLength: 1
+                type: string
+        lifecycleStatus:
+          minLength: 1
+          type: string
+        category:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - code
+                  - system
+                  type: object
+                  properties:
+                    system:
+                      minLength: 1
+                      type: string
+                    code:
+                      minLength: 1
+                      type: string
+        priority:
+          required:
+          - coding
+          - text
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+            text:
+              minLength: 1
+              type: string
+        description:
+          required:
+          - text
+          type: object
+          properties:
+            text:
+              minLength: 1
+              type: string
+        subject:
+          required:
+          - display
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        startDate:
+          minLength: 1
+          type: string
+        target:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - dueDate
+            type: object
+            properties:
+              measure:
+                required:
+                - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - code
+                      - display
+                      - system
+                      type: object
+                      properties:
+                        system:
+                          minLength: 1
+                          type: string
+                        code:
+                          minLength: 1
+                          type: string
+                        display:
+                          minLength: 1
+                          type: string
+              detailRange:
+                required:
+                - high
+                - low
+                type: object
+                properties:
+                  low:
+                    required:
+                    - code
+                    - system
+                    - unit
+                    - value
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      unit:
+                        minLength: 1
+                        type: string
+                      system:
+                        minLength: 1
+                        type: string
+                      code:
+                        minLength: 1
+                        type: string
+                  high:
+                    required:
+                    - code
+                    - system
+                    - unit
+                    - value
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      unit:
+                        minLength: 1
+                        type: string
+                      system:
+                        minLength: 1
+                        type: string
+                      code:
+                        minLength: 1
+                        type: string
+              dueDate:
+                minLength: 1
+                type: string
+        statusDate:
+          minLength: 1
+          type: string
+        statusReason:
+          minLength: 1
+          type: string
+        expressedBy:
+          required:
+          - display
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        addresses:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            type: object
+            properties:
+              display:
+                minLength: 1
+                type: string
+        outcomeReference:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+        meta:
+          required:
+          - tag
+          type: object
+          properties:
+            tag:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Goal.read: Read permissions for Goal demographics.
+            system/Goal.write: Write permissions for Goal demographics.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Goal.read: Read permissions for Goal demographics.
+            system/Goal.write: Write permissions for Goal demographics.

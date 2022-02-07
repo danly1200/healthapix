@@ -1,0 +1,59 @@
+<?php
+
+use Drupal\block\Entity\Block;
+use Drupal\Core\Form\FormStateInterface;
+
+/*
+ * Implement hook_theme()
+ * To assign templates for the custom fhir blocks.
+ *
+ */
+function fhir_blocks_theme($existing, $type, $theme, $path) {
+  return [
+    'block__fhir_blocks' => [
+      'render element' => 'elements',
+      'template' => 'block--fhir-block',
+      'base hook' => 'block',
+    ],
+    'block__fhir_get_started' => [
+      'render element' => 'elements',
+      'template' => 'block--fhir-get-started',
+      'base hook' => 'block',
+    ],
+    'block__fhir_app_gallery' => [
+      'render element' => 'elements',
+      'template' => 'block--fhir-app-gallery',
+      'base hook' => 'block',
+    ],
+    'block__fhir_copyright' => [
+      'render element' => 'elements',
+      'template' => 'block--fhir-copyright',
+      'base hook' => 'block',
+    ],
+    'block__fhir_logo_caption' => [
+      'render element' => 'elements',
+      'template' => 'block--fhir-logo-caption',
+      'base hook' => 'block',
+    ],
+    'block__fhir_social_bottom' => [
+      'render element' => 'elements',
+      'template' => 'block--fhir-social-bottom',
+      'base hook' => 'block',
+    ],
+  ];
+}
+
+/*
+ * Implements hook_form_alter().
+ *  To unset and disable fields for user login form block.
+ */
+
+function fhir_blocks_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $user = \Drupal::currentUser()->getRoles();
+  if (!in_array("administrator", $user) && $form_id == 'user_form') {
+    unset($form['contact']);
+  }
+  if ($form_id == 'user_form') {
+    $form['account']['mail']['#disabled'] = TRUE;
+  }
+}

@@ -1,0 +1,9 @@
+uuid: 66cf5db4-0ef3-4c2e-a871-95ff603c8714
+langcode: en
+status: true
+dependencies: {  }
+id: payload_fields
+label: 'Test data'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

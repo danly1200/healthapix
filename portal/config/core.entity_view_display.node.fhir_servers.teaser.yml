@@ -1,0 +1,28 @@
+uuid: f983840e-99e7-47bc-8ac6-f75f848df34c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.fhir_servers.field_fhir_api_products
+    - field.field.node.fhir_servers.field_fhir_server_base_url
+    - field.field.node.fhir_servers.field_fhir_version_autofill
+    - field.field.node.fhir_servers.field_server_file
+    - node.type.fhir_servers
+  module:
+    - user
+id: node.fhir_servers.teaser
+targetEntityType: node
+bundle: fhir_servers
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_fhir_api_products: true
+  field_fhir_server_base_url: true
+  field_fhir_version_autofill: true
+  field_server_file: true

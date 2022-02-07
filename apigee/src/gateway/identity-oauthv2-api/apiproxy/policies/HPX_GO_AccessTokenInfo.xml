@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GetOAuthV2Info async="false" continueOnError="true" enabled="true" name="HPX_GO_AccessTokenInfo">
+    <DisplayName>HPX_GO_AccessTokenInfo</DisplayName>
+    <AccessToken ref="request.formparam.token"/>
+</GetOAuthV2Info>

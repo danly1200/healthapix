@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Condition>(request.verb is "OPTIONS")</Condition>
+        <FaultRules/>
+        <Name>HPX_HandleOPTIONSRequest</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_ReadConfigKVM</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_EnforceRateLimit</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_CollectVolatileHeadersForPagination</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>HPX_SetDefaultPathSuffix</Name>
+    </Step>
+</SharedFlow>

@@ -1,0 +1,196 @@
+
+#accordian h3 a {
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 34px;
+  display: block;
+  /*color: white;*/
+  text-decoration: none;
+}
+#accordian li {
+  list-style-type: none;
+}
+
+#accordian ul ul li a,
+#accordian h4 {
+  display: inline-block;
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+  position: relative;
+  max-width: 170px;
+}
+
+/*#accordian ul ul li a:hover {*/
+/*  !*background: #003545;*!*/
+/*  !*border-left: 5px solid lightgreen;*!*/
+/*}*/
+
+#accordian ul ul {
+  display: none;
+}
+
+#accordian li.active>ul {
+  display: block;
+}
+
+/*#accordian ul ul ul {*/
+/*  margin-left: 15px;*/
+/*  !*border-left: 1px dotted rgba(0, 0, 0, 0.5);*!*/
+/*}*/
+
+#accordian ul.two-inner-api-accordion li > a:not(:only-child):after {
+ display: none;
+}
+
+#accordian ul li > span:not(:only-child):after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E");
+  float:right;
+  padding:10px;
+  cursor:pointer;
+}
+
+#accordian ul li.active > span:not(:only-child):after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M6 19h12v2H6z'/%3E%3C/svg%3E");
+  float:right;
+  padding:10px;
+  cursor:pointer;
+}
+#accordian ul li a span {
+  float: right;
+  background-color: inherit;
+  padding: 10px;
+}
+
+ul.api-accordion li h2 > span:after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E");
+  float:right;
+  padding:9px;
+  cursor:pointer;
+}
+ul.api-accordion li.active h2 > span:after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='14' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3Cpath d='M6 19h12v2H6z'/%3E%3C/svg%3E");
+  float:right;
+  padding:9px;
+  cursor:pointer;
+}
+ul.api-accordion {
+  display:block;
+  padding-left:0px;
+  font-family: Roboto, Sans-Serif;
+
+}
+ul.api-accordion h2 {
+  font-family: Roboto, Sans-Serif;
+  background-color: #F0F0F0;
+  margin: 0px;
+  letter-spacing: 0.42px;
+  color: #434242;
+  font-size: 18px;
+  border: 1px solid #E3E3E3;
+}
+
+ul.api-accordion a {
+  letter-spacing: 0.15px;
+  color: #00000099;
+  display: block;
+  padding: 15px 10px;
+  font-size: 14px;
+}
+
+ul.api-accordion li.api-content-link a:hover{
+  color: blue!important;
+}
+
+ul.api-accordion h2 a {
+  padding: 10px 10px;
+  background-color: #F0F0F0;
+  margin: 0px;
+  letter-spacing: 0.42px;
+  color: #434242;
+  font-size: 18px;
+  display:inline-block;
+  max-width: 170px;
+}
+
+ul.one-inner-api-accordion > li {
+  background-color: #fafafa;
+}
+
+ul.one-inner-api-accordion {
+  background-color: #fafafa;
+  padding-inline-start: 20px;
+}
+
+ul.two-inner-api-accordion {
+  padding-inline-start: 20px;
+}
+ul.two-inner-api-accordion a{
+  display: inline-block!important;
+}
+ul.two-inner-api-accordion li i , ul.one-inner-api-accordion li i{
+  float:right;
+  padding-top: 15px;
+  padding-right: 15px;
+  font-size:14px;
+}
+span.plus {
+  float:right;
+  cursor:pointer;
+}
+
+div.interoperability-title h1 {
+  border-bottom: 1px solid lightgrey;
+  padding: 10px;
+  color: black;
+}
+.content.interoperability-help {
+  padding: 0 10px 0 10px;
+}
+
+div.field--name-field-interoperability-api-tag label{
+  display:none;
+}
+
+form#fhir-app-edit #edit-fhir-server #demo-selected-text {
+  pointer-events: none;
+  color: rgba(0,0,0,.37);
+}
+
+form#fhir-app-edit #edit-fhir-server label {
+  color: rgba(0,0,0,.37);
+}
+
+li.api-content-link.active a {
+  font-style: italic;
+  color: #4285f4;
+}
+
+@media (min-width: 840px) and (max-width: 1133px) {
+  ul.one-inner-api-accordion {
+    padding-inline-start: 10px;
+  }
+  ul.two-inner-api-accordion {
+    padding-inline-start: 10px;
+  }
+  ul.api-accordion h2 a {
+    max-width: 100px;
+  }
+  ul.api-accordion li h2 > span:after {
+    padding: 9px 5px 9px 9px;
+  }
+  #accordian ul ul li a, #accordian h4 {
+    max-width: 90px;
+  }
+
+}
+@media (min-width: 480px) and (max-width: 573px) {
+  #accordian ul ul li a, #accordian h4 {
+    max-width: 100px;
+  }
+  ul.api-accordion h2 a {
+    max-width: 120px;
+  }
+}
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="HPX_OA_GenerateAccessTokenBackendServices">
+    <DisplayName>HPX_OA_GenerateAccessTokenBackendServices</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ClientId>{client_id}</ClientId>
+    <Attributes>
+        <Attribute display="true" name="userid"/>
+        <Attribute name="IAM_token" display="false" ref="IAM.access_token">NoToken</Attribute>
+    </Attributes>
+    <ExpiresIn>3600000</ExpiresIn>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <GrantType>request.formparam.grant_type</GrantType>
+    <Operation>GenerateAccessToken</Operation>
+    <GenerateResponse enabled="false">
+        <Format>FORM_PARAM</Format>
+    </GenerateResponse>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <Scope>request.formparam.scope</Scope>
+    <SupportedGrantTypes>
+        <GrantType>client_credentials</GrantType>
+    </SupportedGrantTypes>
+    <Tokens/>
+</OAuthV2>

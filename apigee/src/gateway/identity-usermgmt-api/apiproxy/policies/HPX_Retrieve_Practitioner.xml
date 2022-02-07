@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_Retrieve_Practitioner">
+    <DisplayName>HPX_Retrieve_Practitioner</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="true" variable="screquest">
+        <Set>
+            <Headers>
+                <Header name="Authorization">Bearer {IAM.access_token}</Header>
+            </Headers>
+            <Verb>GET</Verb>
+            <Path></Path>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>responseData</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://healthcare.googleapis.com/{targetBaseURI}/Practitioner?identifier={emailIdentifier}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

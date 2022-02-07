@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_ReAssignScopeValues">
+    <DisplayName>HPX_AM_ReAssignScopeValues</DisplayName>
+    <Properties/>
+    <Set>
+        <QueryParams>
+            <QueryParam name="scope">{request.formparam.scope}</QueryParam>
+        </QueryParams>
+    </Set>
+    <AssignVariable>
+        <Name>scope</Name>
+        <Ref>request.formparam.scope</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,30 @@
+uuid: d155b77e-d86f-4adb-8422-d88bb37f3f9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.slideshow_home
+  module:
+    - system
+    - views
+  theme:
+    - fhir_responsive_theme
+id: views_block__slideshow_home_block_1
+theme: fhir_responsive_theme
+region: homepage_header
+weight: 0
+provider: null
+plugin: 'views_block:slideshow_home-block_1'
+settings:
+  id: 'views_block:slideshow_home-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,267 @@
+{#
+/**
+ * @file
+ * Default theme implementation My Apps page..
+ *
+ *
+ * @ingroup templates
+ */
+#}
+
+{% set apiProductsMap = {} %}
+{% set apiProducts = {} %}
+{% set never = 'Never' %}
+  <div class="myapps-wrapper">
+      <div class="mdc-top-app-bar__section--align-end create-app">
+        <a href="{{ url('entity.developer_app.add_form_for_developer',{'user': user_id}) }}">Create App</a>
+      </div>
+      <div class="acc-content">
+        {% if my_apps is not empty %}
+          <div class="my-app-heading">
+            <span class="mdc-top-app-bar__section--align-start">
+              My Apps
+            </span>
+          </div>
+
+        <div class="acc">
+          {% for developerApp in my_apps %}
+          <div class="acc__card">
+
+            <div class="acc__title">
+              <div class="panel-title">
+                  <a href="#{{ developerApp.displayName|replace(' ','-') }}"><span>{{ developerApp.displayName }}</span></a>
+                  <span class="material-icons arrow-icon" aria-hidden="true">keyboard_arrow_down</span>
+                <div class="status-label">
+                  <span class="label label-success">{{ developerApp.status }}</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="acc__panel">
+
+
+              <div id="{{ developerApp.displayName|replace(' ','-') }}" class="my-apps-panels panel-collapse">
+                <div class="acc-panel-tabs">
+
+                  <div class="mdc-tab-bar my-apps-tabs" role="tablist">
+                    <div class="mdc-tab-scroller">
+                      <div class="mdc-tab-scroller__scroll-area">
+                        <div class="mdc-tab-scroller__scroll-content">
+                          <button class="mdc-tab mdc-tab--active" data-tab="myapp-keys" role="tab" aria-selected="true" tabindex="0">
+                            <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label"><a href="#my-app-keys-{{ developerApp.name|replace('_','-') }}" data-toggle="tab">Keys</a></span>
+                            </span>
+                            <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                            </span>
+                            <span class="mdc-tab__ripple"></span>
+                          </button>
+
+                          <button class="mdc-tab" role="tab" data-tab="myapp-products" aria-selected="true" tabindex="0">
+                            <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label">
+                              <a href="#my-app-api-products-{{ developerApp.name|replace('_','-') }}" data-toggle="tab">Products</a>
+                            </span>
+                            </span>
+                            <span class="mdc-tab-indicator">
+                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                            </span>
+                            <span class="mdc-tab__ripple"></span>
+                          </button>
+
+                          <button class="mdc-tab" role="tab" data-tab="my-app-details" aria-selected="true" tabindex="0">
+                            <span class="mdc-tab__content">
+                            <span class="mdc-tab__text-label"><a href="#my-app-details-{{ developerApp.name|replace('_','-') }}"#} data-toggle="tab">Details</a></span>
+                            </span>
+                            <span class="mdc-tab-indicator">
+                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                            </span>
+                            <span class="mdc-tab__ripple"></span>
+                          </button>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Edit/Delete tabs -->
+                  <div class="tabs-right">
+                    <div class="tab-inner">
+                    <div class="mdc-tab">
+                      <span>
+                        <a href="{{ url('fhir_restapi.my_app_analytics_controller_getMyAppName',{'app': developerApp.name}) }}">Analytics</a>
+                                              </span>
+                    </div>
+                    <div class="mdc-tab">
+                      <span>
+                        <a class="use-ajax" data-dialog-type="modal" href="{{ url('entity.developer_app.edit_form_for_developer',{'user': user_id,'app': developerApp.name}) }}">Edit App{# {{ developerApp.displayName }} #}</a>
+                      </span>
+                    </div>
+                    <div class="mdc-tab">
+                      <span>
+                        <a class="use-ajax" data-dialog-type="modal" href="{{ url('entity.developer_app.delete_form_for_developer',{'user': user_id,'app': developerApp.name}) }}">Delete App{# {{ developerApp.displayName }}#}</a>
+                      </span>
+                    </div>
+                  </div>
+                  </div>
+                  <!-- Edit/Delete tabs -->
+
+                </div>
+                <div class="acc-panel-body">
+                  <div class="tab-content">
+                    <div class="myapp-keys acc-panel-content acc-panel-content-active">
+
+
+                      <div class="mdc-data-table my-app-keys" id="my-app-keys-{{ developerApp.name|replace('_','-') }}">
+                        {% if developerApp.Credentials is not empty %}
+                          {% for credential in developerApp.Credentials %}
+                              <div class="my-apps-keys">
+                                <table class="mdc-data-table__table">
+                                  <thead>
+                                  <tr class="mdc-data-table__header-row app-table-header">
+                                    <th style="width:25%" class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                                      <span><strong>{{ developerApp.displayName }}'s Keys</strong></span>
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                  </tr>
+                                  </thead>
+                                  <tbody class="mdc-data-table__content">
+                                  <tr class="mdc-data-table__row">
+                                    <th class="mdc-data-table__cell" scope="row">Consumer Key</th>
+                                    <td class="mdc-data-table__cell">{{ credential.consumerKey }}</td>
+                                  </tr>
+                                  <tr class="mdc-data-table__row">
+                                    <th class="mdc-data-table__cell" scope="row">Consumer Secret</th>
+                                    <td class="mdc-data-table__cell">{{ credential.consumerSecret }}</td>
+                                  </tr>
+                                  <tr class="mdc-data-table__row">
+                                    <th class="mdc-data-table__cell" scope="row">Key Issued</th>
+                                    <td class="mdc-data-table__cell">
+                                      {% if credential.issuedAt is not null %}
+                                        {{ credential.issuedAt.date|date('M, m/d/Y - h:i') }}
+                                      {% else %}
+                                        {{ never }}
+                                      {% endif %}
+                                    </td>
+                                  </tr>
+                                  <tr class="mdc-data-table__row">
+                                    <th class="mdc-data-table__cell" scope="row">Expires</th>
+                                    <td class="mdc-data-table__cell">
+                                      {% if credential.expiresAt is not null %}
+                                        {{ credential.expiresAt.date|date('M, m/d/Y - h:i') }}
+                                      {% else %}
+                                        {{ never }}
+                                      {% endif %}
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+
+                            {% if credential.apiProducts is not empty %}
+                              {% for apiProduct in credential.apiProducts %}
+
+                                {% set apiProductsMap = apiProductsMap|merge([[apiProduct.apiproduct,apiProduct.status]]) %}
+                                {% set apiProducts = apiProducts|merge([apiProduct.apiproduct]) %}
+                              {% endfor %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      </div>
+
+                    </div>
+
+                    <div class="myapp-products acc-panel-content">
+                      <div class="mdc-data-table my-app-api-products" id="my-app-api-products-{{ developerApp.name|replace('_','-') }}">
+                        {% if apiProductsMap is not empty %}
+                              <table class="mdc-data-table__table">
+                                <thead>
+                                <tr class="mdc-data-table__header-row app-table-header">
+                                  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                                    <strong>API Product</strong>
+                                  </th>
+                                  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                                    <strong><strong>Status </strong></strong>
+                                  </th>
+                                </tr>
+                                </thead>
+                                <tbody class="mdc-data-table__content">
+                                {% for value in apiProductsMap %}
+                                  <tr class="mdc-data-table__row">
+                                    {% if value[0] is defined %}
+                                    <th class="mdc-data-table__cell" scope="row">
+                                        {{value[0]}}
+                                    </th>
+                                    {% endif %}
+                                    {% if value[1] is defined %}
+                                      <td class="mdc-data-table__cell">
+                                        &nbsp;{{ developerApp.status }}
+                                      </td>
+                                    {% endif %}
+                                  </tr>
+                                {% endfor %}
+
+                                </tbody>
+                              </table>
+                        {% endif %}
+                      </div>
+
+                    </div>
+
+
+                    <div class="my-app-details acc-panel-content">
+                      <div class="mdc-data-table">
+                        <table class="mdc-data-table__table">
+                          <thead>
+                          <tr class="mdc-data-table__header-row app-table-header">
+                            <th style="width:25%" class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                              <strong>{{ developerApp.displayName }}'s Details</strong>
+                            </th>
+                            <th>
+
+                            </th>
+                          </tr>
+                          </thead>
+                          <tbody class="mdc-data-table__content">
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Application Name</th>
+                            <td class="mdc-data-table__cell">{{ developerApp.displayName }}</td>
+                          </tr>
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">API products</th>
+                            <td class="mdc-data-table__cell">{{ apiProducts|join(", ") }}</td>
+                          </tr>
+                          <tr class="mdc-data-table__row">
+                            <th class="mdc-data-table__cell" scope="row">Callback URL</th>
+                            <td class="mdc-data-table__cell">{{ developerApp.callbackUrl }}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+            {% set apiProducts = {} %}
+            {% set apiProductsMap = {} %}
+          {% endfor %}
+        </div>
+        {% else %}
+          <div class="my-app-heading">
+            <span class="mdc-top-app-bar__section--align-start">
+              You don't have any apps registered with us. 
+            </span>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+

@@ -1,0 +1,11 @@
+name: 'DrupalExp Menu'
+type: module
+description: 'Provide dropdown menu and megamenu style'
+package: DrupalExp
+core: 8.x
+version: 8.x-1.2
+dependencies:
+  - dexp
+'project status url': 'https://projects.drupalexp.com/updates'
+project: dexp_menu
+datestamp: 1535425377

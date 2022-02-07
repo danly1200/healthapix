@@ -1,0 +1,37 @@
+uuid: 0110bb51-f701-4c80-88b1-5dc35cfe8ba7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.time_line
+    - field.field.node.apps.body
+    - field.field.node.apps.field_app_categories
+    - field.field.node.apps.field_app_image
+    - field.field.node.apps.field_app_tags
+    - field.field.node.apps.field_app_video
+    - field.field.node.apps.field_author_name
+    - field.field.node.apps.field_one_liner
+    - field.field.node.apps.field_website
+    - node.type.apps
+  module:
+    - user
+id: node.apps.time_line
+targetEntityType: node
+bundle: apps
+mode: time_line
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_apps: true
+  field_app_categories: true
+  field_app_image: true
+  field_app_tags: true
+  field_app_video: true
+  field_author_name: true
+  field_one_liner: true
+  field_website: true

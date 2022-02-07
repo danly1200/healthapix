@@ -1,0 +1,14 @@
+<div{{ attributes.setAttribute('id', html_id) }}>
+  <{{ render_el }} class="dexp-title">{{ title|raw }}</{{ render_el }}>
+  {% if subtitle is not empty %}
+    <p class="dexp-subtitle">{{ subtitle|raw }}</p>
+  {% endif %}
+</div>
+{% if backword is not empty %}
+  <style type="text/css">
+    #{{ html_id }} .dexp-title:before{
+      content:"{{ backword|raw }}";
+      display: block;
+    }
+  </style>
+{% endif %}

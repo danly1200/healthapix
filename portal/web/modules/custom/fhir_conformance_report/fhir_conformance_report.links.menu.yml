@@ -1,0 +1,12 @@
+fhir_conformance_report.metadata_config_form:
+  title: 'Version Metadata URLs'
+  route_name: fhir_conformance_report.conformance_settings_form
+  description: 'Configuring Metadata URLs for Version'
+  parent: system.admin_config
+  weight: 100
+fhir_conformance_report.fhir_conformance_verbiage:
+  title: 'FHIR Conformance Verbiage'
+  route_name: fhir_conformance_report.fhir_conformance_verbiage
+  description: 'A description for the menu entry'
+  parent: system.admin_config
+  weight: 99

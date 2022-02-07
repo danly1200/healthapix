@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SoF_SC_GetUserinfo">
+    <DisplayName>SoF_SC_GetUserinfo</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="userInfoRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Verb>GET</Verb>
+            <Headers>
+                <Header name="Accept">application/json</Header>
+                <Header name="Authorization">{req.Authorization}</Header>
+            </Headers>
+            <Payload/>
+        </Set>
+    </Request>
+    <Response>userInfoResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://{sc_userInfo_urlhost}/{sc_userInfo_urlpath}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

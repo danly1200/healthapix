@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_SetRevokeResponse">
+    <DisplayName>HPX_AM_SetRevokeResponse</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"token":"@request.formparam.token#"}
+		</Payload>
+        <StatusCode>200</StatusCode>
+        <ReasonPhrase>Ok</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

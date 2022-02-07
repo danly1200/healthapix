@@ -1,0 +1,33 @@
+#dexp-grid-message span{
+  background: yellow none repeat scroll 0 0;
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  text-align: center;
+  width: 100px;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: -50px;
+}
+#dexp-grid-message{
+  display: none;
+  background: rgba(255,255,255,0.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+.dexp-grid-inner{
+  position: relative;
+}
+.dexp-grid-inner .dexp-grid-item > *{
+  overflow: hidden;
+}
+.dexp-grid-masonry-resize .dexp-grid-item{
+  background-position: center center;
+  background-size: cover;
+}

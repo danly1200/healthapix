@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="true" enabled="true" name="HPX_OA_VerifyAccessToken">
+    <DisplayName>HPX_OA_VerifyAccessToken</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Attributes/>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>VerifyAccessToken</Operation>
+    <AccessToken>request.formparam.token</AccessToken>
+    <!--<RefreshToken>request.formparam.token</RefreshToken>-->
+    <SupportedGrantTypes/>
+    <GenerateResponse enabled="true"/>
+    <Tokens/>
+</OAuthV2>

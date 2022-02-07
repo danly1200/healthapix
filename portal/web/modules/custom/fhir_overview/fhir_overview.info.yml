@@ -1,0 +1,8 @@
+name: 'FHIR Overview Page'
+type: module
+description: 'FHIR Overview page content type'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - node
+  - paragraphs

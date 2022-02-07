@@ -1,0 +1,23 @@
+uuid: 296afaaa-69a5-4503-b1bc-25275156ef23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.oauth_swagger_api
+  module:
+    - text
+id: node.oauth_swagger_api.body
+field_name: body
+entity_type: node
+bundle: oauth_swagger_api
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

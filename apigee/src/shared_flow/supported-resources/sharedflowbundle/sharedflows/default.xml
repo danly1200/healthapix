@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>calculateResourceListBasePath</Name>
+    </Step>
+    <Step>
+        <Name>HPX_LookupCacheForResourceList</Name>
+    </Step>
+    <Step>
+        <Condition>(lookupcache.HPX_LookupCacheForResourceList.cachehit is false)</Condition>
+        <Name>HPX_CreateDelay</Name>
+    </Step>
+    <Step>
+        <Condition>(lookupcache.HPX_LookupCacheForResourceList.cachehit is false)</Condition>
+        <Name>HPX_Retrieve_Metadata</Name>
+    </Step>
+    <Step>
+        <Condition>(lookupcache.HPX_LookupCacheForResourceList.cachehit is false)</Condition>
+        <Name>HPX_ExtractResourceNames</Name>
+    </Step>
+    <Step>
+        <Condition>(lookupcache.HPX_LookupCacheForResourceList.cachehit is false)</Condition>
+        <Name>HPX_PopulateCacheWithResourceList</Name>
+    </Step>
+</SharedFlow>

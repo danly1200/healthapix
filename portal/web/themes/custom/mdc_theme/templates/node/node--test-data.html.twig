@@ -1,0 +1,58 @@
+<div class="node-test-data">
+  <div class="mdc-tab-bar" role="tablist">
+    <div class="mdc-tab-scroller">
+      <div class="mdc-tab-scroller__scroll-area">
+        <div class="mdc-tab-scroller__scroll-content">
+          {% set node_term_name = '' %}
+          {% for key, item in node.field_payload_collection %}
+            {% if key == 0 %}
+              {% set tab_class = 'mdc-tab--active' %}
+            {% else %}
+              {% set tab_class = '' %}
+            {% endif %}
+
+            {% if node_term_name != item.entity.field_payload_version.entity.name.value %}
+
+            <button class="mdc-tab {{ tab_class }}" id="{{ item.entity.field_payload_version.entity.name.value }}"
+                    role="tab" aria-selected="true" tabindex="0">
+              <span class="mdc-tab__content">
+                  <span
+                    class="mdc-tab__text-label test-data-tab "> {{ item.entity.field_payload_version.entity.name.value }}</span>
+              </span>
+            </button>
+              {% set node_term_name = item.entity.field_payload_version.entity.name.value %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mdc-layout-grid">
+    {% for key, item in node.field_payload_collection %}
+      <div class="payload-container payload-container-number-{{ key }}">
+        {% if key == 0 %}
+          {% set add_class = 'default-active' %}
+        {% else %}
+          {% set add_class = '' %}
+        {% endif %}
+        <div
+          class="inner-payload {{ add_class }} inner-payload-{{ item.entity.field_payload_version.entity.name.value }}"
+          id="{{ item.entity.field_payload_version.entity.name.value }}">
+          <div class="payload-id-section" >ID: {{ item.entity.field_payload_id.value }}</div>
+          <div class="payload-header-section">
+            <span>Payload:</span>
+            <button class="ghc-fhir-sample-copy-btn btn" data-clipboard-target=".node-test-data #payload-section">
+              <img src="/themes/custom/mdc_theme/images/copy-image.png">
+            </button>
+          </div>
+          <div class="payload-body-section" id="payload-section"> {{ item.entity.field_payload.value | raw }}</div>
+
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+
+</div>

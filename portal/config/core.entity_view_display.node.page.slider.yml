@@ -1,0 +1,23 @@
+uuid: c2ad7b4f-09f3-4e6f-be66-77ee5a64a575
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.slider
+    - field.field.node.page.body
+    - node.type.page
+  module:
+    - user
+id: node.page.slider
+targetEntityType: node
+bundle: page
+mode: slider
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_page: true

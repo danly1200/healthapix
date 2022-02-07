@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <PreFlow>
+        <Request>
+            <Step>
+                <Name>HPX_AddVariablesToTargetRequest</Name>
+            </Step>
+        </Request>
+    </PreFlow>
+    <Flows>
+        <Flow name="login">
+            <Request>
+                <Step>
+                    <Name>HPX_SendScopeAsPayload</Name>
+                </Step>
+            </Request>
+            <Condition>(proxy.pathsuffix MatchesPath "/login") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HostedTarget/>
+</TargetEndpoint>

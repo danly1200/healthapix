@@ -1,0 +1,8 @@
+uuid: 92f7a7bf-3911-4b93-b761-b19a60a6b893
+langcode: en
+status: true
+dependencies: {  }
+name: 'App Categories'
+vid: app_categories
+description: 'App Categories'
+weight: 0

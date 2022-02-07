@@ -1,0 +1,21 @@
+uuid: e019752e-acf2-42e2-b9ab-c348865bf98b
+langcode: en
+status: true
+dependencies:
+  module:
+    - apigee_edge
+id: developer_app.field_jwks_uri
+field_name: field_jwks_uri
+entity_type: developer_app
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

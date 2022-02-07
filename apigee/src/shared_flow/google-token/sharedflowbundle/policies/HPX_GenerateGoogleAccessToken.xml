@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_GenerateGoogleAccessToken">
+    <DisplayName>HPX_GenerateGoogleAccessToken</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="googleAccessTokenRequest">
+        <Set>
+            <Headers>
+                <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+            </Headers>
+            <FormParams>
+                <FormParam name="grant_type">urn:ietf:params:oauth:grant-type:jwt-bearer</FormParam>
+                <FormParam name="assertion">{googleJwt}</FormParam>
+            </FormParams>
+            <Verb>POST</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>googleAccessTokenResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://oauth2.googleapis.com/token</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

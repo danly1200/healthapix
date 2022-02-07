@@ -1,0 +1,20 @@
+uuid: ab780dd1-fcc4-4fac-b415-8c92befe217c
+langcode: en
+status: true
+dependencies:
+  module:
+    - apigee_edge
+    - node
+id: node.field_fhir_api_products
+field_name: field_fhir_api_products
+entity_type: node
+type: entity_reference
+settings:
+  target_type: api_product
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

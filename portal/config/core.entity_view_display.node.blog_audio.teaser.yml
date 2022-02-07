@@ -1,0 +1,35 @@
+uuid: ed074fcd-fe2f-4edf-828a-d2870ad142cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.blog_audio.body
+    - field.field.node.blog_audio.field_audio
+    - field.field.node.blog_audio.field_content_tag
+    - node.type.blog_audio
+  module:
+    - text
+    - user
+id: node.blog_audio.teaser
+targetEntityType: node
+bundle: blog_audio
+mode: teaser
+content:
+  body:
+    label: hidden
+    weight: 0
+    type: text_summary_or_trimmed
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment_node_blog_audio: true
+  field_audio: true
+  field_content_tag: true

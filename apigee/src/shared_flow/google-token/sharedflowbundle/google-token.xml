@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="6" name="google-token">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1597395593071</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>undefined</Description>
+    <DisplayName>google-token</DisplayName>
+    <LastModifiedAt>1597395593071</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:f271c1e2eb28fa8fdc0662dca9ffbb8de87f58aa99b3785f9ce73a75eec257804f2c828de5571963dbdc81515fb2ac57bbbf5eede34130d510bfa883af052f20</ManifestVersion>
+    <Policies>
+        <Policy>HPX_ExtractFHIRServiceAccountCredentials</Policy>
+        <Policy>HPX_ExtractGoogleAccessToken</Policy>
+        <Policy>HPX_ExtractGoogleTokenCachePayload</Policy>
+        <Policy>HPX_GenerateGoogleAccessToken</Policy>
+        <Policy>HPX_GenerateGoogleServiceAccountJWT</Policy>
+        <Policy>HPX_GetProductAttributes</Policy>
+        <Policy>HPX_IdentifyProduct</Policy>
+        <Policy>HPX_LookupGoogleTokenCache</Policy>
+        <Policy>HPX_ParseProductAttributes</Policy>
+        <Policy>HPX_PopulateGoogleTokenCache</Policy>
+        <Policy>HPX_ProductXMLToJson</Policy>
+        <Policy>HPX_ReadFHIRServiceAccountCredentials</Policy>
+        <Policy>HPX_SetGoogleTokenCachePayload</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_GetServerName.js</Resource>
+        <Resource>jsc://HPX_IdentifyProduct.js</Resource>
+        <Resource>jsc://HPX_ParseProductAttributes.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

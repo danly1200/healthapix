@@ -1,0 +1,27 @@
+uuid: f23c211c-b3f2-4ee5-9e50-3dbb8fbde8e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media
+    - node.type.article
+  module:
+    - file
+id: node.article.field_media
+field_name: field_media
+entity_type: node
+bundle: article
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  description_field: false
+  file_directory: ''
+  file_extensions: 'jpg jpeg gif png mp3 mov m4v mp4 mpeg avi ogg oga ogv wmv ico'
+  max_filesize: ''
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

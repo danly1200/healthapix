@@ -1,0 +1,38 @@
+uuid: 06657da7-e361-4b42-8b48-59dc69729957
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.test_data_list
+  module:
+    - block_visibility_groups
+    - ctools
+    - views
+  theme:
+    - mdc_theme
+id: views_block__test_data_list_block_1
+theme: mdc_theme
+region: sidebar_left
+weight: -19
+provider: null
+plugin: 'views_block:test_data_list-block_1'
+settings:
+  id: 'views_block:test_data_list-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      test_data: test_data
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

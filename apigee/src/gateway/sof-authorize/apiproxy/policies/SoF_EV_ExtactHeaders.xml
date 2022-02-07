@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="SoF_EV_ExtactHeaders">
+    <DisplayName>SoF_EV_ExtactHeaders</DisplayName>
+    <Properties/>
+    <Header name="Authorization">
+        <Pattern ignoreCase="false">Bearer {req.Authorization}</Pattern>
+    </Header>
+</ExtractVariables>

@@ -1,0 +1,20 @@
+uuid: 1b4d1f4b-f568-49bb-be09-b60756d198a4
+langcode: en
+status: false
+dependencies:
+  module:
+    - fhir_blocks
+  theme:
+    - mdc_theme
+id: mdc_theme_fhircopyright
+theme: mdc_theme
+region: footer
+weight: -15
+provider: null
+plugin: fhir_copyright
+settings:
+  id: fhir_copyright
+  label: 'FHIR Copyright'
+  provider: fhir_blocks
+  label_display: '0'
+visibility: {  }

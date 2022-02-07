@@ -1,0 +1,363 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® CareTeam resource API documentation
+  description: |
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire") defines a set of "Resources" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® STU3 API docs are part of the FHIR® Specifications (v3.0.2: STU 3). The current version which supercedes this version is 4.0.1 (R4) This section contains API docs for the few commonly used STU3 resources. API docs for other resources can be added by API publishers on request.
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/stu3
+tags:
+- name: CareTeam
+paths:
+  /CareTeam:
+    get:
+      tags:
+      - CareTeam
+      parameters:
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: Time period team covers
+        schema:
+          type: string
+          format: date
+      - name: identifier
+        in: query
+        description: External Ids for this team
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Who care team is for
+        schema:
+          type: string
+      - name: subject
+        in: query
+        description: Who care team is for
+        schema:
+          type: string
+      - name: context
+        in: query
+        description: Encounter or episode associated with CareTeam
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: encounter
+        in: query
+        description: Encounter or episode associated with CareTeam
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Type of team
+        schema:
+          type: string
+      - name: participant
+        in: query
+        description: Who is involved
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: proposed | active | suspended | inactive | entered-in-error
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CareTeam'
+        401:
+          description: Unauthorized
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items: {}
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.read
+    post:
+      tags:
+      - CareTeam
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/CareTeam'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.write
+  /CareTeam/{id}:
+    get:
+      tags:
+      - CareTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/CareTeam'
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.read
+    put:
+      tags:
+      - CareTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/CareTeam'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.write
+    delete:
+      tags:
+      - CareTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.write
+  /CareTeam/{id}/_history:
+    get:
+      tags:
+      - CareTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.read
+  /CareTeam/{id}/_history/{vid}:
+    get:
+      tags:
+      - CareTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/CareTeam'
+      security:
+        - OAuthV2B2B:
+          - system/CareTeam.read
+components:
+  schemas:
+    CareTeam:
+      required:
+      - contained
+      - id
+      - participant
+      - period
+      - resourceType
+      - subject
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        contained:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - id
+            - resourceType
+            type: object
+            properties:
+              resourceType:
+                minLength: 1
+                type: string
+              id:
+                minLength: 1
+                type: string
+              name:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    family:
+                      type: array
+                      items:
+                        type: object
+                        properties: {}
+                    given:
+                      type: array
+                      items:
+                        type: object
+                        properties: {}
+              practitionerRole:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    specialty:
+                      minItems: 1
+                      uniqueItems: true
+                      type: array
+                      items:
+                        required:
+                        - text
+                        type: object
+                        properties:
+                          text:
+                            minLength: 1
+                            type: string
+        subject:
+          required:
+          - display
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        period:
+          required:
+          - end
+          type: object
+          properties:
+            end:
+              minLength: 1
+              type: string
+        participant:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                required:
+                - text
+                type: object
+                properties:
+                  text:
+                    minLength: 1
+                    type: string
+              member:
+                required:
+                - display
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+  securitySchemes: 
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/CareTeam.read: Read permissions for CareTeam demographics.
+            system/CareTeam.write: Write permissions for CareTeam demographics.

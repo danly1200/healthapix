@@ -1,0 +1,60 @@
+uuid: c1c79476-c56d-4de3-af02-39bfce8c061c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.time_line
+    - field.field.node.article.body
+    - field.field.node.article.comment
+    - field.field.node.article.field_categories
+    - field.field.node.article.field_content_tag
+    - field.field.node.article.field_image
+    - field.field.node.article.field_keywords
+    - field.field.node.article.field_media
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - file
+    - text
+    - user
+id: node.article.time_line
+targetEntityType: node
+bundle: article
+mode: time_line
+content:
+  body:
+    label: hidden
+    weight: 2
+    type: text_trimmed
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_categories:
+    label: hidden
+    weight: 1
+    type: entity_reference_label
+    settings:
+      link: true
+    third_party_settings: {  }
+    region: content
+  field_media:
+    label: hidden
+    weight: 0
+    type: file_default
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment: true
+  comment_node_article: true
+  field_content_tag: true
+  field_image: true
+  field_keywords: true
+  field_tags: true

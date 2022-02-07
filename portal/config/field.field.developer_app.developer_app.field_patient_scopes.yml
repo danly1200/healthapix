@@ -1,0 +1,20 @@
+uuid: 478e9d6f-f380-4128-a4ea-8bb8ebf9aa59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_patient_scopes
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_patient_scopes
+field_name: field_patient_scopes
+entity_type: developer_app
+bundle: developer_app
+label: 'Patient Scopes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 0e9e1c90-3f76-44cf-9986-8de391165b3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_redirect_url
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_redirect_url
+field_name: field_redirect_url
+entity_type: developer_app
+bundle: developer_app
+label: 'Redirect Url'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

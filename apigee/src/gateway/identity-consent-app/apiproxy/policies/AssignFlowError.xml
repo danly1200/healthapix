@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignFlowError">
+    <DisplayName>AssignFlowError</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>flowError</Name>
+        <Value>Logged in user is not registered on fhir server</Value>
+    </AssignVariable>
+</AssignMessage>

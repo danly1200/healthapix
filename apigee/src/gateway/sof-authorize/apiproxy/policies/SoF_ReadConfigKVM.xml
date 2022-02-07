@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations encrypted="false" mapIdentifier="SoF_Config" async="false" continueOnError="false" enabled="true" name="SoF_ReadConfigKVM">
+    <DisplayName>SoF_ReadConfigKVM</DisplayName>
+    <Properties/>
+    <Get assignTo="SPIKEARREST_RATELIMIT">
+        <Key>
+            <Parameter>SPIKEARREST_RATELIMIT</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="FHIR_ISSUER">
+        <Key>
+            <Parameter>FHIR_ISSUER</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="SERVICE_ACCOUNT_NAME">
+        <Key>
+            <Parameter>SERVICE_ACCOUNT_NAME</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="ALLOWED_PATH_PREFIX">
+        <Key>
+            <Parameter>ALLOWED_PATH_PREFIX</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="DISABLE_AUDIT_LOG">
+        <Key>
+            <Parameter>DISABLE_AUDIT_LOG</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="AUDIENCE">
+        <Key>
+            <Parameter>AUDIENCE</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="FHIR_ISSUER_CLIENT_ID">
+        <Key>
+            <Parameter>FHIR_ISSUER_CLIENT_ID</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="FHIR_ISSUER_CLIENT_SECRET">
+        <Key>
+            <Parameter>FHIR_ISSUER_CLIENT_SECRET</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="REMOVE_SCOPES">
+        <Key>
+            <Parameter>REMOVE_SCOPES</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="VERIFY_ACCESS_TOKEN">
+        <Key>
+            <Parameter>VERIFY_ACCESS_TOKEN</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="MAX_TOKEN_CACHE_SECONDS">
+        <Key>
+            <Parameter>MAX_TOKEN_CACHE_SECONDS</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="JWKS_CACHE_TIMEOUT_SECONDS">
+        <Key>
+            <Parameter>JWKS_CACHE_TIMEOUT_SECONDS</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="IS_CLIENT_REGISTRATION_ENABLED">
+        <Key>
+            <Parameter>IS_CLIENT_REGISTRATION_ENABLED</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="SOF_CLAIM_CONFIG">
+        <Key>
+            <Parameter>SOF_CLAIM_CONFIG</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="MAX_HEADER_SIZE_BYTES">
+        <Key>
+            <Parameter>MAX_HEADER_SIZE_BYTES</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

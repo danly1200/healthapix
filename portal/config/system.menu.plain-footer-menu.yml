@@ -1,0 +1,8 @@
+uuid: 1247a57d-74db-4adf-8e04-0259fa203d73
+langcode: en
+status: true
+dependencies: {  }
+id: plain-footer-menu
+label: 'Plain Footer Menu'
+description: ''
+locked: false

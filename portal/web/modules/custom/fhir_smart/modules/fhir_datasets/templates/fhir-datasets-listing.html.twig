@@ -1,0 +1,88 @@
+<div class="dataset-container">
+  {% if datasets is not empty %}
+  <div class="dataset__server">
+    <a href ="{{ path('node.add', {'node_type' : 'fhir_servers'}) }}">
+    <button class="mdc-button mdc-button--outlined">
+      <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+      <span class="mdc-button__label">Add Server</span>
+    </button>
+    </a>
+  </div>
+
+<div class="acc-datasets">
+  {% for key, value in datasets %}
+    {% set version =  key|split('#$') %}
+    {% set version_name =  version|last %}
+    {% set term_id =  version|first %}
+      <div class="acc__item">
+        <div class="dataset__title">{{ version_name }}</div>
+        <div class="dataset__server__panel">
+          {% if value is not empty %}
+              <div class="mdc-data-table">
+                <table class="mdc-data-table__table">
+                  <thead>
+                  <tr class="mdc-data-table__header-row server-table-header">
+                    <th style= "width:85%" class="mdc-data-table__header-cell" role="columnheader" scope="col">
+                      <strong>Servers</strong>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  </thead>
+
+                  <tbody class="mdc-data-table__content">
+
+                  {% for server_id, server_value in value %}
+                      {% if  server_value.url is not empty %}
+                        {% set file_name =  server_value.url|split('/') %}
+                        {% set filename =  file_name|last %}
+                      {% endif %}
+                      <tr class="mdc-data-table__row">
+                        <td class="mdc-data-table__cell">{{  server_value.node_title }}</td>
+                        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                          {% if server_value.url is not empty %}
+                          <a href="{{ server_value.url }}" download="{{ filename }}" target="_blank">
+                            <img class="download_icon" src="{{ base_path ~ directory }}/images/download.png" alt="download" />
+                          </a>
+                          {% else %}
+                            <img class="nodownload_icon" src="{{ base_path ~ directory }}/images/nodownload.png" alt="download" />
+                            {% endif %}
+                        </td>
+                        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                          <a href="{{ path('entity.node.edit_form', {'node': server_id}) }}">
+                            <span class="mdc-list-item__meta material-icons">edit</span>
+                          </a>
+                        </td>
+                        {% if apps_count[server_id] is defined %}
+                          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                            <a href="javascript:void(0);" title="Apps is/are associated with the server. Cannot delete the server.">
+                              <img class="nodownload_icon" src="{{ base_path ~ directory }}/images/grey_disable_delete.png" alt="download" /> </a>
+                          </td>
+                          {% else %}
+                            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                              <a class="use-ajax" data-dialog-type="modal" href="{{ path('entity.node.delete_form', {'node': server_id}) }}"><span class="mdc-list-item__meta material-icons">delete</span></a>
+                            </td>
+                        {% endif %}
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            {% else  %}
+              <div> No Servers Available</div>
+          {% endif %}
+
+        </div>
+      </div>
+  {% endfor %}
+</div>
+{% else %}
+  <div class = "noresults">
+    No Datasets Found
+  </div>
+
+{% endif %}
+
+
+</div>

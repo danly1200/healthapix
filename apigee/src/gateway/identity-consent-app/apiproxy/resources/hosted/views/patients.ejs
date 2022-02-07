@@ -1,0 +1,170 @@
+<% layout('layout') %>
+
+<div class="container main patients" style="width: 100%; height:auto">
+    <div class="panel-heading signin-label" align="left">
+        <span><%=title %></span>
+    </div>
+
+    <div class="input-group-container patient-container" id="tblPatients" align="left">
+        <% for(var i=0; i < patients.length; i++) { %>
+        <div class="patient-wrapper">
+            <div class="radio">
+                <label>
+                    <input type="radio" autocomplete="off" name="optionsRadios" id="<%= patients[i].id %>" value="<%= patients[i].id %>"
+                        onclick="javascript: selected(this.id)">
+                    <!-- <%= patients[i].name %> -->
+                    <div class="patient-info">
+                        <span class="patient-name"><%= patients[i].name %> </span> <br>
+                        <span class="patient-id"><%= patients[i].id %></span>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <% } %>
+
+
+        <!-- <table id="tblPatients" style="width: 100%; height:auto; margin: 1;">
+            <% for(var i=0; i < patients.length; i++) { %>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label><input onclick="javascript: selected(this.id)" type="checkbox" id="<%= patients[i].id %>"
+                                style="margin-left:auto; margin-right:auto"></label></div>
+                </td>
+                <td><%= patients[i].name %> <br />
+                    <p class="patient-id-p"> <%= patients[i].id %>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr style='width:100%; margin-top: 0 !important; margin-bottom: 0 !important;'>
+                </td>
+            </tr>
+            <% } %>
+        </table> -->
+
+    </div>
+    <div align="right" style="margin-bottom: 20px;">
+        <span class="btn-group-sm"> <button type="button" class="btn bmd-btn-fab"
+                style="box-shadow: none;border: 1px #e9e9e9 solid;margin-right: 10px;">
+                <i class="material-icons header-close-icon">keyboard_arrow_left</i>
+            </button></span>
+        <span class="btn-group-sm"> <button onclick="event.stopPropagation(); javascript:goToNextPage();" type="button"
+                class="btn bmd-btn-fab" style="box-shadow: none; border: 1px #e9e9e9 solid;">
+                <i class="material-icons header-close-icon">keyboard_arrow_right</i>
+            </button></span>
+    </div>
+    <!-- <table>
+        <tr>
+            <td style="padding-left:90px; padding-bottom: 10px; padding-top: 10px;">
+                <button type="button" class="btn">
+                    < </button>
+            </td>
+            <td style="padding-left:25px; padding-bottom: 10px; padding-top: 10px;">
+                <button onclick="event.stopPropagation(); javascript:goToNextPage();" type="button"
+                    class="btn">></button>
+            </td>
+        </tr>
+    </table> -->
+    <div class="input-group-container">
+        <button onclick="javascript:cancel()" type="button" class="btn md-custom-secondary-outline"
+            onclick="window.location='<%= redirectURL%>'">Cancel</button>
+        <button onclick="event.preventDefault();javascript:submit();" type="button"
+            class="btn btn-primary md-custom-primary">Submit</button>
+        <!-- <table style="width: 100%; height:auto; margin: 1;">
+            <tr>
+                <td style="width: 35%; height:auto">
+                    <button onclick="javascript:cancel()" class="btn btn-lg btn-default disagree close-window">Cancel</button>
+                </td>
+                <td style="width: 40%; height:auto; padding-left:10%;">
+                    <button onclick="event.preventDefault();javascript:submit();" class="btn btn-lg btn-warning agree">Submit</button>
+                </td>
+            </tr>
+        </table> -->
+    </div>
+</div>
+<script>
+    
+    function goToNextPage() {
+        fetch("<%= basepath%>/patients?sessionid=<%= sessionid%>&page=next", { credentials: "same-origin" })
+            .then((response) => response.json())
+            .then((json) => {
+                deleteAllRows();
+                populateTable(json);
+            }).catch((err) => {
+                console.log(err);
+            });
+    }
+
+    function deleteAllRows() {
+        var tblPatients = document.getElementById("tblPatients");
+        tblPatients.innerHTML = "";
+    }
+
+    function populateTable(patients) {
+        // var tblPatients = document.getElementById("tblPatients");
+        patients.forEach((patient) => {
+            document.getElementById("tblPatients").innerHTML += /* '<div  class="patient-wrapper"><div class="checkbox"><label><input onclick="javascript: selected(this.id)" type="checkbox" id="'
+                + patient.id + '"><span class="checkbox-decorator"><span class="check"></span></span><div class="patient-info"><span class="patient-name">'
+                + patient.name + '</span> <br><span class="patient-id">'
+                + patient.id + '</span></div></label></div></div>'; */
+                '<div  class="patient-wrapper"><div class="radio"><label><input type="radio" name="optionsRadios" id="' + patient.id + '" value="'
+                + patient.id + '" onclick="javascript: selected(this.id)"><span class="bmd-radio"><div class="ripple-container"></div></span><div class="patient-info"><span class="patient-name">'
+                + patient.name + '</span> <br><span class="patient-id">'
+                + patient.id + '</span></div></label></div></div>';
+        })
+    }
+
+    function cancel() {
+        fetch("<%= basepath%>/redirect/<%= sessionid%>?error=refused", { redirect: "manual" }).then(function (response) {
+            localStorage.removeItem('selected_patients');
+            window.open(response.url, '_self', 'noopener')
+        }).catch(function (err) {
+            console.log(err)
+        })
+    }
+
+    function submit() {
+        /* var selected_patients = JSON.parse(window.localStorage.getItem('selected_patients')); 
+        if (selected_patients === null) {
+            window.alert('Please select at least one patient')
+        } else {
+            fetch("<%= basepath%>/redirect/<%= sessionid%>?selected_patients=" + selected_patients.join(','), { redirect: "manual" }).then(function (response) {
+                localStorage.removeItem('selected_patients');
+                window.open(response.url, '_self', 'noopener')
+            }).catch(function (err) {
+                console.log(err)
+            })
+        }*/
+        //var selected_patients = window.sessionStorage.getItem('selected_patients');
+        if (selected_patients === '') {
+            window.alert('Please select at least one patient')
+        } else {
+            fetch("<%= basepath%>/redirect/<%= sessionid%>?selected_patients=" + selected_patients, { method: 'OPTIONS', redirect: "manual" }).then(function (response) {
+                localStorage.removeItem('selected_patients');
+                window.open(response.url, '_self', 'noopener')
+            }).catch(function (err) {
+                console.log(err)
+            })
+        }
+    }
+    var selected_patients = '';
+    function selected(id) {
+        selected_patients = id;
+        //window.sessionStorage.setItem('selected_patients', JSON.stringify(id))
+        /** Checkbox multi selection */
+        /* var selected_patients = JSON.parse(window.localStorage.getItem('selected_patients'));
+        if (selected_patients) {
+            if (selected_patients.indexOf(id) > -1) {
+                for (var i = 0; i < selected_patients.length; i++) {
+                    if (selected_patients[i] === id) { selected_patients.splice(i, 1); }
+                }
+            } else {
+                selected_patients.push(id);
+            }
+        } else {
+            selected_patients = [id];
+        }
+        window.localStorage.setItem('selected_patients', JSON.stringify(selected_patients)) */
+    }
+</script>

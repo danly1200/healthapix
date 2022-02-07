@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="HPX_KV_CreatePrivateKey" mapIdentifier="HPX_Secrets">
+    <DisplayName>HPX_KV_CreatePrivateKey</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Put override="true">
+        <Key>
+            <Parameter ref="privKeyName"/>
+        </Key>
+        <Value ref="keypair.privKey"/>
+    </Put>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

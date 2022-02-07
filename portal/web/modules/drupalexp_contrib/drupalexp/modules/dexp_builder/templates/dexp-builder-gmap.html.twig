@@ -1,0 +1,5 @@
+<div{{ attributes }}>
+    {% for marker in markers %}
+        <div class="dexp-builder-gmap-marker" data-title="{{ marker.title }}" data-address="{{ marker.address }}" data-icon="{{ marker.icon }}" data-lng="{{ marker.lng }}" data-lat="{{ marker.lat }}" data-build-infobox="{{ marker.info_box }}" data-infobox="{{ marker.content }}">{{ marker.title }}</div>
+    {% endfor %}
+</div>

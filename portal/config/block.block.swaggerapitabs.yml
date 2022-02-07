@@ -1,0 +1,28 @@
+uuid: 41c6ae53-1fac-407d-9a99-0363735e1a12
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.api_list_page
+  module:
+    - block_visibility_groups
+    - fhir_customizations
+  theme:
+    - fhir_responsive_theme
+id: swaggerapitabs
+theme: fhir_responsive_theme
+region: content
+weight: -11
+provider: null
+plugin: swagger_api_tabs
+settings:
+  id: swagger_api_tabs
+  label: 'Swagger API Tabs'
+  provider: fhir_customizations
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: api_list_page
+    context_mapping: {  }

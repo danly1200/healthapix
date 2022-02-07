@@ -1,0 +1,23 @@
+uuid: 53a8d847-b1bf-4ee6-a424-c34370a0ca41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_name
+    - node.type.apps
+  module:
+    - link
+id: node.apps.field_author_name
+field_name: field_author_name
+entity_type: node
+bundle: apps
+label: 'Author Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

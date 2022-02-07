@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="49" name="identity-usermgmt-api">
+    <Basepaths>/identity-users/v1</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1567753985415</CreatedAt>
+    <CreatedBy>avinash@digitalapicraft.com</CreatedBy>
+    <Description>avinashpise git: fa8792b4 MacBook-2.local</Description>
+    <DisplayName>identity-users</DisplayName>
+    <HostedManifestVersion>SHA-512:792ec5c5795d942c00a94bc2abb0d160670fc46bc9f8eec71d57b782e3c0d4a79ff0c1b17e5324bc80118bd500eff661c1238605946415c64d4e9f44b7d0b963:ap-northeast-1</HostedManifestVersion>
+    <LastModifiedAt>1587918754086</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:5934244ec5c2ccb6aa1606786d1b1a3f0a85636868ff5664aa78a77f8a938853d204674975b306bea43937d56067d8edd7afd68425761943f9be23486f6c99da</ManifestVersion>
+    <Policies>
+        <Policy>HPX_CheckPatientResponse</Policy>
+        <Policy>HPX_ExtractPaginationData</Policy>
+        <Policy>HPX_ExtractRelatedPatientId</Policy>
+        <Policy>HPX_LookupCachePaginationData</Policy>
+        <Policy>HPX_MetadataWorkAroundVariables</Policy>
+        <Policy>HPX_PopulatePaginationDataInitial</Policy>
+        <Policy>HPX_ProcessPatientsResponse</Policy>
+        <Policy>HPX_RetrievePatientsNext</Policy>
+        <Policy>HPX_RetrievePatientsPrevious</Policy>
+        <Policy>HPX_RetrievePatientsStart</Policy>
+        <Policy>HPX_Retrieve_Patient</Policy>
+        <Policy>HPX_Retrieve_Practitioner</Policy>
+        <Policy>HPX_Retrieve_RelatedPatient</Policy>
+        <Policy>HPX_Retrieve_RelatedPerson</Policy>
+        <Policy>HPX_Retrieve_RelativePatient</Policy>
+        <Policy>HPX_SetIdentifier</Policy>
+        <Policy>HPX_SetRelativePatientResponse</Policy>
+        <Policy>HPX_SetResponse</Policy>
+        <Policy>HPX_SharedFlow_GoogleToken</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://HPX_CheckPatientResponse.js</Resource>
+        <Resource>jsc://HPX_ExtractRelatedPatientId.js</Resource>
+        <Resource>jsc://HPX_ProcessPatientsResponse.js</Resource>
+        <Resource>jsc://HPX_SetIdentifier.js</Resource>
+        <Resource>jsc://HPX_SetRelativePatientResponse.js</Resource>
+        <Resource>jsc://HPX_SetResponse.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

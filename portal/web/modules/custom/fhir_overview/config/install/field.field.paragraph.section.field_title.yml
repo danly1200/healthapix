@@ -1,0 +1,22 @@
+uuid: beb9e60a-3d4b-48e3-a0f4-ac704e08cd93
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fhir_overview
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.section
+id: paragraph.section.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: section
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

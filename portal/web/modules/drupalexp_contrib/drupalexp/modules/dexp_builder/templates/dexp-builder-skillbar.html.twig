@@ -1,0 +1,8 @@
+<div{{ attributes }}>    
+  {% if title is not empty %} {{ title|raw }}{% endif %}
+  <div class="dexp-progress" {% if height or bar_color %} style="{% if height %} height: {{height~';'}} {% endif %} {% if bar_color %} background-color: {{bar_color~';'}} {% endif %}" {% endif %} >    
+    <div class="dexp-progress-bar progress-bar {{ striped_class }}"  role="progressbar" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100" style="10px; width: 0%; {% if progress_color %} background-color: {{progress_color~';'}} {% endif %}">                  
+      <span class="dexp-progress-percent"></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="HPX_RedirectToCallbackURLWithError">
+    <DisplayName>HPX_RedirectToCallbackURLWithError</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers>
+                <Header name="Location">{redirect_uri}?error=access_denied&amp;error_description={flowError}&amp;state={req_state}</Header>
+            </Headers>
+            <Payload contentType="text/plain"/>
+            <StatusCode>302</StatusCode>
+            <ReasonPhrase>Found</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,0 +1,12 @@
+name: 'DrupalExp Slick Carousel'
+type: module
+description: 'DrupalExp Slick Carousel'
+core: 8.x
+version: 8.x-1.0
+package: DrupalExp
+dependencies:
+  - views
+  - libraries
+'project status url': 'https://projects.drupalexp.com/updates'
+project: dexp_slick
+datestamp: 1530349042

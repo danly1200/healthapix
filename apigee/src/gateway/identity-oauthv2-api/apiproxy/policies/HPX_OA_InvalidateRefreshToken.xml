@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="true" enabled="true" name="HPX_OA_InvalidateRefreshToken">
+    <DisplayName>HPX_OA_InvalidateRefreshToken</DisplayName>
+    <Properties/>
+    <Operation>InvalidateToken</Operation>
+    <Tokens>
+        <Token type="refreshtoken" cascade="false">Accesstoken</Token>
+    </Tokens>
+</OAuthV2>

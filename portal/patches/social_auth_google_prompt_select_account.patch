@@ -1,0 +1,12 @@
+diff --git web/modules/contrib/social_auth_google/src/Plugin/Network/GoogleAuth.php web/modules/contrib/social_auth_google/src/Plugin/Network/GoogleAuth.php
+index 92f0d561..50ed4c11 100644
+--- web/modules/contrib/social_auth_google/src/Plugin/Network/GoogleAuth.php
++++ web/modules/contrib/social_auth_google/src/Plugin/Network/GoogleAuth.php
+@@ -88,6 +88,7 @@ public function initSdk() {
+     $client->setClientId($settings->getClientId());
+     $client->setClientSecret($settings->getClientSecret());
+     $client->setRedirectUri($redirect_uri);
++    $client->setPrompt('select_account');
+
+     return $client;
+   }

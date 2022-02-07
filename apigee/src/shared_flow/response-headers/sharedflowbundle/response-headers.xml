@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="2" name="response-headers">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1568871193581</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared flow to set all default response headers such as Content-Length, CORS etc.</Description>
+    <DisplayName>response-headers</DisplayName>
+    <LastModifiedAt>1568871193581</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:eb29e552fda14520fde6984065900560eea866f362ed87297fdf6c5a019d08d443445e3c630af6ac1dab563b4e50ea7f25f2d53ca0362dd96a5a16b968e67324</ManifestVersion>
+    <Policies>
+        <Policy>HPX_SetCORSHeaders</Policy>
+        <Policy>HPX_SetRateLimitInfoHeaders</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

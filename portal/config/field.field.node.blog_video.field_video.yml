@@ -1,0 +1,27 @@
+uuid: 1e00c7d0-193a-4bc0-ad91-44b20a009861
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video
+    - node.type.blog_video
+  module:
+    - file
+id: node.blog_video.field_video
+field_name: field_video
+entity_type: node
+bundle: blog_video
+label: Video
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  description_field: false
+  file_directory: ''
+  file_extensions: txt
+  max_filesize: ''
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

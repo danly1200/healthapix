@@ -1,0 +1,7 @@
+services:
+  logger.channel.fhir_smart:
+    parent: logger.channel_base
+    arguments: ['fhir_smart']
+  fhir_smart.app:
+    class: Drupal\fhir_smart\MyAppService
+    arguments: []

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="HPX_GJW_GenerateIDTokenRefreshRSA">
+    <DisplayName>HPX_GJW_GenerateIDTokenRefreshRSA</DisplayName>
+    <Algorithm>RS384</Algorithm>
+    <PrivateKey>
+        <Id ref="privatekeyRS384Name"/>
+        <Value ref="private.privatekeyRS384"/>
+    </PrivateKey>
+    <AdditionalClaims>
+        <Claim name="fhirUser" ref="fhirUser"/>
+    </AdditionalClaims>
+    <Subject ref="userid"/>
+    <Issuer ref="issuer"/>
+    <Audience ref="aud"/>
+    <ExpiresIn>1h</ExpiresIn>
+    <OutputVariable>jws</OutputVariable>
+</GenerateJWT>

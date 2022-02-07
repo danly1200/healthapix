@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="HPX_OA_GenerateAuthCode">
+    <DisplayName>HPX_OA_GenerateAuthCode</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Attributes>
+        <Attribute display="true" name="userid" ref="request.queryparam.userid"/>
+        <Attribute display="true" name="sessionid" ref="request.queryparam.sessionid"/>
+        <Attribute display="true" name="nonce" ref="request.queryparam.nonce"/>
+        <Attribute display="true" name="scope" ref="scope"/>
+        <Attribute display="true" name="patient" ref="request.queryparam.patient"/>
+        <Attribute name="fhirUser" ref="request.queryparam.fhirUser" display="true">null</Attribute>
+        <Attribute name="consentId" ref="request.queryparam.consentId" display="false">null</Attribute>
+        <Attribute name="aud" ref="verifyapikey.HPX_VAK_ValidateApiKey.apiproduct.fhir_server_url" display="true">null</Attribute>
+    </Attributes>
+    <ExpiresIn>600000</ExpiresIn>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>GenerateAuthorizationCode</Operation>
+    <GenerateResponse enabled="true">
+        <Format>FORM_PARAM</Format>
+    </GenerateResponse>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <Scope>request.queryparam.scope</Scope>
+    <SupportedGrantTypes/>
+    <Tokens/>
+</OAuthV2>

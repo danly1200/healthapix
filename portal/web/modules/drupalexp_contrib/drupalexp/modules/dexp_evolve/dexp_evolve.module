@@ -1,0 +1,106 @@
+<?php
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_theme().
+ */
+function dexp_evolve_theme() {
+  return array(
+    'dexp_evolve_piegraph' => [
+      'variables' => [
+        'title' => '',
+        'piegraph_id' => '',
+        'heading' => '',
+        'class' => '',
+        'percent' => '',
+        'icon' => '',
+        'icon_style' => '',
+        'bar_color' => '',
+        'bar_width' => '',
+		'content' => '',
+      ],
+    ],
+    'dexp_evolve_flipbox' => [
+		'variables' => [
+		'type' => '',
+		'front_title' => '',
+		'media' => '',
+		'front_desc' => '',
+		'content' => '',
+		'back_title' => '',
+		'same_title'=>TRUE,
+		'class' => '',
+      ],
+    ],
+	'dexp_evolve_carousels' => [
+      'variables' => [
+		'carousels' => array(),
+		'control' => true,
+		'pager' => false,
+		'attributes' => '',
+		//keyboard' => false,
+		//'pause' => false,
+		//'ride' => false, 
+		//'class' => '',
+		'wrapper_id' => '',
+	  ],
+    ],
+  );
+}
+
+function dexp_evolve_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if ($form_id == "dexp_builder_shortcode_settings") {
+        $shortcode_id = $form['shortcode_id']['#default_value'];
+        if ($shortcode_id == 'dexp_builder_box') {
+            $path = base_path().drupal_get_path('module', 'dexp_evolve');
+            $default_style = '';
+            if (null !== \Drupal::request()->get('attr')['box_style']) {
+                $default_style = \Drupal::request()->get('attr')['box_style'];
+            }
+            $style_to_image_location = array(
+                'preview' => array(
+                    '' => '',
+                    'style01'=>$path.'/assets/images/box-preview/box-center-style01.png',
+                    'style02'=>$path.'/assets/images/box-preview/box-center-style02.png',
+                    'style03'=>$path.'/assets/images/box-preview/box-center-style03.png',
+                    'style04'=>$path.'/assets/images/box-preview/box-left-style01.png',
+                    'style05'=>$path.'/assets/images/box-preview/box-left-style02.png',
+                    'style06'=>$path.'/assets/images/box-preview/box-left-style03.png',
+                    'style07'=>$path.'/assets/images/box-preview/box-left-style04.png',
+                    'style08'=>$path.'/assets/images/box-preview/box-left-style05.png',
+					'style09'=>$path.'/assets/images/box-preview/box-right-style01.png',
+                    'style10'=>$path.'/assets/images/box-preview/box-right-style02.png',
+                    'style11'=>$path.'/assets/images/box-preview/box-right-style03.png',
+                    'style12'=>$path.'/assets/images/box-preview/box-right-style04.png',
+                    'style13'=>$path.'/assets/images/box-preview/box-right-style05.png',
+                )
+            );
+            $preview_image = $style_to_image_location['preview'][$default_style];
+            $form['general_options']['box_style'] = array(
+             '#type' => 'select',
+             '#options' => array(''=>'Choose box style',
+                 'style01'=>t('Box Center Square Style'), 
+                 'style02' => t('Box Center Circle Style'), 
+                 'style03' => t('Box Center Simple Style'), 
+                 'style04' => t('Box Left Icon Circle Background'),
+                 'style05' => t('Box Left Icon Square Background'),
+                 'style06' => t('Box Left Circle'),
+                 'style07' => t('Box Left Square'),
+                 'style08' => t('Box Left Simple'),
+				 'style09' => t('Box Right Icon Circle Background'),
+                 'style10' => t('Box Right Icon Square Background'),
+                 'style11' => t('Box Right Circle'),
+                 'style12' => t('Box Right Square'),
+                 'style13' => t('Box Right Simple'),
+             ),
+             '#title' => t('Style box'),
+             '#default_value' => $default_style,
+             '#suffix' => "<h3>Preview Style</h3><img class='preview-box-style' src='".$preview_image."'>"
+            );
+            $form['#attached']['library'][] = 'dexp_evolve/preview_style';
+            $form['#attached']['drupalSettings'] = $style_to_image_location;
+        }
+    }
+}

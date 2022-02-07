@@ -1,0 +1,42 @@
+<?php
+
+use Drupal\block\Entity\Block;
+use Drupal\Core\Form\FormStateInterface;
+
+/* 
+** Implement hook_preprocess_field
+ */
+function dexp_block_preprocess_field(&$variables, $hook) {
+  foreach($variables['items'] as &$item){
+    if(isset($item['content']['#field_collection_item'])){
+      $_item = $item['content']['#field_collection_item'];
+      if($_item->hasField('field_custom_class')){
+        if($class = $_item->get('field_custom_class')->getValue()){
+          $item['attributes']['class'] = isset($item['attributes']['class'])?$item['attributes']['class']:[];
+          $item['attributes']['class'][] = $class['0']['value'];
+        }
+      }
+    }
+  }
+}
+
+/*
+** Implement hook_preprocess_block
+ */
+function dexp_block_preprocess_block(&$variables) {
+  if (!empty($variables['elements']['#id'])) {
+    $blockType = $variables['elements']['#configuration']['provider'];
+    if ($blockType == "block_content") {
+      $bundle = $variables['elements']['content']['#block_content']->bundle();
+      $module_handler = \Drupal::moduleHandler();
+      $module_handler->invokeAll('preprocess_block_content_' . $bundle, array(&$variables));
+    }
+  }
+}
+
+/*
+** Implement hook_preprocess_block_content_bootstrap_columns
+ */
+function dexp_block_preprocess_block_content_bootstrap_columns(&$variables){
+  //$variables['content_attributes']['class'][] = 'row';
+}

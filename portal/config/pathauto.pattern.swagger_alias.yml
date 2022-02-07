@@ -1,0 +1,22 @@
+uuid: 9ff0b8df-b2ae-445b-875f-c068fb05fee3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: swagger_alias
+label: 'Swagger alias'
+type: 'canonical_entities:node'
+pattern: '[node:title]/[node:field_api_version]'
+selection_criteria:
+  ef7f6fae-17d3-418e-af73-5cf4108b3f17:
+    id: node_type
+    bundles:
+      smartdocs: smartdocs
+    negate: false
+    context_mapping:
+      node: node
+    uuid: ef7f6fae-17d3-418e-af73-5cf4108b3f17
+selection_logic: and
+weight: -5
+relationships: {  }

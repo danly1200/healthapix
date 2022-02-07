@@ -1,0 +1,8 @@
+uuid: ba1681a3-49fd-47ad-9332-22be48cb1d70
+langcode: en
+status: true
+dependencies: {  }
+name: 'Interoperability API''s'
+vid: interoperability_api_s
+description: ''
+weight: -10

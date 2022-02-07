@@ -1,0 +1,94 @@
+Release Notes - Health-apix project
+
+Release v1.7
+DevPortal
+NA
+
+Apigee
+1. Restrict ‘read’ operation to the Patient in access token (match patientId in retrieved record with that in the context)
+2. Updates to CreateFhirProxy script
+3. Updates to input file of creator script
+4. Rate limit changed to 30ps as suggested 
+5. Read the clientID for metadata call from KVM instead of hard coding in proxy. 3 clientIDs need to be created each for different FHIR versions and put in KVM entries - default.r4.fhir.app, default.stu3.fhir.app, default.dstu2.fhir.app
+6. Updates to CreateFhirProxy.sh script to read metadata client_id from KVM in shell scripts
+7. SMART well-known configuration
+8. OpenId well-known configuration
+9. Scope expansion removed
+10. Replaced User scopes with Patient scopes in Api docs
+11. Refresh token will be served at same ‘access token’ endpoint instead of a separate endpoint
+12. Inferno tool related fixes after Iteration 3 
+13. Fix for null being returned in Consent links
+14. API Docs updates - removed PUT, DELETE on resource types and GET on history of resource type
+15. Added common Fhir servers to be available in all environments. In future, same FHIR Server to be promoted to all environments instead of different Fhir server in different environments. This will help in code promotion and deployments.
+16. Caching in google token shared flow
+
+Release v1.6
+DevPortal
+1. #29 - Make readme.md documentation accurate
+2. #112 - Correct the scopes lookup logic to use base url as oppose to server name
+3. #119 - Oauth Authrization code - disable Try it out button - API docs - Info only
+4. #123 - Cleanup libraries from portal source code
+
+Apigee
+1. #29 - Make readme.md documentation accurate
+2. #113 - Change the product attributes to correct the scopes (#112) & google backend URL
+3. #115 - Write a script to update the url in apidocs *.yaml file to the correct url for a given apigee environment.
+4. #118 - Set the 'aud' attribute in the access token response to the apigee fhir server end point
+5. #120 - OAuth Authrization code - /getdetails - not to be supported as of now - Patient,Practitioner,RelatedPerson Api calls provided for the same 
+6. #128 - Consent app does not have Google cloud logo
+7. #129 - yaml files and Json files in DSTU2 to be fixed (R4 and STU3 - YAML)	
+
+Release v1.5
+DevPortal
+NA
+
+Apigee
+1. #14 - Honour wild card '*' while adding scopes into the access token.
+2. #108 - Access token response comes back without the patient in context.
+3. #109 - Error while reading the Patient resource: "No patient read access requested in scopes".
+4. #117 - Patient and User token does not show in the Sample SMART app
+5. #Issuer in ID token pointing to wrong env
+6. #fhir version must be case insensitive
+
+Release v1.4
+DevPortal
+1. #6 - Move the copy button to be aligned to the right end of the code block (Requested by Gitesh)
+2. #96 - About deleting the FHIR Server
+3. #104 - Redirect notice upon log out
+
+Apigee
+NA
+
+Release v1.3
+DevPortal
+NA
+
+Apigee
+1. #14 - Honour wild card '*' while adding scopes into the access token.
+2. #85 - Change the Fhir store logic to be linked to Product instead of adding Fhir server at KVM
+3. #100 - Update all the online and offline documentation where the word 'FHIR' is used (excludes images)
+4. #102 - Update Apigee readme.md file. Add manual process of creation of proxy and client_id configuration
+
+Release 1.2 (Tag- d1.2)
+DevPortal
+1. Pretty print response Payloads Defect 
+2. Show / hide consumer key and secrete
+3. Add the menu link for the APIGee auth URL settings
+4. About deleting the FHIR Server
+5. FHIR Samples sorting
+6. “OAuthB2B" button interchanging with "Set Oauth2 Access" token 
+7. Home page changes (Adding the slider, Home page features and other blocks in the home page)
+8. Have updated the Drupal version to 8.9.1 which had the latest security update.
+
+Apigee
+NA
+
+Release 1.1 (Tag- d1.1)
+DevPortal
+1. Remove OAuth API menu and move the OAuth API docs under Interoperability API
+2. On the "Create SMART App" page, the list of scopes should be in alphabetical order
+3. On My Apps pages: sort list of apps alphabetically
+4. Rename the “FHIR Server base URL” to “FHIR Server URL”
+
+Apigee
+NA

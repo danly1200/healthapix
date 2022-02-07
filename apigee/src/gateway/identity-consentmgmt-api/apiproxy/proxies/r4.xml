@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="r4">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>HPX_LookupSessionCache</Name>
+            </Step>
+            <Step>
+                <Name>HPX_ExtractSessionCache</Name>
+            </Step>
+            <Step>
+                <Name>HPX_StoreIncomingRequestVerb</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>HPX_SetContentTypeHeader</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="Validate Consent">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractValidateConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetClientDeviceInfo</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractDeviceIdentifier</Name>
+                </Step>
+                <Step>
+                    <Condition>(device_id is null)</Condition>
+                    <Name>HPX_ConsentDoesNotExistsOrInvalid</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetPatientConsentInfoRequest</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_ValidatePatientConsentR4</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/validate") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Create Consent">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractValidateConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetClientDeviceInfo</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractDeviceIdentifier</Name>
+                </Step>
+                <Step>
+                    <Condition>(device_id is null)</Condition>
+                    <Name>HPX_CreateDeviceR4</Name>
+                </Step>
+                <Step>
+                    <Condition>(device_id is null)</Condition>
+                    <Name>HPX_ExtractDeviceIdentifier</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PrepareForConsentCreation</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetPatientConsentInfoCreateRequestR4</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_ProcessCreateConsentResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/create") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Update Scopes">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractUpdateScopesParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PrepareForUpdateConsentScopes</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AddScopesToConsentRequestR4</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/update-scopes") and (incoming.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/r4/identity/consent/v1</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

@@ -1,0 +1,21 @@
+uuid: 6849c5a5-b0e8-4fe1-bfdf-e0351d5b3b31
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.fhir_datasets
+  module:
+    - text
+id: taxonomy_term.fhir_datasets.default
+targetEntityType: taxonomy_term
+bundle: fhir_datasets
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

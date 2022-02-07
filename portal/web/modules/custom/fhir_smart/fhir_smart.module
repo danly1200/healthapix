@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains fhir_smart.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function fhir_smart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the fhir_smart module.
+    case 'help.page.fhir_smart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Creation of Datasets,smart apps, server.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

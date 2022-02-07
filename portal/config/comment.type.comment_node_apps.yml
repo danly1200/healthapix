@@ -1,0 +1,8 @@
+uuid: 3247a4f5-2511-470c-a0bc-f782b8710918
+langcode: en
+status: true
+dependencies: {  }
+id: comment_node_apps
+label: 'Apps comment'
+target_entity_type_id: node
+description: null

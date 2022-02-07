@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="SoF_SC_GetJwksUri">
+    <DisplayName>SoF_SC_GetJwksUri</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request variable="oidcWellKnownRequest" clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Verb>GET</Verb>
+            <Headers>
+                <Header name="Accept">application/json</Header>
+            </Headers>
+            <Payload/>
+        </Set>
+    </Request>
+    <Response>oidcWellKnownResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://{sc_wellknown_urlhost}/{sc_wellknown_urlpath}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

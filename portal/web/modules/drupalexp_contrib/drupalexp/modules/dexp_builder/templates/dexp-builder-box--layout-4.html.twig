@@ -1,0 +1,8 @@
+<div{{ attributes }}>
+  <div class="box-title-wrapper row">
+    {% if icon %}<div class="col-auto order-last"><div class="box-icon">{{ icon|raw }}</div></div>{% endif %}
+    {% if title %}<div class="col"><div class="box-title">{{ title }}</div></div>{% endif %}
+  </div>
+  {% if content %}<div class="box-content">{{ content }}</div>{% endif %}
+  {% if readmore %}<div class="box-readmore">{{ readmore }}</div>{% endif %}
+</div>

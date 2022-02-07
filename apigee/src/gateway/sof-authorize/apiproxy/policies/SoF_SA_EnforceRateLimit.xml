@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest async="false" continueOnError="false" enabled="true" name="SoF_SA_EnforceRateLimit">
+    <DisplayName>SoF_SA_EnforceRateLimit</DisplayName>
+    <Rate ref="SPIKEARREST_RATELIMIT">30ps</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>

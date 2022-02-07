@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="HPX_ExtractTokensFromConsentResponse">
+    <DisplayName>HPX_ExtractTokensFromConsentResponse</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://HPX_ExtractTokensFromConsentResponse.js</ResourceURL>
+</Javascript>

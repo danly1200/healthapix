@@ -1,0 +1,50 @@
+{% set user_roles = user.getroles(TRUE) %}
+<nav role="navigation" class="mdc-header-right">
+  {% if not logged_in %}
+    {#    <div class="login-register-btn">#}
+    {#      <a class="mdc-button mdc-button--unelevated" href="{{ path('user.register') }}">#}
+    {#        <div class="mdc-fab__ripple"></div>#}
+    {#        <span class="mdc-fab__label">{{ 'Register'|t }}</span>#}
+    {#      </a>#}
+    {#      <a class="mdc-button mdc-button--unelevated" href="{{ path('user.login') }}">#}
+    {#        <div class="mdc-fab__ripple"></div>#}
+    {#        <span class="mdc-fab__label">{{ 'Login'|t }}</span>#}
+    {#      </a>#}
+    {#    </div>#}
+  {% else %}
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop">
+        <div class="mdc-select mdc-user-loggedin">
+          <div class="mdc-select__anchor">
+            {% if 'api_team' in user_roles or 'administrator' in user_roles %}
+              <i class="mdc-select__dropdown-icon"></i>
+            {% endif %}
+            <i class="material-icons face-icon mdc-button__icon" aria-hidden="true">person</i>
+            <div class="mdc-select__selected-text"></div>
+            <span class="mdc-floating-label">
+              {{ content.user_mail_clipped }}
+             </span>
+          </div>
+          {% if 'api_team' in user_roles or 'administrator' in user_roles %}
+            <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-width-class">
+              <ul class="mdc-list">
+                <a href="{{ url('<front>') }}/resources">
+                  <li class="mdc-list-item" data-value="profile">{{ 'Manage API docs'|t }}</li>
+                </a>
+                <a href="{{ url('<front>') }}/manage-payloads">
+                  <li class="mdc-list-item" data-value="profile">{{ 'Manage FHIR Samples'|t }}</li>
+                </a>
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="mdc-navbar-logo mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--align-middle">
+        <a class="mdc-button mdc-button--unelevated" aria-label="Favorite" href="{{ path('user.logout') }}">
+          <div class="mdc-fab__ripple"></div>
+          <span class="mdc-fab__label">{{ 'Logout'|t }}</span>
+        </a>
+      </div>
+    </div>
+  {% endif %}
+</nav>

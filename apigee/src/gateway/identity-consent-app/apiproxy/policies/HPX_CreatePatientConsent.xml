@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_CreatePatientConsent">
+    <DisplayName>HPX_CreatePatientConsent</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="createPatientConsentRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <QueryParams>
+                <QueryParam name="sessionId">{sessionid}</QueryParam>
+            </QueryParams>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+                {
+                  "client_id": "@client_id#",
+                  "patient_id": "@patient_id#",
+                  "scopes": "@scope#",
+                  "developer_email": "@developer_email#",
+                  "app_display_name": "@appName#"
+                }
+            </Payload>
+            <Verb>POST</Verb>
+        </Set>
+    </Request>
+    <Response>createPatientConsentResponse</Response>
+    <LocalTargetConnection>
+        <Path>/{toLowerCase(fhirVersion:r4)}/identity/consent/v1/create</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

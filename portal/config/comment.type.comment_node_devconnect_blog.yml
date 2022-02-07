@@ -1,0 +1,8 @@
+uuid: c438d19c-68f2-4d82-90f9-5ce10f057a02
+langcode: en
+status: true
+dependencies: {  }
+id: comment_node_devconnect_blog
+label: 'Devconnect Blog entry comment'
+target_entity_type_id: node
+description: null

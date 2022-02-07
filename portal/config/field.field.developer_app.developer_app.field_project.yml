@@ -1,0 +1,22 @@
+uuid: 097b3702-c8f0-440f-891e-46a89ff1e99a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_project
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_project
+field_name: field_project
+entity_type: developer_app
+bundle: developer_app
+label: project
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: dacfhir
+default_value_callback: ''
+settings: {  }
+field_type: string

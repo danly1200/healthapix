@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest async="false" continueOnError="false" enabled="true" name="HPX_EnforceRateLimit">
+    <DisplayName>HPX_EnforceRateLimit</DisplayName>
+    <Rate ref="spikearrest.ratelimit">50ps</Rate>
+    <UseEffectiveCount>false</UseEffectiveCount>
+</SpikeArrest>

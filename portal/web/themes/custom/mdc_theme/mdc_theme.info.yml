@@ -1,0 +1,26 @@
+name: MDC Theme
+type: theme
+description: 'Custom theme based on material design'
+package: Custom
+core: 8.x
+libraries:
+ - mdc_theme/global-styling
+ - mdc_theme/field-styling
+
+libraries-override:
+  improved_multi_select/ims:
+    js:
+      js/improved_multi_select.js: js/improved_multi_select.js
+
+regions:
+  content: Content
+  header: Header
+  header_right_block: Header Right Block
+  footer: Footer
+  plain_page_footer: Plain Page Footer
+  home_content_header: Home content header
+  home_content: Home content
+  home_content_footer: Home content footer
+  sidebar_left: Side bar left
+  content_top_fullwidth: Page content top full width region
+

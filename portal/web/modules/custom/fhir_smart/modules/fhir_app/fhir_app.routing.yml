@@ -1,0 +1,30 @@
+fhir_app.fhir_smart_app:
+  path: '/app/smart/add'
+  defaults:
+    _form: '\Drupal\fhir_app\Form\FhirSmartApp'
+    _title: 'Register an App'
+  requirements:
+    _role: 'authenticated'
+fhir_app.fhir_normal_app:
+  path: '/app/normal/add'
+  defaults:
+    _form: '\Drupal\fhir_app\Form\FhirNormalApp'
+    _title: 'Register an App'
+  requirements:
+    _role: 'authenticated'
+fhir_app.fhir_app_edit:
+  path: '/app/edit/{app_id}'
+  defaults:
+    _form: '\Drupal\fhir_app\Form\FhirAppEdit'
+    _title: 'Edit an App'
+  requirements:
+    _role: 'authenticated'
+fhir_app.scope_selection_controller_getScopes:
+  path: '/fhir_app/getScopes/{fhir_server}'
+  methods: [POST]
+  defaults:
+    _controller: '\Drupal\fhir_app\Controller\ScopeSelectionController::getScopes'
+    _title: 'Get Scopes'
+  requirements:
+    _permission: 'access content'
+    _format: json

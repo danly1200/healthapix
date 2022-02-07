@@ -1,0 +1,32 @@
+uuid: 56a517d5-bf51-493d-abef-d46d6c7d0c8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.oauth_swagger_api.body
+    - node.type.oauth_swagger_api
+  module:
+    - text
+    - user
+id: node.oauth_swagger_api.teaser
+targetEntityType: node
+bundle: oauth_swagger_api
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_interoperability_api_tag: true
+  field_swagger_upload: true

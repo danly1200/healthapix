@@ -1,0 +1,28 @@
+uuid: b34fd018-148d-46b6-b770-8c433db9fd2e
+langcode: en
+status: false
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.api_list_page
+  module:
+    - block_visibility_groups
+    - fhir_customizations
+  theme:
+    - mdc_theme
+id: oauthapilist
+theme: mdc_theme
+region: sidebar_left
+weight: -20
+provider: null
+plugin: oauth_api_list
+settings:
+  id: oauth_api_list
+  label: 'OAuth API List'
+  provider: fhir_customizations
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: api_list_page
+    context_mapping: {  }

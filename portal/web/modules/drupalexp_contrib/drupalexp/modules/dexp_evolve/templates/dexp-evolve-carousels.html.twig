@@ -1,0 +1,30 @@
+<div id="{{wrapper_id}}" {{ attributes }}>
+  {% if pager == true %}
+  <ol class="carousel-indicators">
+  {% for carousel in carousels %}   
+    <li data-target="#{{wrapper_id}}" data-slide-to="{{loop.index -1}}" class="{% if loop.index ==1 %} active{%endif%}"></li>  
+  {% endfor %}
+  </ol>
+  {% endif %}
+  <div class="carousel-inner" role="listbox">
+  {% for carousel in carousels %} 
+    <div class="carousel-item {% if loop.index ==1%} active {%endif%}">
+      {{carousel.image|raw}}
+	  {% if carousel.title != '' or carousel.content != '' %}
+	  <div class="carousel-caption d-none d-md-block">
+		<h3>{{carousel.title}}</h3>
+		<p>{{carousel.content|raw}}</p>
+	  </div>
+	  {% endif %}
+    </div>
+  {% endfor %}
+  </div>
+  {% if control == true %}
+  <a class="carousel-control carousel-control-prev" href="#{{wrapper_id}}" role="button" data-slide="prev">
+    <span class="fa fa-angle-left"></span>
+  </a>
+  <a class="carousel-control carousel-control-next" href="#{{wrapper_id}}" role="button" data-slide="next">
+    <span class="fa fa-angle-right"></span>
+  </a>
+  {% endif %}
+</div>

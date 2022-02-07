@@ -1,0 +1,11 @@
+.dexp-button.icon-right i{
+  float: right;
+  margin-left: 5px;
+}
+.dexp-button.btn-right{
+  float: right;
+}
+.dexp-button.btn-center{
+  margin: 0 auto;
+  display: table;
+}

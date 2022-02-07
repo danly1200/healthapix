@@ -1,0 +1,1604 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0-oas3
+  description: >-
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire")
+    defines a set of "Resources" that represent granular clinical concepts. The
+    resources can be managed in isolation, or aggregated into complex documents.
+    Technically, FHIR® is designed for the web; the resources are based on
+    simple JSON structures, with an http-based RESTful protocol where each
+    resource has predictable URL. Where possible, open internet standards are
+    used for data representation. The FHIR® DSTU2 API docs are part of the FHIR®
+    Specifications (v1.0.2: DSTU2). The current version which supercedes this
+    version is 4.0.1 (R4). This section contains API docs for the few commonly
+    used DSTU2 resources. API docs for other resources can be added by API
+    publishers on request.
+  title: HL7® FHIR® Observation resource API documentation
+paths:
+  /Observation:
+    parameters: []
+    post:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          required: false
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Observation.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: >-
+            Observation could not be parsed or failed basic FHIR validation
+            rules
+        '404':
+          description: Observation not found.
+        '422':
+          description: >-
+            The Observation resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Create Observation
+      description: >-
+        Create a new Observation with a server assigned id.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/Observation'
+    get:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            The prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: >-
+            Search the contents of the resource's narrative using a fulltext
+            search
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: The classification of the type of observation
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: The code of the observation type
+          schema:
+            type: string
+        - name: code-value-concept
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: code-value-date
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: code-value-quantity
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: code-value-string
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: component-code
+          in: query
+          description: The component code of the observation type
+          schema:
+            type: string
+        - name: component-code-component-value-concept
+          in: query
+          description: Both component code and one of the component value parameters
+          schema:
+            type: string
+        - name: component-code-component-value-quantity
+          in: query
+          description: Both component code and one of the component value parameters
+          schema:
+            type: string
+        - name: component-code-component-value-string
+          in: query
+          description: Both component code and one of the component value parameters
+          schema:
+            type: string
+        - name: component-data-absent-reason
+          in: query
+          description: >-
+            The reason why the expected value in the element
+            Observation.component.value[x] is missing.
+          schema:
+            type: string
+        - name: component-value-concept
+          in: query
+          description: >-
+            The value of the component observation, if the value is a
+            CodeableConcept
+          schema:
+            type: string
+        - name: component-value-quantity
+          in: query
+          description: >-
+            The value of the component observation, if the value is a Quantity,
+            or a SampledData (just search on the bounds of the values in sampled
+            data)
+          schema:
+            type: integer
+        - name: component-value-string
+          in: query
+          description: >-
+            The value of the component observation, if the value is a string,
+            and also searches in CodeableConcept.text
+          schema:
+            type: string
+        - name: data-absent-reason
+          in: query
+          description: >-
+            The reason why the expected value in the element
+            Observation.value[x] is missing.
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            Obtained date/time. If the obtained element is a period, a date that
+            falls in the period. The date parameter format is
+            yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on
+            the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: device
+          in: query
+          description: The Device that generated the observation data.
+          schema:
+            type: string
+        - name: encounter
+          in: query
+          description: Healthcare event related to the observation
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: The unique id for a particular observation
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: The subject that the observation is about (if patient)
+          schema:
+            type: string
+        - name: performer
+          in: query
+          description: Who performed the observation
+          schema:
+            type: string
+        - name: related-target
+          in: query
+          description: Resource that is related to this one
+          schema:
+            type: string
+        - name: related-target-related-type
+          in: query
+          description: >-
+            Related Observations - search on related-type and related-target
+            together
+          schema:
+            type: string
+        - name: related-type
+          in: query
+          description: >-
+            has-member | derived-from | sequel-to | replaces | qualified-by |
+            interfered-by
+          schema:
+            type: string
+        - name: specimen
+          in: query
+          description: Specimen used for this observation
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: The status of the observation
+          schema:
+            type: string
+        - name: subject
+          in: query
+          description: The subject that the observation is about
+          schema:
+            type: string
+        - name: value-concept
+          in: query
+          description: 'The value of the observation, if the value is a CodeableConcept'
+          schema:
+            type: string
+        - name: value-date
+          in: query
+          description: >-
+            The value of the observation, if the value is a date or period of
+            time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The
+            prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: value-quantity
+          in: query
+          description: >-
+            The value of the observation, if the value is a Quantity, or a
+            SampledData (just search on the bounds of the values in sampled
+            data)
+          schema:
+            type: integer
+        - name: value-string
+          in: query
+          description: >-
+            The value of the observation, if the value is a string, and also
+            searches in CodeableConcept.text
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: Observation bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Observation'
+        default:
+          description: unexpected error
+      operationId: Observations Search
+      description: >-
+        Returns Observations based on filter criteria OR Provides provision for
+        pagination (stateid, page, page_size, _pretty & _bundletype are query
+        parameters used for Paging).<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  '/Observation/{id}':
+    parameters: []
+    get:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: Observation Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Observation'
+        default:
+          description: unexpected error
+      operationId: Read Observation
+      description: >-
+        Returns details of Observation having id given in path.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+    put:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.write
+      responses:
+        '200':
+          description: Observation Updated.
+        '201':
+          description: Observation Created.
+        '400':
+          description: >-
+            Observation could not be parsed or failed basic FHIR validation
+            rules (or multiple matches were found).
+        '403':
+          description: Not Authorized.
+        '412':
+          description: The given criteria is not selective enough.
+        default:
+          description: unexpected error
+      operationId: Update Observation
+      description: >-
+        Update an existing Observation by its id (or create it if it is
+        new).<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR
+        documentation for Observation.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/Observation'
+    delete:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.write
+      responses:
+        '200':
+          description: No Content.
+        '204':
+          description: No Content.
+        '404':
+          description: Observation not found.
+        '405':
+          description: Method not allowed.
+        '409':
+          description: Conflict Error.
+        '412':
+          description: The given criteria is not selective enough.
+        default:
+          description: unexpected error
+      operationId: Delete Observation
+      description: >-
+        The delete interaction removes an existing Observation.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  '/Observation/{id}/_history':
+    get:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: >-
+            Specify an instant to only include resource versions that were
+            created at or after the given instant in time. An instant in time is
+            known at least to the second and always includes a time zone.
+          schema:
+            type: string
+            pattern: >-
+              ([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: Observation bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Observation'
+        default:
+          description: unexpected error
+      operationId: Observation History
+      description: >-
+        It retrieves the history of a particular Observation identified by the
+        given id in path.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  '/Observation/{id}/_history/{vid}':
+    get:
+      tags:
+        - Observation
+      parameters:
+        - required: true
+          name: vid
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: >-
+            Specify an instant to only include resource versions that were
+            created at or after the given instant in time. An instant in time is
+            known at least to the second and always includes a time zone.
+          schema:
+            type: string
+            pattern: >-
+              ([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: Observation Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Observation'
+        default:
+          description: unexpected error
+      operationId: Observation Version Read
+      description: >-
+        This interaction preforms a version specific read of Observation
+        resource.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR
+        documentation for Observation.</a></p>
+  /Observation/$meta:
+    get:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for Observation'
+        default:
+          description: unexpected error
+      operationId: Observations Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for
+        Observations.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  '/Observation/{id}/$meta':
+    get:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: >-
+            List of all tags, profiles and security labels affixed to the
+            nominated resource.
+        default:
+          description: unexpected error
+      operationId: Observation Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for given
+        Observation resource.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  '/Observation/{id}/_history/{vid}/$meta':
+    get:
+      tags:
+        - Observation
+      parameters:
+        - required: true
+          name: vid
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+            default: 'Bearer [access_token]'
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: >-
+            List of all tags, profiles and security labels affixed to the
+            nominated version of the resource.
+        default:
+          description: unexpected error
+      operationId: Observation Version based Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for given
+        version of the Observation.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  '/Observation/{id}/{type}':
+    get:
+      tags:
+        - Observation
+      parameters:
+        - required: true
+          name: type
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: The set of resources associated with a particular Observation
+        default:
+          description: unexpected error
+      operationId: ' Compartment Search'
+      description: >-
+        Search the specified resource type in Observation compartment.<p><a href
+        = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+  /Observation/_search:
+    post:
+      tags:
+        - Observation
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            The prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: +_lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            Two dates can be used to specify an interval. The prefixes >, >=, <=
+            and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: >-
+            Search the contents of the resource's narrative using a fulltext
+            search
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: The classification of the type of observation
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: The code of the observation type
+          schema:
+            type: string
+        - name: code-value-concept
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: code-value-date
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: code-value-quantity
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: code-value-string
+          in: query
+          description: Both code and one of the value parameters
+          schema:
+            type: string
+        - name: component-code
+          in: query
+          description: The component code of the observation type
+          schema:
+            type: string
+        - name: component-code-component-value-concept
+          in: query
+          description: Both component code and one of the component value parameters
+          schema:
+            type: string
+        - name: component-code-component-value-quantity
+          in: query
+          description: Both component code and one of the component value parameters
+          schema:
+            type: string
+        - name: component-code-component-value-string
+          in: query
+          description: Both component code and one of the component value parameters
+          schema:
+            type: string
+        - name: component-data-absent-reason
+          in: query
+          description: >-
+            The reason why the expected value in the element
+            Observation.component.value[x] is missing.
+          schema:
+            type: string
+        - name: component-value-concept
+          in: query
+          description: >-
+            The value of the component observation, if the value is a
+            CodeableConcept
+          schema:
+            type: string
+        - name: component-value-quantity
+          in: query
+          description: >-
+            The value of the component observation, if the value is a Quantity,
+            or a SampledData (just search on the bounds of the values in sampled
+            data)
+          schema:
+            type: integer
+        - name: component-value-string
+          in: query
+          description: >-
+            The value of the component observation, if the value is a string,
+            and also searches in CodeableConcept.text
+          schema:
+            type: string
+        - name: data-absent-reason
+          in: query
+          description: >-
+            The reason why the expected value in the element
+            Observation.value[x] is missing.
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            Obtained date/time. If the obtained element is a period, a date that
+            falls in the period. The date parameter format is
+            yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on
+            the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: device
+          in: query
+          description: The Device that generated the observation data.
+          schema:
+            type: string
+        - name: encounter
+          in: query
+          description: Healthcare event related to the observation
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: The unique id for a particular observation
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: The subject that the observation is about (if patient)
+          schema:
+            type: string
+        - name: performer
+          in: query
+          description: Who performed the observation
+          schema:
+            type: string
+        - name: related-target
+          in: query
+          description: Resource that is related to this one
+          schema:
+            type: string
+        - name: related-target-related-type
+          in: query
+          description: >-
+            Related Observations - search on related-type and related-target
+            together
+          schema:
+            type: string
+        - name: related-type
+          in: query
+          description: >-
+            has-member | derived-from | sequel-to | replaces | qualified-by |
+            interfered-by
+          schema:
+            type: string
+        - name: specimen
+          in: query
+          description: Specimen used for this observation
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: The status of the observation
+          schema:
+            type: string
+        - name: subject
+          in: query
+          description: The subject that the observation is about
+          schema:
+            type: string
+        - name: value-concept
+          in: query
+          description: 'The value of the observation, if the value is a CodeableConcept'
+          schema:
+            type: string
+        - name: value-date
+          in: query
+          description: >-
+            The value of the observation, if the value is a date or period of
+            time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The
+            prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: value-quantity
+          in: query
+          description: >-
+            The value of the observation, if the value is a Quantity, or a
+            SampledData (just search on the bounds of the values in sampled
+            data)
+          schema:
+            type: integer
+        - name: value-string
+          in: query
+          description: >-
+            The value of the observation, if the value is a string, and also
+            searches in CodeableConcept.text
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      security:
+        - OAuthV2B2B:
+            - system/Observation.read
+      responses:
+        '200':
+          description: Observation bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Observation'
+        default:
+          description: unexpected error
+      operationId: Observations Search using POST
+      description: >-
+        This interaction searches a set of Observations based on some filter
+        criteria. Search interactions take a series of parameters of
+        name'='value pairs encoded as an application/x-www-form-urlencoded
+        submission for a POST.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _content:
+                  description: >-
+                    Search the contents of the resource's data using a fulltext
+                    search
+                  type: string
+                _id:
+                  description: The resource identity
+                  type: string
+                _language:
+                  description: The resource language
+                  type: string
+                _lastUpdated:
+                  description: >-
+                    Only return resources which were last updated as specified
+                    by the given range. The date parameter format is
+                    yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be
+                    used on the parameter value.
+                  type: string
+                  format: date
+                _profile:
+                  description: Search for resources which have the given profile
+                  type: string
+                _security:
+                  description: Search for resources which have the given security labels
+                  type: string
+                _tag:
+                  description: Search for resources which have the given tag
+                  type: string
+                _text:
+                  description: >-
+                    Search the contents of the resource's narrative using a
+                    fulltext search
+                  type: string
+                category:
+                  description: The classification of the type of observation
+                  type: string
+                code:
+                  description: The code of the observation type
+                  type: string
+                code-value-concept:
+                  description: Both code and one of the value parameters
+                  type: string
+                code-value-date:
+                  description: Both code and one of the value parameters
+                  type: string
+                code-value-quantity:
+                  description: Both code and one of the value parameters
+                  type: string
+                code-value-string:
+                  description: Both code and one of the value parameters
+                  type: string
+                component-code:
+                  description: The component code of the observation type
+                  type: string
+                component-code-component-value-concept:
+                  description: >-
+                    Both component code and one of the component value
+                    parameters
+                  type: string
+                component-code-component-value-quantity:
+                  description: >-
+                    Both component code and one of the component value
+                    parameters
+                  type: string
+                component-code-component-value-string:
+                  description: >-
+                    Both component code and one of the component value
+                    parameters
+                  type: string
+                component-data-absent-reason:
+                  description: >-
+                    The reason why the expected value in the element
+                    Observation.component.value[x] is missing.
+                  type: string
+                component-value-concept:
+                  description: >-
+                    The value of the component observation, if the value is a
+                    CodeableConcept
+                  type: string
+                component-value-quantity:
+                  description: >-
+                    The value of the component observation, if the value is a
+                    Quantity, or a SampledData (just search on the bounds of the
+                    values in sampled data)
+                  type: integer
+                component-value-string:
+                  description: >-
+                    The value of the component observation, if the value is a
+                    string, and also searches in CodeableConcept.text
+                  type: string
+                data-absent-reason:
+                  description: >-
+                    The reason why the expected value in the element
+                    Observation.value[x] is missing.
+                  type: string
+                date:
+                  description: >-
+                    Obtained date/time. If the obtained element is a period, a
+                    date that falls in the period. The date parameter format is
+                    yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be
+                    used on the parameter value.
+                  type: string
+                  format: date
+                device:
+                  description: The Device that generated the observation data.
+                  type: string
+                encounter:
+                  description: Healthcare event related to the observation
+                  type: string
+                identifier:
+                  description: The unique id for a particular observation
+                  type: string
+                patient:
+                  description: The subject that the observation is about (if patient)
+                  type: string
+                performer:
+                  description: Who performed the observation
+                  type: string
+                related-target:
+                  description: Resource that is related to this one
+                  type: string
+                related-target-related-type:
+                  description: >-
+                    Related Observations - search on related-type and
+                    related-target together
+                  type: string
+                related-type:
+                  description: >-
+                    has-member | derived-from | sequel-to | replaces |
+                    qualified-by | interfered-by
+                  type: string
+                specimen:
+                  description: Specimen used for this observation
+                  type: string
+                status:
+                  description: The status of the observation
+                  type: string
+                subject:
+                  description: The subject that the observation is about
+                  type: string
+                value-concept:
+                  description: >-
+                    The value of the observation, if the value is a
+                    CodeableConcept
+                  type: string
+                value-date:
+                  description: >-
+                    The value of the observation, if the value is a date or
+                    period of time. The date parameter format is
+                    yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be
+                    used on the parameter value.
+                  type: string
+                  format: date
+                value-quantity:
+                  description: >-
+                    The value of the observation, if the value is a Quantity, or
+                    a SampledData (just search on the bounds of the values in
+                    sampled data)
+                  type: integer
+                value-string:
+                  description: >-
+                    The value of the observation, if the value is a string, and
+                    also searches in CodeableConcept.text
+                  type: string
+  '/Observation/{id}/$meta-add':
+    post:
+      tags:
+        - Observation
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: >-
+            Observation could not be parsed or failed basic FHIR validation
+            rules
+        '404':
+          description: Observation not found.
+        '422':
+          description: >-
+            The Observation resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Add Observation metadata
+      description: >-
+        Add a metadata info Observation with specified id.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/metaBody'
+  '/Observation/{id}/_history/{vid}/$meta-add':
+    post:
+      tags:
+        - Observation
+      parameters:
+        - required: true
+          name: vid
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Observation.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: >-
+            Observation could not be parsed or failed basic FHIR validation
+            rules
+        '404':
+          description: Observation not found.
+        '422':
+          description: >-
+            The Observation resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Add Observation Version based Metadata
+      description: >-
+        Add metadata info to specified Observation resource.<p><a href =
+        'https://www.hl7.org/fhir/observation.html'>FHIR documentation for
+        Observation.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/metaBody'
+servers:
+  - url: 'https://org-env.apigee.net/v1/ghc/dstu2'
+components:
+  requestBodies:
+    metaBody:
+      content:
+        application/fhir+json;charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/metaBody'
+      description: The request body should be a valid meta payload.
+      required: true
+    Observation:
+      content:
+        application/fhir+json;charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Observation'
+      description: The request body should be a valid data payload.
+      required: true
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Observation.read: Read permissions for Observation demographics.
+            system/Observation.write: Write permissions for Observation demographics.
+  schemas:
+    Observation:
+      description: ''
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        text:
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                properties: {}
+            status:
+              type: string
+              minLength: 1
+            div:
+              type: string
+              minLength: 1
+          required:
+            - fhir_comments
+            - status
+            - div
+        status:
+          type: string
+          minLength: 1
+        category:
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                properties: {}
+            coding:
+              type: array
+              uniqueItems: true
+              minItems: 1
+              items:
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                  code:
+                    type: string
+                    minLength: 1
+                  display:
+                    type: string
+                    minLength: 1
+          required:
+            - fhir_comments
+            - coding
+        code:
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                properties: {}
+            coding:
+              type: array
+              uniqueItems: true
+              minItems: 1
+              items:
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  fhir_comments:
+                    type: array
+                    items:
+                      properties: {}
+                  system:
+                    type: string
+                    minLength: 1
+                  code:
+                    type: string
+                    minLength: 1
+                  display:
+                    type: string
+                    minLength: 1
+                  _display:
+                    type: object
+                    properties:
+                      fhir_comments:
+                        type: array
+                        items:
+                          properties: {}
+                    required:
+                      - fhir_comments
+          required:
+            - fhir_comments
+            - coding
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+          required:
+            - reference
+        encounter:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+          required:
+            - reference
+        effectiveDateTime:
+          type: string
+          minLength: 1
+        valueQuantity:
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                properties: {}
+            value:
+              type: number
+            unit:
+              type: string
+              minLength: 1
+            system:
+              type: string
+              minLength: 1
+            code:
+              type: string
+              minLength: 1
+          required:
+            - fhir_comments
+            - value
+            - unit
+            - system
+            - code
+      required:
+        - resourceType
+        - id
+        - text
+        - status
+        - category
+        - code
+        - subject
+        - encounter
+        - effectiveDateTime
+        - valueQuantity
+    metaBody:
+      type: string

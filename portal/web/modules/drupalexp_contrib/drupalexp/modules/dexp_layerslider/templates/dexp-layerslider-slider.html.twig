@@ -1,0 +1,10 @@
+<div class="rev_slider_wrapper fullwidthbanner-container">
+<div{{ attributes.addClass('layerslider-banner').addClass('rev_slider') }} style="position: relative">
+  <ul>
+      {% for key, slide in slides  %}
+          {{ slide }}
+      {% endfor %}
+  </ul>
+  <div class="tp-bannertimer{% if (settings.timer == 'bottom') %} tp-bottom {% endif %}"></div> 
+</div>
+</div>

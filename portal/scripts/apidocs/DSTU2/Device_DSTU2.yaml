@@ -1,0 +1,407 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0-oas3
+  title: HL7® FHIR® Device resource API documentation
+  description: |
+    "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® DSTU2 API docs are part of the FHIR® Specifications (v1.0.2: DSTU 2). The current version which supercedes this version is 4.0.1 (R4). This section contains API docs for the few commonly used DSTU2 resources. API docs for other resources can be added by API publishers on request.",
+servers:
+- url: https://org-env.apigee.net/v1/ghc/dstu2
+tags:
+- name: Device
+paths:
+  /Device:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: _content
+        in: query
+        description: Search the contents of the resource's data using a fulltext search
+        schema:
+          type: string
+      - name: _filter
+        in: query
+        description: Search the contents of the resource's data using a filter
+        schema:
+          type: string
+      - name: _has
+        in: query
+        description: Return resources linked to by the given target
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: _lastUpdated
+        in: query
+        description: Only return resources which were last updated as specified by
+          the given range
+        schema:
+          type: string
+          format: date
+      - name: _profile
+        in: query
+        description: Search for resources which have the given profile
+        schema:
+          type: string
+      - name: _security
+        in: query
+        description: Search for resources which have the given security labels
+        schema:
+          type: string
+      - name: _tag
+        in: query
+        description: Search for resources which have the given tag
+        schema:
+          type: string
+      - name: _text
+        in: query
+        description: Search the contents of the resource's narrative using a fulltext
+          search
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: Instance id from manufacturer, owner, and others
+        schema:
+          type: string
+      - name: location
+        in: query
+        description: A location, where the resource is found
+        schema:
+          type: string
+      - name: manufacturer
+        in: query
+        description: The manufacturer of the device
+        schema:
+          type: string
+      - name: model
+        in: query
+        description: The model of the device
+        schema:
+          type: string
+      - name: organization
+        in: query
+        description: The organization responsible for the device
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Patient information, if the resource is affixed to a person
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: The type of the device
+        schema:
+          type: string
+      - name: udi
+        in: query
+        description: FDA mandated Unique Device Identifier
+        schema:
+          type: string
+      - name: url
+        in: query
+        description: Network address to contact device
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8+fhir;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+      security:
+        - OAuthV2B2B:
+            - system/Device.read
+    post:
+      tags:
+      - Device
+      requestBody:
+        content:
+          application/fhir+json;charset=utf-8+fhir;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Device.write
+  /Device/{id}:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8+fhir;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Device'
+      security:
+        - OAuthV2B2B:
+            - system/Device.read
+    put:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/fhir+json;charset=utf-8+fhir;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Device.write
+    delete:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Device.write
+  /Device/{id}/_history:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Device.read
+  /Device/{id}/_history/{vid}:
+    get:
+      tags:
+      - Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/fhir+json;charset=utf-8+fhir;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Device'
+      security:
+        - OAuthV2B2B:
+            - system/Device.read
+components:
+  schemas:
+    Device:
+      required:
+      - contact
+      - id
+      - identifier
+      - lotNumber
+      - manufacturer
+      - model
+      - note
+      - resourceType
+      - status
+      - text
+      - type
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - fhir_comments
+          - status
+          type: object
+          properties:
+            fhir_comments:
+              type: array
+              items:
+                type: object
+                properties: {}
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        type:
+          required:
+          - coding
+          - text
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+            text:
+              minLength: 1
+              type: string
+        note:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - text
+            - time
+            type: object
+            properties:
+              authorReference:
+                required:
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+              time:
+                minLength: 1
+                type: string
+              text:
+                minLength: 1
+                type: string
+        status:
+          minLength: 1
+          type: string
+        manufacturer:
+          minLength: 1
+          type: string
+        model:
+          minLength: 1
+          type: string
+        lotNumber:
+          minLength: 1
+          type: string
+        contact:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+      description: ""
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Device.read: Read permissions for Device demographics.
+            system/Device.write: Write permissions for Device demographics.

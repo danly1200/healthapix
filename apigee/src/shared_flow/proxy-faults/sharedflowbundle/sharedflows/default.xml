@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Condition>(request.verb = "OPTIONS")</Condition>
+        <Name>HPX_Fault_HandleCORSPreFlight</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "InvalidAccessToken") OR (fault.name = "access_token_expired") OR (fault.name = "invalid_access_token")</Condition>
+        <Name>HPX_Fault_InvalidAccessToken</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "RaiseFault" AND isValidResource = false)</Condition>
+        <Name>HPX_Fault_InvalidResource</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "RaiseFault" AND noRecords = true)</Condition>
+        <Name>HPX_Fault_NoRecordsForGivenId</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "RaiseFault" AND btoc.error = true)</Condition>
+        <Name>HPX_Fault_B2COperationNotSupported</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "RaiseFault" AND validScopeFound = false) OR (fault.name = "InsufficientScope") OR (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+        <Name>HPX_Fault_InsufficientScope</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "SpikeArrestViolation")</Condition>
+        <Name>HPX_Fault_SpikeArrestViolation</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "QuotaViolation")</Condition>
+        <Name>HPX_CalculateRetryAfter</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "QuotaViolation")</Condition>
+        <Name>HPX_Fault_QuotaViolation</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "ThreatDetected") OR (threatPresent = true)</Condition>
+        <Name>HPX_Fault_ThreatDetected</Name>
+    </Step>
+    <Step>
+        <Condition>(fault.name = "ExceededContainerDepth") OR (fault.name = "ExceededObjectEntryCount") OR (fault.name = "ExceededArrayElementCount") OR (fault.name = "ExceededObjectEntryNameLength") OR (fault.name = "ExceededStringValueLength") OR (fault.name = "SourceUnavailable") OR (fault.name = "NonMessageVariable") OR (fault.name = "ExecutionFailed")</Condition>
+        <Name>HPX_Fault_InvalidRequestBody</Name>
+    </Step>
+    <Step>
+        <Condition>!(errorHandled is true)</Condition>
+        <Name>HPX_Fault_GenericFault</Name>
+    </Step>
+    <Step>
+        <Condition>(request.header.Accept ~ "*xml*")</Condition>
+        <Name>HPX_JSONtoXML</Name>
+    </Step>
+</SharedFlow>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetPatientConsentInfoCreateRequestDSTU2">
+    <DisplayName>HPX_SetPatientConsentInfoCreateRequestDSTU2</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{googleToken}</Header>
+        </Headers>
+        <Verb>POST</Verb>
+        <Payload contentType="application/fhir+json" variablePrefix="@" variableSuffix="#">{"resourceType":"Contract","subject":[{"reference":"Patient/@patient_id#"}],"actor":[{"entity":{"reference":"Device/@device_id#"}}],"term":[{"text":"[@formatted_scopes#]"}]}</Payload>
+    </Set>
+    <AssignVariable>
+        <Name>targetSuffixURI</Name>
+        <Value>Contract</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

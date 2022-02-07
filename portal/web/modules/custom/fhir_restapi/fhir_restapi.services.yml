@@ -1,0 +1,12 @@
+services:
+  logger.channel.fhir_restapi:
+    parent: logger.channel_base
+    arguments: ['fhir_restapi']
+  fhir_restapi.credlist:
+    class: Drupal\fhir_restapi\AppListService
+    arguments: []
+
+  fhir_restapi.fhir_server_redirect:
+    class: Drupal\fhir_restapi\EventSubscriber\fhirServerRedirectSubscriber
+    tags:
+      - {name: event_subscriber}

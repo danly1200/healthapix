@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_UpdatePatientConsent">
+    <DisplayName>HPX_UpdatePatientConsent</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="updatePatientConsentRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <QueryParams>
+                <QueryParam name="sessionId">{sessionid}</QueryParam>
+            </QueryParams>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+                {
+                  "consent_id": "@consent_id#",
+                  "new_scopes": @new_scopes#,
+                  "existing_scopes": @existing_scopes#
+                }
+            </Payload>
+            <Verb>POST</Verb>
+        </Set>
+    </Request>
+    <Response>updatePatientConsentResponse</Response>
+    <LocalTargetConnection>
+        <Path>/{toLowerCase(fhirVersion:r4)}/identity/consent/v1/update-scopes</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

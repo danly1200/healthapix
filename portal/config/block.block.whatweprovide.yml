@@ -1,0 +1,37 @@
+uuid: d305e491-8236-4024-a6a1-22298247bf92
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:c825effa-7b58-43d7-9557-4cb545f29f77'
+  module:
+    - block_content
+    - block_visibility_groups
+    - system
+  theme:
+    - mdc_theme
+id: whatweprovide
+theme: mdc_theme
+region: home_content_header
+weight: -22
+provider: null
+plugin: 'block_content:c825effa-7b58-43d7-9557-4cb545f29f77'
+settings:
+  id: 'block_content:c825effa-7b58-43d7-9557-4cb545f29f77'
+  label: 'Community Services'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

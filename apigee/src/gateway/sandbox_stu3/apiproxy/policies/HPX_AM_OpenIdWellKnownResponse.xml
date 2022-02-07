@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_OpenIdWellKnownResponse">
+    <DisplayName>HPX_AM_OpenIdWellKnownResponse</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#" accept="application/json">
+        {
+          "authorization_endpoint": "https://@requestHost#/oauth/v2/authorize",
+          "token_endpoint": "https://@requestHost#/oauth/v2/accesstoken",
+          "token_endpoint_auth_methods_supported": ["client_secret_basic"],
+          "introspection_endpoint":"https://@requestHost#/oauth/v2/introspect",
+          "revocation_endpoint":"https://@requestHost#/oauth/v2/revoke",
+          "scopes_supported": ["openid", "fhiruser", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
+          "response_types_supported": ["code","refresh_token"],
+          "capabilities": ["launch-standalone", "client-confidential-symmetric", "context-standalone-patient", "sso-openid-connect", "permission-offline", "permission-patient", "permission-user"],
+          "issuer": "https://@requestHost#@proxy.basepath#",
+          "jwks_uri": "https://@requestHost#/oauth/v2/.well-known/jwks.json",
+          "subject_types_supported": ["public"],
+          "id_token_signing_alg_values_supported": ["RS384"],
+          "claims_supported": ["aud","exp","iat","iss","sub"],
+          "grant_types_supported": ["authorization_code","refresh_token"]
+        }
+    </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

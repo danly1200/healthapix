@@ -1,0 +1,618 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #4582F4;
+}
+
+.mdc-plain-container .user-forms-logo {
+  margin-top: 30px;
+}
+.mdc-plain-container .mdc-notched-outline__notch {
+  padding: 0px;
+  max-width: calc(100% - 5px * 2);
+}
+.mdc-plain-container .captcha summary {
+  padding-bottom: 10px;
+}
+
+header {
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  z-index: 99;
+}
+
+.content-wrapper, .home-content-header-wrapper {
+  padding-top: 100px;
+}
+
+.drupal-message-wrap {
+  padding: 10px 0px;
+  font-size: 12px;
+}
+.drupal-message-wrap .error-message {
+  color: #d93025;
+}
+.drupal-message-wrap .status-message {
+  color: #08bb38;
+}
+
+.user-login-form .form-item > label:first-child, .user-register-form .form-item > label:first-child, .user-pass .form-item > label:first-child, .user-form .form-item > label:first-child {
+  display: none;
+}
+
+.user-register-form .description {
+  display: none;
+}
+.user-register-form p {
+  display: none;
+}
+.user-register-form .field--name-first-name {
+  width: 50%;
+  float: left;
+}
+.user-register-form .field--name-first-name .mdc-text-field-wrapper {
+  margin-right: 10px;
+}
+.user-register-form .field--name-last-name {
+  width: 50%;
+  float: left;
+}
+.user-register-form .field--name-last-name .mdc-text-field-wrapper {
+  margin-left: 10px;
+}
+.user-register-form #edit-account {
+  clear: both;
+}
+.user-register-form .form-item-mail {
+  width: 50%;
+  float: left;
+}
+.user-register-form .form-item-mail .mdc-email-field-wrapper {
+  margin-right: 10px;
+}
+.user-register-form .form-item-name {
+  width: 50%;
+  float: left;
+}
+.user-register-form .form-item-name .mdc-text-field-wrapper {
+  margin-left: 10px;
+}
+.user-register-form .form-item-pass {
+  clear: both;
+  height: 120px;
+}
+.user-register-form .form-item-pass-pass1 {
+  width: 50%;
+  float: left;
+}
+.user-register-form .form-item-pass-pass1 .mdc-password-field-wrapper {
+  margin-right: 10px;
+}
+.user-register-form .form-item-pass-pass1 .mdc-text-field {
+  width: 100%;
+}
+.user-register-form .form-item-pass-pass1 .password-strength {
+  position: absolute;
+  top: 60px;
+  width: 50%;
+}
+.user-register-form .form-item-pass-pass1 .password-strength__title {
+  font-size: 12px;
+}
+.user-register-form .form-item-pass-pass2 {
+  width: 50%;
+  float: left;
+}
+.user-register-form .form-item-pass-pass2 .mdc-password-field-wrapper {
+  margin-left: 10px;
+}
+.user-register-form .form-item-pass-pass2 .mdc-text-field {
+  width: 100%;
+}
+.user-register-form #captcha {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 30px;
+}
+.user-register-form .captcha {
+  clear: both;
+}
+.user-register-form .captcha .form-item-captcha-response {
+  width: 100%;
+}
+.user-register-form .captcha .form-item-captcha-response label {
+  display: block;
+}
+.user-register-form .captcha .form-item-captcha-response .mdc-text-field {
+  width: 100%;
+}
+.user-register-form .captcha .mdc-text-field {
+  margin-top: 10px;
+}
+.user-register-form .mdc-text-field--focused .mdc-notched-outline__trailing {
+  border: 2px solid #4582F4 !important;
+  border-left: none !important;
+}
+.user-register-form .mdc-text-field--focused .mdc-notched-outline__leading {
+  border: 2px solid #4582F4 !important;
+  border-right: none !important;
+}
+.user-register-form .mdc-text-field--focused .mdc-notched-outline__notch {
+  border-bottom: 2px solid #4582F4 !important;
+}
+.user-register-form .mdc-text-field--focused .mdc-notched-outline__notch .mdc-floating-label--float-above {
+  color: #4582F4;
+}
+
+#user-form .description {
+  display: none;
+}
+#user-form p {
+  display: none;
+}
+#user-form .field--name-first-name {
+  width: 50%;
+  float: left;
+}
+#user-form .field--name-first-name .mdc-text-field-wrapper {
+  margin-right: 10px;
+}
+#user-form .field--name-first-name .mdc-text-field-wrapper .mdc-text-field {
+  width: 100%;
+}
+#user-form .field--name-last-name {
+  width: 50%;
+  float: left;
+}
+#user-form .field--name-last-name .mdc-text-field-wrapper {
+  margin-left: 10px;
+}
+#user-form .field--name-last-name .mdc-text-field-wrapper .mdc-text-field {
+  width: 100%;
+}
+#user-form #edit-account {
+  clear: both;
+}
+#user-form .form-item-current-pass {
+  width: 50%;
+  float: left;
+}
+#user-form .form-item-current-pass .mdc-password-field-wrapper {
+  margin-right: 10px;
+}
+#user-form .form-item-current-pass .mdc-password-field-wrapper .mdc-text-field {
+  width: 100%;
+}
+#user-form .form-item-mail {
+  width: 50%;
+  float: left;
+}
+#user-form .form-item-mail .mdc-email-field-wrapper {
+  margin-left: 10px;
+}
+#user-form .form-item-pass {
+  clear: both;
+  height: 120px;
+}
+#user-form .form-item-pass-pass1 {
+  width: 50%;
+  float: left;
+}
+#user-form .form-item-pass-pass1 .mdc-password-field-wrapper {
+  margin-right: 10px;
+}
+#user-form .form-item-pass-pass1 .mdc-text-field {
+  width: 100%;
+}
+#user-form .form-item-pass-pass1 .password-strength {
+  position: absolute;
+  top: 60px;
+  width: 50%;
+}
+#user-form .form-item-pass-pass1 .password-strength__title {
+  font-size: 12px;
+}
+#user-form .form-item-pass-pass2 {
+  width: 50%;
+  float: left;
+}
+#user-form .form-item-pass-pass2 .mdc-password-field-wrapper {
+  margin-left: 10px;
+}
+#user-form .form-item-pass-pass2 .mdc-text-field {
+  width: 100%;
+}
+#user-form .field--name-user-picture, #user-form #edit-timezone {
+  display: none;
+}
+
+.sidebar-wrapper #block-mdc-theme-swaggerapilist,.sidebar-wrapper #block-oauthapilist, .sidebar-wrapper #block-views-block-oauth-api-list-block-1 {
+  border: 1px solid #E3E3E3;
+}
+.sidebar-wrapper #block-mdc-theme-swaggerapilist .swagger-api-list-header,.sidebar-wrapper #block-oauthapilist .swagger-api-list-header, .sidebar-wrapper #block-views-block-oauth-api-list-block-1 .swagger-api-list-header {
+  padding: 10px 30px;
+  background-color: #F0F0F0;
+  margin: 0px;
+  letter-spacing: 0.42px;
+  color: #434242;
+  font-size: 18px;
+}
+.sidebar-wrapper #block-mdc-theme-swaggerapilist ul.swagger-api-list-links,
+.sidebar-wrapper #block-oauthapilist ul.swagger-api-list-links,
+.sidebar-wrapper #block-views-block-oauth-api-list-block-1 ul.swagger-api-list-links {
+  display: block;
+  padding: 0px;
+  margin: 0px;
+}
+.sidebar-wrapper #block-mdc-theme-swaggerapilist ul.swagger-api-list-links li,
+.sidebar-wrapper #block-oauthapilist ul.swagger-api-list-links li,
+.sidebar-wrapper #block-views-block-oauth-api-list-block-1 ul.swagger-api-list-links li {
+  border-bottom: 1px solid #E3E3E3;
+}
+.sidebar-wrapper #block-mdc-theme-swaggerapilist ul.swagger-api-list-links li a,
+.sidebar-wrapper #block-oauthapilist ul.swagger-api-list-links li a,
+.sidebar-wrapper #block-views-block-oauth-api-list-block-1 ul.swagger-api-list-links li a {
+  letter-spacing: 0.15px;
+  color: #00000099;
+  display: block;
+  padding: 15px 30px;
+  font-size: 14px;
+}
+.sidebar-wrapper #block-mdc-theme-swaggerapilist ul.swagger-api-list-links li a:hover,
+.sidebar-wrapper #block-oauthapilist ul.swagger-api-list-links li a:hover,
+.sidebar-wrapper #block-views-block-oauth-api-list-block-1 ul.swagger-api-list-links li a:hover {
+  background-color: #E3E3E3;
+}
+.sidebar-wrapper #block-mdc-theme-swaggerapilist ul.swagger-api-list-links li.swagger-api-list-link-active a,
+
+.sidebar-wrapper #block-views-block-oauth-api-list-block-1 ul.swagger-api-list-links li.swagger-api-list-link-active a {
+  background-color: #E3E3E3;
+}
+
+.sidebar-main-content-wrapper {
+  border: 1px solid #E3E3E3;
+}
+.sidebar-main-content-wrapper #block-mdc-theme-swaggerapitabs .swagger-api-tabs {
+  margin: 0px;
+  border-bottom: 1px solid #E3E3E3;
+  padding: 0px;
+}
+.sidebar-main-content-wrapper #block-mdc-theme-swaggerapitabs .swagger-api-tabs .swagger-api-tab a {
+  color: #00000099;
+  padding: 25px 40px;
+  display: block;
+}
+.sidebar-main-content-wrapper #block-mdc-theme-swaggerapitabs .swagger-api-tabs .swagger-api-tab a:hover {
+  border-bottom: 2px solid #4582F4;
+  color: #487EF4;
+}
+.sidebar-main-content-wrapper #block-mdc-theme-swaggerapitabs .swagger-api-tabs .swagger-api-tab-active a {
+  color: #487EF4;
+  border-bottom: 2px solid #4582F4;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .title {
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .title span {
+  display: block;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .title span small {
+  display: inline-block;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .title small {
+  top: 0;
+  margin-left: 0;
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 35px;
+  background-color: #F0F0F0;
+  border: 1px solid #E3E3E3;
+  border-radius: 2px;
+  display: block;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .title small pre {
+  letter-spacing: 0.4px;
+  color: #487EF4;
+  font-weight: 300;
+}
+.sidebar-main-content-wrapper .swagger-ui .info pre {
+  font-size: 11px;
+}
+.sidebar-main-content-wrapper .swagger-ui .info a, .sidebar-main-content-wrapper .swagger-ui .info p, .sidebar-main-content-wrapper .swagger-ui .info li, .sidebar-main-content-wrapper .swagger-ui .info table {
+  font-family: "Roboto", sans-serif;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .base-url {
+  background-color: #F0F0F0;
+  padding: 10px;
+  margin-top: 20px;
+}
+.sidebar-main-content-wrapper .swagger-ui .info .scheme-container {
+  background-color: #F0F0F0;
+  padding: 10px;
+  margin-top: 10px;
+}
+.sidebar-main-content-wrapper .swagger-ui .information-container.wrapper .url {
+  display: none;
+}
+.sidebar-main-content-wrapper .swagger-ui .opblock .opblock-summary-method, .sidebar-main-content-wrapper .swagger-ui .opblock .opblock-summary-path {
+  font-family: "Roboto", sans-serif;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-wrapper {
+  justify-content: flex-start;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-wrapper .b2c-authorize-btn {
+  background-color: #4582F4;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-wrapper .b2b-authorize-btn {
+  background-color: #4285f4;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-wrapper .btn.authorize span {
+  float: right;
+  padding: 4px 0px 0 16px;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-wrapper .btn.authorize svg {
+  fill: #ffffff;
+  float: left;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-container .wrapper {
+  margin-bottom: 10px;
+}
+.sidebar-main-content-wrapper .swagger-ui .auth-container .wrapper select {
+  margin-top: 5px;
+}
+.sidebar-main-content-wrapper .swagger-ui .servers label select {
+  max-width: 350px;
+}
+.sidebar-main-content-wrapper .swagger-ui .markdown, .sidebar-main-content-wrapper .swagger-ui .renderedMarkdown {
+  font-size: 14px;
+}
+
+.main-page-title {
+  padding-bottom: 0px;
+  padding-top: 50px;
+}
+.main-page-title #block-mdc-theme-page-title h1 {
+  color: #000000;
+  opacity: 0.87;
+  margin-bottom: 0px;
+}
+
+.b2c-container #OAuthV2B2B {
+  display: none;
+}
+
+.b2b-container #OAuthV2B2C {
+  display: none;
+}
+
+/* Resource page and test data css starts*/
+form#node-smartdocs-form .js-form-type-vertical-tabs, form#node-smartdocs-edit-form .js-form-type-vertical-tabs {
+  display: none;
+}
+
+form#node-smartdocs-form .form-item-field-api-version-0-target-id > label, form#node-smartdocs-edit-form .form-item-field-api-version-0-target-id > label {
+  display: none;
+}
+
+form#node-smartdocs-form .form-item-title-0-value > label, form#node-smartdocs-edit-form .form-item-title-0-value > label {
+  display: none;
+}
+
+.node-test-data-form .form-item-title-0-value > label {
+  display: none;
+}
+
+.node-smartdocs-edit-form .select-parent-wrapper .mdc-select__anchor, .node-smartdocs-edit-form .select-parent-wrapper .mdc-menu-surface--open {
+  width: 46%;
+}
+
+.vw-tb-fmt-design thead tr {
+  min-width: 100%;
+  border: 0;
+  white-space: nowrap;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.vw-tb-fmt-design thead th {
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.0071428571em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  box-sizing: border-box;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.vw-tb-fmt-design tbody {
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.0178571429em;
+  text-decoration: inherit;
+  text-transform: inherit;
+}
+.vw-tb-fmt-design tbody tr {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+.vw-tb-fmt-design tbody td {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.0178571429em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.vw-tb-fmt-design header {
+  position: static;
+  background: transparent;
+}
+.vw-tb-fmt-design #edit-submit-resources {
+  cursor: pointer;
+}
+.vw-tb-fmt-design .views-exposed-form {
+  margin-bottom: 1.5rem;
+}
+.vw-tb-fmt-design .views-exposed-form .form-item {
+  width: 28%;
+  display: inline-block;
+}
+.vw-tb-fmt-design .views-exposed-form .form-item > label {
+  color: transparent;
+}
+.vw-tb-fmt-design .views-exposed-form .form-item .mdc-select__anchor,
+.vw-tb-fmt-design .views-exposed-form .form-item input,
+.vw-tb-fmt-design .views-exposed-form .form-item .mdc-text-field {
+  width: 100%;
+}
+.vw-tb-fmt-design .views-exposed-form #edit-actions {
+  display: inline-block;
+}
+.vw-tb-fmt-design .views-exposed-form #edit-actions .form-submit {
+  padding: 20px 50px;
+  height: auto;
+  line-height: normal;
+}
+.vw-tb-fmt-design table {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.vw-tb-fmt-design table th, .vw-tb-fmt-design table td {
+  border: 1px solid #eee;
+  padding: 12px 18px;
+  font-size: 1em;
+}
+.vw-tb-fmt-design table td:nth-child(5), .vw-tb-fmt-design table td:nth-child(6) {
+  text-align: center;
+}
+.vw-tb-fmt-design .pager {
+  text-align: center;
+}
+.vw-tb-fmt-design .pager .pager__items {
+  display: block;
+}
+.vw-tb-fmt-design .pager .pager__items .pager__item {
+  margin: 0 8px;
+  display: inline-block;
+}
+.vw-tb-fmt-design .pager .pager__items .pager__item a {
+  padding: 8px 15px;
+  display: block;
+  background: #fff;
+  border-radius: 2px;
+}
+.vw-tb-fmt-design .pager .pager__items .pager__item.is-active a {
+  font-weight: 700;
+  background: #4582f4;
+  color: #fff;
+}
+
+.resource-frm .form-submit,
+.resource-frm .submit-btn {
+  padding: 12px 30px;
+}
+
+.field--name-field-smartdocs label {
+  font-size: 0.85em;
+  margin-bottom: 3px;
+  display: block;
+}
+.field--name-field-smartdocs .form-managed-file {
+  display: inline-flex;
+  width: 44%;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 10px;
+}
+.field--name-field-smartdocs .form-managed-file input[type=file] {
+  height: 32px;
+}
+.field--name-field-smartdocs .form-managed-file .form-submit {
+  margin-left: 10px;
+  height: 30px;
+}
+.field--name-field-smartdocs .description {
+  font-size: 0.7em;
+  margin-top: 10px;
+  color: #ccc;
+}
+
+.node-smartdocs-edit-form #edit-submit, .node-smartdocs-form #edit-submit, .node-test-data-form #edit-submit, .node-test-data-edit-form #edit-submit {
+  cursor: pointer;
+}
+.node-smartdocs-edit-form .js-form-type-vertical-tabs, .node-smartdocs-form .js-form-type-vertical-tabs, .node-test-data-form .js-form-type-vertical-tabs, .node-test-data-edit-form .js-form-type-vertical-tabs {
+  display: none;
+}
+.node-smartdocs-edit-form .form-item-title-0-value > label, .node-smartdocs-edit-form .form-item-field-api-version-0-target-id > label, .node-smartdocs-form .form-item-title-0-value > label, .node-smartdocs-form .form-item-field-api-version-0-target-id > label, .node-test-data-form .form-item-title-0-value > label, .node-test-data-form .form-item-field-api-version-0-target-id > label, .node-test-data-edit-form .form-item-title-0-value > label, .node-test-data-edit-form .form-item-field-api-version-0-target-id > label {
+  display: none;
+}
+
+.ui-widget-content.ui-autocomplete {
+  width: 36% !important;
+  padding: 10px 0px;
+}
+
+.ui-autocomplete:hover .ui-menu-item-wrapper {
+  background-color: unset;
+  border: unset;
+  color: black;
+}
+
+.form-item-field-api-version label {
+  display: none;
+}
+
+/* Resource page css ends*/
+/*
+** payload collection
+ */
+.field--name-field-payload-collection table {
+  width: 100%;
+}
+.field--name-field-payload-collection table tr .label, .field--name-field-payload-collection table th .label {
+  margin-left: -4px;
+}
+.field--name-field-payload-collection table tr, .field--name-field-payload-collection table td:nth-child(2) {
+  display: block;
+  width: 100%;
+}
+.field--name-field-payload-collection table tr {
+  border-bottom: 1px solid #999;
+  margin-bottom: 25px;
+}
+.field--name-field-payload-collection table tr:last-child {
+  border-bottom: none;
+}
+.field--name-field-payload-collection .form-item label {
+  color: transparent;
+}
+.field--name-field-payload-collection .paragraphs-subform .filter-wrapper {
+  display: none;
+}
+.field--name-field-payload-collection .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+
+/*# sourceMappingURL=theme.css.map */

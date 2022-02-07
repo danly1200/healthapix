@@ -1,0 +1,20 @@
+uuid: 2ea9562a-5135-45db-83f3-a9a77e0b735b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_requested_scopes
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_requested_scopes
+field_name: field_requested_scopes
+entity_type: developer_app
+bundle: developer_app
+label: 'Requested scopes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

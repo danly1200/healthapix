@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="SoF_SetGoogleTokenCachePayload">
+    <DisplayName>SoF_SetGoogleTokenCachePayload</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>backend.config</Name>
+        <Template>{"IAM_access_token":"{IAM.access_token}"}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

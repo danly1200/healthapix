@@ -1,0 +1,73 @@
+uuid: 6faddda0-9336-4d1d-b176-08e361168afb
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - context
+    - ctools
+    - dexp_block_settings
+    - system
+  theme:
+    - mdc_theme
+third_party_settings:
+  dexp_block_settings:
+    animate: ''
+    animate_duration: '1000'
+    animate_delay: 0
+    background_color: ''
+    background_image: 'file:0'
+    background_position: ''
+    background_image_type: default
+    background_repeat: no-repeat
+    background_size: auto
+    background_video: ''
+    background_video_controls: 0
+    background_video_mute: 0
+    background_video_start_at: null
+    exclude_block_title: 0
+    custom_class: ''
+    custom_content_class: ''
+    custom_css: ''
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: mdc_theme_page_title
+theme: mdc_theme
+region: content_top_fullwidth
+weight: -17
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/node/add/fhir_servers\r\n/node/add/fhir_servers/*"
+    negate: true
+    context_mapping: {  }
+  request_path_exclusion:
+    id: request_path_exclusion
+    pages: ''
+    negate: null
+    context_mapping: {  }
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    view_inclusion: {  }
+    context_mapping: {  }
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      interoperability_help_page: interoperability_help_page
+      smartdocs: smartdocs
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

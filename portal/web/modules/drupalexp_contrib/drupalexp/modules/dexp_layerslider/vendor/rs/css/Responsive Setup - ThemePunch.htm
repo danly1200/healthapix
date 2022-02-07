@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://www.themepunch.com/revsliderjquery-doc/responsive-setup/ -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="js_active  vc_desktop  vc_transform  vc_transform skrollr skrollr-desktop"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="Responsive%20Setup%20-%20ThemePunch_files/css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="google-site-verification" content="7cSZUFd6LDkOndG3Eqq3eGdEvNUXc4bGAzDoQkuBR_I">
+	<title>Responsive Setup - ThemePunch</title>
+	<link rel="shortcut icon" href="https://www.themepunch.com/wp-content/themes/miami/assets/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://www.themepunch.com/wp-content/themes/miami/assets/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://www.themepunch.com/wp-content/themes/miami/assets/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://www.themepunch.com/wp-content/themes/miami/assets/images/apple-touch-icon-114x114.png">
+
+<!-- This site is optimized with the Yoast SEO plugin v7.7.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/">
+<link rel="publisher" href="https://plus.google.com/115601631681687503339/posts">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Responsive Setup - ThemePunch">
+<meta property="og:url" content="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/">
+<meta property="og:site_name" content="ThemePunch">
+<meta property="article:publisher" content="https://www.facebook.com/themepunchofficial">
+<meta property="article:tag" content="RevSlider jQuery">
+<meta property="article:tag" content="Slider Revolution jQuery">
+<meta property="og:image" content="https://cdntphome-themepunchgbr.netdna-ssl.com/wp-content/uploads/2015/02/tpfacebook.png">
+<meta property="og:image:secure_url" content="https://cdntphome-themepunchgbr.netdna-ssl.com/wp-content/uploads/2015/02/tpfacebook.png">
+<meta property="og:image:width" content="859">
+<meta property="og:image:height" content="548">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Responsive Setup - ThemePunch">
+<meta name="twitter:site" content="@themepunch">
+<meta name="twitter:image" content="http://www.themepunch.com/wp-content/uploads/2015/02/tpfacebook.png">
+<meta name="twitter:creator" content="@themepunch">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="dns-prefetch" href="https://cdntphome-themepunchgbr.netdna-ssl.com/">
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.0.9 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" async="" src="Responsive%20Setup%20-%20ThemePunch_files/linkid.js"></script><script async="" src="Responsive%20Setup%20-%20ThemePunch_files/analytics.js"></script><script type="text/javascript" data-cfasync="false">
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+
+	var disableStr = 'ga-disable-UA-43314654-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-43314654-1', 'auto', {'allowAnchor':true,'allowLinker':true});
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('require', 'displayfeatures');
+		__gaTracker('require', 'linkid', 'linkid.js');
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="et1-bloodfm-menu-icon-css" href="Responsive%20Setup%20-%20ThemePunch_files/sweetalert-1.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-css" href="Responsive%20Setup%20-%20ThemePunch_files/crayon.min-_2.7.2_beta.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookielawinfo-style-css" href="Responsive%20Setup%20-%20ThemePunch_files/cli-style-1.5.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="essential-grid-plugin-settings-css" href="Responsive%20Setup%20-%20ThemePunch_files/settings-2.0.9.1.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="taxes_upload-css" href="Responsive%20Setup%20-%20ThemePunch_files/upload.css" type="text/css" media="all">
+<link rel="stylesheet" id="rs-plugin-settings-css" href="Responsive%20Setup%20-%20ThemePunch_files/settings-5.4.5.css" type="text/css" media="all">
+<style id="rs-plugin-settings-inline-css" type="text/css">
+.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.largeredbtn{font-family:"Raleway",sans-serif;font-weight:900;font-size:16px;line-height:60px;color:#fff !important;text-decoration:none;padding-left:40px;padding-right:80px;padding-top:22px;padding-bottom:22px;background:rgb(234,91,31); background:-moz-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(234,91,31,1)),color-stop(100%,rgba(227,58,12,1))); background:-webkit-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-o-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-ms-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:linear-gradient(to bottom,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea5b1f',endColorstr='#e33a0c',GradientType=0 )}.largeredbtn:hover{background:rgb(227,58,12); background:-moz-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(227,58,12,1)),color-stop(100%,rgba(234,91,31,1))); background:-webkit-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-o-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-ms-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:linear-gradient(to bottom,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e33a0c',endColorstr='#ea5b1f',GradientType=0 )}.fullrounded img{-webkit-border-radius:400px;-moz-border-radius:400px;border-radius:400px}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.largeredbtn{font-family:"Raleway",sans-serif;font-weight:900;font-size:16px;line-height:60px;color:#fff !important;text-decoration:none;padding-left:40px;padding-right:80px;padding-top:22px;padding-bottom:22px;background:rgb(234,91,31); background:-moz-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(234,91,31,1)),color-stop(100%,rgba(227,58,12,1))); background:-webkit-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-o-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-ms-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:linear-gradient(to bottom,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea5b1f',endColorstr='#e33a0c',GradientType=0 )}.largeredbtn:hover{background:rgb(227,58,12); background:-moz-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(227,58,12,1)),color-stop(100%,rgba(234,91,31,1))); background:-webkit-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-o-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-ms-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:linear-gradient(to bottom,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e33a0c',endColorstr='#ea5b1f',GradientType=0 )}.fullrounded img{-webkit-border-radius:400px;-moz-border-radius:400px;border-radius:400px}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out;line-height:140%}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#296169;text-shadow:none;text-decoration:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#296169}.tp-caption a{color:#296169;text-shadow:none;text-decoration:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#296169}.feature-round{color:#000;background:#fff;background:rgba(255,255,255,0.7);font-size:12px;width:100px;height:100px;line-height:14px;text-align:center;text-decoration:none;box-sizing:border-box;padding:35px 35px 35px 35px;background-color:transparent;border-radius:50px 50px 50px 50px;border-width:0px;border-color:#000000;border-style:none}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}
+</style>
+<link rel="stylesheet" id="taxes_tablesorter_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/tablesorter-1c03db531a1f14408cfcaedb9aaa2476.css" type="text/css" media="all">
+<link rel="stylesheet" id="tp_ei-css" href="Responsive%20Setup%20-%20ThemePunch_files/tp_ei-public-1.0.0.css" type="text/css" media="all">
+<link rel="stylesheet" id="tp_dl-css" href="Responsive%20Setup%20-%20ThemePunch_files/tp_dl-public-1.0.0.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-polls-css" href="Responsive%20Setup%20-%20ThemePunch_files/polls-css-2.73.8.css" type="text/css" media="all">
+<style id="wp-polls-inline-css" type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 6px;
+	line-height: 8px;
+	height: 8px;
+	background: #e03301;
+	border: 1px solid #fff;
+}
+
+</style>
+<link rel="stylesheet" id="miami_bootstrap_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="miami_theme_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="miami_icons_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/icons.css" type="text/css" media="all">
+<link rel="stylesheet" id="miami_fontello_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/fontello.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="Responsive%20Setup%20-%20ThemePunch_files/dashicons.min-1c03db531a1f14408cfcaedb9aaa2476.css" type="text/css" media="all">
+<link rel="stylesheet" id="miami_pe_icons_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/pe-icon-7-stroke.css" type="text/css" media="all">
+<link rel="stylesheet" id="miami_pe_icons_helper_css-css" href="Responsive%20Setup%20-%20ThemePunch_files/helper.css" type="text/css" media="all">
+<link rel="stylesheet" id="js_composer_front-css" href="Responsive%20Setup%20-%20ThemePunch_files/js_composer.min-5.1.1.css" type="text/css" media="all">
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/sweetalert-dev-1.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery-migrate.min-1.4.1.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/www.themepunch.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/crayon.min-_2.7.2_beta.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","is_debug_mode":"false","download_extensions":"doc,exe,js,pdf,ppt,tgz,zip,xls","inbound_paths":"","home_url":"https:\/\/www.themepunch.com","track_download_as":"event","internal_label":"int","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/frontend.min-7.0.9.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":null};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/cookielawinfo-1.5.4.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/lightbox-2.0.9.1.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery.themepunch.tools.min-2.0.9.1.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery.themepunch.essential.min-2.0.9.1.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/upload.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery.themepunch.revolution.min-5.4.5.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/tp_ei-public-1.0.0.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var bajax_var = {"url":"https:\/\/www.themepunch.com\/wp-admin\/admin-ajax.php","nonce":"9512e24742","abs":"https:\/\/www.themepunch.com\/wp-content\/plugins\/tp_dl\/public\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/tp_dl-public-1.0.0.js"></script>
+<link rel="https://api.w.org/" href="https://www.themepunch.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.themepunch.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.themepunch.com/wp-includes/wlwmanifest.xml">
+
+<link rel="shortlink" href="https://www.themepunch.com/?p=14635">
+<link rel="alternate" type="application/json+oembed" href="https://www.themepunch.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.themepunch.com%2Frevsliderjquery-doc%2Fresponsive-setup%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.themepunch.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.themepunch.com%2Frevsliderjquery-doc%2Fresponsive-setup%2F&amp;format=xml">
+		<script type="text/javascript">
+			var ajaxRevslider;
+
+			jQuery(document).ready(function() {
+				// CUSTOM AJAX CONTENT LOADING FUNCTION
+				ajaxRevslider = function(obj) {
+
+					// obj.type : Post Type
+					// obj.id : ID of Content to Load
+					// obj.aspectratio : The Aspect Ratio of the Container / Media
+					// obj.selector : The Container Selector where the Content of Ajax will be injected. It is done via the Essential Grid on Return of Content
+
+					var content = "";
+
+					data = {};
+
+					data.action = 'revslider_ajax_call_front';
+					data.client_action = 'get_slider_html';
+					data.token = '71c0d24987';
+					data.type = obj.type;
+					data.id = obj.id;
+					data.aspectratio = obj.aspectratio;
+
+					// SYNC AJAX REQUEST
+					jQuery.ajax({
+						type:"post",
+						url:"https://www.themepunch.com/wp-admin/admin-ajax.php",
+						dataType: 'json',
+						data:data,
+						async:false,
+						success: function(ret, textStatus, XMLHttpRequest) {
+							if(ret.success == true)
+								content = ret.data;
+						},
+						error: function(e) {
+							console.log(e);
+						}
+					});
+
+					 // FIRST RETURN THE CONTENT WHEN IT IS LOADED !!
+					 return content;
+				};
+
+				// CUSTOM AJAX FUNCTION TO REMOVE THE SLIDER
+				var ajaxRemoveRevslider = function(obj) {
+					return jQuery(obj.selector+" .rev_slider").revkill();
+				};
+
+				// EXTEND THE AJAX CONTENT LOADING TYPES WITH TYPE AND FUNCTION
+				var extendessential = setInterval(function() {
+					if (jQuery.fn.tpessential != undefined) {
+						clearInterval(extendessential);
+						if(typeof(jQuery.fn.tpessential.defaults) !== 'undefined') {
+							jQuery.fn.tpessential.defaults.ajaxTypes.push({type:"revslider",func:ajaxRevslider,killfunc:ajaxRemoveRevslider,openAnimationSpeed:0.3});
+							// type:  Name of the Post to load via Ajax into the Essential Grid Ajax Container
+							// func: the Function Name which is Called once the Item with the Post Type has been clicked
+							// killfunc: function to kill in case the Ajax Window going to be removed (before Remove function !
+							// openAnimationSpeed: how quick the Ajax Content window should be animated (default is 0.3)
+						}
+					}
+				},30);
+			});
+		</script>
+		<meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress.">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="//www.themepunch.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><meta name="generator" content="Powered by Slider Revolution 5.4.5 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
+<script type="text/javascript">function setREVStartSize(e){
+				try{ var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
+					if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})
+				}catch(d){console.log("Failure at Presize of Slider:"+d)}
+			};</script>
+<style type="text/css" data-type="vc_custom-css">#content-container img {box-shadow: 0 0 0 5px #FFF}
+#content-container .the-banner img {box-shadow: none}
+#content-container, #sidebar-container {float: right; display: block}
+#content-container {max-width: 1010px}
+
+.adjust-pre .crayon-syntax .crayon-pre * {font-size: 14px !important}
+
+.revsliderjquery-doc {z-index: 0; position: relative}
+.ve-editor-teaser {
+
+    display: none;
+    float: right;
+    margin-top: -10px;
+    position: relative;
+
+}
+
+.ve-get-it-here {position: absolute; left: 0; bottom: -50px}
+.ve-teaser {
+
+    position: absolute;
+    top: 49px;
+    left: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-out;
+
+}
+
+.ve-teaser img {
+
+    margin-top: -250px;
+    transition: margin-top 0.3s ease-out;
+
+}
+
+.ve-editor-teaser:hover .ve-teaser {height: 250px}
+.ve-editor-teaser:hover .ve-teaser img {margin-top: 0}
+
+.the-list {padding-left: 0; list-style-type: none; margin-top: 13px}
+
+.the-list li {
+    margin-bottom: 20px;
+    padding: 16px 20px 20px 20px;
+    background: white;
+    font-size: 14px;
+}
+
+.the-list strong {
+    display: block;
+    font-size: 16px;
+}
+
+.the-list li span {
+    line-height: 18px;
+    padding: 2px 7px;
+    display: inline-block;
+    color: #FFF !important;
+    margin-top: 3px;
+    background-color: #0083dc !important;
+}
+
+.the-list li ul {
+
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+
+}
+
+.the-list li li {
+
+    margin-bottom: 0;
+    padding-bottom: 0;
+
+}
+
+#menu-revslider-jquery-docs-5-3 li,
+#menu-revslider-jquery-docs-5-3 li a {position:relative; color:rgba(0,0,0,0.65); font-size:14px}
+#menu-revslider-jquery-docs-5-3 > li {font-size:16px !important; font-weight: 500; border-bottom:none !important}
+#menu-revslider-jquery-docs-5-3 > li > a {border-bottom:none; font-size:16px}
+#menu-revslider-jquery-docs-5-3 li.docuwithsubmenu,
+#menu-revslider-jquery-docs-5-3 li.docuwithsubmenu >a {font-weight:500; color:#000}
+#menu-revslider-jquery-docs-5-3 a {display:block}
+#menu-revslider-jquery-docs-5-3 ul {padding-left:15px}
+#menu-revslider-jquery-docs-5-3 .menu-expander	{display:block; position:absolute; top:0px; right:0px; cursor: pointer;z-index:2; color:#8a8f95}
+</style><noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>  <style type="text/css">.esgbox-margin{margin-right:0px;}</style><link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"></head>
+	<body class="revsliderjquery-doc-template-default single single-revsliderjquery-doc postid-14635  single-cpt onepagermenu wpb-js-composer js-comp-ver-5.1.1 vc_responsive pagescrolled">
+		<style>a{color:#e03301}.button:hover{border-color:#e03301; background:#e03301}.lightondark .button:hover{border-color:#e03301;background:#e03301}.lightondark .button.bordered:hover{border-color:#e03301; background:#e03301}.button.bordered:hover{border-color:#e03301; background:#e03301}.button.subtle:hover{border-color:#e03301; background:#e03301}.lightondark .button.subtle:hover{border-color:#e03301; background:#e03301}.button.highlight{border:2px solid #e03301; background:#e03301}.lightondark ul.regularlist a{color:#e03301}ul.speciallist li a:hover{color:#e03301}.lightondark ul.speciallist li a:hover{color:#e03301}.pricetable .priceitem.highlight h3.pricetitle{background:#e03301}.lightondark .pricetable .priceitem.highlight h3.pricetitle{background:#e03301}.simpleservice .serviceicon{color:#e03301}.simpleservice.highlight{background:#e03301}.simpleservice.highlight:hover .serviceicon{color:#e03301}.sidebar_widget.widget_nav_menu li.current_page_item a{color:#e03301}.comment-reply-link.reply:hover{color:#e03301}.readmorebutton a:hover:after,.comment-reply-link.reply:hover:after{background:#e03301}.sharemainbutton:hover{background:#e03301; border:2px solid #e03301}.lightondark input[type="submit"]:focus:hover{border:2px solid #e03301}input[type="submit"]:hover{background:#e03301}.readmorebutton a:hover,.comment-reply-link.reply:hover{color:#e03301}.sticky .blog_post_title a{color:#e03301}body,select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],#showbiz_moreportfolio_1 .showbiz-title,#showbiz_moreportfolio_1 a.showbiz-title,#showbiz_moreportfolio_1 a.showbiz-title:visited,#showbiz_moreportfolio_1 .excerpt,.sb-post-details,.sb-post-details span,.sb-post-details a,.sb-post-details a:visited,.sb-readmore,.sb-readmore span,.sb-readmore a,.sb-readmore a:visited{font-family:'Roboto',sans-serif}.esg-grid,.esg-selected-filterbutton{font-family:'Roboto',sans-serif !important}.ybg{background:#fff600; color:#000; margin:0px 5px}.ybgbig{background:#027EE1; color:#fff; margin:0px; font-size:18px; line-height:22px; padding:2px 5px; display:block;word-wrap:break-word; white-space:normal; max-width:100%}.ybgsub{background:#8a8f95; color:#fff; margin:0px; font-size:18px; line-height:22px; padding:2px 5px; display:block;word-wrap:break-word; white-space:normal; max-width:100%;padding-left:15px}.pkey{font-size:12px; display:inline-block;min-width:60px}.pval{font-size:12px;display:inline-block;font-weight:bold;word-wrap:break-word; white-space:normal; max-width:100%}.dval{background:#fff600;color:#000;display:inline-block; font-size:14px; padding:0px 5px;word-wrap:break-word; white-space:normal; max-width:100%}.deprec{background:#E03301;color:#fff;display:inline-block; font-size:14px; padding:0px 5px;word-wrap:break-word; white-space:normal; max-width:100%}.deprecbig{background:#E03301;color:#fff;display:block; font-size:18px; line-height:22px;padding:2px 5px;word-wrap:break-word; white-space:normal; max-width:100%}.pdetails{background:#DDE0E1; padding:10px 15px; display:block}.codeme{background:#DDE0E1; padding:15px 25px; display:block; color:#333}</style>
+			<style scope="">#intern_content_inner_wrapper {max-width:1310px}</style>		<!-- THE SLIDE WIDGET PANEL -->
+				<!-- END OF SLIDE WIDGET PANEL-->
+
+		<!--! BODY WRAPPER -->
+		<section id="miamitop"></section>
+		<article id="bodywrapper">
+
+			<!--! HEADER -->
+						<header id="header_wrapper" class="fixed-header-fullwidth">
+				<!--!	SubHeader -->
+					<!-- SUBHEADER ALTERNATIVE I. -->
+
+					 					<div class="sticky-wrapper-header" style="height: 50px;"><section id="header" class="stickyheader  indent makeitsticky darkextend stuck" style="display: block; transform: matrix(1, 0, 0, 1, 0, 0);">
+						<section id="header_inner_wrapper" style="max-width:1230px" class="darkmainnav transparent  background_fullmenu rightside fontdark">
+							<!-- BOOTSTRAP ROW -->
+							<section class="row">
+								<!-- SUBHEADER ALTERNATIVE II. -->
+																<!--!	Logo -->
+
+																	<section id="logo_wrapper" class="floatleft">
+										<a href="https://www.themepunch.com/">
+										<section id="logo">
+											<img alt="" class="mainlogo" src="Responsive%20Setup%20-%20ThemePunch_files/tplogo_black@2x.png" data-at2x="https://www.themepunch.com/wp-content/uploads/2014/11/tplogo_black@2x.png" width="163" height="50" style="">
+											<img alt="" class="scrolledlogo" src="Responsive%20Setup%20-%20ThemePunch_files/tplogo_white@2x.png" data-at2x="https://www.themepunch.com/wp-content/uploads/2014/11/tplogo_white@2x.png" width="163" height="50">
+										</section>
+										</a>
+									</section><!-- END OF LOGO PART -->
+
+								<!--!  Navigation Floating -->
+								<section id="nav-floating">
+									<section id="navigation" class="floatleft adjusted" style="visibility: visible; height: auto;">
+										<ul id="menu-faq" class="navigation"><li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-4548" class="menu-item menu-item-type-custom menu-item-object-custom darknav"><a class="menu-link" href="http://www.themepunch.com/support-center/#support">FAQ’s </a></li>
+<li data-backgroundcolor="rgba(0,0,0,1)" id="menu-item-7834" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children darknav" style="z-index: 2;"><a class="menu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Documentations </a>
+<ul class="sub-menu" style="background-color: rgb(0, 0, 0);">
+	<li id="menu-item-7831" class="menu-item menu-item-type-post_type menu-item-object-revslider-doc"><a class="menu-link" href="https://www.themepunch.com/revslider-doc/slider-revolution-documentation/">Slider Revolution WP </a></li>
+	<li id="menu-item-7833" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link" href="https://www.themepunch.com/essgrid-doc/essential-grid-documentation/">Essential Grid </a></li>
+	<li id="menu-item-7832" class="menu-item menu-item-type-post_type menu-item-object-revsliderjquery-doc"><a class="menu-link" href="https://www.themepunch.com/revsliderjquery-doc/slider-revolution-jquery-5-x-documentation/">Slider Revolution jQuery </a></li>
+	<li id="menu-item-11107" class="menu-item menu-item-type-post_type menu-item-object-revslider-se-doc"><a class="menu-link" href="https://www.themepunch.com/revslider-se-doc/slider-revolution-standalone-editor-documentation/">Slider Revolution jQuery Visual Editor </a></li>
+	<li id="menu-item-18307" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link" target="_blank" href="https://revolution.themepunch.com/documentation/joomla">Slider Revolution Joomla </a></li>
+</ul>
+</li>
+<li data-backgroundcolor="rgba(0,0,0,1)" id="menu-item-4771" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children darknav"><a class="menu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#"><i class="menuicon icon-menu"></i>More </a>
+<ul class="sub-menu" style="background-color: rgb(0, 0, 0);">
+	<li id="menu-item-4545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home"><a class="menu-link" href="https://www.themepunch.com/"><i class="menuicon icon-home"></i>Home </a></li>
+	<li id="menu-item-19835" class="menu-item menu-item-type-post_type menu-item-object-page"><a class="menu-link" href="https://www.themepunch.com/support-center/"><i class="menuicon icon-users"></i>Support </a></li>
+	<li id="menu-item-4546" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link" href="http://themepunch.com/products/"><i class="menuicon icon-basket"></i>Products </a></li>
+	<li id="menu-item-5243" class="menu-item menu-item-type-post_type menu-item-object-page"><a class="menu-link" href="https://www.themepunch.com/blog/"><i class="menuicon icon-book"></i>Blog </a></li>
+	<li id="menu-item-4773" class="menu-item menu-item-type-taxonomy menu-item-object-category_freebies"><a class="menu-link" href="https://www.themepunch.com/?taxonomy=category_freebies&amp;term=freebies"><i class="menuicon icon-paper-plane"></i>Freebies </a></li>
+	<li id="menu-item-4867" class="menu-item menu-item-type-post_type menu-item-object-page"><a class="menu-link" href="https://www.themepunch.com/wordpress-plugin-testimonials/"><i class="menuicon icon-comment"></i>Testimonials </a></li>
+	<li id="menu-item-4772" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link" target="_blank" href="http://eepurl.com/_HUBz"><i class="menuicon icon-mail-alt"></i>Newsletter </a></li>
+	<li id="menu-item-4774" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link" target="_blank" href="https://www.facebook.com/themepunchofficial"><i class="menuicon icon-facebook"></i>Facebook </a></li>
+	<li id="menu-item-4775" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link" target="_blank" href="https://twitter.com/themepunch"><i class="menuicon icon-tumblr"></i>Twitter </a></li>
+	<li id="menu-item-7463" class="menu-item menu-item-type-post_type menu-item-object-page"><a class="menu-link" href="https://www.themepunch.com/hosting/"><i class="menuicon icon-upload-cloud"></i>Hosting </a></li>
+	<li id="menu-item-20086" class="menu-item menu-item-type-post_type menu-item-object-faq"><a class="menu-link" href="https://www.themepunch.com/faq/custom_premium_development/"><i class="menuicon icon-wrench"></i>Custom Work </a></li>
+</ul>
+</li>
+</ul>										<div id="mobile-navigation" class="darknav">
+											<i class="showonclose icon-menu"></i>
+											<i class="showonopen icon-cancel"></i>
+										</div>
+									</section><!-- END OF NAVIGATION -->
+
+
+									<div class="clearfix"></div>
+								</section><!-- END OF NAV FLOATING -->
+
+								<div class="clearfix"></div>
+							</section><!-- END OF BOOTSTRAP ROW -->
+						</section>
+
+
+					</section></div><!-- END OF HEADER -->
+
+			</header><!-- END OF HEADER -->
+			<!--!	Page Title  -->
+		 <section id="header_background" class="withtp-media withcolor "><div class="innerbgholder " style="min-height:300px;"><div class="header_background_overlay" style="background-color:#ffffff;opacity:0.9500000000000001"></div><div class="header_background_overlay" style=""></div>	 	<article id="page-title-wrapper" class="dark">
+		<section style="max-width:1230px" class="container-fluid hb_inner_wrapper">
+			<section class="page_title_outter_wrapper" style="width:100%">
+				<!--!	Page Title -->
+				<h1 id="pagetitle" class="textalignleft parallaxpgtitle dark " style="margin-top:166px;">Responsive Setup<div class="ve-editor-teaser" style="display: block;">
+<a href="https://codecanyon.net/item/slider-revolution-jquery-visual-editor-addon/13934907?ref=themepunch"><img src="Responsive%20Setup%20-%20ThemePunch_files/visualeditoraddon.png"><img class="ve-get-it-here" src="Responsive%20Setup%20-%20ThemePunch_files/availablenow1.png"><span class="ve-teaser"><img src="Responsive%20Setup%20-%20ThemePunch_files/editorpreview.jpg"></span></a><div style="clear: both"></div></div></h1>
+			</section>
+		</section>
+	</article>	</div></section>
+		<article id="page-14635" class="withsidebar leftside blog_single_elements_center post-14635 revsliderjquery-doc type-revsliderjquery-doc status-publish hentry tag-revslider-jquery tag-slider-revolution-jquery">
+			<section id="content_inner_wrapper" class="dark" style="margin:auto;width:100%;background-color:#f1f1f1">
+				<div style="display:table; width:100%;margin:auto;" id="intern_content_inner_wrapper">
+					<section id="content-container">
+						<div style="height:30px;" class="topspacer"></div>													<div class="sbr-contentwrapper"><section class="tp_vc_mw_rowwrapper         " style="z-index:1;">
+<article style="padding-top: 0px ; padding-bottom: 0px;" class="tp_vc_mw_rowinner  dark title_media_wrapper_row">
+<div class="rowbgimage_overlay" style="background-color:transparent;"></div>
+<div class="content_max_width">
+<div data-vc-parallax="1.5" class="vc_row wpb_row vc_row-fluid title_media_wrapper_row vc_row-has-fill vc_general">
+<div class="wpb_column vc_column_container vc_col-sm-12">
+<div class="vc_column-inner ">
+<div class="wpb_wrapper">
+<div class="wpb_text_column wpb_content_element ">
+<div class="wpb_wrapper">
+<div class="blog_post_meta_container">
+<div class="blog_post_meta_line"><span class="blog_post_meta_date">11.10.2016</span><span class="blog_post_meta_author">Jason</span></div>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="vc_parallax-inner skrollable skrollable-after" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;" style="height: 150%; top: 0%;"></div></div>
+<div style="clear:both"></div>
+</div>
+</article>
+</section>
+<div class="sbr-textwrapper"><section class="tp_vc_mw_rowwrapper         " style="z-index:2;"><article style="padding-top: 0px ; padding-bottom: 0px;" class="tp_vc_mw_rowinner  darkonlight "><div class="rowbgimage_overlay" style="background-color:transparent;"></div><div class="content_max_width"><div data-vc-parallax="1.5" class="vc_row wpb_row vc_row-fluid vc_row-has-fill vc_general"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h4 class="subline">Slider Revolution will adjust its size and the size of its content automatically.<div>But similar to responsive websites, content often looks best when its setup specifically for multiple devices.</div></h4>
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:45px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h4>Grid Width &amp; Grid Height</h4>
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/themepunch.css">
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/monaco.css">
+
+		<div id="crayon-5b38e20de0147051744216" class="crayon-syntax crayon-theme-themepunch crayon-font-monaco crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover wrap" style="margin-top: 12px; margin-bottom: 12px; font-size: 14px !important; line-height: 30px !important; height: auto;">
+
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="" readonly="" style="tab-size: 4; font-size: 14px !important; line-height: 30px !important; z-index: 0; opacity: 0; overflow: hidden;">
+jQuery('#rev_slider_1').show().revolution({
+
+    /* default slider width */
+    gridwidth: 1000,
+
+    /* default slider height */
+    gridheight: 500,
+
+    /* options continued .... */
+</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 14px !important; line-height: 30px !important;"><div class="crayon-num" data-line="crayon-5b38e20de0147051744216-1" style="height: 30px;">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0147051744216-2" style="height: 30px;">2</div><div class="crayon-num" data-line="crayon-5b38e20de0147051744216-3" style="height: 30px;">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0147051744216-4" style="height: 30px;">4</div><div class="crayon-num" data-line="crayon-5b38e20de0147051744216-5" style="height: 30px;">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0147051744216-6" style="height: 30px;">6</div><div class="crayon-num" data-line="crayon-5b38e20de0147051744216-7" style="height: 30px;">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0147051744216-8" style="height: 30px;">8</div><div class="crayon-num" data-line="crayon-5b38e20de0147051744216-9" style="height: 30px;">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0147051744216-10" style="height: 30px;">10</div><div class="crayon-num" data-line="crayon-5b38e20de0147051744216-11" style="height: 30px;">11</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 14px !important; line-height: 30px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5b38e20de0147051744216-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0147051744216-2"><span class="crayon-e">jQuery</span><span class="crayon-sy">(</span><span class="crayon-s">'#rev_slider_1'</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">show</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-v">revolution</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5b38e20de0147051744216-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0147051744216-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* default slider width */</span></div><div class="crayon-line" id="crayon-5b38e20de0147051744216-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">gridwidth</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-cn">1000</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0147051744216-6">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de0147051744216-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* default slider height */</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0147051744216-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">gridheight</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-cn">500</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5b38e20de0147051744216-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0147051744216-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* options continued .... */</span></div><div class="crayon-line" id="crayon-5b38e20de0147051744216-11">&nbsp;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0008 seconds] -->
+<p></p>
+
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:30px"></div>
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>The “gridwidth” and “gridheight”&nbsp;settings declare a default size for the slider. &nbsp;And the slider’s content will resize based on these numbers.</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p><strong>Example #1</strong></p>
+<ul>
+<li>Slider has an <a href="https://www.themepunch.com/revsliderjquery-doc/slider-layout/" target="_blank">“Auto Responsive” Layout</a></li>
+<li>Slider’s “gridwidth” and “gridheight” set to 2000×500</li>
+<li>Slider is added to a web page’s main content container</li>
+<li>Web page’s main content container has a “max-width” of 1000px</li>
+<li>Slider will automatically adjust its size to fit inside it’s parent container</li>
+<li>Slider’s new width will be 1000px</li>
+<li>New slider width is 50% of the slider’s “gridwidth”</li>
+<li>RESULT: Slider’s content will decrease in size by 50%</li>
+</ul>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p><strong>Example #2</strong></p>
+<ul>
+<li>Slider has an <a href="https://www.themepunch.com/revsliderjquery-doc/slider-layout/" target="_blank">“Full Width” Layout</a></li>
+<li>Slider’s “gridwidth” and “gridheight” set to 2000×500</li>
+<li>Current screen size is 1000px wide</li>
+<li>Slider will automatically adjust its width to the current width of the screen</li>
+<li>Slider’s new width will be 1000px</li>
+<li>New slider width is 50% of the slider’s “gridwidth”</li>
+<li>RESULT: Slider’s content will decrease in size by 50%</li>
+</ul>
+
+		</div>
+	</div>
+
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<a name="custom-grid-sizes"></a>
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:70px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h4>Dynamic Grid Sizes</h4>
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>In the two&nbsp;example scenarios above, the slider is resized by 50%. &nbsp;But what if the screen size was reduced even further? &nbsp;For a text layer with a font-size of 14px, it would become unreadable if resized down by 50% or more.&nbsp; But this can be corrected with dynamic&nbsp;grid sizes.</p>
+
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:30px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h5 class="subdirectory">Step 1: Choose your breakpoints</h5>
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>A total of 4 responsive levels are available. &nbsp;These work the same was as <a href="http://www.w3schools.com/css/css_rwd_mediaqueries.asp" target="_blank">CSS media queries</a>,&nbsp;allowing the slider’s content to be adjusted&nbsp;for each screen size.</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/themepunch.css">
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/monaco.css">
+
+		<div id="crayon-5b38e20de014e304153771" class="crayon-syntax crayon-theme-themepunch crayon-font-monaco crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover wrap" style="margin-top: 12px; margin-bottom: 12px; font-size: 14px !important; line-height: 30px !important; height: auto;">
+
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="" readonly="" style="tab-size: 4; font-size: 14px !important; line-height: 30px !important; z-index: 0; opacity: 0; overflow: hidden;">
+jQuery('#rev_slider_1').show().revolution({
+
+    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+    responsiveLevels: [1240, 1024, 778, 480],
+
+    /* options continued .... */
+</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 14px !important; line-height: 30px !important;"><div class="crayon-num" data-line="crayon-5b38e20de014e304153771-1" style="height: 30px;">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de014e304153771-2" style="height: 30px;">2</div><div class="crayon-num" data-line="crayon-5b38e20de014e304153771-3" style="height: 30px;">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de014e304153771-4" style="height: 30px;">4</div><div class="crayon-num" data-line="crayon-5b38e20de014e304153771-5" style="height: 30px;">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de014e304153771-6" style="height: 30px;">6</div><div class="crayon-num" data-line="crayon-5b38e20de014e304153771-7" style="height: 30px;">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de014e304153771-8" style="height: 30px;">8</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 14px !important; line-height: 30px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5b38e20de014e304153771-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de014e304153771-2"><span class="crayon-e">jQuery</span><span class="crayon-sy">(</span><span class="crayon-s">'#rev_slider_1'</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">show</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-v">revolution</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5b38e20de014e304153771-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de014e304153771-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */</span></div><div class="crayon-line" id="crayon-5b38e20de014e304153771-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">responsiveLevels</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-cn">1240</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">778</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">480</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de014e304153771-6">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de014e304153771-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* options continued .... */</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de014e304153771-8">&nbsp;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0001 seconds] -->
+<p></p>
+
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:30px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h5 class="subdirectory">Step 2: Setup your Dynamic Grid Sizes</h5>
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>Dynamic Grid Widths often work best when they’re identical to the Responsive Levels.</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>Dynamic Grid Heights are useful for changing the geometry of the slider. &nbsp;As an example, sliders often look best as horizontal&nbsp;rectangles for traditional monitors. &nbsp;And likewise, display well as vertical rectangles on Smartphones.</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/themepunch.css">
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/monaco.css">
+
+		<div id="crayon-5b38e20de0152448736980" class="crayon-syntax crayon-theme-themepunch crayon-font-monaco crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover wrap" style="margin-top: 12px; margin-bottom: 12px; font-size: 14px !important; line-height: 30px !important; height: auto;">
+
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="" readonly="" style="tab-size: 4; font-size: 14px !important; line-height: 30px !important; z-index: 0; opacity: 0; overflow: auto;">
+jQuery('#rev_slider_1').show().revolution({
+
+    responsiveLevels: [1240, 1024, 778, 480],
+
+    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+    gridwidth:[1240, 1024, 778, 480],
+
+    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+    gridheight:[400, 768, 960, 720],
+
+    /* options continued .... */
+</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: auto;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 14px !important; line-height: 30px !important;"><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-1" style="height: 30px;">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0152448736980-2" style="height: 30px;">2</div><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-3" style="height: 30px;">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0152448736980-4" style="height: 30px;">4</div><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-5" style="height: 30px;">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0152448736980-6" style="height: 30px;">6</div><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-7" style="height: 30px;">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0152448736980-8" style="height: 30px;">8</div><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-9" style="height: 30px;">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0152448736980-10" style="height: 30px;">10</div><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-11" style="height: 30px;">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0152448736980-12" style="height: 30px;">12</div><div class="crayon-num" data-line="crayon-5b38e20de0152448736980-13" style="height: 30px;">13</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 14px !important; line-height: 30px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5b38e20de0152448736980-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0152448736980-2"><span class="crayon-e">jQuery</span><span class="crayon-sy">(</span><span class="crayon-s">'#rev_slider_1'</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">show</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-v">revolution</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5b38e20de0152448736980-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0152448736980-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">responsiveLevels</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-cn">1240</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">778</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">480</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5b38e20de0152448736980-5">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0152448736980-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */</span></div><div class="crayon-line" id="crayon-5b38e20de0152448736980-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">gridwidth</span><span class="crayon-o">:</span><span class="crayon-sy">[</span><span class="crayon-cn">1240</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">778</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">480</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0152448736980-8">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de0152448736980-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0152448736980-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">gridheight</span><span class="crayon-o">:</span><span class="crayon-sy">[</span><span class="crayon-cn">400</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">768</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">960</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">720</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5b38e20de0152448736980-11">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0152448736980-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* options continued .... */</span></div><div class="crayon-line" id="crayon-5b38e20de0152448736980-13">&nbsp;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p></p>
+
+		</div>
+	</div>
+
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<a name="layer-visibility"></a>
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:60px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h5 class="subdirectory">Step 3: Add some Visibility Levels</h5>
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>Visibility Levels add the ability to&nbsp;control which content is displayed at any given screen size.</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/themepunch.css">
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/monaco.css">
+
+		<div id="crayon-5b38e20de0155747469138" class="crayon-syntax crayon-theme-themepunch crayon-font-monaco crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover wrap" style="margin-top: 12px; margin-bottom: 12px; font-size: 14px !important; line-height: 30px !important; height: auto;">
+
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="" readonly="" style="tab-size: 4; font-size: 14px !important; line-height: 30px !important; z-index: 0; opacity: 0; overflow: hidden;">
+jQuery('#rev_slider_1').show().revolution({
+
+    responsiveLevels: [1240, 1024, 778, 480],
+    gridwidth:[1240, 1024, 778, 480],
+    gridheight:[400, 768, 960, 720],
+
+    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+    visibilityLevels:[1240, 1024, 1024, 480],
+
+    /* options continued .... */
+</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 14px !important; line-height: 30px !important;"><div class="crayon-num" data-line="crayon-5b38e20de0155747469138-1" style="height: 30px;">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0155747469138-2" style="height: 30px;">2</div><div class="crayon-num" data-line="crayon-5b38e20de0155747469138-3" style="height: 30px;">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0155747469138-4" style="height: 30px;">4</div><div class="crayon-num" data-line="crayon-5b38e20de0155747469138-5" style="height: 30px;">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0155747469138-6" style="height: 30px;">6</div><div class="crayon-num" data-line="crayon-5b38e20de0155747469138-7" style="height: 30px;">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0155747469138-8" style="height: 30px;">8</div><div class="crayon-num" data-line="crayon-5b38e20de0155747469138-9" style="height: 30px;">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0155747469138-10" style="height: 30px;">10</div><div class="crayon-num" data-line="crayon-5b38e20de0155747469138-11" style="height: 30px;">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0155747469138-12" style="height: 30px;">12</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 14px !important; line-height: 30px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5b38e20de0155747469138-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0155747469138-2"><span class="crayon-e">jQuery</span><span class="crayon-sy">(</span><span class="crayon-s">'#rev_slider_1'</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">show</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-v">revolution</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5b38e20de0155747469138-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0155747469138-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">responsiveLevels</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-cn">1240</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">778</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">480</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5b38e20de0155747469138-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">gridwidth</span><span class="crayon-o">:</span><span class="crayon-sy">[</span><span class="crayon-cn">1240</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">778</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">480</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0155747469138-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">gridheight</span><span class="crayon-o">:</span><span class="crayon-sy">[</span><span class="crayon-cn">400</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">768</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">960</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">720</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5b38e20de0155747469138-7">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0155747469138-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */</span></div><div class="crayon-line" id="crayon-5b38e20de0155747469138-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">visibilityLevels</span><span class="crayon-o">:</span><span class="crayon-sy">[</span><span class="crayon-cn">1240</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1024</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">480</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0155747469138-10">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de0155747469138-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">/* options continued .... */</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0155747469138-12">&nbsp;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p></p>
+
+		</div>
+	</div>
+
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<a name="layer-settings"></a>
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:60px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<h5 class="subdirectory">Step 5: Setup your Layers with responsive settings for each of the 4 new Responsive Levels</h5>
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element  adjust-pre">
+		<div class="wpb_wrapper">
+			<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/themepunch.css">
+<link rel="stylesheet" type="text/css" href="Responsive%20Setup%20-%20ThemePunch_files/monaco.css">
+
+		<div id="crayon-5b38e20de0157382023473" class="crayon-syntax crayon-theme-themepunch crayon-font-monaco crayon-os-pc print-yes notranslate crayon-wrapped" data-settings=" minimize scroll-mouseover wrap" style="margin-top: 12px; margin-bottom: 12px; font-size: 14px !important; line-height: 30px !important; height: auto;">
+
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="" readonly="" style="tab-size: 4; font-size: 14px !important; line-height: 30px !important; z-index: 0; opacity: 0; overflow: hidden;">
+&lt;!-- Text Layer Responsive Properties --&gt;
+&lt;div class="tp-caption tp-resizeme largewhitebg"
+
+    data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Linear"},
+                  {"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Linear"}]'
+
+    data-visibility="['on', 'on', 'on', 'on']"
+
+    data-fontsize="['24', '24', '22', '18']"
+    data-lineheight="['32', '32', '32', '24']"
+    data-color="['#FFF', '#FFF', '#000', '#000']"
+    data-textAlign="['inherit', 'inherit', 'right', 'center']"
+
+    data-x="['center', 'center', 'right', 'center']"
+    data-y="['middle', 'middle', 'top', 'bottom']"
+    data-hoffset="['0', '0', '50', '0']"
+    data-voffset="['0', '0', '50', '50']"
+
+    data-width="['800', '800', '600', '400']"
+    data-height="['auto', 'auto', 'auto', 'auto']"
+    data-whitespace="['normal', 'normal', 'nowrap', 'normal']"
+
+    data-paddingtop="[0, 0, 0, 0]"
+    data-paddingright="[0, 0, 0, 0]"
+    data-paddingbottom="[0, 0, 0, 0]"
+    data-paddingleft="[0, 0, 0, 0]"
+
+    data-basealign="slide"
+    data-responsive_offset="off"
+
+&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus felis porta dui rhoncus lobortis. In aliquet, arcu ut bibendum molestie, massa nisl varius nunc, non tempus mi dolor vitae eros&lt;/div&gt;
+&lt;!-- END LAYER --&gt;
+</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 14px !important; line-height: 30px !important;"><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-1" style="height: 30px;">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-2" style="height: 30px;">2</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-3" style="height: 30px;">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-4" style="height: 30px;">4</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-5" style="height: 30px;">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-6" style="height: 30px;">6</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-7" style="height: 30px;">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-8" style="height: 30px;">8</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-9" style="height: 30px;">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-10" style="height: 30px;">10</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-11" style="height: 30px;">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-12" style="height: 30px;">12</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-13" style="height: 30px;">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-14" style="height: 30px;">14</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-15" style="height: 30px;">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-16" style="height: 30px;">16</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-17" style="height: 30px;">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-18" style="height: 30px;">18</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-19" style="height: 30px;">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-20" style="height: 30px;">20</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-21" style="height: 30px;">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-22" style="height: 30px;">22</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-23" style="height: 30px;">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-24" style="height: 30px;">24</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-25" style="height: 30px;">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-26" style="height: 30px;">26</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-27" style="height: 30px;">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-28" style="height: 30px;">28</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-29" style="height: 30px;">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-30" style="height: 30px;">30</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-31" style="height: 30px;">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-32" style="height: 60px;">32</div><div class="crayon-num" data-line="crayon-5b38e20de0157382023473-33" style="height: 30px;">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-5b38e20de0157382023473-34" style="height: 30px;">34</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 14px !important; line-height: 30px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5b38e20de0157382023473-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-2"><span class="crayon-c">&lt;!-- Text Layer Responsive Properties --&gt;</span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-3"><span class="crayon-r ">&lt;div </span><span class="crayon-e ">class</span><span class="crayon-o">=</span><span class="crayon-s ">"tp-caption tp-resizeme largewhitebg"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-4">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de0157382023473-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-frames</span><span class="crayon-o">=</span><span class="crayon-s ">'[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Linear"},</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-6"><span class="crayon-s ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Linear"}]'</span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-7">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-visibility</span><span class="crayon-o">=</span><span class="crayon-s ">"['on', 'on', 'on', 'on']"</span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-fontsize</span><span class="crayon-o">=</span><span class="crayon-s ">"['24', '24', '22', '18']"</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-lineheight</span><span class="crayon-o">=</span><span class="crayon-s ">"['32', '32', '32', '24']"</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-color</span><span class="crayon-o">=</span><span class="crayon-s ">"['#FFF', '#FFF', '#000', '#000']"</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-textAlign</span><span class="crayon-o">=</span><span class="crayon-s ">"['inherit', 'inherit', 'right', 'center']"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-14">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de0157382023473-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-x</span><span class="crayon-o">=</span><span class="crayon-s ">"['center', 'center', 'right', 'center']"</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-y</span><span class="crayon-o">=</span><span class="crayon-s ">"['middle', 'middle', 'top', 'bottom']"</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-hoffset</span><span class="crayon-o">=</span><span class="crayon-s ">"['0', '0', '50', '0']"</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-voffset</span><span class="crayon-o">=</span><span class="crayon-s ">"['0', '0', '50', '50']"</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-19">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-width</span><span class="crayon-o">=</span><span class="crayon-s ">"['800', '800', '600', '400']"</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-height</span><span class="crayon-o">=</span><span class="crayon-s ">"['auto', 'auto', 'auto', 'auto']"</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-whitespace</span><span class="crayon-o">=</span><span class="crayon-s ">"['normal', 'normal', 'nowrap', 'normal']"</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-23">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-paddingtop</span><span class="crayon-o">=</span><span class="crayon-s ">"[0, 0, 0, 0]"</span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-paddingright</span><span class="crayon-o">=</span><span class="crayon-s ">"[0, 0, 0, 0]"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-paddingbottom</span><span class="crayon-o">=</span><span class="crayon-s ">"[0, 0, 0, 0]"</span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-paddingleft</span><span class="crayon-o">=</span><span class="crayon-s ">"[0, 0, 0, 0]"</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-28">&nbsp;</div><div class="crayon-line" id="crayon-5b38e20de0157382023473-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-basealign</span><span class="crayon-o">=</span><span class="crayon-s ">"slide"</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e ">data-responsive_offset</span><span class="crayon-o">=</span><span class="crayon-s ">"off"</span><span class="crayon-r "> </span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-31">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-32"><span class="crayon-r ">&gt;</span><span class="crayon-i ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus felis porta dui rhoncus lobortis. In aliquet, arcu ut bibendum molestie, massa nisl varius nunc, non tempus mi dolor vitae eros</span><span class="crayon-r ">&lt;/div&gt;</span></div><div class="crayon-line" id="crayon-5b38e20de0157382023473-33"><span class="crayon-c">&lt;!-- END LAYER --&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5b38e20de0157382023473-34">&nbsp;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0005 seconds] -->
+<p></p>
+
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:40px"></div>
+	<div class="wpb_single_image wpb_content_element vc_align_left">
+
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="930" height="562" src="Responsive%20Setup%20-%20ThemePunch_files/responsive-settings.jpg" class="vc_single_image-img attachment-full" alt="" srcset="//cdntphome-themepunchgbr.netdna-ssl.com/wp-content/uploads/2016/11/responsive-settings.jpg 930w, //cdntphome-themepunchgbr.netdna-ssl.com/wp-content/uploads/2016/11/responsive-settings-300x181.jpg 300w, //cdntphome-themepunchgbr.netdna-ssl.com/wp-content/uploads/2016/11/responsive-settings-768x464.jpg 768w" sizes="(max-width: 930px) 100vw, 930px"></div>
+		</figure>
+	</div>
+<div class="        " style="display:block;clear:both;height:20px"></div>
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<ul class="regularlist the-list">
+ 	<li><strong>1. data-visibility</strong><span>on</span> <span>off</span><br>Show/hide Layers for each Visibility Level</li>
+ 	<li><strong>2. data-fontsize | data-lineheight | data-color | data-textAlign</strong>Adjust font properties for each Responsive Level</li>
+ 	<li><strong>3. Layer Positioning for each Responsive Level</strong>
+<ul>
+ 	<li><strong>data-x</strong><span>left</span> <span>center</span> <span>right</span><br>The Layer's horizontal alignment.</li>
+ 	<li><strong>data-y</strong><span>top</span> <span>center</span> <span>right</span><br> The Layer's vertical alignment.</li>
+ 	<li><strong>data-hoffset</strong>Horizontal alignment offset in pixels. Both negative and positive numbers can be used.</li>
+ 	<li><strong>data-voffset</strong>Vertical alignment offset in pixels. Both negative and positive numbers can be used.</li>
+</ul>
+</li>
+ 	<li><strong>4. data-width | data-height | data-whitespace</strong>Adjust Layer Sizing for each Responsive Level.</li>
+ 	<li><strong>5. data-paddingtop | data-paddingright | data-paddingbottom | data-paddingleft</strong>"data-margintop", "data-marginright", "data-marginbottom" and "data-marginleft" also available.<br>Additional options useful for Rows and Columns.</li>
+ 	<li><strong>6. Alignment Options</strong>
+<ul>
+ 	<li><strong>data-basealign</strong><span>slide</span> <span>grid</span><br>Use "slide" to align the Layer to the entire slider (usually applicable for Full Width and Full Screen sliders), or "grid" to confine the layer within the Layers Grid</li>
+ 	<li><strong>data-responsive_offset</strong><span>on</span> <span>off</span><br>Use "on" for elastic offsets, or "off" for locked offsets ("data-hoffset" and "data-voffset").</li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+<div class="        " style="display:block;clear:both;height:120px"></div><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<a class="tp-btn tp-large-button-yellow" href="https://www.themepunch.com/revsliderjquery-doc/slider-layout/" target="_self"><i class="pe-7s-angle-left"></i> Back</a>
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+			<div style="text-align:right"><a class="tp-btn tp-large-button-yellow" href="https://www.themepunch.com/revsliderjquery-doc/links/" target="_self">Next <i class="pe-7s-angle-right"></i></a></div>
+		</div>
+	</div>
+</div></div></div></div></div></div></div><div class="vc_parallax-inner skrollable skrollable-after" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;" style="height: 150%; top: 0%;"></div></div><div style="clear:both"></div></div></article></section><section class="tp_vc_mw_rowwrapper         " style="z-index:3;"><article style="padding-top: 0px ; padding-bottom: 0px;" class="tp_vc_mw_rowinner  darkonlight "><div class="rowbgimage_overlay" style="background-color:transparent;"></div><div class="content_max_width"><div data-vc-parallax="1.5" class="vc_row wpb_row vc_row-fluid vc_row-has-fill vc_general"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html">
+		<div class="wpb_wrapper">
+
+		</div>
+	</div>
+
+	<div class="wpb_raw_code wpb_raw_js">
+		<div class="wpb_wrapper">
+			<script type="text/javascript">
+
+jQuery(function() {
+
+	// add Visual Editor teaser
+    jQuery('.ve-editor-teaser').appendTo(jQuery('#pagetitle')).show();
+
+	// remove VC parallax
+    jQuery('.vc_parallax').removeClass('vc_parallax vc_parallax-on');
+
+	// format doc menu
+	jQuery('#menu-revslider-jquery-docs-5-3 .menu-link').addClass("docu-link");
+	jQuery('#menu-revslider-jquery-docs-5-3 ul').each(function() {
+
+		var ul = jQuery(this),
+			li = ul.closest('li');
+
+		li.prepend('<div class="menu-expander"></div>');
+		li.addClass('docuwithsubmenu');
+
+		li.find('>a, >.menu-expander').on('click', function() {
+
+			var li = jQuery(this).closest('li'),
+				expa = li.find('>.menu-expander');
+
+			if(expa.hasClass('opened')) {
+
+				expa.removeClass('opened');
+				li.find('>ul').slideUp(200);
+
+			}
+			else {
+
+				expa.addClass('opened');
+				li.find('>ul').slideDown(200);
+
+			}
+
+			return false;
+
+		});
+
+		ul.hide();
+
+	});
+
+        jQuery('.tpdirectory > li > a').on('click', function() {
+
+		var $this = jQuery(this).parent(),
+					ul = $this.children('ul');
+
+		if(!ul.length) return;
+
+		if($this.hasClass('active')) {
+
+			$this.removeClass('active');
+			$this.children('ul').stop(true).slideUp(200);
+
+		}
+		else {
+
+			$this.addClass('active');
+			$this.children('ul').stop(true).slideDown(200);
+
+		}
+
+		return false;
+
+	});
+
+
+});
+
+/* MENU HIGHLIGHER */
+jQuery(window).one('load', function() {
+
+	var url = document.URL;
+	btn = jQuery('.docu-link[href="' + url + '"]');
+
+	if(!btn.length) {
+
+		url = url.split('?')[0].split('#')[0];
+		if(url.charAt(url.length - 1) !== '/') url += '/';
+		btn = jQuery('.docu-link[href="' + url + '"]');
+
+	}
+
+	if(!btn.length) return;
+	if(btn.length > 1) btn = btn.eq(0);
+
+	btn = btn.css('background', ' #FFF600').parents('li').toArray().reverse();
+	btn.pop();
+
+	while(btn.length) {
+
+		jQuery(btn[0]).children('a').click();
+		btn.shift();
+
+	}
+
+});
+
+</script>
+		</div>
+	</div>
+</div></div></div><div class="vc_parallax-inner skrollable skrollable-before" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;" style="height: 150%; top: -50%;"></div></div><div style="clear:both"></div></div></article></section></div>
+</div>
+
+
+
+
+						<div style="height:97px;" class="bottomspacer"></div>					</section> <!-- End Of Content -->
+
+
+				<section id="sidebar-container" class="sidebar_widget">
+					<div class="widget-1  first clear"></div><div id="searchtag-5" class="widget-1  first miami_widget sidebar_widget widget_tags_search"><form class="searchform" method="get" action="https://www.themepunch.com/">
+		        <input type="text" name="s" value="type and hit enter" onfocus="this.value=&#39;&#39;" onblur="this.value=&#39;type and hit enter&#39;">
+		        <input type="hidden" name="tag" value="slider-revolution-jquery">
+		      </form><div class="clear"></div></div><div class="widget-2  last clear"></div><div id="nav_menu-6" class="widget-2  last miami_widget sidebar_widget widget_nav_menu"><div class="menu-revslider-jquery-docs-5-3-container"><ul id="menu-revslider-jquery-docs-5-3" class="menu"><li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-15689" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children darknav docuwithsubmenu"><div class="menu-expander opened"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Slider Core </a>
+<ul class="sub-menu" style="display: block;">
+	<li id="menu-item-15649" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/download-source-folder-overview/">Download Source Overview </a></li>
+	<li id="menu-item-15651" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/basic-template-setup/">Slider Template Setup </a></li>
+	<li id="menu-item-15650" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/anatomy-basic-slider/">Slider Markup Overview </a></li>
+	<li id="menu-item-15654" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/setting-slider-timeline/">Slider Timeline </a></li>
+	<li id="menu-item-15659" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/slider-layout/">Slider Layout </a></li>
+	<li id="menu-item-15673" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/carousels/">Slider Carousels </a></li>
+	<li id="menu-item-15660" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/" style="background: rgb(255, 246, 0);">Responsive Setup </a></li>
+	<li id="menu-item-15669" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/additional-javascript-settings/">Slider Settings </a></li>
+	<li id="menu-item-15668" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/preloader-lazy-loading/">Slider Preloaders </a></li>
+</ul>
+</li>
+<li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-15690" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children darknav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Animations </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15656" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/slide-transitions/">Slide Transitions </a></li>
+	<li id="menu-item-15658" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-transitions/">Layer Transitions </a></li>
+</ul>
+</li>
+<li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-15691" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children darknav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Slide &amp; Layer Links </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15661" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/links/">Link a Slide </a></li>
+	<li id="menu-item-15692" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/links/#layers">Link a Layer </a></li>
+</ul>
+</li>
+<li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-15693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children darknav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Individual Slides </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15703" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Background Images </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15662" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/">HTML Markup </a></li>
+		<li id="menu-item-15700" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/preloader-lazy-loading/">Lazy Loading </a></li>
+		<li id="menu-item-15675" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/image-filters-blend-modes/">Image Filters </a></li>
+		<li id="menu-item-15674" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/ken-burns-effect/">Ken Burns Effect </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15702" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Background Video </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15696" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#youtube-video-background">YouTube Background Video </a></li>
+		<li id="menu-item-15697" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#vimeo-video-background">Vimeo Background Video </a></li>
+		<li id="menu-item-15698" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#html5-video-background">HTML5 Video Background </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15694" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#solid-color">Solid Color Background </a></li>
+	<li id="menu-item-15695" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#transparent">Transparent Slides </a></li>
+	<li id="menu-item-15672" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/parallax-3d/">Parallax &amp; 3D </a></li>
+</ul>
+</li>
+<li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-15682" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children darknav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Slide Layers </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15657" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/basic-layer-content-markup/">Basic Layer Markup </a></li>
+	<li id="menu-item-15708" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/">Responsive Setup </a></li>
+	<li id="menu-item-15705" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Text Layers </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15663" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/">HTML Markup </a></li>
+		<li id="menu-item-15664" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-styles-google-fonts/">Styles </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15706" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Image Layers </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15683" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#image">HTML Markup </a></li>
+		<li id="menu-item-15667" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/preloader-lazy-loading/">Lazy Loading </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15704" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Video / Audio </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15685" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#youtube">YouTube Video </a></li>
+		<li id="menu-item-15686" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#vimeo">Vimeo Video </a></li>
+		<li id="menu-item-15687" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#html5-video">HTML5 Video </a></li>
+		<li id="menu-item-15688" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#audio">Audio Layers </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15676" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/image-filters-blend-modes/">Blend Modes </a></li>
+	<li id="menu-item-15670" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/static-layers/">Static Layers </a></li>
+	<li id="menu-item-15677" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-groups/">Layer Groups </a></li>
+	<li id="menu-item-15671" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/">Layer Actions </a></li>
+	<li id="menu-item-15678" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/rows-columns/">Rows &amp; Columns </a></li>
+	<li id="menu-item-15701" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/parallax-3d/">Parallax &amp; 3D </a></li>
+	<li id="menu-item-15684" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#shape">Shapes </a></li>
+</ul>
+</li>
+<li data-backgroundcolor="rgba(37,37,37,1)" id="menu-item-15707" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children darknav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Responsive Setup </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15733" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/">Responsive Overview </a></li>
+	<li id="menu-item-15735" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#custom-grid-sizes">Dynamic Grid Sizes </a></li>
+	<li id="menu-item-15737" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#layer-visibility">Layer Visibility </a></li>
+	<li id="menu-item-15740" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#layer-settings">Layer Settings </a></li>
+</ul>
+</li>
+<li id="menu-item-15699" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children lightnav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Slider Navigation </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15665" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/navigation-syntax/">Navigation Syntax </a></li>
+	<li id="menu-item-15666" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/navigation-styles/">Navigation Styles </a></li>
+	<li id="menu-item-15719" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/#jumpto">Custom Navigation </a></li>
+</ul>
+</li>
+<li id="menu-item-15714" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children lightnav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Video Setup </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15715" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Video Backgrounds </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15820" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#youtube-video-background">YouTube Video </a></li>
+		<li id="menu-item-15821" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#vimeo-video-background">Vimeo Video </a></li>
+		<li id="menu-item-15822" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/backgrounds-image-video/#html5-video-background">HTML5 Video </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15716" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Video Layers </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15824" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#youtube">YouTube Video </a></li>
+		<li id="menu-item-15825" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#vimeo">Vimeo Video </a></li>
+		<li id="menu-item-15826" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/layer-content/#html5-video">HTML5 Video </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15717" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/faq/video-not-showing-up-on-mobile/">What’s the Difference? </a></li>
+</ul>
+</li>
+<li id="menu-item-15681" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children lightnav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Add-Ons </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15741" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://codecanyon.net/item/slider-revolution-jquery-visual-editor-addon/13934907?ref=ThemePunch">Visual Editor </a></li>
+	<li id="menu-item-15679" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/whiteboard/">Whiteboard </a></li>
+	<li id="menu-item-15680" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/typewriter/">Typewriter </a></li>
+	<li id="menu-item-16657" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/particles/">Particles </a></li>
+	<li id="menu-item-16666" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/polyfold/">Polyfold </a></li>
+	<li id="menu-item-16688" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/countdown/">CountDown </a></li>
+	<li id="menu-item-16687" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/slicey/">Slicey </a></li>
+	<li id="menu-item-16692" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/filmstrip/">FilmStrip </a></li>
+	<li id="menu-item-19882" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/before-after/">Before / After </a></li>
+	<li id="menu-item-19881" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/panorama/">Panorama </a></li>
+	<li id="menu-item-19895" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/reveal/">Reveal </a></li>
+	<li id="menu-item-19906" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/duotone/">Duotone </a></li>
+	<li id="menu-item-19921" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/bubblemorph/">BubbleMorph </a></li>
+	<li id="menu-item-19947" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/distortion/">Distortion </a></li>
+</ul>
+</li>
+<li id="menu-item-15710" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children lightnav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Special Features </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15711" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/parallax-3d/">Parallax &amp; 3D </a></li>
+	<li id="menu-item-15713" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/ken-burns-effect/">Ken Burns Effect </a></li>
+	<li id="menu-item-15818" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/carousels/">Carousels </a></li>
+	<li id="menu-item-15712" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/image-filters-blend-modes/">Filters &amp; Blend Modes </a></li>
+</ul>
+</li>
+<li id="menu-item-15718" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children lightnav docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Actions &amp; API </a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-15725" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Layer Actions </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15720" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/#jumpto">Custom Navigation </a></li>
+		<li id="menu-item-15721" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/#scroll-below-slider">Scroll Below Slider </a></li>
+		<li id="menu-item-15722" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/#show-hide">Control other Layers </a></li>
+		<li id="menu-item-15723" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/#play-pause-video">Play/Pause Video </a></li>
+		<li id="menu-item-15724" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/actions/">Additional Actions </a></li>
+	</ul>
+</li>
+	<li id="menu-item-15726" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hassubmenu docuwithsubmenu"><div class="menu-expander"></div><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#">Slider API </a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-15727" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/api-methods-events/">API Overview </a></li>
+		<li id="menu-item-15728" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/api-methods-events/#methods">Methods </a></li>
+		<li id="menu-item-15729" class="menu-item menu-item-type-custom menu-item-object-custom"><a class="menu-link docu-link" href="https://www.themepunch.com/revsliderjquery-doc/api-methods-events/#events">Events </a></li>
+	</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="clear"></div></div>				</section><!-- END OF SIDEBAR -->
+				</div> <!-- END OF THE TABLE AROUND THE CONTENT AND SIDEBAR -->
+
+			<div class="clearfix"></div>
+
+		</section>
+	</article><!-- #post -->
+
+
+
+					<footer id="footer" class="">
+						<div class="poly-overlay poly-negative poly-top" data-animdirection="invers" data-bgcolor="#f1f1f1" data-bgheight="80" data-leftwidth="0.5" data-rightwidth="0.5"><div class="left-poly-side" style="border-color: rgb(241, 241, 241) transparent transparent; border-width: 0px 641px 0px 0px;"></div><div class="right-poly-side" style="border-color: transparent rgb(241, 241, 241) transparent transparent; border-width: 0px 640px 0px 0px;"></div></div>						<div class="footerinnerwrapper">
+						<!-- LEFT / RIGHT UNDERLAYS FOR FOOTER -->
+						<section class="footer_left_underlay footer_widget" style="background-color:#000000"></section>
+						<section class="footer_right_underlay" style="background-color:#000000"></section>
+						<!-- END OF LEFT - RIGHT UNDERLAYS -->
+						<section class="footer-inner container-fluid rowwrapper" style="max-width:1310px">
+						 <section class="row">
+														<article class="col-md-12 widgetslot footer_widget" style="background-color:#000000">
+									 <div id="text-2" class="widget-1  last footer_widget widget_text">			<div class="textwidget"><div class="footercenter">
+<div class="footerlogos">
+<div class="leftlogo">
+<div class="tplogo"><a href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#"><img src="Responsive%20Setup%20-%20ThemePunch_files/tpfooterlogo@2x.png" alt="" width="163" height="23"></a></div>
+</div>
+<div class="rightlogo"><a href="https://www.facebook.com/themepunchofficial" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-widget&#39;, &#39;https://www.facebook.com/themepunchofficial&#39;, &#39;&#39;);" class="tpsocial" target="_blank"><i class="icon-facebook"></i></a><a href="https://twitter.com/themepunch" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-widget&#39;, &#39;https://twitter.com/themepunch&#39;, &#39;&#39;);" class="tpsocial" target="_blank"><i class="icon-twitter"></i></a><!--a class="tpsocial" href="https://plus.google.com/115601631681687503339/posts" target="_blank"><i class="icon-gplus"></i></a--><a href="https://dribbble.com/themepunch" onclick="__gaTracker(&#39;send&#39;, &#39;event&#39;, &#39;outbound-widget&#39;, &#39;https://dribbble.com/themepunch&#39;, &#39;&#39;);" class="tpsocial" target="_blank"><i class="icon-dribbble"></i></a></div>
+</div>
+<div class="subfooter">
+<div class="subfooterleft">
+<div class="txtblock">© Copyright 2017 – ThemePunch</div>
+</div>
+<div class="subfooterright">
+<ul class="inlinelist">
+<li><a href="http://eepurl.com/_HUBz" target="blank" title="Newsletter">Newsletter</a></li>
+<li><a href="https://themepunch.com/products/" title="Products">Products</a></li>
+<li><a href="http://themepunch.com/blog/" title="Blog">Blog</a></li>
+<li><a href="https://themepunch.com/impressum/" title="Impressum">Impressum</a></li>
+<li><a href="https://themepunch.com/datenschutz/" title="Datenschutz">Datenschutz</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+		</div>								</article>
+													 </section><!-- END OF ROW -->
+						</section><!-- END OF THE FOOTER CONTAINER -->
+						</div><!-- END FOOTER INNER WRAPPER -->
+					</footer>
+				<div class="responsivemenuwrapper">
+								<section id="responsivemenu" class="darknav" style="width: 1200px;">
+								<div class="respmenuelement nav-level0"><a href="http://www.themepunch.com/support-center/#support" target="_self" class="resp-nav-text">Faq’s </a></div><div class="respmenuelement nav-level0 hassubmenu"><a href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#" target="_self" class="resp-nav-text respmenu-clickable">Documentations </a><div class="respmenu-inner-wrapper"><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/revslider-doc/slider-revolution-documentation/" target="_self" class="resp-nav-text">Slider revolution wp </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/essgrid-doc/essential-grid-documentation/" target="_self" class="resp-nav-text">Essential grid </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/revsliderjquery-doc/slider-revolution-jquery-5-x-documentation/" target="_self" class="resp-nav-text">Slider revolution jquery </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/revslider-se-doc/slider-revolution-standalone-editor-documentation/" target="_self" class="resp-nav-text">Slider revolution jquery visual editor </a></div><div class="respmenuelement nav-level1"><a href="https://revolution.themepunch.com/documentation/joomla" target="_blank" class="resp-nav-text">Slider revolution joomla </a></div></div></div><div class="respmenuelement nav-level0 hassubmenu"><a href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#" target="_self" class="resp-nav-text respmenu-clickable">More </a><div class="respmenu-inner-wrapper"><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/" target="_self" class="resp-nav-text">Home </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/support-center/" target="_self" class="resp-nav-text">Support </a></div><div class="respmenuelement nav-level1"><a href="http://themepunch.com/products/" target="_self" class="resp-nav-text">Products </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/blog/" target="_self" class="resp-nav-text">Blog </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/?taxonomy=category_freebies&amp;term=freebies" target="_self" class="resp-nav-text">Freebies </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/wordpress-plugin-testimonials/" target="_self" class="resp-nav-text">Testimonials </a></div><div class="respmenuelement nav-level1"><a href="http://eepurl.com/_HUBz" target="_blank" class="resp-nav-text">Newsletter </a></div><div class="respmenuelement nav-level1"><a href="https://www.facebook.com/themepunchofficial" target="_blank" class="resp-nav-text">Facebook </a></div><div class="respmenuelement nav-level1"><a href="https://twitter.com/themepunch" target="_blank" class="resp-nav-text">Twitter </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/hosting/" target="_self" class="resp-nav-text">Hosting </a></div><div class="respmenuelement nav-level1"><a href="https://www.themepunch.com/faq/custom_premium_development/" target="_self" class="resp-nav-text">Custom work </a></div></div></div></section>
+						</div></article> <!-- ! END OF BODY WRAPPER -->
+	<div id="cookie-law-info-bar" style="display: none; background-color: rgb(255, 255, 255); color: rgb(63, 69, 73); font-family: inherit; bottom: 0px; border-top: 2px solid rgb(63, 69, 73); position: fixed;"><span>This website uses cookies to improve your experience. By using this website you agree to our<a href="https://www.themepunch.com/datenschutz/" id="CONSTANT_OPEN_URL" target="_blank" class="cli-plugin-main-link" style="color: rgb(224, 51, 1);">Data Protection Policy</a>.<a href="https://www.themepunch.com/revsliderjquery-doc/responsive-setup/#" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button" style="color: rgb(255, 255, 255); background-color: rgb(224, 51, 1);">Accept</a> </span></div>
+		<script type="text/javascript">
+			//<![CDATA[
+			jQuery(document).ready(function() {
+				cli_show_cookiebar({
+					settings: '{"animate_speed_hide":"500","animate_speed_show":"500","background":"#fff","border":"#3f4549","border_on":true,"button_1_button_colour":"#e03301","button_1_button_hover":"#b32901","button_1_link_colour":"#fff","button_1_as_button":true,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#e03301","button_2_as_button":false,"button_3_button_colour":"#3f4549","button_3_button_hover":"#32373a","button_3_link_colour":"#fff","button_3_as_button":true,"font_family":"inherit","header_fix":false,"notify_animate_hide":true,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":false,"scroll_close_reload":false,"accept_close_reload":false,"showagain_tab":false,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#3f4549","show_once_yn":false,"show_once":"10000"}'
+				});
+			});
+			//]]>
+		</script>
+
+		<link rel="stylesheet" id="vc_extend_style-css" href="Responsive%20Setup%20-%20ThemePunch_files/tp_vc_frontend-false.css" type="text/css" media="all">
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/main.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/main(1).js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"https:\/\/www.themepunch.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/polls-js-2.73.8.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/retina.min.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/fitvid.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var miami = {"sharrrephp":"https:\/\/www.themepunch.com\/wp-content\/themes\/miami\/assets\/js\/sharrre.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/jquery.sharrre.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tp_search = {"search_php":"https:\/\/www.themepunch.com\/wp-content\/themes\/miami\/framework\/theme_get_search_result.php","admin_php":"https:\/\/www.themepunch.com\/wp-admin\/admin-ajax.php","estoken":"e08da1b392"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/screen.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/comment-reply.min-1c03db531a1f14408cfcaedb9aaa2476.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/wp-embed.min-1c03db531a1f14408cfcaedb9aaa2476.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/js_composer_front.min-5.1.1.js"></script>
+<script type="text/javascript" src="Responsive%20Setup%20-%20ThemePunch_files/skrollr.min-5.1.1.js"></script>
+
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1530454542 --></body></html>

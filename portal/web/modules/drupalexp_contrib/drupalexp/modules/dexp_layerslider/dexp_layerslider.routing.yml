@@ -1,0 +1,117 @@
+
+# Slider routing definition
+entity.dexp_slider.canonical:
+  path: '/admin/content/dexp_layerslider/{dexp_slider}'
+  defaults:
+    # _entity_view: 'dexp_slider'
+    _form: 'Drupal\dexp_layerslider\Form\SlidesEditForm'
+    _title: 'Slider'
+  requirements:
+    #_entity_access: 'dexp_slider.view'
+    _permission: 'edit slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.collection:
+  path: '/admin/content/dexp_layerslider'
+  defaults:
+    _entity_list: 'dexp_slider'
+    _title: 'Layer Sliders'
+  requirements:
+    _permission: 'view slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.add_form:
+  path: '/admin/content/dexp_layerslider/add'
+  defaults:
+    _entity_form: dexp_slider.add
+    _title: 'Add Slider'
+  requirements:
+    _permission: 'add slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.edit_form:
+  path: '/admin/content/dexp_layerslider/{dexp_slider}/edit'
+  defaults:
+    _entity_form: dexp_slider.edit
+    _title: 'Edit Slider'
+  requirements:
+    _permission: 'edit slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.edit_slides_form:
+  path: '/admin/content/dexp_layerslider/{dexp_slider}/edit_slides'
+  defaults:
+    _form: 'Drupal\dexp_layerslider\Form\SlidesEditForm'
+    _title: 'Edit Slides'
+  requirements:
+    _permission: 'edit slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.settings_form:
+  path: '/admin/content/dexp_layerslider/{dexp_slider}/settings'
+  defaults:
+    _form: 'Drupal\dexp_layerslider\Form\SliderSettingsForm'
+    _title: 'Slider Settings'
+  requirements:
+    _permission: 'edit slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.duplicate:
+  path: '/admin/content/dexp_layerslider/{dexp_slider}/duplicate'
+  defaults:
+    _form: 'Drupal\dexp_layerslider\Entity\Form\SliderDuplicate'
+    _title: 'Duplicate Slider'
+  requirements:
+    _permission: 'edit slider entities'
+  options:
+    _admin_route: TRUE
+
+entity.dexp_slider.delete_form:
+  path: '/admin/content/dexp_layerslider/{dexp_slider}/delete'
+  defaults:
+    _entity_form: dexp_slider.delete
+    _title: 'Delete Slider'
+  requirements:
+    _permission: 'delete slider entities'
+  options:
+    _admin_route: TRUE
+
+dexp_slider.settings:
+  path: 'admin/structure/dexp_slider'
+  defaults:
+   _form: '\Drupal\dexp_layerslider\Entity\Form\SliderSettingsForm'
+   _title: 'Slider settings'
+  requirements:
+    _permission: 'administer slider entities'
+  options:
+    _admin_route: TRUE
+
+dexp_slider.export:
+  path: 'admin/content/dexp_layerslider/{dexp_slider}/export'
+  defaults:
+    _controller: '\Drupal\dexp_layerslider\Controller\SliderController::export'
+    _title: 'Export'
+  requirements:
+    _permission: 'administer slider entities'
+    
+dexp_slider.import:
+  path: 'admin/content/dexp_layerslider/import'
+  defaults:
+    _form: '\Drupal\dexp_layerslider\Form\SliderImportForm'
+    _title: 'Import Slider'
+  requirements:
+    _permission: 'administer slider entities'
+    
+dexp_slider.getImageUrl:
+  path: 'admin/content/dexp_layserslider/image_url/{fid}'
+  defaults:
+    _controller: '\Drupal\dexp_layerslider\Controller\SliderController::getImageUrl'
+    _title: 'Import Slider'
+  requirements:
+    _permission: 'administer slider entities'

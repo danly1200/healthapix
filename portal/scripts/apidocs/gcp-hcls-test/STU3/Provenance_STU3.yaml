@@ -1,0 +1,474 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Provenance resource API documentation
+  description: |
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire") defines a set of "Resources" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® STU3 API docs are part of the FHIR® Specifications (v3.0.2: STU 3). The current version which supercedes this version is 4.0.1 (R4) This section contains API docs for the few commonly used STU3 resources. API docs for other resources can be added by API publishers on request.
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/stu3
+tags:
+- name: Provenance
+paths:
+  /Provenance:
+    get:
+      tags:
+      - Provenance
+      parameters:
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: entity-ref
+        in: query
+        description: Identity of entity
+        schema:
+          type: string
+      - name: agent
+        in: query
+        description: Who participated
+        schema:
+          type: string
+      - name: signature-type
+        in: query
+        description: Indication of the reason the entity signed the object(s)
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: Starting time with inclusive boundary
+        schema:
+          type: string
+          format: date
+      - name: recorded
+        in: query
+        description: When the activity was recorded / updated
+        schema:
+          type: string
+          format: date
+      - name: target
+        in: query
+        description: Target Reference(s) (usually version specific)
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Target Reference(s) (usually version specific)
+        schema:
+          type: string
+      - name: end
+        in: query
+        description: End time with inclusive boundary, if not ongoing
+        schema:
+          type: string
+          format: date
+      - name: location
+        in: query
+        description: Where the activity occurred, if relevant
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: agent-role
+        in: query
+        description: What the agents role was
+        schema:
+          type: string
+      - name: entity-id
+        in: query
+        description: Identity of entity
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Provenance'
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.read
+    post:
+      tags:
+      - Provenance
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Provenance'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.write
+  /Provenance/{id}:
+    get:
+      tags:
+      - Provenance
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Provenance'
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.read
+    put:
+      tags:
+      - Provenance
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Provenance'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.write
+    delete:
+      tags:
+      - Provenance
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.write
+  /Provenance/{id}/_history:
+    get:
+      tags:
+      - Provenance
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.read
+  /Provenance/{id}/_history/{vid}:
+    get:
+      tags:
+      - Provenance
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Provenance'
+      security:
+        - OAuthV2B2B:
+          - system/Provenance.read
+components:
+  schemas:
+    Provenance:
+      required:
+      - _policy
+      - agent
+      - entity
+      - id
+      - location
+      - period
+      - policy
+      - reason
+      - recorded
+      - resourceType
+      - target
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        target:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - reference
+            type: object
+            properties:
+              fhir_comments:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              reference:
+                minLength: 1
+                type: string
+        period:
+          required:
+          - start
+          type: object
+          properties:
+            start:
+              minLength: 1
+              type: string
+        recorded:
+          minLength: 1
+          type: string
+        reason:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - code
+            - display
+            - system
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              code:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+        location:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        policy:
+          type: array
+          items:
+            type: object
+            properties: {}
+        _policy:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              fhir_comments:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+        agent:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              fhir_comments:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              role:
+                required:
+                - code
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+              actor:
+                required:
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+              userId:
+                required:
+                - fhir_comments
+                - system
+                - value
+                type: object
+                properties:
+                  fhir_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties: {}
+                  system:
+                    minLength: 1
+                    type: string
+                  value:
+                    minLength: 1
+                    type: string
+              relatedAgent:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - target
+                  type: object
+                  properties:
+                    type:
+                      required:
+                      - text
+                      type: object
+                      properties:
+                        text:
+                          minLength: 1
+                          type: string
+                    target:
+                      minLength: 1
+                      type: string
+        entity:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            - reference
+            - role
+            type: object
+            properties:
+              fhir_comments:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              role:
+                minLength: 1
+                type: string
+              type:
+                required:
+                - code
+                - display
+                - fhir_comments
+                - system
+                type: object
+                properties:
+                  fhir_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties: {}
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+              reference:
+                minLength: 1
+                type: string
+              _reference:
+                required:
+                - fhir_comments
+                type: object
+                properties:
+                  fhir_comments:
+                    type: array
+                    items:
+                      type: object
+                      properties: {}
+              display:
+                minLength: 1
+                type: string
+      description: ""
+  securitySchemes: 
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Provenance.read: Read permissions for Provenance demographics.
+            system/Provenance.write: Write permissions for Provenance demographics.

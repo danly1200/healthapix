@@ -1,0 +1,332 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Goal resource API documentation
+  description: |
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire") defines a set of "Resources" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® STU3 API docs are part of the FHIR® Specifications (v3.0.2: STU 3). The current version which supercedes this version is 4.0.1 (R4) This section contains API docs for the few commonly used STU3 resources. API docs for other resources can be added by API publishers on request.
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/stu3
+tags:
+- name: Goal
+paths:
+  /Goal:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: identifier
+        in: query
+        description: External Ids for this goal
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Who this goal is intended for
+        schema:
+          type: string
+      - name: subject
+        in: query
+        description: Who this goal is intended for
+        schema:
+          type: string
+      - name: start-date
+        in: query
+        description: When goal pursuit begins
+        schema:
+          type: string
+          format: date
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: E.g. Treatment, dietary, behavioral, etc.
+        schema:
+          type: string
+      - name: target-date
+        in: query
+        description: Reach goal on or before
+        schema:
+          type: string
+          format: date
+      - name: status
+        in: query
+        description: proposed | accepted | planned | in-progress | on-target | ahead-of-target | behind-target | sustaining | achieved | on-hold | cancelled | entered-in-error | rejected
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Goal'
+      security:
+        - OAuthV2B2B:
+          - system/Goal.read
+    post:
+      tags:
+      - Goal
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Goal'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/Goal.write
+  /Goal/{id}:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Goal'
+      security:
+        - OAuthV2B2B:
+          - system/Goal.read
+    put:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Goal'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+          - system/Goal.write
+    delete:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Goal.write
+  /Goal/{id}/_history:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Goal.read
+  /Goal/{id}/_history/{vid}:
+    get:
+      tags:
+      - Goal
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Goal'
+      security:
+        - OAuthV2B2B:
+          - system/Goal.read
+components:
+  schemas:
+    Goal:
+      required:
+      - addresses
+      - description
+      - extension
+      - id
+      - resourceType
+      - status
+      - subject
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        extension:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - url
+            type: object
+            properties:
+              extension:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - url
+                  type: object
+                  properties:
+                    url:
+                      minLength: 1
+                      type: string
+                    valueCodeableConcept:
+                      required:
+                      - coding
+                      type: object
+                      properties:
+                        coding:
+                          minItems: 1
+                          uniqueItems: true
+                          type: array
+                          items:
+                            required:
+                            - code
+                            - display
+                            - system
+                            type: object
+                            properties:
+                              system:
+                                minLength: 1
+                                type: string
+                              code:
+                                minLength: 1
+                                type: string
+                              display:
+                                minLength: 1
+                                type: string
+              url:
+                minLength: 1
+                type: string
+        subject:
+          required:
+          - display
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        description:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+        addresses:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+      description: ""
+  securitySchemes: 
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Goal.read: Read permissions for Goal demographics.
+            system/Goal.write: Write permissions for Goal demographics.

@@ -1,0 +1,21 @@
+uuid: 71f4c039-512f-45e2-bb02-21683c02a7c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.home_page_blocks
+    - field.storage.block_content.field_image_label
+  module:
+    - text
+id: block_content.home_page_blocks.field_image_label
+field_name: field_image_label
+entity_type: block_content
+bundle: home_page_blocks
+label: 'image label'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

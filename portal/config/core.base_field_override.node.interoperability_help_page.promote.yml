@@ -1,0 +1,22 @@
+uuid: a98dde1f-bccb-4b49-860c-b3cdf72becb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.interoperability_help_page
+id: node.interoperability_help_page.promote
+field_name: promote
+entity_type: node
+bundle: interoperability_help_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

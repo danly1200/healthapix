@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="SoF_AM_Fault_InvalidAuthorization">
+    <DisplayName>SoF_AM_Fault_InvalidAuthorization</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="WWW-Authenticate">Bearer realm="{caller.host}",error="{fault.name}",error_description="oauth.v2.InvalidAccessToken: Access Token is missing, expired or cannot be parsed."</Header>
+        </Headers>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"resourceType":"OperationOutcome","text":{"status":"generated","div":"&lt;div xmlns=\"http://www.w3.org/1999/xhtml\"&gt;&lt;h1&gt;Operation Outcome&lt;/h1&gt;&lt;table border=\"0\"&gt;&lt;tr&gt;&lt;td style=\"font-weight: bold;\"&gt;error&lt;/td&gt;&lt;td&gt;[]&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Unauthorized: Access token that you have provided might be expired, invalid, not approved, cannot be parsed or missing. Please make sure you're passing a valid access token.&lt;/pre&gt;&lt;/td&gt;\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t&lt;/tr&gt;\n\t\t&lt;/table&gt;\n\t&lt;/div&gt;"},"issue":[{"severity":"error","code":"security","diagnostics":"@fault.name#"}]}</Payload>
+        <StatusCode>401</StatusCode>
+        <ReasonPhrase>Unauthorized</ReasonPhrase>
+    </Set>
+    <AssignVariable>
+        <Name>errorHandled</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

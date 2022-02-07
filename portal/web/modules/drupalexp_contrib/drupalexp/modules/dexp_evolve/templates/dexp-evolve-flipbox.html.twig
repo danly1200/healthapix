@@ -1,0 +1,19 @@
+<div class="flip-box {{ class }}">
+    <div class="inner">
+        <div class="front">
+            <div class="front-inner">
+                {{media|raw}}
+                <h3>{{front_title}}</h3>
+                {% if front_desc is not empty %}
+                    <p>{{front_desc}}</p>
+                {% endif%}
+            </div>
+        </div>
+        <div class="back">
+            <div class="back-inner">
+                <h3>{{ back_title }}</h3>
+                {{content|raw}}
+            </div>
+        </div>
+    </div>
+</div>

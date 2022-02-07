@@ -1,0 +1,22 @@
+uuid: b381adb2-9fc3-409e-9046-ccdf791ad039
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_fhirstore
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_fhirstore
+field_name: field_fhirstore
+entity_type: developer_app
+bundle: developer_app
+label: fhirstore
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: fhirdatastore001
+default_value_callback: ''
+settings: {  }
+field_type: string

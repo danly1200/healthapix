@@ -1,0 +1,27 @@
+uuid: 2d87ce1b-eaf3-46fe-8a6f-c21c691b3b75
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment_node_devconnect_blog
+    - field.field.comment.comment_node_devconnect_blog.comment_body
+  module:
+    - text
+id: comment.comment_node_devconnect_blog.default
+targetEntityType: comment
+bundle: comment_node_devconnect_blog
+mode: default
+content:
+  comment_body:
+    label: hidden
+    weight: 0
+    type: text_default
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

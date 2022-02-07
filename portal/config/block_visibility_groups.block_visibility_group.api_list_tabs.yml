@@ -1,0 +1,26 @@
+uuid: e60d67ab-067b-4902-a33e-56aa9375868c
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - system
+id: api_list_tabs
+label: 'API List Tabs'
+logic: or
+conditions:
+  46e5e184-a2c2-4f67-bc3c-e450bfe787ba:
+    id: 'entity_bundle:node'
+    bundles:
+      smartdocs: smartdocs
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uuid: 46e5e184-a2c2-4f67-bc3c-e450bfe787ba
+  7adc837d-1aaf-4df9-aef3-cab8ad55755a:
+    id: request_path
+    pages: '/swagger-not-found/*'
+    negate: false
+    context_mapping: {  }
+    uuid: 7adc837d-1aaf-4df9-aef3-cab8ad55755a
+allow_other_conditions: false

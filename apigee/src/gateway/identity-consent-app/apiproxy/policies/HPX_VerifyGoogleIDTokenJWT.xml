@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="HPX_VerifyGoogleIDTokenJWT">
+    <DisplayName>HPX_VerifyGoogleIDTokenJWT</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <PublicKey>
+        <JWKS uri="https://www.googleapis.com/oauth2/v3/certs"/>
+    </PublicKey>
+    <Issuer>https://accounts.google.com</Issuer>
+    <Source>request.queryparam.id_token</Source>
+</VerifyJWT>

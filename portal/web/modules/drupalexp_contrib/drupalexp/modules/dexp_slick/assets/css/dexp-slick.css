@@ -1,0 +1,113 @@
+.dexp-slick-carousel{
+  position: relative;
+  -ms-display: flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+.dexp-slick-carousel .dexp-slick-carousel-inner,
+.dexp-slick-carousel .slick-controls{
+  flex: 0 0 100%;
+  width: 100%;
+}
+/*
+.dexp-slick-carousel .slick-controls .slick-arrow{
+  font-size: 0;
+}
+.dexp-slick-carousel .slick-controls .slick-arrow::before{
+  font-size: initial;
+}*/
+.dexp-slick-carousel .slick-prev::before, .dexp-slick-carousel .slick-next::before{
+  display: block;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  text-align: center;
+  /*color: #121212;*/
+  /*border: 1px solid #eee;*/
+  line-height: 40px;
+}
+.dexp-slick-carousel .slick-dots{
+  line-height: 12px;
+  bottom: -24px;
+  z-index: 3;
+  left: 0;
+  height: 22px;
+}
+.dexp-slick-carousel .slick-dots li{
+  height: 12px;
+  width: 12px;
+  margin: 5px 3px;
+}
+.dexp-slick-carousel .slick-dots li button{
+  height: 12px;
+  width: 12px;
+  padding:0;
+}
+.dexp-slick-carousel .slick-dots li button::before{
+  height: 12px;
+  width: 12px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 12px;
+}
+.dexp-slick-carousel .slick-list{
+  z-index: 1;
+}
+.dexp-slick-carousel .slick-prev, .dexp-slick-carousel .slick-next{
+  z-index: 2;
+  /*width: 40px;*/
+  height: 40px;
+  margin-top: 0px;
+  line-height: 40px;
+}
+.dexp-slick-carousel .slick-prev{
+  left: 0;
+}
+.dexp-slick-carousel .slick-next{
+  right: 0;
+}
+.dexp-slick-carousel .slick-slider{
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.dexp-slick-carousel .slick-slide{
+  overflow: hidden;
+  outline: 0;
+}
+.dexp-slick-carousel .slick-slide:focus, .dexp-slick-carousel .slick-slide:active{
+  outline: 0;
+}
+.dexp-slick-carousel.hide-control-at-end .slick-arrow.slick-disabled{
+  display: none !important;
+}
+.dexp-slick-carousel.arrows-left-top .dexp-slick-carousel-inner,
+.dexp-slick-carousel.arrows-right-top .dexp-slick-carousel-inner,
+.dexp-slick-carousel.arrows-center-top .dexp-slick-carousel-inner{
+  order: 10;
+}
+.dexp-slick-carousel.arrows-left-top .slick-controls{
+  text-align: left;
+}
+.dexp-slick-carousel.arrows-right-top .slick-controls{
+  text-align: right;
+}
+.dexp-slick-carousel.arrows-center-top .slick-controls{
+  text-align: center;
+}
+.dexp-slick-carousel.arrows-left-bottom .slick-controls{
+  text-align: left;
+}
+.dexp-slick-carousel.arrows-right-bottom .slick-controls{
+  text-align: right;
+}
+.dexp-slick-carousel.arrows-center-bottom .slick-controls{
+  text-align: center;
+}
+.dexp-slick-carousel.arrows-left-right-center .slick-controls{
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  z-index: 99;
+}
+.dexp-slick-carousel.arrows-left-right-center .slick-controls .slick-next{
+  float: right;
+}

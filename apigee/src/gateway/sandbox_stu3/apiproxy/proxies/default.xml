@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <DefaultFaultRule name="shared-proxy-fault-rule">
+        <Step>
+            <Name>HPX_SharedFlow_ProxyFaults</Name>
+        </Step>
+        <Step>
+            <Name>HPX_SharedFlow_ResponseHeaders</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>HPX_SharedFlow_SpikeArrest</Name>
+            </Step>
+            <Step>
+                <Name>HPX_JS_IsExportCall</Name>
+                <Condition>(proxy.pathsuffix MatchesPath "/$export")</Condition>
+            </Step>
+            <Step>
+                <Condition>!((isExportCall = true) OR (proxy.pathsuffix MatchesPath "/metadata") OR (proxy.pathsuffix MatchesPath "/metadata/") OR (proxy.pathsuffix MatchesPath "/.well-known/smart-configuration") OR (proxy.pathsuffix MatchesPath "/.well-known/smart-configuration/") OR (proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") OR (proxy.pathsuffix MatchesPath "/.well-known/openid-configuration/"))</Condition>
+                <Name>HPX_SharedFlow_Authorization</Name>
+            </Step>
+            <Step>
+                <Condition>!(isExportCall = true)</Condition>
+                <Name>HPX_SharedFlow_ThreatProtection</Name>
+            </Step>
+            <Step>
+                <Condition>!(isExportCall = true)</Condition>
+                <Name>HPX_AM_ExtractHost</Name>
+            </Step>
+            <Step>
+                <Name>HPX_VerifyAccessToken</Name>
+                <Condition>(isExportCall = true)</Condition>
+            </Step>
+            <Step>
+                <Name>HPX_AM_RemoveRequestAttributes</Name>
+                <Condition>(isExportCall = true)</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="capabilities">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ReadDefaultAppClientId</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetClientIdForMetadata</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/metadata") or (proxy.pathsuffix MatchesPath "/metadata/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="smart_config">
+            <Description/>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>HPX_AM_SmartWellKnownResponse</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/.well-known/smart-configuration") or (proxy.pathsuffix MatchesPath "/.well-known/smart-configuration/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="openid_config">
+            <Description/>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>HPX_AM_OpenIdWellKnownResponse</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") or (proxy.pathsuffix MatchesPath "/.well-known/openid-configuration/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Export bulk resources">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(isExportCall = true)</Condition>
+        </Flow>
+        <Flow name="search">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*") or (proxy.pathsuffix MatchesPath "/*/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="read">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientAndIdQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_ExtractSingleRecord</Name>
+                </Step>
+                <Step>
+                    <Condition>(patientMatchFailed is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationNotPermitted</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+                <Step>
+                    <Condition>(noRecords is true)</Condition>
+                    <Name>HPX_Fault_NoRecordsForGivenId</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*") or (proxy.pathsuffix MatchesPath "/*/*/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="history">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_UnsupportedOperation</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*/_history") or (proxy.pathsuffix MatchesPath "/*/*/_history/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="vread">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_UnsupportedOperation</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*/_history/*") or (proxy.pathsuffix MatchesPath "/*/*/_history/*/")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="search_by_post">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientFormFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/_search") or (proxy.pathsuffix MatchesPath "/*/_search/")) and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="execute_bundle">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_UnsupportedOperation</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/") OR (proxy.pathsuffix MatchesPath "")) and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="create_by_condition">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*") or (proxy.pathsuffix MatchesPath "/*/")) and (request.verb = "POST")  and (request.queryparams.count &gt; 0)</Condition>
+        </Flow>
+        <Flow name="create">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_GoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_ValidatePatientReference</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*") or (proxy.pathsuffix MatchesPath "/*/")) and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="conditionalUpdate">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_GoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_ValidatePatientReference</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/") or (proxy.pathsuffix MatchesPath "/*")) and (request.verb = "PUT") and (request.queryparams.count &gt; 0)</Condition>
+        </Flow>
+        <Flow name="update">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientAndIdQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_GoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_ValidatePatientReference</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*") or (proxy.pathsuffix MatchesPath "/*/*/")) and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="conditionalPatch">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_GoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_ValidatePatientReferencePATCH</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/") or (proxy.pathsuffix MatchesPath "/*")) and (request.verb = "PATCH") and (request.queryparams.count &gt; 0)</Condition>
+        </Flow>
+        <Flow name="patch">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientAndIdQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_GoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_ValidatePatientReferencePATCH</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*") or (proxy.pathsuffix MatchesPath "/*/*/")) and (request.verb = "PATCH")</Condition>
+        </Flow>
+        <Flow name="Resource-purge">
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*/$purge") or (proxy.pathsuffix MatchesPath "/*/*/$purge/")) and (request.verb = "DELETE")</Condition>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SharedFlow_UnsupportedOperation</Name>
+                </Step>
+            </Request>
+        </Flow>
+        <Flow name="conditionalDelete">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/") or (proxy.pathsuffix MatchesPath "/*")) and (request.verb = "DELETE") and (request.queryparams.count &gt; 0)</Condition>
+        </Flow>
+        <Flow name="delete">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>(grant_type is "authorization_code")</Condition>
+                    <Name>HPX_SetPatientAndIdQueryFilter</Name>
+                </Step>
+                <Step>
+                    <Condition>(btoc.error is true)</Condition>
+                    <Name>HPX_Fault_BtoCOperationFailed</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>((proxy.pathsuffix MatchesPath "/*/*") or (proxy.pathsuffix MatchesPath "/*/*/")) and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath "/metadata")</Condition>
+                <Name>HPX_Smart-launch-security</Name>
+            </Step>
+            <Step>
+                <Name>HPX_SharedFlow_ReWriteLinks</Name>
+            </Step>
+            <Step>
+                <Name>HPX_SharedFlow_ResponseHeaders</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/v1/stu3/sandbox_stu3</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="notarget">
+        <Condition>((proxy.pathsuffix MatchesPath "/.well-known/smart-configuration") or (proxy.pathsuffix MatchesPath "/.well-known/smart-configuration/") or (proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") or (proxy.pathsuffix MatchesPath "/.well-known/openid-configuration/"))</Condition>
+    </RouteRule>
+    <RouteRule name="Bulk Export">
+        <Condition>(isExportCall = true)</Condition>
+        <TargetEndpoint>Bulk Export</TargetEndpoint>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Contains api_customization.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function api_customization_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the api_customization module.
+    case 'help.page.api_customization':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module to have the customization in the api block') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+function str_cmp($a, $b)
+{
+  return strcmp($a->getTitle(), $b->getTitle());
+}
+
+

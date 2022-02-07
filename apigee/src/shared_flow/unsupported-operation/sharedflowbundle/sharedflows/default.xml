@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>HPX_SetErrorVariablesBtoC</Name>
+    </Step>
+    <Step>
+        <Condition>(current.flow.name is "unsupported")</Condition>
+        <Name>HPX_SetErrorVariablesDefault</Name>
+    </Step>
+    <Step>
+        <Name>HPX_Fault_ThrowError</Name>
+    </Step>
+</SharedFlow>

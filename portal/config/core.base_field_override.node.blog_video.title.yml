@@ -1,0 +1,18 @@
+uuid: a758a94a-bebb-41df-a231-1c9a5d02dadb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.blog_video
+id: node.blog_video.title
+field_name: title
+entity_type: node
+bundle: blog_video
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

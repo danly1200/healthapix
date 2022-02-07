@@ -1,0 +1,42 @@
+uuid: 5104d1e4-ac55-4593-8266-31a83e02f23e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - system
+id: api_list_page
+label: 'API List Page'
+logic: or
+conditions:
+  1cc9c8cd-8f58-4f45-bd2b-92a57136fc1a:
+    id: 'entity_bundle:node'
+    bundles:
+      smartdocs: smartdocs
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uuid: 1cc9c8cd-8f58-4f45-bd2b-92a57136fc1a
+  1a4bac32-5f04-4315-9cef-00a2e85c79ea:
+    id: request_path
+    pages: '/swagger-not-found/*'
+    negate: false
+    context_mapping: {  }
+    uuid: 1a4bac32-5f04-4315-9cef-00a2e85c79ea
+  ceb181aa-2153-456d-8c2e-155df9a4e447:
+    id: 'entity_bundle:node'
+    bundles:
+      oauth_swagger_api: oauth_swagger_api
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uuid: ceb181aa-2153-456d-8c2e-155df9a4e447
+  ea1a5739-6c0e-496d-b7ba-8c57d47a4ff5:
+    id: 'entity_bundle:node'
+    bundles:
+      interoperability_help_page: interoperability_help_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uuid: ea1a5739-6c0e-496d-b7ba-8c57d47a4ff5
+allow_other_conditions: false

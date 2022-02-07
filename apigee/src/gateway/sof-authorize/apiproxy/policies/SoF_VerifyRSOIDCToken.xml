@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="SoF_VerifyRSOIDCToken">
+    <DisplayName>SoF_VerifyRSOIDCToken</DisplayName>
+    <Algorithm>RS256,RS384</Algorithm>
+    <Source>req.Authorization</Source>
+    <PublicKey>
+        <JWKS ref="publicKeyJwks"/>
+    </PublicKey>
+    <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
+    <IgnoreIssuedAt>false</IgnoreIssuedAt>
+    <Issuer ref="FHIR_ISSUER"/>
+    <!--Audience ref="AUDIENCE"/-->
+    <TimeAllowance>60s</TimeAllowance>
+</VerifyJWT>

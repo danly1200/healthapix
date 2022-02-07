@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="callback">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>AddGoogleFlowVariableToTarget</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows/>
+    <LocalTargetConnection>
+        <Path>/openid/login</Path>
+    </LocalTargetConnection>
+</TargetEndpoint>

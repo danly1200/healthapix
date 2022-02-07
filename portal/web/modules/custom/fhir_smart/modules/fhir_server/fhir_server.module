@@ -1,0 +1,318 @@
+<?php
+
+/**
+ * @file
+ * Contains fhir_server.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\File\FileSystemInterface;
+
+/**
+ * Implements hook_help().
+ */
+function fhir_server_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the fhir_server module.
+    case 'help.page.fhir_server':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Fhir Server') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter() for fhir server node alter.
+ */
+function fhir_server_form_node_fhir_servers_form_alter(&$form, &$form_state, $form_id) {
+  $form['#attached']['library'][] = 'fhir_server/fhir_server';
+
+  $request = \Drupal::request();
+  if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+    $title = \Drupal::service('title_resolver')->getTitle($request, $route);
+  }
+  $option_array = [];
+  foreach($form['field_fhir_api_products']['widget']['#options'] as $each_option) {
+    if($each_option == '- None -') {
+      continue;
+    }
+    if(is_fhir_server($each_option)){
+      $option_array[$each_option] = $each_option;
+    }
+  }
+  $form['field_fhir_api_products']['widget']['#default_value'][0] = '_none';
+  $form['#title'] = t('Add FHIR Server');
+  $form['field_fhir_api_products']['widget']['#options'] = $option_array;
+  $form['field_fhir_api_products']['widget']['#options']['_none'] = t('- Select a Product -');
+  $form['field_server_file']['#prefix'] = '<div class="server-file-wrapper">';
+  $form['field_server_file']['#suffix'] = '</div>';
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+  $form['actions']['submit']['#value'] = t('Add Server');
+  $form['actions']['submit']['#submit'][] = 'fhir_server_file_submit';
+  $form['#validate'][] = 'fhir_server_validate';
+
+}
+
+
+function get_fhir_server_details($form, $form_state) {
+
+  $apiProduct = $form_state->getValue('field_fhir_api_products');
+
+  return $form;
+}
+
+// This function is used to filter out the valid fhir servers
+function is_fhir_server($api_product) {
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+  $response = '';
+  try {
+    $request = $client->get('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/apiproducts/' . $api_product, [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+    if ($code == 200) {
+      $response = json_decode($request->getBody());
+      if($response->attributes) {
+        foreach($response->attributes as $each_attribute) {
+          if($each_attribute->name == 'is_fhir_server' && $each_attribute->value == 'true') {
+            return true;
+          }
+        }
+      }
+    }
+  } catch (Exception $e) {
+  }
+  return false;
+}
+
+// This function is used to fetch the attributes from apigee
+function get_api_product_attributes($api_product) {
+  $get_cred = fhir_get_edge_cred();
+  $client = \Drupal::httpClient();
+  $response = '';
+  try {
+    $request = $client->get('https://api.enterprise.apigee.com/v1/organizations/' . $get_cred[2] . '/apiproducts/' . $api_product, [
+      'auth' => [$get_cred[0], $get_cred[1]],
+    ]);
+    $code = $request->getStatusCode();
+    if ($code == 200) {
+      $attributes  = [];
+      $response = json_decode($request->getBody());
+      if($response->attributes) {
+        foreach($response->attributes as $each_attribute) {
+//          if( $each_attribute->name == 'fhir_server_name') {
+//            $attributes['fhir_server_name'] = $each_attribute->value;
+//          }
+//          if( $each_attribute->name == 'fhir_version') {
+//            $attributes['fhir_version'] = $each_attribute->value;
+//          }
+          if( $each_attribute->name == 'fhir_server_url') {
+            $attributes['fhir_server_url'] = $each_attribute->value;
+            $exploded_values = explode('/', $each_attribute->value);
+            $attributes['fhir_server_name'] = array_pop($exploded_values);
+            $attributes['fhir_version'] = array_pop($exploded_values);
+
+          }
+        }
+      }
+    }
+  } catch (Exception $e) {
+  }
+  return $attributes;
+}
+
+
+function fhir_server_get_launch_base_url($fhir_server_name) {
+//  $launch_url = \Drupal::config('fhir_restapi.apigee_auth_url.settings')->get('launch_url');
+//  return $launch_url;
+  $base_url = getFhirserverbaseurl($fhir_server_name);
+  return $base_url;
+}
+
+/*
+*  Helper function to have fhir server titles.
+*/
+ function getFhirserverbaseurl($fhir_server_name) {
+  // query to get base url of the fhir server
+  $query = \Drupal::database()->select('node_field_data', 'n');
+  $query->fields('n', ['nid']);
+  $query->condition('n.status', '1');
+  $query->condition('n.type', 'fhir_servers');
+  $query->condition('n.title', $fhir_server_name);
+  $nid = $query->execute()->fetchField();
+  if($nid) {
+    $query = \Drupal::database()->select('node__field_fhir_server_base_url', 'n');
+    $query->fields('n', ['field_fhir_server_base_url_value']);
+
+    $query->condition('n.entity_id', $nid);
+    $base_url = $query->execute()->fetchField();
+    return $base_url;
+  }
+  return '';
+}
+
+/*
+ * validate function implementation for the fhir server register page
+ * */
+function fhir_server_validate($form, &$form_state) {
+  // Prevent duplicate server entry
+  $node = $form_state->getFormObject()->getEntity();
+  $servername = $form_state->getValue('title')[0]['value'];
+  $nodetype = $node->getType();
+  $values = [
+    'type' => $nodetype,
+  ];
+
+  if(\Drupal::request()->request->all()['_triggering_element_name'] != 'field_server_file_0_remove_button') {
+    // Validate the fhir server base URL from the file
+    $formstate_values = $form_state->getValues();
+
+    if($formstate_values['field_server_file']) {
+      $is_valid_proxyurl = is_valid_json_proxyurl($formstate_values['field_server_file']);
+      if(!$is_valid_proxyurl) {
+        $form_state->setErrorByName('field_server_file', t('The proxy URL does not match with the configured Apigee instance in drupal.'));
+      }
+    }
+  }
+  // Get the nodes.
+  $nodes = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadByProperties($values);
+  foreach ($nodes as &$node_val) {
+    $node_title = $node_val->getTitle();
+    if($servername == $node_title){
+      $form_state->setErrorByName('title', t('Server already exists'));
+    }
+  }
+}
+
+/*
+ * function to check if the proxy url matches with the one in drupal config
+ */
+function is_valid_json_proxyurl($formstate_values) {
+  $fid = $formstate_values[0]['fids'][0];
+  if($fid) {
+    $file = \Drupal\file\Entity\File::load($fid);
+    if($file) {
+      $file_path = file_create_url($file->getFileUri());
+      $file_content = file_get_contents($file_path);
+      if($file_content) {
+        $array_file_content = json_decode($file_content);
+        $proxyurl = parse_url($array_file_content->fhirserver->proxyurl);
+        $launch_url = parse_url(\Drupal::config('fhir_restapi.apigee_auth_url.settings')->get('launch_url'));
+        if($launch_url['host'] != $proxyurl['host']) {
+          return false;
+        }
+      }
+    }
+  }
+
+  return true;
+}
+
+// Generate file after form submitted
+function fhir_server_file_submit($form, &$form_state) {
+  $filedata = $form_state->getValue('field_server_file');
+  $node = $form_state->getFormObject()->getEntity();
+  $servername = $node->getTitle();
+  if (empty($filedata[0]['fids'])) {
+    $prodval = $form_state->getValue('field_fhir_api_products');
+    $baseurl = $form_state->getValue('field_fhir_server_base_url');
+    $versionval = $form_state->getValue('field_fhir_version_autofill');
+    $filearray['servername'] = $servername;
+    $filearray['product'] = $prodval[0]['target_id'];
+    $filearray['baseurl'] = $baseurl;
+    $filearray['versionval'] = $versionval;
+    $filearrayjson = json_encode($filearray);
+    if (!is_dir('public://jsonserverfiles')) {
+      drupal_mkdir('public://jsonserverfiles', 0777);
+    }
+    $file_path = 'public://jsonserverfiles/' . $servername . '.json';
+    $scanfilesave = file_save_data($filearrayjson, $file_path, FileSystemInterface::EXISTS_REPLACE);
+    $fid = $scanfilesave->id();
+    $node->set('field_server_file', ['target_id' => $fid]);
+    $node->save();
+  }
+}
+
+function fhir_server_form_node_fhir_servers_edit_form_alter(&$form, &$form_state, $form_id) {
+  $option_array = [];
+  foreach($form['field_fhir_api_products']['widget']['#options'] as $each_option) {
+    if($each_option == '- None -') {
+      continue;
+    }
+    if(is_fhir_server($each_option)){
+      $option_array[$each_option] = $each_option;
+    }
+  }
+  $form['field_fhir_api_products']['widget']['#options'] = $option_array;
+  $form['#attached']['library'][] = 'fhir_server/fhir_server';
+  $form['#validate'][] = 'fhir_server_edit_validate';
+  $form['actions']['submit']['#submit'][] = 'fhir_server_edit_file_after_submit';
+
+}
+
+/*
+ * function to remove the html5 validation to the forms
+ */
+function fhir_server_form_alter(&$form, &$form_state, $form_id) {
+  $form['#attributes']['novalidate'] = '';
+}
+
+// Generate file after form submitted
+function fhir_server_edit_file_after_submit($form, &$form_state) {
+  $node = $form_state->getFormObject()->getEntity();
+  $node->setPublished(TRUE);
+//  $node->set('status', 1);
+  $node->save();
+
+}
+
+function fhir_server_edit_validate($form, &$form_state){
+  // Prevent duplicate server entry
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    // You can get nid and anything else you need from the node object.
+    $nid = $node->id();
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+    $new_prodval = $form_state->getValue('field_fhir_api_products')[0]['target_id'];
+    $splitarray = explode("_", $new_prodval);
+    $new_servername = $splitarray[1] . '_' . $splitarray[2];
+    $node_state = $form_state->getFormObject()->getEntity();
+    $servername = $node_state->getTitle();
+
+    if ($servername != $new_servername) {
+      $nodetype = $node_state->getType();
+      $values = [
+        'type' => $nodetype,
+      ];
+      // Get the nodes.
+      $nodes = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->loadByProperties($values);
+
+      foreach ($nodes as &$node_val) {
+        $node_title = $node_val->getTitle();
+        if ($new_servername == $node_title) {
+          $form_state->setErrorByName('title', t('Server already exists'));
+        }
+      }
+    }
+  }
+
+  if(\Drupal::request()->request->all()['_triggering_element_name'] != 'field_server_file_0_remove_button') {
+    // Validate the fhir server base URL from the file
+    $formstate_values = $form_state->getValues();
+
+    if($formstate_values['field_server_file']) {
+      $is_valid_proxyurl = is_valid_json_proxyurl($formstate_values['field_server_file']);
+      if(!$is_valid_proxyurl) {
+        $form_state->setErrorByName('field_server_file', t('The proxy URL does not match with the configured APigee instance in drupal.'));
+      }
+    }
+  }
+}

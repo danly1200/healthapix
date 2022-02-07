@@ -1,0 +1,22 @@
+uuid: fe545e2a-c5fc-4077-b923-90c5bbc3d536
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mdc_theme
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: mdc_theme_messages
+theme: mdc_theme
+region: content
+weight: -19
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

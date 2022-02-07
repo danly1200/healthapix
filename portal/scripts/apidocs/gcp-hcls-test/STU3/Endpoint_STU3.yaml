@@ -1,0 +1,716 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Endpoint resource API documentation
+  description: |
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire") defines a set of "Resources" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® STU3 API docs are part of the FHIR® Specifications (v3.0.2: STU 3). The current version which supercedes this version is 4.0.1 (R4) This section contains API docs for the few commonly used STU3 resources. API docs for other resources can be added by API publishers on request.
+servers:
+  - url: 'https://gcp-hcls-test.apigee.net/v1/ghc/stu3'
+    description: Google Cloud Healthcare FHIR APIs - STU3
+paths:
+  /Endpoint:
+    get:
+      tags:
+        - Endpoint
+      parameters:
+        - name: _language
+          in: query
+          description: The language of the resource
+          schema:
+            type: string
+        - name: payload-type
+          in: query
+          description: The type of content that may be used at this endpoint (e.g. XDS Discharge summaries)
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: Identifies this endpoint across multiple systems
+          schema:
+            type: string
+        - name: connection-type
+          in: query
+          description: Protocol/Profile/Standard to be used with this endpoint connection
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: The organization that is managing the endpoint
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: A name that this endpoint can be identified by
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The ID of the resource
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: The current status of the Endpoint (usually expected to be active)
+          schema:
+            type: string
+        - name: _format
+          in: query
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: Endpoint bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Endpoint'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/ClaimResponse
+    post:
+      tags:
+        - Endpoint
+      description: 'Create a new Endpoint with a server assigned id.<p><a href = ''https://www.hl7.org/fhir/endpoint.html''>FHIR documentation for Endpoint.</a></p>'
+      operationId: Create Endpoint
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      requestBody:
+        description: The request body should be a valid data payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Endpoint'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: Endpoint could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: Endpoint not found.
+          content: {}
+        '422':
+          description: The Endpoint resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/Endpoint.write
+      x-codegen-request-body-name: Resource data
+  '/Endpoint/{id}':
+    get:
+      tags:
+        - Endpoint
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: Endpoint Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/ClaimResponse
+    put:
+      tags:
+        - Endpoint
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid data payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Endpoint'
+        required: true
+      responses:
+        '200':
+          description: Endpoint Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/ClaimResponse
+      x-codegen-request-body-name: Resource data
+    delete:
+      tags:
+        - Endpoint
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: Endpoint Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/ClaimResponse
+  '/Endpoint/{id}/_history':
+    get:
+      tags:
+        - Endpoint
+      description: 'It retrieves the history of a particular Endpoint identified by the given id in path.<p><a href = ''https://www.hl7.org/fhir/endpoint.html''>FHIR documentation for Endpoint.</a></p>'
+      operationId: Endpoint History By ID
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: Endpoint bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Endpoint'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/ClaimResponse
+  '/Endpoint/{id}/_history/{vid}':
+    get:
+      tags:
+        - Endpoint
+      description: 'This interaction preforms a version specific read of Endpoint resource.<p><a href = ''https://www.hl7.org/fhir/endpoint.html''>FHIR documentation for Endpoint.</a></p>'
+      operationId: Endpoint Version Read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+      responses:
+        '200':
+          description: Endpoint Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+          - system/ClaimResponse
+components:
+  schemas:
+    Endpoint:
+      required:
+        - attester
+        - author
+        - class
+        - confidentiality
+        - custodian
+        - date
+        - encounter
+        - event
+        - id
+        - identifier
+        - resourceType
+        - section
+        - status
+        - subject
+        - text
+        - title
+        - type
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+            - div
+            - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          required:
+            - system
+            - value
+          type: object
+          properties:
+            system:
+              minLength: 1
+              type: string
+            value:
+              minLength: 1
+              type: string
+        date:
+          minLength: 1
+          type: string
+        type:
+          required:
+            - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                  - code
+                  - display
+                  - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+        class:
+          required:
+            - coding
+          type: object
+          properties:
+            coding:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                  - code
+                  - display
+                  - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+        title:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+        confidentiality:
+          minLength: 1
+          type: string
+        subject:
+          required:
+            - display
+            - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        author:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+              - display
+              - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+        attester:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+              - time
+            type: object
+            properties:
+              mode:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              time:
+                minLength: 1
+                type: string
+              party:
+                required:
+                  - display
+                  - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+        custodian:
+          required:
+            - display
+            - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        event:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    coding:
+                      minItems: 1
+                      uniqueItems: true
+                      type: array
+                      items:
+                        required:
+                          - code
+                          - display
+                          - system
+                        type: object
+                        properties:
+                          system:
+                            minLength: 1
+                            type: string
+                          code:
+                            minLength: 1
+                            type: string
+                          display:
+                            minLength: 1
+                            type: string
+              period:
+                required:
+                  - end
+                  - start
+                type: object
+                properties:
+                  start:
+                    minLength: 1
+                    type: string
+                  end:
+                    minLength: 1
+                    type: string
+              detail:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                    - reference
+                  type: object
+                  properties:
+                    reference:
+                      minLength: 1
+                      type: string
+        encounter:
+          required:
+            - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        section:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+              - mode
+              - title
+            type: object
+            properties:
+              title:
+                minLength: 1
+                type: string
+              code:
+                required:
+                  - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                        - code
+                        - display
+                        - system
+                      type: object
+                      properties:
+                        system:
+                          minLength: 1
+                          type: string
+                        code:
+                          minLength: 1
+                          type: string
+                        display:
+                          minLength: 1
+                          type: string
+              text:
+                required:
+                  - div
+                  - status
+                type: object
+                properties:
+                  status:
+                    minLength: 1
+                    type: string
+                  div:
+                    minLength: 1
+                    type: string
+              mode:
+                minLength: 1
+                type: string
+              orderedBy:
+                required:
+                  - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                        - code
+                        - display
+                        - system
+                      type: object
+                      properties:
+                        system:
+                          minLength: 1
+                          type: string
+                        code:
+                          minLength: 1
+                          type: string
+                        display:
+                          minLength: 1
+                          type: string
+              entry:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                    - reference
+                  type: object
+                  properties:
+                    reference:
+                      minLength: 1
+                      type: string
+      description: ''
+  securitySchemes: 
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Endpoint.read: Read permissions for Endpoint demographics.
+            system/Endpoint.write: Write permissions for Endpoint demographics.

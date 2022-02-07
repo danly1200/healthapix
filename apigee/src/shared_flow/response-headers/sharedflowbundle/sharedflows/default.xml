@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>HPX_SetCORSHeaders</Name>
+    </Step>
+    <Step>
+        <Condition>!(ratelimit.HPX_EnforceQuota.expiry.time = null)</Condition>
+        <Name>HPX_SetRateLimitInfoHeaders</Name>
+    </Step>
+</SharedFlow>

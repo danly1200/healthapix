@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow/>
+    <PostFlow>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="user">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_SharedFlow_GoogleToken</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetIdentifier</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_MetadataWorkAroundVariables</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_Retrieve_RelatedPerson</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_CheckPatientResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(id=null) </Condition>
+                    <Name>HPX_Retrieve_Practitioner</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_CheckPatientResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(id=null) </Condition>
+                    <Name>HPX_Retrieve_Patient</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_SetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PopulatePaginationDataInitial</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/user") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="patient">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_LookupCachePaginationData</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractPaginationData</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.page = "start")</Condition>
+                    <Name>HPX_RetrievePatientsStart</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.page = "next")</Condition>
+                    <Name>HPX_RetrievePatientsNext</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.page = "previous")</Condition>
+                    <Name>HPX_RetrievePatientsPrevious</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_ProcessPatientsResponse</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PopulatePaginationDataInitial</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/patient") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="related">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_LookupCachePaginationData</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractPaginationData</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_Retrieve_RelatedPatient</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractRelatedPatientId</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_Retrieve_RelativePatient</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_SetRelativePatientResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/related") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/identity-users/v1</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

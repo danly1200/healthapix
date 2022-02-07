@@ -1,0 +1,85 @@
+{#
+/**
+ * @file
+ * Theme override for a select element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the select tag.
+ * - options: The option element children.
+ *
+ * @see template_preprocess_select()
+ */
+#}
+{% spaceless %}
+  {#  Add machine name of a field as a label#}
+  {% set labelname = attributes.name|replace({'_': " "}) %}
+  {% set labelnamefield = labelname|replace({'field':''}) %}
+  <div class="select-parent-wrapper">
+    <div id="mdc-select-ul" class="mdc-li">
+      <div{{ attributes }}>
+        <div class="mdc-select mdc-select--outlined">
+          <div class="mdc-select__anchor">
+            <i class="mdc-select__dropdown-icon"></i>
+            <div id="demo-selected-text" class="mdc-select__selected-text"
+                 aria-labelledby="outlined-select-label"></div>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label id="outlined-select-label" class="mdc-floating-label">{{ label }}</label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+
+
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
+            <ul class="mdc-list option-dropdown">
+              {% for option in options %}
+                {% if option.type == 'optgroup' %}
+                  <optgroup label="{{ option.label }}">
+                    {% for sub_option in option.options %}
+                      <option
+                        value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+                    {% endfor %}
+                  </optgroup>
+                {% elseif option.type == 'option' %}
+                  {% if option.selected == 'selected' %}
+                    <li class="mdc-list-item mdc-list-item--selected" selected="selected"
+                        data-value="{{ option.value }}" data-version-name="{{ option_attributes[option.value]|upper }}">{{ option.label|trim }}
+                    </li>
+                    {#          <option class="mdc-list-item mdc-list-item--selected" value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>#}
+                  {% else %}
+                    <li class="mdc-list-item" data-value="{{ option.value }}"  data-version-name="{{ option_attributes[option.value]|upper }}">
+                      {{ option.label|trim }}
+                    </li>
+                    {#        <option class="mdc-list-item" value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>#}
+                  {% endif %}
+
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="select-class-wrapper">
+      <select{{ attributes }}>
+        {% for option in options %}
+          {% if option.type == 'optgroup' %}
+            <optgroup label="{{ option.label }}">
+              {% for sub_option in option.options %}
+                <option
+                  value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+              {% endfor %}
+            </optgroup>
+          {% elseif option.type == 'option' %}
+            <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+{% endspaceless %}
+
+

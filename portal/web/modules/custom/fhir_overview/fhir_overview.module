@@ -1,0 +1,7 @@
+<?php
+
+function fhir_overview_node_view(array &$build, \Drupal\node\NodeInterface $node, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == "full" && $node->getType() == "overview_page") {
+    $build['#attached']['library'][] = 'fhir_overview/overview_page';
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quota async="false" continueOnError="false" enabled="true" name="HPX_EnforceQuota" type="flexi">
+    <DisplayName>HPX_EnforceQuota</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Identifier ref="apigee.client_id"/>
+    <TimeUnit ref="apiproduct.developer.quota.timeunit">hour</TimeUnit>
+    <Allow count="10" countRef="apiproduct.developer.quota.limit"/>
+    <Interval ref="apiproduct.developer.quota.interval">1</Interval>
+    <DataStoreFailureModeOpen>false</DataStoreFailureModeOpen>
+    <Distributed>true</Distributed>
+    <PreciseAtSecondsLevel>false</PreciseAtSecondsLevel>
+    <Synchronous>true</Synchronous>
+</Quota>

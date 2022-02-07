@@ -1,0 +1,5 @@
+name: 'FHIR Blocks'
+type: module
+description: 'Provides default blocks for the FHIR developer portal'
+core: 8.x
+package: 'Custom'

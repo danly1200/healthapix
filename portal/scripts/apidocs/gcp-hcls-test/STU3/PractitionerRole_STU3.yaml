@@ -1,0 +1,400 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® PractitionerRole resource API documentation
+  description: |
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire") defines a set of "Resources" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR® is designed for the web; the resources are based on simple JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. The FHIR® STU3 API docs are part of the FHIR® Specifications (v3.0.2: STU 3). The current version which supercedes this version is 4.0.1 (R4) This section contains API docs for the few commonly used STU3 resources. API docs for other resources can be added by API publishers on request.
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/stu3
+tags:
+- name: PractitionerRole
+paths:
+  /PractitionerRole:
+    get:
+      tags:
+      - PractitionerRole
+      parameters:
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: The period during which the practitioner is authorized to perform
+          in these role(s)
+        schema:
+          type: string
+          format: date
+      - name: identifier
+        in: query
+        description: A practitioner's Identifier
+        schema:
+          type: string
+      - name: specialty
+        in: query
+        description: The practitioner has this specialty at an organization
+        schema:
+          type: string
+      - name: role
+        in: query
+        description: The practitioner can perform this role at for the organization
+        schema:
+          type: string
+      - name: practitioner
+        in: query
+        description: Practitioner that is able to provide the defined services for
+          the organation
+        schema:
+          type: string
+      - name: active
+        in: query
+        description: Whether this practitioner's record is in active use
+        schema:
+          type: string
+      - name: endpoint
+        in: query
+        description: Technical endpoints providing access to services operated for
+          the practitioner with this role
+        schema:
+          type: string
+      - name: phone
+        in: query
+        description: A value in a phone contact
+        schema:
+          type: string
+      - name: service
+        in: query
+        description: The list of healthcare services that this worker provides for this role's Organization/Location(s)
+        schema:
+          type: string
+      - name: organization
+        in: query
+        description: The identity of the organization the practitioner represents
+          / acts on behalf of
+        schema:
+          type: string
+      - name: location
+        in: query
+        description: One of the locations at which this practitioner provides care
+        schema:
+          type: string
+      - name: telecom
+        in: query
+        description: The value in any kind of contact
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: A value in an email contact
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PractitionerRole'
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.read
+    post:
+      tags:
+      - PractitionerRole
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PractitionerRole'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.write
+  /PractitionerRole/{id}:
+    get:
+      tags:
+      - PractitionerRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PractitionerRole'
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.read
+    put:
+      tags:
+      - PractitionerRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PractitionerRole'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.write
+    delete:
+      tags:
+      - PractitionerRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.write
+  /PractitionerRole/{id}/_history:
+    get:
+      tags:
+      - PractitionerRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _count
+        in: query
+        schema:
+          type: string
+      - name: _since
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.read
+  /PractitionerRole/{id}/_history/{vid}:
+    get:
+      tags:
+      - PractitionerRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PractitionerRole'
+      security:
+        - OAuthV2B2B:
+            - system/PractitionerRole.read
+components:
+  schemas:
+    PractitionerRole:
+      required:
+      - active
+      - healthcareService
+      - id
+      - identifier
+      - location
+      - organization
+      - period
+      - resourceType
+      - role
+      - telecom
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        active:
+          type: boolean
+        organization:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        role:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              fhir_comments:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              coding:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - code
+                  - system
+                  type: object
+                  properties:
+                    system:
+                      minLength: 1
+                      type: string
+                    code:
+                      minLength: 1
+                      type: string
+        location:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+        healthcareService:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+        telecom:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - use
+            - value
+            type: object
+            properties:
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+              use:
+                minLength: 1
+                type: string
+        period:
+          required:
+          - end
+          - start
+          type: object
+          properties:
+            start:
+              minLength: 1
+              type: string
+            end:
+              minLength: 1
+              type: string
+      description: ""
+  securitySchemes: 
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/PractitionerRole.read: Read permissions for PractitionerRole demographics.
+            system/PractitionerRole.write: Write permissions for PractitionerRole demographics.
+  

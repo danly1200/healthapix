@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_ExtractHost">
+    <DisplayName>HPX_AM_ExtractHost</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>requestHost</Name>
+        <Ref>request.header.Host</Ref>
+        <Value>ErrorOnCopy</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

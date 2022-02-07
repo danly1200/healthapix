@@ -1,0 +1,37 @@
+uuid: 4a03dcfd-c81e-4ed1-bbb9-f18892176134
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.index_blog
+    - field.field.node.apps.body
+    - field.field.node.apps.field_app_categories
+    - field.field.node.apps.field_app_image
+    - field.field.node.apps.field_app_tags
+    - field.field.node.apps.field_app_video
+    - field.field.node.apps.field_author_name
+    - field.field.node.apps.field_one_liner
+    - field.field.node.apps.field_website
+    - node.type.apps
+  module:
+    - user
+id: node.apps.index_blog
+targetEntityType: node
+bundle: apps
+mode: index_blog
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_apps: true
+  field_app_categories: true
+  field_app_image: true
+  field_app_tags: true
+  field_app_video: true
+  field_author_name: true
+  field_one_liner: true
+  field_website: true

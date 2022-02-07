@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="HPX_LookupSessionCache">
+    <DisplayName>HPX_LookupSessionCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix>url</Prefix>
+        <KeyFragment ref="request.queryparam.sessionId"/>
+    </CacheKey>
+    <CacheResource>consent-session-cache</CacheResource>
+    <Scope>Global</Scope>
+    <AssignTo>paginationData</AssignTo>
+</LookupCache>

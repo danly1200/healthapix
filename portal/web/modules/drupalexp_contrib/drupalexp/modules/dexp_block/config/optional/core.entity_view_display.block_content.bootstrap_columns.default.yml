@@ -1,0 +1,21 @@
+uuid: dbc2c9c5-510b-47db-b32e-891ccc760177
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bootstrap_columns
+    - field.field.block_content.bootstrap_columns.field_columns
+  module:
+    - field_collection
+id: block_content.bootstrap_columns.default
+targetEntityType: block_content
+bundle: bootstrap_columns
+mode: default
+content:
+  field_columns:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: field_collection_items
+hidden: {  }

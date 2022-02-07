@@ -1,0 +1,35 @@
+uuid: 02f1c717-fba5-4f1b-b558-5d0967e482ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.field_collection_item.field_columns.field_column_content
+    - field.field.field_collection_item.field_columns.field_column_view_embed
+    - field.field.field_collection_item.field_columns.field_custom_class
+    - field_collection.field_collection.field_columns
+  module:
+    - dexp_block
+    - text
+_core:
+  default_config_hash: bUGE1jKL2_QAb7-WM-cn-AJg4qKWZL_w0AHrAqZ2aTA
+id: field_collection_item.field_columns.default
+targetEntityType: field_collection_item
+bundle: field_columns
+mode: default
+content:
+  field_column_content:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_column_view_embed:
+    type: dexp_field_view_embed
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_custom_class: true

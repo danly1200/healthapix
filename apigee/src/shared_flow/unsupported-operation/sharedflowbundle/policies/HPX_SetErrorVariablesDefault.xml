@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetErrorVariablesDefault">
+    <DisplayName>HPX_SetErrorVariablesDefault</DisplayName>
+    <AssignVariable>
+        <Name>btoc.message</Name>
+        <Value>This operation is not permitted.</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

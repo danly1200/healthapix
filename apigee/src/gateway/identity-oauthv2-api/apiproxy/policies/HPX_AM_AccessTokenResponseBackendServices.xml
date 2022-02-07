@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_AccessTokenResponseBackendServices">
+    <DisplayName>HPX_AM_AccessTokenResponseBackendServices</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+		{
+			"access_token": "%oauthv2accesstoken.HPX_OA_GenerateAccessTokenBackendServices.access_token#",
+			"token_type": "Bearer",
+			"expires_in": "%oauthv2accesstoken.HPX_OA_GenerateAccessTokenBackendServices.expires_in#",
+			"scope": "%oauthv2accesstoken.HPX_OA_GenerateAccessTokenBackendServices.scope#",
+			"client_id":"%oauthv2accesstoken.HPX_OA_GenerateAccessTokenBackendServices.client_id#"
+		}
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="http" createNew="true"></AssignTo>
+</AssignMessage>

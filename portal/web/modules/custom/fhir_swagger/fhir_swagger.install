@@ -1,0 +1,23 @@
+<?php
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Add some terms to the api_version vocabulary.
+ */
+function fhir_swagger_install() {
+  // Machine name of the Taxonomy vocabulary.
+  $vocab = 'api_version';
+  // Term names to be added.
+  $items = [
+    'STU2',
+    'STU3',
+  ];
+  foreach ($items as $item) {
+    $term = Term::create(array(
+      'parent' => array(),
+      'name' => $item,
+      'vid' => $vocab,
+    ))->save();
+  }
+}
+

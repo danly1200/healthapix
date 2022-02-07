@@ -1,0 +1,20 @@
+uuid: fec83724-91f4-4aa8-a528-3ce2197b4e82
+langcode: en
+status: false
+dependencies:
+  theme:
+    - fhir_responsive_theme
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: fhir_responsive_theme_local_actions
+theme: fhir_responsive_theme
+region: content
+weight: -3
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

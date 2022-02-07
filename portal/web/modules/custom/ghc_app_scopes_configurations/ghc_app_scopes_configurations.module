@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains ghc_app_scopes_configurations.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ghc_app_scopes_configurations_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ghc_app_scopes_configurations module.
+    case 'help.page.ghc_app_scopes_configurations':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module to configure App scopes from API-Resources.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

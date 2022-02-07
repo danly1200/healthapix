@@ -1,0 +1,1960 @@
+{
+"swagger": "2.0",
+  "info":{
+   "description": 
+    "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+   "version": "1.4.0",
+   "title": "FHIR Claim resource API documentation"
+  },
+  "host": "healthapix-demo-test.apigee.net",
+  "schemes":[
+     "https"
+     ],
+  "basePath": "/v1/dstu2",
+  "produces":[
+    "application/json+fhir;charset=UTF-8",
+    "application/xml+fhir;charset=UTF-8"
+    ], 
+  "definitions": {
+     "Claim": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "div": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "status",
+            "div"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identifier": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "system",
+              "value"
+            ],
+            "properties": {
+              "system": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "created": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "organizationReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "use": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "code"
+          ]
+        },
+        "payee": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "diagnosis": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "sequence"
+            ],
+            "properties": {
+              "sequence": {
+                "type": "number"
+              },
+              "diagnosis": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              }
+            }
+          }
+        },
+        "patientReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "coverage": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "sequence",
+              "focal"
+            ],
+            "properties": {
+              "sequence": {
+                "type": "number"
+              },
+              "focal": {
+                "type": "boolean"
+              },
+              "coverageReference": {
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "reference"
+                ]
+              }
+            }
+          }
+        },
+        "item": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "sequence",
+              "servicedDate"
+            ],
+            "properties": {
+              "sequence": {
+                "type": "number"
+              },
+              "type": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              },
+              "providerReference": {
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "reference"
+                ]
+              },
+              "service": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              },
+              "servicedDate": {
+                "type": "string",
+                "minLength": 1
+              },
+              "unitPrice": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "value",
+                  "system",
+                  "code"
+                ]
+              },
+              "net": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "value",
+                  "system",
+                  "code"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "text",
+        "type",
+        "identifier",
+        "created",
+        "targetReference",
+        "organizationReference",
+        "use",
+        "priority",
+        "payee",
+        "diagnosis",
+        "patientReference",
+        "coverage",
+        "item"
+      ]
+    },
+    "metaBody": {
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/Claim": {
+      "parameters": [],
+      "post": {
+        "tags":[
+          "Claim"
+          ],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Claim"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "required": false,
+            "description": "Specify the search query for conditional create.",
+            "type": "string"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Claim could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Claim not found."
+          },
+          "422": {
+            "description": "The Claim resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Create Claim",
+        "description": "Create a new Claim with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      },
+      "put": {
+        "tags":[
+          "Claim"
+          ],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Claim"
+            }
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_filter",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_has",
+            "type": "string",
+            "in": "query",
+            "description": "Return resources linked to by the given target"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A Claim Identifier"
+          },
+           {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "priority",
+            "type": "string",
+            "in": "query",
+            "description": "Processing priority requested"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "in": "query",
+            "description": "Provider responsible for the claim"
+          },
+          {
+            "name": "use",
+            "type": "string",
+            "in": "query",
+            "description": "The kind of financial resources"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim Updated."
+          },
+          "201": {
+            "description": "Claim Created."
+          },
+          "400": {
+            "description": "Claim could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Conditional Update",
+        "description": "The conditional update interaction is used to update an existing Claim based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      },
+      "delete": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A Claim Identifier"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "priority",
+            "type": "string",
+            "in": "query",
+            "description": "Processing priority requested"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "in": "query",
+            "description": "Provider responsible for the claim"
+          },
+          {
+            "name": "use",
+            "type": "string",
+            "in": "query",
+            "description": "The kind of financial resources"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Claim not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Conditional Delete",
+        "description": "The conditional delete interaction allows a client to delete Claim/Claim  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      },
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A Claim Identifier"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Claim"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Search",
+        "description": "Returns Claim based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}": {
+      "parameters": [],
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim Instance",
+            "schema": {
+              "$ref": "#/definitions/Claim"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Read Claim",
+        "description": "Returns details of Claim having id given in path.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      },
+      "put": {
+        "tags":[
+          "Claim"
+          ],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Claim"
+            }
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim Updated."
+          },
+          "201": {
+            "description": "Claim Created."
+          },
+          "400": {
+            "description": "Claim could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Update Claim",
+        "description": "Update an existing Claim by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      },
+      "delete": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Claim not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Delete Claim",
+        "description": "The delete interaction removes an existing Claim.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/_history": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Claim"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim History",
+        "description": "It retrieves the history of a particular Claim identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/_history": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Claim"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claims History",
+        "description": "It retrieves the history of all resources of Claim.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/_history/{vid}": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim Instance",
+            "schema": {
+              "$ref": "#/definitions/Claim"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Version Read",
+        "description": "This interaction preforms a version specific read of Claim resource.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/$meta": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for Claim"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for Claim.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/$meta": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claims Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given Claim resource.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/_history/{vid}/$meta": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Version based Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the Claim.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/{type}": {
+      "get": {
+        "tags":[
+          "Claim"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "type",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular Claim"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": " Compartment Search",
+        "description": "Search the specified resource type in Claim compartment.<p><a href = 'https://www.hl7.org/fhir/Claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/_search": {
+      "post": {
+        "tags":[
+          "Claim"
+          ],
+        "consumes":[
+        "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "actor",
+            "type": "string",
+            "in": "query",
+            "description": "The individual(HealthcareService, Practitioner, Location, ...) to find a Claim for"
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "query",
+            "description": "Search for Claim resources that have a period that contains this date specified. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "A Claim Identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "The type of appointments that can be booked into associated slot(s)"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "formData",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "actor",
+            "type": "string",
+            "in": "formData",
+            "description": "The individual(HealthcareService, Practitioner, Location, ...) to find a Claim for"
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for Claim resources that have a period that contains this date specified. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "formData",
+            "description": "A Claim Identifier"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "formData",
+            "description": "The type of appointments that can be booked into associated slot(s)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Claim bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Claim"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Claim Search using POST",
+        "description": "This interaction searches a set of Claim based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/$meta-add": {
+      "post": {
+        "tags":[
+          "Claim"
+          ],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Claim creation"
+          },
+          "400": {
+            "description": "Claim could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Claim not found."
+          },
+          "422": {
+            "description": "The Claim resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Claim metadata",
+        "description": "Add a metadata info Claim with specified id.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    },
+    "/Claim/{id}/_history/{vid}/$meta-add": {
+      "post": {
+        "tags":[
+          "Claim"
+          ],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Claim.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Claim.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Claim could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Claim not found."
+          },
+          "422": {
+            "description": "The Claim resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Claim Version based Metadata",
+        "description": "Add metadata info to specified Claim resource.<p><a href = 'https://www.hl7.org/fhir/claim.html'>FHIR documentation for Claim.</a></p>"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuthV2B2C": {
+      "type": "oauth2",
+      "description": "Security scheme for B2C flow using authorization code flow.",
+      "scopes": {
+        "patient/Claim.read": "Read permissions for Claim demographics.",
+        "patient/Claim.write": "Write permissions for Claim demographics."
+      },
+      "flow": "accessCode",
+      "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?"
+    },
+  "OAuthV2B2B": {
+      "type": "oauth2",
+      "description": "Security scheme for B2B flow using authorization code flow.",
+      "flow": "application",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+      "scopes": {
+        "patient/Claim.read": "Read permissions for Claim demographics.",
+        "patient/Claim.write": "Write permissions for Claim demographics."
+      }
+    }
+  }
+}

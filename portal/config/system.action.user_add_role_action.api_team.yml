@@ -1,0 +1,14 @@
+uuid: 7a7758eb-7503-4243-bd10-4a4606b8648c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.api_team
+  module:
+    - user
+id: user_add_role_action.api_team
+label: 'Add the API Team role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: api_team

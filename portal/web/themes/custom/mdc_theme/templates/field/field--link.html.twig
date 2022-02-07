@@ -1,0 +1,10 @@
+{% for item in items %}
+  <a class="get-started-button mdc-button mdc-button--dense mdc-button--unelevated mdc-ripple-upgraded"
+     href={{ item.content['#url'] }}>
+  <span class="mdc-button__ripple">
+  </span>
+    <span class="mdc-button__label mdc-typography--button">
+    {{ item.content['#title'] }}
+  </span>
+  </a>
+{% endfor %}

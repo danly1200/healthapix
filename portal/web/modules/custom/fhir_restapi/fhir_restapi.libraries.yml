@@ -1,0 +1,8 @@
+fhir_restapi.myapps:
+  js:
+    js/myapps.js: {}
+  dependencies:
+    - core/drupal.ajax
+  css:
+    theme:
+      css/myapps.css: {}

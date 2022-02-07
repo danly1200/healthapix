@@ -1,0 +1,28 @@
+uuid: b96f80cb-9c39-4cfe-8c3a-99cf91a8246b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.api_list_page
+  module:
+    - block_visibility_groups
+    - fhir_customizations
+  theme:
+    - mdc_theme
+id: mdc_theme_swaggerapilist
+theme: mdc_theme
+region: sidebar_left
+weight: -21
+provider: null
+plugin: swagger_api_list
+settings:
+  id: swagger_api_list
+  label: 'Swagger API list'
+  provider: fhir_customizations
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: api_list_page
+    context_mapping: {  }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache enabled="true" continueOnError="false" async="false" name="HPX_PC_PopulateJwksCache">
+    <DisplayName>HPX_PC_PopulateJwksCache</DisplayName>
+    <CacheResource>backend-services-jwks-cache</CacheResource>
+    <Source>publicKeyJwks</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="verifyapikey.HPX_VAK_ValidateApiKey.jwks_uri"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>86400</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

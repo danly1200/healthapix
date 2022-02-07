@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="3" name="smart-launch-security">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1582537045266</CreatedAt>
+    <CreatedBy>malashree@digitalapicraft.com</CreatedBy>
+    <Description>This shared flow adds security object to metadata response  </Description>
+    <DisplayName>smart-launch-security</DisplayName>
+    <LastModifiedAt>1582546116247</LastModifiedAt>
+    <LastModifiedBy>malashree@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:fd1f8df86c7e4c4384cd6a84635a3b0fc9eb14c2ed63684a6a5f8d47bd3aff65f19f918109a2f563bc63225a1c749aaede1b0df911793a1cee56a3cdca86a231</ManifestVersion>
+    <Policies>
+        <Policy>SmartLaunchSecurity</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://SmartLaunchSecurity.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

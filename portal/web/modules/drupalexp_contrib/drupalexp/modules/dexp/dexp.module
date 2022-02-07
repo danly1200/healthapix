@@ -1,0 +1,26 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_theme().
+ */
+function dexp_theme() {
+  return array(
+    'dexp_bootstrap_carousel' => [
+      'variables' => ['items' => '', 'settings' => ''],
+      'template' => 'dexp-bootstrap-carousel',
+      'preprocess functions' => 'template_preprocess_dexp_bootstrap_carousel',
+    ],
+  );
+}
+
+function template_preprocess_dexp_bootstrap_carousel(&$variables){
+  $html_id = Html::getUniqueId('dexp_bootstrap_carousel-' . REQUEST_TIME);
+  $variables['attributes']['class'][] = 'carousel';
+  $variables['attributes']['class'][] = 'slide';
+  $variables['attributes']['data-ride'][] = 'carousel';
+  $variables['attributes']['data-interval'][] = $variables['settings']['bootstrap_carousel_settings']['interval'];
+  $variables['attributes']['id'] = $html_id;
+  $variables['html_id'] = $html_id;
+}

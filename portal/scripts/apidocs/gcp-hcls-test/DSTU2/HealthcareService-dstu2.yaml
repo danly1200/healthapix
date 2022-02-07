@@ -1,0 +1,628 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® HealthcareService resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+  - url: https://gcp-hcls-test.apigee.net/v1/ghc/dstu2
+tags:
+  - name: HealthcareService
+paths:
+  /HealthcareService:
+    get:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: characteristic
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: identifier
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: location
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: organization
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: programname
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: servicecategory
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: servicetype
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: _format
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          x-consoleDefault: application/json
+      responses:
+        "200":
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HealthcareService'
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+    post:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/requestBodies/HealthcareService'
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+  /HealthcareService/{id}:
+    get:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/HealthcareService'
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+    put:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/requestBodies/HealthcareService'
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+    delete:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+  /HealthcareService/{id}/_history:
+    get:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: _count
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: _since
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+  /HealthcareService/{id}/_history/{vid}:
+    get:
+      tags:
+        - HealthcareService
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: vid
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/HealthcareService'
+      security:
+        - OAuthV2B2B:
+            - system/HealthcareService.read
+            - system/HealthcareService.write
+components:
+  schemas:
+    Account_text:
+      required:
+        - div
+        - status
+      type: object
+      properties:
+        status:
+          minLength: 1
+          type: string
+        div:
+          minLength: 1
+          type: string
+    Appointment_type:
+      required:
+        - coding
+      type: object
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Appointment_type_coding'
+    Appointment_coding:
+      required:
+        - code
+      properties:
+        code:
+          minLength: 1
+          type: string
+    AllergyIntolerance_substance_coding:
+      required:
+        - code
+        - display
+        - system
+      properties:
+        system:
+          minLength: 1
+          type: string
+        code:
+          minLength: 1
+          type: string
+        display:
+          minLength: 1
+          type: string
+    AllergyIntolerance_manifestation:
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/AllergyIntolerance_substance_coding'
+    Appointment_type_coding:
+      required:
+        - code
+        - display
+      properties:
+        code:
+          minLength: 1
+          type: string
+        display:
+          minLength: 1
+          type: string
+    Basic_author:
+      required:
+        - reference
+      type: object
+      properties:
+        reference:
+          minLength: 1
+          type: string
+    Basic_valueCodeableConcept:
+      required:
+        - coding
+      type: object
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/AllergyIntolerance_substance_coding'
+    CarePlan_addresses:
+      required:
+        - display
+        - reference
+      properties:
+        reference:
+          minLength: 1
+          type: string
+        display:
+          minLength: 1
+          type: string
+    Composition_period:
+      required:
+        - end
+        - start
+      type: object
+      properties:
+        start:
+          minLength: 1
+          type: string
+        end:
+          minLength: 1
+          type: string
+    EpisodeOfCare_referralRequest:
+      required:
+        - display
+      properties:
+        display:
+          minLength: 1
+          type: string
+    HealthcareService:
+      required:
+        - appointmentRequired
+        - availabilityExceptions
+        - availableTime
+        - characteristic
+        - comment
+        - contained
+        - coverageArea
+        - eligibility
+        - eligibilityNote
+        - extraDetails
+        - id
+        - location
+        - notAvailable
+        - programName
+        - publicKey
+        - referralMethod
+        - resourceType
+        - serviceName
+        - serviceType
+        - telecom
+        - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          $ref: '#/components/schemas/Account_text'
+        contained:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_contained'
+        serviceType:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_serviceType'
+        location:
+          $ref: '#/components/schemas/Basic_author'
+        serviceName:
+          minLength: 1
+          type: string
+        comment:
+          minLength: 1
+          type: string
+        extraDetails:
+          minLength: 1
+          type: string
+        telecom:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_telecom'
+        coverageArea:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/CarePlan_addresses'
+        eligibility:
+          $ref: '#/components/schemas/HealthcareService_eligibility'
+        eligibilityNote:
+          minLength: 1
+          type: string
+        programName:
+          type: array
+          items:
+            properties: {}
+        characteristic:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_characteristic'
+        referralMethod:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_referralMethod'
+        publicKey:
+          minLength: 1
+          type: string
+        appointmentRequired:
+          type: boolean
+        availableTime:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_availableTime'
+        notAvailable:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthcareService_notAvailable'
+        availabilityExceptions:
+          minLength: 1
+          type: string
+    HealthcareService_contained:
+      required:
+        - description
+        - id
+        - mode
+        - resourceType
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        description:
+          minLength: 1
+          type: string
+        mode:
+          minLength: 1
+          type: string
+        physicalType:
+          $ref: '#/components/schemas/Appointment_type'
+    HealthcareService_serviceType:
+      properties:
+        type:
+          $ref: '#/components/schemas/Basic_valueCodeableConcept'
+        specialty:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/AllergyIntolerance_manifestation'
+    HealthcareService_telecom:
+      required:
+        - system
+        - use
+        - value
+      properties:
+        system:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+        use:
+          minLength: 1
+          type: string
+    HealthcareService_eligibility:
+      required:
+        - coding
+      type: object
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/EpisodeOfCare_referralRequest'
+    HealthcareService_characteristic:
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/EpisodeOfCare_referralRequest'
+    HealthcareService_referralMethod:
+      properties:
+        coding:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Appointment_type_coding'
+    HealthcareService_availableTime:
+      required:
+        - availableEndTime
+        - availableStartTime
+      properties:
+        daysOfWeek:
+          type: array
+          items:
+            properties: {}
+        availableStartTime:
+          minLength: 1
+          type: string
+        availableEndTime:
+          minLength: 1
+          type: string
+    HealthcareService_notAvailable:
+      required:
+        - description
+      properties:
+        description:
+          minLength: 1
+          type: string
+        during:
+          $ref: '#/components/schemas/Composition_period'
+  requestBodies:
+    HealthcareService:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HealthcareService'
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/HealthcareService.read: Read permissions for HealthcareService demographics.
+            system/HealthcareService.write: Write permissions for HealthcareService demographics.

@@ -1,0 +1,19 @@
+menu:
+  js:
+    assets/js/dexp-menu.min.js: {}
+  css:
+    base:
+      assets/css/menu.css: {}
+      assets/css/fonts.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+onepage:
+  js:
+    assets/js/jquery.nav.js: {}
+    assets/js/menu.onepage.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal

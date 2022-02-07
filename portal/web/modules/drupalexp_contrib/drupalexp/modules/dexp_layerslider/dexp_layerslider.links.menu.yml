@@ -1,0 +1,22 @@
+# Slider menu items definition
+dexp_slider.manager:
+  title: 'Layer Sliders'
+  route_name: entity.dexp_slider.collection
+  description: 'List Slider entities'
+  parent: system.admin_content
+
+dexp_slider.manager.add:
+  title: 'Add Slider'
+  route_name: entity.dexp_slider.add_form
+  parent: dexp_slider.manager
+
+dexp_slider.manager.import:
+  title: 'Import Slider'
+  route_name: dexp_slider.import
+  parent: dexp_slider.manager
+#dexp_slider.admin.structure.settings:
+#  title: Slider settings
+#  description: 'Configure Slider entities'
+#  route_name: dexp_slider.settings
+#  parent: system.admin_structure
+

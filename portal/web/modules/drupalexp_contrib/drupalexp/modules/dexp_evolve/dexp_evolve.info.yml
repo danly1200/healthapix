@@ -1,0 +1,9 @@
+name: Dexp Evolve
+type: module
+description: Module custom for Evolve theme
+core: 8.x
+package: DrupalExp
+
+dependencies:
+  - shortcode
+  - dexp_builder

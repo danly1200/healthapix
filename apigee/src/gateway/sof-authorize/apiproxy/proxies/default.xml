@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="proxy-default-fault-rule">
+        <Step>
+            <Condition>(request.verb = "OPTIONS")</Condition>
+            <Name>SoF_AM_Fault_HandleCORSPreFlight</Name>
+        </Step>
+        <Step>
+            <Condition>(fault.name = "InvalidAuthorization")</Condition>
+            <Name>SoF_AM_Fault_InvalidAuthorization</Name>
+        </Step>
+        <Step>
+            <Condition>(fault.name = "FailedToResolveVariable") or (fault.name = "FailedToDecode")</Condition>
+            <Name>SoF_AM_Fault_InvalidAuthorization</Name>
+        </Step>
+        <Step>
+            <Condition>(fault.name = "SoF_Fault_InvalidFhirStoreInfo")</Condition>
+            <Name>SoF_AM_Fault_InvalidRequest</Name>
+        </Step>
+        <Step>
+            <Condition>(fault.name = "SpikeArrestViolation")</Condition>
+            <Name>SoF_Fault_SpikeArrestViolation</Name>
+        </Step>
+        <Step>
+            <Condition>(errorHandled != true)</Condition>
+            <Name>SoF_AM_Fault_GenericFault</Name>
+        </Step>
+        <Step>
+            <Name>SoF_SetCORSHeaders</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>(request.verb is "OPTIONS")</Condition>
+                <Name>SoF_HandleOPTIONSRequest</Name>
+            </Step>
+            <Step>
+                <Name>SoF_ReadConfigKVM</Name>
+            </Step>
+            <Step>
+                <Name>SoF_SA_EnforceRateLimit</Name>
+            </Step>
+            <Step>
+                <Name>SoF_AM_ExtractIncomingClientHeaders</Name>
+            </Step>
+            <Step>
+                <Name>SoF_EV_ExtactHeaders</Name>
+            </Step>
+            <Step>
+                <Name>SoF_EV_ExtractPathAttributes</Name>
+            </Step>
+            <Step>
+                <Name>SoF_RF_Fault_InvalidAuthorizationHeader</Name>
+                <Condition>(request.header.Authorization == null)</Condition>
+            </Step>
+            <Step>
+                <Name>SoF_JS_CalculateTokenHash</Name>
+            </Step>
+            <Step>
+                <Name>SoF_RC_LookupTokenCache</Name>
+            </Step>
+            <Step>
+                <Name>SoF_SetDefaultPathSuffix</Name>
+            </Step>
+            <Step>
+                <Name>SoF_SetFlowProcessingConfig</Name>
+            </Step>
+            <Step>
+                <Name>SoF_AM_RemoveRequestHeaders</Name>
+            </Step>
+            <Step>
+                <Name>SoF_ValidateFhirStoreInfo</Name>
+            </Step>
+            <Step>
+                <Name>SoF_RF_Fault_InvalidFhirStoreInfo</Name>
+                <Condition>(invalidFhirStoreInfo = true) or (JS_Error = true)</Condition>
+            </Step>
+            <Step>
+                <Name>SoF_ValidateApiKey</Name>
+                <Condition>(IS_CLIENT_REGISTRATION_ENABLED = true)</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="opaque-token-introspect">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>SoF_JS_AssignSmartUrlAndPath</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_SC_GetSmartConfiguration</Name>
+                </Step>
+                <Step>
+                    <Condition>(servicecallout.SoF_SC_GetSmartConfiguration.failed = true)</Condition>
+                    <Name>SoF_RF_Fault_ErrorInSmart</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_EV_ExtractSmartConfiguration</Name>
+                </Step>
+                <Step>
+                    <Condition>(smart.introspectUrl = null) or (smart.introspectUrl = "")</Condition>
+                    <Name>SoF_RF_Fault_ErrorInSmart</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AssignIntrospectUrlAndPath</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_BA_CalculateBasicAuthHeader</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_SC_IntrospectOpaqueToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(servicecallout.SoF_SC_IntrospectOpaqueToken.failed = true)</Condition>
+                    <Name>SoF_RF_Fault_Introspection</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AnalyzeIntrospectionDetails</Name>
+                </Step>
+                <Step>
+                    <Condition>(introspectionError = true) or (JS_Error = true) or (insufficientData = true)</Condition>
+                    <Name>SoF_RF_Fault_Introspection</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(isJwtFlow != true) and (VERIFY_ACCESS_TOKEN = "introspect") and (proxy.pathsuffix MatchesPath "/*/projects/*/locations/us-central1/datasets/*/fhirStores/**")  and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="opaque-token-userinfo">
+            <Description>Checks userinfo url for access-token details</Description>
+            <Request>
+                <Step>
+                    <Name>SoF_JS_AssignSCUrlAndPath</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_SC_GetUserinfoUrl</Name>
+                </Step>
+                <Step>
+                    <Condition>(servicecallout.SoF_SC_GetUserinfoUrl.failed = true)</Condition>
+                    <Name>SoF_RF_Fault_ErrorInUserInfo</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_EV_ExtractUserinfoUrl</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AssignSCUserinfoUrl</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_SC_GetUserinfo</Name>
+                </Step>
+                <Step>
+                    <Condition>(servicecallout.SoF_SC_GetUserinfo.failed = true)</Condition>
+                    <Name>SoF_RF_Fault_ErrorInUserInfo</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_EV_ExtractUserinfo</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AnalyzeUserinfo</Name>
+                </Step>
+                <Step>
+                    <Condition>(userInfoError = true) or (JS_Error = true)  or (insufficientData = true)</Condition>
+                    <Name>SoF_RF_Fault_ErrorInUserInfo</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(isJwtFlow != true) and (VERIFY_ACCESS_TOKEN = "userinfo")  and (proxy.pathsuffix MatchesPath "/*/projects/*/locations/us-central1/datasets/*/fhirStores/**")  and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="jwt-authorize">
+            <Request>
+                <Step>
+                    <Name>SoF_JW_DecodeOIDCToken</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_MatchIssuerWithConfig</Name>
+                </Step>
+                <Step>
+                    <Condition>issuermatch.failed = "true"</Condition>
+                    <Name>SoF_FaultInvalidClientAssertion</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AssignSCUrlAndPath</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_SC_GetJwksUri</Name>
+                </Step>
+                <Step>
+                    <Condition>(servicecallout.SoF_SC_GetJwksUri.failed = true)</Condition>
+                    <Name>SoF_RF_Fault_ErrorInJwks</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_EV_ExtractJwksUri</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AssignJwksUriAndPath</Name>
+                </Step>
+                <Step>
+                    <Condition>(JS_Error = true)</Condition>
+                    <Name>SoF_RF_Fault_ErrorInJwks</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_GetPublicKeyFromCache</Name>
+                </Step>
+                <Step>
+                    <Condition>(lookupcache.SoF_GetPublicKeyFromCache.cachehit = false)
+				</Condition>
+                    <Name>SoF_SC_GetPublicKeyFromJWKSUrl</Name>
+                </Step>
+                <Step>
+                    <Condition>(lookupcache.SoF_GetPublicKeyFromCache.cachehit = false) and ((ServiceCallout.SoF_SCGetPublicKeyFromJWKSUrl.failed = true) or (ServiceCallout.response == null) or (ServiceCallout.response == ""))
+				</Condition>
+                    <Name>SoF_RF_Fault_ErrorInJwks</Name>
+                </Step>
+                <Step>
+                    <Condition>(lookupcache.SoF_GetPublicKeyFromCache.cachehit = false)
+				</Condition>
+                    <Name>SoF_JS_AssignJwksResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(publicKeyJwks != null ) and (publicKeyJwks != "") and (lookupcache.SoF_GetPublicKeyFromCache.cachehit is false)
+				</Condition>
+                    <Name>SoF_PopulateJwksCache</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_VerifyRSOIDCToken</Name>
+                    <Condition>(jwt.SoF_JW_DecodeOIDCToken.header.algorithm ~ "RS*")</Condition>
+                </Step>
+                <Step>
+                    <Name>SoF_VerifyESOIDCToken</Name>
+                    <Condition>(jwt.SoF_JW_DecodeOIDCToken.header.algorithm ~ "ES*")</Condition>
+                </Step>
+                <Step>
+                    <Condition>JWT.failed = "true"</Condition>
+                    <Name>SoF_FaultInvalidClientAssertion</Name>
+                </Step>
+                <Step>
+                    <Name>SoF_JS_AnalyzeJWTDetails</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(isJwtFlow = true) and (proxy.pathsuffix MatchesPath "/*/projects/*/locations/us-central1/datasets/*/fhirStores/**")  and (request.verb = "POST")</Condition>
+            <!--Condition>(proxy.pathsuffix MatchesPath "/v1/projects/*/locations/us-central1/datasets/*/fhirStores/*" or proxy.pathsuffix MatchesPath "/v1/projects/*/locations/us-central1/datasets/*/fhirStores/*/") and (request.verb = "POST")</Condition-->
+        </Flow>
+        <Flow name="Unsupported operation">
+            <Request>
+                <Step>
+                    <Name>SoF_SetErrorVariables</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>SoF_Fault_ThrowError</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>SoF_ReWriteLinks</Name>
+            </Step>
+            <Step>
+                <Name>SoF_SetCORSHeaders</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PostClientFlow>
+        <Response>
+            <Step>
+                <Name>SoF_ML_LogMessage</Name>
+                <Condition>(DISABLE_AUDIT_LOG = false)</Condition>
+            </Step>
+        </Response>
+    </PostClientFlow>
+    <HTTPProxyConnection>
+        <BasePath>/sof</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

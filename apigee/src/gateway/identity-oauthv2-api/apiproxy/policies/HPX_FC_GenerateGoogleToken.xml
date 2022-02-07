@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="HPX_FC_GenerateGoogleToken">
+    <DisplayName>HPX_FC_GenerateGoogleToken</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>google-token</SharedFlowBundle>
+</FlowCallout>

@@ -1,0 +1,10 @@
+uuid: 7ccd5895-0af8-489c-89af-e4efe4158895
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Koc7pRC2gX-mU8abcn7gIRKrFp26uX7cqZiJZ9kH3fU
+id: bootstrap_columns
+label: 'Bootstrap Columns'
+revision: 0
+description: ''

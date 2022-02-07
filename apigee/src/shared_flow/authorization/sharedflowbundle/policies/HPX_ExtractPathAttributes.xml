@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractPathAttributes">
+    <DisplayName>HPX_ExtractPathAttributes</DisplayName>
+    <Properties/>
+    <URIPath>
+        <Pattern ignoreCase="true">/{resourceName}</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/$lastn</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/$lastn/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/_search</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/_search/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/$purge</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/$purge/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/_history</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/_history/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/$everything</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/$everything/</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/_history/{resourceVersionId}</Pattern>
+        <Pattern ignoreCase="true">/{resourceName}/{resourceId}/_history/{resourceVersionId}/</Pattern>
+    </URIPath>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

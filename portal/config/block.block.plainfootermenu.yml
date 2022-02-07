@@ -1,0 +1,31 @@
+uuid: f2577857-4a7f-4c3a-b4e8-b51a7a5a0a8c
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.plain-footer-menu
+  module:
+    - block_visibility_groups
+    - system
+  theme:
+    - mdc_theme
+id: plainfootermenu
+theme: mdc_theme
+region: content
+weight: -6
+provider: null
+plugin: 'system_menu_block:plain-footer-menu'
+settings:
+  id: 'system_menu_block:plain-footer-menu'
+  label: 'Plain Footer Menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

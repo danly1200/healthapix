@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="HPX_GenerateAuthCode.AssignRequest">
+    <DisplayName>GenerateAuthCode.AssignRequest</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request">authcode.request</AssignTo>
+    <Set>
+        <QueryParams>
+            <QueryParam name="response_type">code</QueryParam>
+            <QueryParam name="redirect_uri">{redirect_uri}</QueryParam>
+            <QueryParam name="client_id">{client_id}</QueryParam>
+            <QueryParam name="userid">{userid}</QueryParam>
+            <QueryParam name="nonce">{nonce}</QueryParam>
+            <QueryParam name="fhirUser">{fhirUser}</QueryParam>
+            <QueryParam name="patient">{request.queryparam.selected_patients}</QueryParam>
+            <QueryParam name="consentId">{consent_id}</QueryParam>
+        </QueryParams>
+        <Verb>POST</Verb>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"scope":"@scope#", "requested_scope":"@requested_scope#"}</Payload>
+    </Set>
+</AssignMessage>

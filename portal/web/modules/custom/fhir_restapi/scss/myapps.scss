@@ -1,0 +1,218 @@
+
+$regular_fontweight: 400;
+$font_family : 'Roboto',sans-serif;
+$btn_background: #fff;
+$hyper_link_active_color: #487EF4;
+$hyper_link_color: #434242;
+
+.myapps-wrapper {
+  font-family: $font_family;
+  .mdc-data-table__header-row {
+    background-color: #f8f8f8 !important;
+    th {
+      strong {
+        font-weight: 300;
+        font-size: 16px;
+        text-transform: capitalize;
+        font-style: normal;
+      }
+    }
+  }
+  tbody {
+    .mdc-data-table__cell {
+      color: rgba(0,0,0,.87);
+      font-weight: 300;
+      word-break: break-all;
+    }
+  }
+}
+
+/* Accordion ================================================== */
+.acc {
+  margin: 20px auto;
+  .acc__card {
+    margin-bottom: 11px !important;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    border: 1px solid #D9D8D8;
+    border-radius: 5px 5px 0px 0px;
+    opacity: 1;
+    .acc__title {
+      display: inline-block;
+      position: relative;
+      text-align: left;
+      padding: 20px 30px;
+      width: 50%;
+      a.app-title {
+        padding: 10px 10px;
+        font-size: 16px;
+        font-weight: 300;
+        font-style: normal;
+        color: rgba(0,0,0,0.7);
+        text-transform: capitalize;
+        text-decoration: none;
+      }
+    }
+  }
+  .acc__panel {
+    background: #fff;
+    color: #212121;
+    display: none;
+    margin: 0;
+    padding: 2em;
+    text-align: left;
+    .acc-panel-content {
+      display: none;
+    }
+  }
+}
+
+.app-data {
+  display: block !important;
+}
+
+.my-app-heading {
+  color: #000 !important;
+  text-align: left;
+  height: auto;
+  span.mdc-top-app-bar__section--align-start{
+    font-size: 32px;
+    font-weight: 300;
+  }
+}
+
+.create-app {
+  padding: 0px 4px 4px 4px;
+  display: inline-block;
+  float: right;
+  border: 1px solid rgba(112,112,112,0.17);
+  a {
+    color: #4582F4;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+  }
+}
+
+.status-label {
+  .label.label-success {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    background: #78BA4F 0% 0% no-repeat padding-box;
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 8px;
+  }
+}
+.acc__panel table.mdc-data-table__table {
+  white-space: unset;
+  width: 100%;
+}
+.title-rightside {
+  float: right;
+  margin-top: 10px;
+  padding-right: 30px;
+  .mdc-button--outlined {
+    padding: 0 8px 0 8px !important;
+    margin-left: 15px;
+  }
+  .material-icons {
+    font-size: 14px;
+    padding-left: 20px ;
+  }
+  .mdc-button--outlined:not(:disabled) {
+    border: 1px solid #B2B2B2;
+  }
+  .mdc-button__label {
+    a {
+      font-size: 12px;
+    }
+  }
+}
+span.label.label-success {
+  color: #707070;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+a.non_smart_link_active{
+  border-bottom: 2px solid #4582f4;
+}
+a.smart_link_active {
+  border-bottom: 2px solid #4582f4;
+}
+.card-hidden {
+  display:none !important;
+}
+.hide {
+  display:none !important;
+}
+ul.version-list.mdc-list {
+  display: block !important;
+}
+.version-select {
+  .mdc-select__anchor {
+    height: 38px;
+  }
+  .mdc-select--outlined {
+    .mdc-select__selected-text {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+  .mdc-select__dropdown-icon {
+    bottom: 8px;
+  }
+}
+
+a#register-app-a {
+  button.mdc-button--outlined:not(:disabled) {
+    border-color: #4285F4 ;
+  }
+  button.mdc-button:not(:disabled) {
+    background-color: #4285F4;
+  }
+  span.mdc-button__label{
+    color: #fff;
+    font-size: 12px;
+  }
+  .mdc-button__icon {
+    color: #fff;
+  }
+  .mdc-button.mdc-button--outlined{
+    width: 90%;
+  }
+}
+
+h2.no-apps-msg {
+  opacity: 0.87;
+  font-weight: 300;
+}
+.app-btn-group {
+  .mdc-tab--active {
+    .mdc-tab__text-label {
+      color: #4582f4;
+    }
+  }
+}
+.register_smartapp.mdc-layout-grid__cell.mdc-layout-grid__cell--span-3-desktop {
+  width: 100% !important;
+  margin-left: 20% !important;
+}
+#block-mdc-theme-page-title {
+  h1 {
+    display: none;
+  }
+}
+div.register_smartapp {
+  padding-top: 10px;
+}
+div.version-select {
+  padding-top: 10px;
+}
+div.no-results h2 {
+  padding-left: 50px;
+  opacity: 0.87;
+  font-weight: 300;
+}

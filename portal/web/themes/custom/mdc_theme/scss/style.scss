@@ -1,0 +1,1209 @@
+$font_color: #FF00FF;
+$blue_color: #4285F4;
+$distance: 118px;
+$light_font: 300;
+$regular_font: 400;
+$medium_font: 500;
+//$font_black: #000000DE;
+$font_black: rgba(0, 0, 0, 0.87);
+$light_grey: #F5F5F5;
+$footer_grey: #F8F8F8;
+$font_light_black: #434242;
+
+.mdc-section-wrapper {
+  width: 100%;
+
+  .mdc-container {
+    max-width: 1170px;
+    padding: 0 24px;
+    margin: 0px auto;
+  }
+
+  .mdc-container-fluid {
+    max-width: 100%;
+    padding: 0 24px;
+    border-bottom: 1px solid $light_grey;
+  }
+}
+
+.mdc-header-right {
+  float: right;
+
+  .mdc-select--focused, .mdc-select--activated {
+    .mdc-select__dropdown-icon {
+      background: url("data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.54%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E") no-repeat center;
+    }
+  }
+
+  .home-drop-down {
+    color: $blue_color;
+  }
+}
+
+.mdc-button--unelevated:not(:disabled) {
+  color: #FFFFFF;
+  background-color: $blue_color;
+  box-shadow: 0px 1px 3px #00000033;
+}
+
+.mdc-button--unelevated .mdc-button__ripple {
+  &:before {
+
+  }
+}
+
+.get-started-image {
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.get-started-block {
+  .get-started-image {
+    margin: 40px;
+  }
+}
+
+.simplify-block {
+  .get-started-image {
+    img {
+      border: 2px solid #F0F0F0;
+      border-radius: 14px 4px 4px 4px;
+      opacity: 1;
+    }
+  }
+}
+
+.mdc-get-started-left-content {
+  padding-top: $distance;
+
+  .left-content {
+    padding-bottom: 18px;
+  }
+
+  .mdc-button--unelevated:not(:disabled) {
+    color: #FFFFFF;
+    background-color: $blue_color;
+  }
+}
+
+.simplify-block {
+  padding: 15px 0px;
+
+  .right-content-grid {
+    padding: 0px 62px;
+  }
+
+  .image-label {
+    letter-spacing: 0.43px;
+    font-weight: $light_font;
+  }
+}
+
+.keep-in-touch-block {
+  padding: 100px 0px;
+}
+
+.get-started-block {
+  padding: 15px 0px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+body {
+  margin: 0;
+}
+
+.home-content-wrapper {
+  background-color: $blue_color;
+}
+
+.comprehensive-block {
+  color: #ffffff;
+
+  .mdc-button--unelevated:not(:disabled) {
+    color: #000000;
+    background-color: #ffffff;
+    width: 134px;
+  }
+
+  .right-content {
+    padding-bottom: 15px;
+  }
+
+  padding: 111px 0px;
+}
+
+.home-footer-wrapper {
+  background-color: $footer_grey;
+  padding-bottom: 65px;
+  padding-top: 30px;
+  #block-mainmenu-2{
+    float: left;
+  }
+  #block-footerfhirlogo{
+    float: right;
+    margin-top: -25px;
+  }
+}
+
+.footer-block {
+  .mdc-footer-social-logo {
+    ul {
+      display: flex;
+      list-style-type: none;
+    }
+  }
+
+  .mdc-footer-menu {
+    .mdc-tab {
+      padding: unset;
+      justify-content: unset;
+    }
+  }
+
+  .mdc-tab__ripple {
+    width: unset;
+    height: unset;
+  }
+
+  #block-fhir-blocks-fhir-social-bottom {
+    a {
+      color: #000000;
+    }
+  }
+}
+
+.mdc-header-section {
+  .mdc-layout-grid {
+    padding-bottom: 0px;
+
+    .header-right-block {
+      padding-bottom: 24px;
+    }
+  }
+}
+
+.home-footer-wrapper, .mdc-header-section {
+  nav {
+    ul {
+      padding-inline-start: 0px;
+    }
+
+    li {
+      padding-right: 40px;
+
+      a {
+        text-decoration: none;
+        color: $font_black;
+        font-weight: $regular_font;
+        opacity: 100%;
+        size: 16px;
+      }
+
+      a.is-active {
+        border-bottom: 2px solid $blue_color;
+      }
+    }
+  }
+}
+
+.home-footer-wrapper {
+  nav {
+    ul {
+      float: left;
+      padding-bottom: 20px;
+
+      a {
+        color: #000000;
+        font-size: 16px;
+        font-weight: $regular_font;
+        opacity: 54%;
+      }
+
+      a.is-active {
+        border-bottom: none;
+      }
+    }
+  }
+
+  #block-fhir-blocks-fhir-social-bottom {
+    .pull-right {
+      float: right;
+
+      li {
+        padding-right: 16px;
+      }
+    }
+  }
+}
+
+.fa {
+  font-size: 25px;
+  color: #838383;
+}
+
+.mdc-powered-by {
+  padding-top: 68px;
+  color: #777777;
+  font-size: 18px;
+  opacity: 1;
+  font-weight: $light_font;
+}
+
+.mdc-header-right ul {
+  display: block;
+  float: left;
+}
+
+.mdc-user-loggedin {
+  .mdc-floating-label {
+    left: 30px;
+    color: $blue_color !important;
+  }
+
+  .mdc-floating-label--float-above {
+    transform: unset;
+    -webkit-transform: unset;
+    color: $blue_color !important;
+  }
+
+  .mdc-select__anchor {
+    background-color: unset !important;
+    border-bottom: unset;
+
+    &:hover:before {
+      opacity: 0;
+    }
+
+    &:hover:after {
+      opacity: 0;
+    }
+  }
+
+  .mdc-select__selected-text {
+    border-bottom: none !important;
+    opacity: 0;
+  }
+
+  .face-icon {
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+  }
+
+  .mdc-select__dropdown-icon {
+    width: 63px;
+  }
+
+  .mdc-list {
+    width: 182px;
+
+    &:not(.mdc-select--disabled) {
+      .mdc-select--focused .mdc-floating-label {
+        color: $font_black !important;
+      }
+    }
+
+    a {
+      font-size: 13px;
+      text-decoration: none;
+      color: $font_black;
+
+      &:hover {
+        background-color: $light_grey;
+      }
+    }
+  }
+}
+
+.ui-widget.ui-widget-content {
+  width: 700px !important;
+}
+
+.developer-app-edit-for-developer-form {
+  .form-checkboxes {
+    .form-item {
+      width: 49% !important;
+    }
+  }
+}
+
+.ui-dialog, body, .ui-dialog-buttonset {
+  font-family: Roboto, Sans-Serif;
+}
+
+.status-value-approved {
+  background-color: $blue_color !important;
+
+  .label-status {
+    color: #FFFFFF;
+  }
+}
+
+.modal-edit-app-cancel-extra {
+  display: none;
+}
+
+.mdc-main-menu {
+  div {
+    height: 100%;
+  }
+
+  nav {
+    height: 100%;
+
+    ul {
+      height: 100%;
+      margin: 0;
+
+      li {
+        padding-top: 20px;
+
+        a {
+          height: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.mdc-get-started-left-content, .mdc-simplify-right-content, .comprehensive-block, .keep-in-touch-block {
+  color: $font_black;
+
+  .getstarted-title, .simplify-title, .comprehensive-title, .keep-in-touch-title {
+    font-weight: $light_font;
+    letter-spacing: 0.97px;
+    font-size: 42px;
+  }
+
+  .mdc-comprehensive-right-content {
+    margin-left: 72px;
+    align-self: center;
+
+    .comprehensive-title, .right-content {
+      color: #ffffff;
+    }
+
+    .right-content {
+      width: 460px;
+    }
+
+    .comprehensive-title {
+      margin: 0;
+    }
+  }
+
+  .left-content, .right-content {
+    font-weight: $light_font;
+    letter-spacing: 0.74px;
+  }
+}
+
+.login-register-btn {
+  height: 58px;
+
+  a {
+    margin-top: 10px;
+  }
+}
+
+.ui-dialog-titlebar {
+  font-weight: $regular_font;
+}
+
+.ui-widget {
+  input, select, textarea, button, label {
+    font-weight: $regular_font;
+    font-family: Roboto, Sans-Serif;
+    font-size: 15px;
+  }
+
+  span.fieldset-legend {
+    font-size: 15px;
+  }
+
+  .ui-button {
+    &:hover {
+      border: unset;
+    }
+  }
+
+  .modal-edit-app-cancel {
+    &:hover {
+      border: 1px solid #cccccc;;
+    }
+  }
+
+}
+
+.fhir-server-create {
+
+  padding: 20px 80px;
+
+  .ajax-progress-fullscreen {
+    display: none;
+  }
+
+  .fhir-server-label {
+    font-weight: $light_font;
+    letter-spacing: 0.97px;
+    font-size: 42px;
+  }
+
+  .mdc-text-field, .entity-browser-iframe-container {
+    width: 100% !important;
+  }
+
+  label {
+    display: none;
+  }
+
+  .form-item-field-fhir-version {
+    margin: 0px;
+  }
+
+  .version-dropdown {
+    align-self: center;
+  }
+
+  .mdc-select__anchor {
+    width: 100%;
+  }
+
+  .submit-button {
+    text-align: center;
+  }
+
+  div#edit-field-fhir-version-wrapper .mdc-menu-surface--open {
+    width: 100%;
+  }
+
+  .fhir-server-create-body {
+    border: 1px solid #D9D8D8;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+
+  .tabledrag-toggle-weight-wrapper, .entity-browser-show-selection {
+    display: none;
+  }
+
+  #field-default-product-values, .field-multiple-table {
+    .field-label {
+      display: none;
+    }
+  }
+
+  .mdc-notched-outline--notched .mdc-notched-outline__notch {
+    padding-right: 0px;
+  }
+}
+
+.select-class-wrapper, .field-multiple-drag {
+  display: none;
+}
+
+.option-dropdown {
+  display: block;
+}
+
+#edit-field-server-file summary {
+  display: none;
+}
+
+.js-form-type-dropzonejs label {
+  display: none;
+}
+
+.dropzone {
+  background-color: white;
+  border: 1px dashed #D8D8D8;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.or-class {
+  width: 100%;
+  text-align: center;
+  color: $font_light_black;
+  opacity: 38%;
+}
+
+.form-submit, #edit-export-csv {
+  color: #FFFFFF;
+  height: 36px;
+  -webkit-font-smoothing: antialiased;
+  font-size: .875rem;
+  line-height: 2.25rem;
+  font-weight: 500;
+  letter-spacing: .0892857143em;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0 8px 0 8px;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 64px;
+  border: none;
+  outline: none;
+  line-height: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-appearance: none;
+  overflow: visible;
+  vertical-align: middle;
+  border-radius: 4px;
+  font-family: Roboto, Sans-Serif;
+}
+
+.entity-browser-show-selection {
+  display: none;
+}
+
+.entities-list {
+  .item-container {
+    margin: 0px;
+
+    input {
+      margin: 5px 0px;
+    }
+  }
+}
+
+.file-drag-drop {
+  thead {
+    display: none;
+  }
+
+  summary {
+    display: none !important;
+  }
+}
+
+.server-title, .fhir_servers {
+  font-weight: 300;
+  letter-spacing: 0.97px;
+  font-size: 32px;
+  padding-left: 80px;
+}
+
+.main-page-title {
+  #block-mdc-theme-page-title {
+    h1 {
+      font-weight: 300;
+      letter-spacing: 0.97px;
+      font-size: 32px;
+    }
+  }
+}
+
+header {
+  z-index: 500 !important;
+}
+
+#block-fhir-blocks-fhir-social-bottom {
+  clear: unset !important;;
+}
+
+a.cancel-fhir-server.submit-btn.mdc-button.mdc-button--unelevated {
+  background-color: white;
+  color: $blue_color;
+  border: 1px solid #B2B2B2;
+}
+
+.server-file-wrapper {
+  border: 1px dashed #D8D8D8;
+  text-align: center;
+  margin-bottom: 30px;
+
+  #edit-field-server-file-0-upload, .js-form-file {
+    background: transparent url(../images/file_upload.png) no-repeat;
+    background-position: top;
+    padding: 53px 300px 159px 300px;
+    color: #434242;
+    opacity: 100%;
+    background-size: 5%;
+    cursor: pointer;
+  }
+
+  #edit-field-server-file-0--description {
+    display: none;
+  }
+
+}
+
+.fhir-server-create {
+  .field--name-field-server-file {
+    .js-hide {
+      display: block !important;
+      margin-left: auto;
+      margin-bottom: 40px;
+      margin-right: auto;
+      margin-top: -130px;
+      pointer-events: none;
+    }
+
+  }
+
+  .form-autocomplete {
+    background-image: unset !important;
+  }
+
+}
+
+// Swagger css changes
+
+.sidebar-main-content-wrapper {
+  .swagger-ui {
+    .opblock-description-wrapper {
+      p {
+        font-family: Roboto, Sans-Serif;
+      }
+    }
+
+    .parameters-container {
+      th {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $medium_font !important;
+      }
+    }
+
+    .opblock-body {
+      pre {
+        font-family: Roboto, Sans-Serif;
+      }
+    }
+
+    .model, input, .model-title, .parameter__name, .parameter__type, .parameter__deprecated, .parameter__in, .curl, .request-url, .response-col_status, td {
+      font-family: Roboto, Sans-Serif;
+    }
+
+    section.models, .opblock-section-header, .responses-inner {
+      h4 {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $medium_font !important;
+      }
+    }
+
+    .info {
+      .title {
+        font-weight: $regular_font;
+      }
+
+      .base-url {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $regular_font;
+        color: #00000099;
+      }
+
+      p {
+        color: $font_black;
+      }
+    }
+
+    .btn {
+      font-family: Roboto, Sans-Serif;
+      font-weight: $regular_font !important;
+    }
+
+    .opblock-tag-section {
+      span {
+        font-family: Roboto, Sans-Serif;
+        font-weight: $regular_font !important;
+      }
+    }
+
+    .dialog-ux {
+      font-family: Roboto, Sans-Serif;
+      font-weight: $regular_font !important;
+
+      .modal-ux-header {
+        h3, h4, h2 {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $medium_font !important;
+        }
+
+        p {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $regular_font !important;
+        }
+      }
+
+      .modal-ux-content {
+        p {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $regular_font !important;
+        }
+
+        h3, h4, h2 {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $medium_font !important;
+        }
+      }
+    }
+
+    .scheme-container {
+      .schemes {
+        label {
+          font-family: Roboto, Sans-Serif;
+          font-weight: $regular_font !important;
+
+          select {
+            border: 1px solid #D3D3D3 !important;
+            border-radius: 4px !important;
+            opacity: 1;
+
+            option {
+              color: $font_light_black !important;
+              font-family: Roboto, Sans-Serif;
+              font-weight: $regular_font !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.Edit_an_App, .Register_an_app {
+  padding-left: 145px;
+}
+
+.page-node-edit-fhir_servers {
+  padding-left: 77px;
+}
+
+.mdc-menu-surface--open {
+  z-index: 99999;
+  width: 100%;
+}
+
+.app-create-form {
+  .form-submit {
+    cursor: pointer;
+    padding: 0 16px 0 16px;
+  }
+}
+
+#edit-field-server-file-0-upload {
+  &:focus {
+    outline: none;
+  }
+}
+
+.mdc-navbar-logo-left {
+  align-self: center;
+  padding-bottom: 24px;
+}
+
+.openid-connect-login-form {
+  padding-bottom: 24px;
+}
+
+.standard-scope-panel, .user-scope-panel, .patient-scope-panel {
+  text-align: center;
+}
+
+.user-forms-logo {
+  img {
+    width: 32%;
+  }
+
+}
+
+.footer-logo {
+  img {
+    width: 20%;
+  }
+}
+
+.mdc-header-right {
+  .mdc-list {
+    width: 100%;
+  }
+}
+
+.edit-file-server {
+  .js-form-file {
+    background: transparent url(../images/file_upload.png) no-repeat;
+    background-position: top;
+    padding: 55px 300px 112px 300px;
+    color: #434242;
+    opacity: 100%;
+    background-size: 5%;
+    cursor: pointer;
+    border: 1px dashed #D8D8D8;
+    text-align: center;
+    margin-bottom: 68px;
+  }
+
+  .description {
+    display: none;
+  }
+
+  .field--name-field-server-file {
+    .js-hide {
+      display: block !important;
+      margin-left: auto;
+      margin-bottom: 73px;
+      margin-right: auto;
+      margin-top: -159px;
+      pointer-events: none;
+    }
+  }
+}
+
+//Analytics page css
+.analytics-page {
+  .analytics-body {
+    display: grid;
+  }
+
+  .form-item {
+    margin: 0px;
+  }
+
+  .analytics-body-content {
+    padding: 20px 0px;
+
+    a {
+      color: white;
+      cursor: pointer;
+    }
+
+    #edit-export-csv {
+      background-color: #4582F4 !important;
+    }
+
+    .form-submit {
+      font-size: 14px;
+    }
+
+    input {
+      padding: 7px 0px;
+      font-size: 12px;
+      text-align: center;
+      font-family: Roboto, Sans-Serif;
+    }
+  }
+}
+
+.my-app-analytics {
+  .my-apps-bck-btn {
+    float: right;
+  }
+
+  .container {
+    padding: 0px;
+  }
+}
+
+.analytics-tab {
+  color: #707070;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+// user scopes
+.user-field-op {
+  legend {
+    display: block !important;
+    float: left;
+    padding-top: 30px;
+    min-width: 200px;
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .fieldset-wrapper {
+    float: right;
+    display: flex;
+
+    .form-checkboxes {
+      min-width: 400px;
+    }
+  }
+
+  .form-checkboxes {
+    .js-form-item {
+      width: 200px
+    }
+  }
+
+
+}
+
+.user-scope-panel, .patient-scope-panel {
+  padding: 0px !important;
+  border: unset;
+
+  fieldset {
+    border: unset;
+    margin: 0px !important;
+    padding: 0px;
+  }
+}
+
+#edit-user-scopes, #edit-patient-scopes {
+  width: -webkit-fill-available;
+}
+
+// PAyload
+#field-payload-collection-values {
+  border: 1px solid rgba(0, 0, 0, .38);
+  border-radius: 4px;
+
+  thead {
+    background-color: #F8F8F8;
+  }
+
+  tr {
+    padding: 0px 20px;
+    margin: 0px !important;
+  }
+
+  .field--name-field-payload {
+    padding: 0px 45px 0px 0px;
+  }
+
+  .paragraphs-dropbutton-wrapper {
+    margin-right: 15%;
+  }
+}
+
+#edit-field-payload-collection-wrapper {
+  .field-multiple-table {
+    border: 1px solid rgba(0, 0, 0, .38);
+    border-radius: 4px;
+
+    thead {
+      background-color: #F8F8F8;
+    }
+
+    tr {
+      padding: 0px 20px;
+      margin: 0px !important;
+      border-bottom: none !important;
+    }
+
+    .field--name-field-payload {
+      padding: 0px 45px 0px 0px;
+    }
+
+    .paragraphs-dropbutton-wrapper {
+      margin-right: 15%;
+    }
+  }
+
+  .restore {
+    display: block !important;
+  }
+
+  .dropbutton {
+    li {
+      margin-right: 10px;
+    }
+  }
+
+  .dropbutton-toggle {
+    display: none;
+  }
+}
+
+.vw-tb-fmt-design {
+  .material-icons {
+    font-size: 1.0rem !important;
+  }
+}
+
+.title-rightside {
+  .edit-tab, .delete-tab {
+    margin: 0px 10px;
+  }
+
+  .material-icons {
+    padding: 0px !important;
+  }
+}
+
+//Payload para
+.test-dat-desc {
+  padding-bottom: 20px;
+}
+
+#block-wherecanyouusesampledata {
+  h2 {
+    letter-spacing: 0.42px;
+    color: #434242;
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.file-validation-error {
+  color: #d93025;
+}
+
+.node-test-data {
+  .inner-payload {
+    .payload-id-section {
+      border-top: 1px solid #E3E3E3 !important;
+    }
+  }
+}
+
+.drupal-message-wrap {
+  background-color: #323232;
+  width: auto;
+  padding: 15px 15px !important;
+  border-radius: 6px;
+  opacity: 1;
+  margin-bottom: 10px;
+  float: right;
+
+  .status-message {
+    color: #FFFFFF !important;
+  }
+}
+
+.sidebar-main-content-wrapper {
+  .swagger-ui {
+    .auth-wrapper {
+      .authorize {
+        svg {
+          float: unset;
+        }
+      }
+    }
+  }
+}
+
+#node-smartdocs-form {
+  #edit-field-api-version-wrapper {
+    .mdc-menu-surface--open{
+      width: 18%;
+    }
+  }
+}
+
+// Hide label of taxonomy fhir-datasets
+.taxonomy-term-fhir-datasets-form{
+  .form-item-name-0-value{
+    > label{
+      display: none;
+    }
+  }
+}
+span{
+  a{
+    img[alt='Online validator badge'] {
+      display: none;
+    }
+  }
+}
+
+//footer logo
+//.footer-logo2{
+//  img{
+//    float: right;
+//    margin-top: -60px;
+//  }
+//}
+span{
+  a{
+    img[alt='Online validator badge'] {
+      display: none;
+    }
+  }
+}
+
+//Hide manage api doc title
+.Manage_API_docs, .FHIR_Samples{
+  display: none;
+}
+#manage-api-title {
+  color: #000000;
+  opacity: 0.87;
+  margin-bottom: 0px;
+  font-weight: 300;
+  letter-spacing: 0.97px;
+  font-size: 32px;
+  float: left;
+  margin-top: 0px;
+}
+#views-exposed-form-resources-page-1, #views-exposed-form-test-data-payloads-page-1{
+  padding-top: 70px;
+}
+.resource-page-title{
+  p{
+    float: right;
+    margin: 0px;
+  }
+}
+
+// Description css
+.app-create-form{
+  .description{
+    color: rgba(0,0,0,.6);
+    font-weight: 300;
+  }
+}
+//payload button
+#node-test-data-form .paragraphs-dropbutton-wrapper {
+  float: right;
+}
+// Status messages
+.drupal-message-wrap {
+  background-color: #323232;
+  width: auto;
+  padding: 15px 15px !important;
+  border-radius: 6px;
+  opacity: 1;
+  margin-bottom: 10px;
+  float: right;
+  position: fixed;
+  top: 200px;
+  right: 160px;
+}
+.drupal-message-wrap-close-btn {
+  position: absolute;
+  top: -11px;
+  right: -10px;
+  width: 14px;
+  background-color: #4285f4;
+  border-radius: 16px;
+  padding: 6px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+div#block-pagetitle h1 {
+  margin: 32px 0px 32px 0px;
+  font-weight: 300;
+  letter-spacing: 0.97px;
+  font-size: 32px;
+}
+
+.register-app-page #block-pagetitle h1 {
+  padding-left: 150px;
+}
+
+.drupal-message-wrap .error-message {
+  color: #ffff !important;
+}

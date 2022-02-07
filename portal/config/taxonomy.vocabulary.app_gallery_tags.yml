@@ -1,0 +1,8 @@
+uuid: a5318ed9-6a9a-4eb2-a8c3-7087c501c5d5
+langcode: en
+status: true
+dependencies: {  }
+name: 'App Gallery Tags'
+vid: app_gallery_tags
+description: 'App Gallery Tags'
+weight: 0

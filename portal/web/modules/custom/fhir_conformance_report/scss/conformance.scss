@@ -1,0 +1,65 @@
+.conformance-page {
+  width: 100%;
+
+  .material-icons {
+    font-size: 1.1rem;
+  }
+
+  thead {
+    background-color: #F8F8F8;
+  }
+
+  .mdc-data-table__header-cell {
+    font-weight: 600;
+  }
+
+  .support-conformance-class, .resource-conformance-class {
+    td {
+      font-weight: 600;
+    }
+
+  }
+
+  .end-conformance-class {
+    td {
+      color: #4285F4;
+    }
+  }
+  .navtext{
+    color: rgba(0,0,0,.87);
+    padding: 4px 2px;
+    position: relative;
+    opacity: 0.7;
+    span{
+      font-weight: 400;
+      letter-spacing: 1px;
+      bottom: 22px;
+      left: -30px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      white-space: nowrap;
+      width: 0;
+    }
+    &:hover{
+      span{
+        width:auto;
+        padding:0 30px;
+        overflow:visible;
+      }
+    }
+  }
+  .search_params_table {
+    width: 100%;
+    td.param-name {
+      width: 40% !important;
+    }
+    td.param-name-val {
+      padding-left: 80px ;
+    }
+  }
+  .hide {
+    display: none;
+  }
+
+}

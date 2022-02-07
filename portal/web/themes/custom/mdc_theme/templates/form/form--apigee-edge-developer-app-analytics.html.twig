@@ -1,0 +1,54 @@
+
+<div class="analytics-page">
+  <form{{ attributes }}>
+    <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--align-middle">
+      <em>{{ element.timezone }}</em>
+    </div>
+    <div class="mdc-layout-grid analytics-title ">
+      <div class="mdc-layout-grid__inner analytics-body-filter analytics-body">
+        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--align-middle">
+          Time Range:
+        </div>
+        <div class="mdc-layout-grid__cell--span-4-desktop adjust-left-margin">
+          {{ element.controls.metrics }}
+        </div>
+        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--align-middle">
+          Date Range:
+        </div>
+        <div class="mdc-layout-grid__cell--span-4-desktop adjust-left-margin">
+          {{ element.controls.quick_date_picker }}
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner analytics-body analytics-body-content">
+        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--align-middle">
+          Since Date:
+        </div>
+        <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--align-middle adjust-left-margin">
+          {{ element.controls.since }}
+        </div>
+        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--align-middle">
+          Until Date:
+        </div>
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--align-middle adjust-left-margin">
+          {{ element.controls.until }}
+        </div>
+        <div class="mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--align-middle analytics-apply-btn">
+          {{ element.controls.submit }}
+        </div>
+        <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--align-middle">
+            {{ element.export_csv }}
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12-desktop">
+          {{ element.chart }}
+        </div>
+      </div>
+      {{ element.form_build_id }}
+      {{ element.form_id }}
+      {{ element.form_token }}
+
+    </div>
+
+  </form>
+</div>
+

@@ -1,0 +1,4 @@
+<div{{ attributes.addClass('dexp-builder-gallery').addClass(class) }}>
+  <!-- Gallery -->
+  <ul>{% for gallery in galleries %}<li><a href="{{ gallery.image_path }}" title="{{ gallery.title }}">{{ gallery.image_thumb }}</a></li>{% endfor %}</ul>
+</div>

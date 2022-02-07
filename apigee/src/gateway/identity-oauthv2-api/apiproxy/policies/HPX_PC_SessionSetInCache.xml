@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="HPX_PC_SessionSetInCache">
+    <DisplayName>HPX_PC_SessionSetInCache</DisplayName>
+    <CacheResource>consent-session-cache</CacheResource>
+    <Source>session.request.content</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="sessionid"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>1200</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

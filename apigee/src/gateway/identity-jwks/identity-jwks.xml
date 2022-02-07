@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="identity-jwks">
+    <Basepaths>/identity-jwks</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1613485642571</CreatedAt>
+    <CreatedBy>shashank@digitalapicraft.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>identity-jwks</DisplayName>
+    <HostedManifestVersion>SHA-512:d80cdf7ace37f55bdc56e64506f6e6cd6d618ae9a4c8dc789e09fba1e7960233c5d9981ac99d7691290aabd861f0b9e35b3626d9c7ffe70573cd9ab8e909c725:ap-northeast-1</HostedManifestVersion>
+    <LastModifiedAt>1613485662048</LastModifiedAt>
+    <LastModifiedBy>shashank@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:4f3d30ac9e436cbce63ab2a1d87b5569d569f8090189e8577be217b63e6553d6ac1726469a4f2694cb2183298bf07d3c8f4ea41b1faa69b564e8ec646f8da3f1:ap-northeast-1</ManifestVersion>
+    <Policies>
+        <Policy>HPX_AM_ExtractJwksDetails</Policy>
+        <Policy>HPX_AM_JwksStatus</Policy>
+        <Policy>HPX_AM_RemoveRequestAttributes</Policy>
+        <Policy>HPX_JS_AnalyzeKVM</Policy>
+        <Policy>HPX_JS_AssignVariables</Policy>
+        <Policy>HPX_KV_CreateKeyJwks</Policy>
+        <Policy>HPX_KV_CreatePrivateKey</Policy>
+        <Policy>HPX_KV_GetKeyNames</Policy>
+        <Policy>HPX_KV_GetPrivateKey</Policy>
+        <Policy>HPX_KV_GetPublicKey</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://AnalyzeKVM.js</Resource>
+        <Resource>jsc://AssignVariables.js</Resource>
+        <Resource>hosted://app.yaml</Resource>
+        <Resource>hosted://index.js</Resource>
+        <Resource>hosted://package.json</Resource>
+        <Resource>hosted://provisionNewKeyPair.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

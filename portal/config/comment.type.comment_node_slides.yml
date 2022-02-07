@@ -1,0 +1,8 @@
+uuid: 52a59560-0bbe-44ab-8b4b-7c84da707efa
+langcode: en
+status: true
+dependencies: {  }
+id: comment_node_slides
+label: 'Slides comment'
+target_entity_type_id: node
+description: null

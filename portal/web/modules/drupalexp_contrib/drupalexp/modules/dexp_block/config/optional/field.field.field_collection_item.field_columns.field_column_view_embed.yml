@@ -1,0 +1,21 @@
+uuid: 142ade2c-4a12-4d31-831d-d66b4bb0b5a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.field_collection_item.field_column_view_embed
+    - field_collection.field_collection.field_columns
+  module:
+    - dexp_block
+id: field_collection_item.field_columns.field_column_view_embed
+field_name: field_column_view_embed
+entity_type: field_collection_item
+bundle: field_columns
+label: 'View Embed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: dexp_field_view_embed

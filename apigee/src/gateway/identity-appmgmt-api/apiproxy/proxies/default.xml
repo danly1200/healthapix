@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <FaultRules>
+        <FaultRule name="InvalidApiKey">
+            <Condition>(oauthV2.HPX_VerifyApiKey.fault.name  = "oauth.v2.InvalidApiKey") or (oauthV2.HPX_VerifyApiKey.fault.name  = "oauth.v2.InvalidApiKeyForGivenResource")</Condition>
+            <Step>
+                <Name>HPX_RF_InvalidCredentials</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="ApprovalRevokeLink">
+            <Description>get one time approve and reject links</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_VerifyApiKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_ValidateGetLinkRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KVM_AppMgmtConfig</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_HashRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PC_RequestHash</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(app_action == "create")</Condition>
+                    <Name>HPX_AM_SetLinkResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(app_action == "update")</Condition>
+                    <Name>HPX_AM_SetCancelLinkResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/links") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="AppApprovalAction">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_JS_ValidateAppApprovalAction</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_LC_RequestHash</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_ExtractCachedValues</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KVM_MgmtCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>HPX__BA_AdminMgmtCredentials</Name>
+                </Step>
+                <Step>
+                    <Condition>(skipCreateRevoke != true) and (skipUpdateCancel != true)</Condition>
+                    <Name>HPX_SC_GetAppDetails</Name>
+                </Step>
+                <Step>
+                    <Condition>(skipCreateRevoke != true) and (skipUpdateCancel != true)</Condition>
+                    <Name>HPX_JS_HPX_ExtractAppDetails</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(skipCreateRevoke != true) and (skipUpdateCancel != true)</Condition>
+                    <Name>HPX_SC_UpdateAppDetails</Name>
+                </Step>
+                <Step>
+                    <Condition>(skipUpdateCancel != true)</Condition>
+                    <Name>HPX_SC_UpdateAppStatus</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_IC_RequestHash</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_AM_AssignSuccessResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(((proxy.pathsuffix MatchesPath "/approve") or (proxy.pathsuffix MatchesPath "/revoke") or (proxy.pathsuffix MatchesPath "/cancel")) and (request.verb = "GET"))</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/v1/app</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default"/>
+</ProxyEndpoint>

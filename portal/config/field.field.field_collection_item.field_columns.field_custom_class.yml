@@ -1,0 +1,21 @@
+uuid: 60c72e06-45b2-440e-9724-b20f2470716f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.field_collection_item.field_custom_class
+    - field_collection.field_collection.field_columns
+_core:
+  default_config_hash: G6dcc2U5yJ4vq6k0nPLALvRy6ESZkQbjM6MG22N00N8
+id: field_collection_item.field_columns.field_custom_class
+field_name: field_custom_class
+entity_type: field_collection_item
+bundle: field_columns
+label: Class(es)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

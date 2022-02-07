@@ -1,0 +1,3007 @@
+{
+"swagger": "2.0",
+  "info":{
+   "description": 
+    "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+   "version": "1.4.0",
+   "title": "FHIR DocumentReference resource API documentation"
+  },
+  "host": "healthapix-demo-test.apigee.net",
+  "schemes":[
+     "https"
+     ],
+  "basePath": "/v1/dstu2",
+  "produces":[
+    "application/json+fhir;charset=UTF-8",
+    "application/xml+fhir;charset=UTF-8"
+    ], 
+  "definitions": {
+    "DocumentReference": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "fhir_comments": {
+              "type": "array",
+              "items": {
+                "properties": {}
+              }
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "div": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "fhir_comments",
+            "status",
+            "div"
+          ]
+        },
+        "contained": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "resourceType",
+              "id"
+            ],
+            "properties": {
+              "resourceType": {
+                "type": "string",
+                "minLength": 1
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "array",
+                "uniqueItems": true,
+                "minItems": 1,
+                "items": {
+                  "properties": {
+                    "family": {
+                      "type": "array",
+                      "items": {
+                        "properties": {}
+                      }
+                    },
+                    "given": {
+                      "type": "array",
+                      "items": {
+                        "properties": {}
+                      }
+                    }
+                  }
+                }
+              },
+              "practitionerRole": {
+                "type": "array",
+                "uniqueItems": true,
+                "minItems": 1,
+                "items": {
+                  "properties": {
+                    "organization": {
+                      "type": "object",
+                      "properties": {
+                        "display": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "display"
+                      ]
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "text"
+                      ]
+                    },
+                    "specialty": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "text"
+                        ],
+                        "properties": {
+                          "text": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "masterIdentifier": {
+          "type": "object",
+          "properties": {
+            "system": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "system",
+            "value"
+          ]
+        },
+        "identifier": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "system",
+              "value"
+            ],
+            "properties": {
+              "system": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "coding"
+          ]
+        },
+        "class": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "coding"
+          ]
+        },
+        "author": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "reference"
+            ],
+            "properties": {
+              "reference": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "custodian": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "authenticator": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "minLength": 1
+        },
+        "indexed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "docStatus": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "coding"
+          ]
+        },
+        "relatesTo": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "code"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "target": {
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "reference"
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "securityLabel": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "properties": {
+              "coding": {
+                "type": "array",
+                "uniqueItems": true,
+                "minItems": 1,
+                "items": {
+                  "required": [
+                    "system",
+                    "code",
+                    "display"
+                  ],
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "content": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "properties": {
+              "attachment": {
+                "type": "object",
+                "properties": {
+                  "contentType": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "language": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "size": {
+                    "type": "number"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "contentType",
+                  "language",
+                  "url",
+                  "size",
+                  "hash"
+                ]
+              },
+              "format": {
+                "type": "array",
+                "uniqueItems": true,
+                "minItems": 1,
+                "items": {
+                  "required": [
+                    "system",
+                    "code",
+                    "display"
+                  ],
+                  "properties": {
+                    "system": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "display": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "encounter": {
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "reference"
+              ]
+            },
+            "event": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "coding": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "system",
+                        "code",
+                        "display"
+                      ],
+                      "properties": {
+                        "system": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "code": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "display": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "period": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "end": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "start",
+                "end"
+              ]
+            },
+            "facilityType": {
+              "type": "object",
+              "properties": {
+                "coding": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "system",
+                      "code",
+                      "display"
+                    ],
+                    "properties": {
+                      "system": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "display": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "coding"
+              ]
+            },
+            "practiceSetting": {
+              "type": "object",
+              "properties": {
+                "coding": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "system",
+                      "code",
+                      "display"
+                    ],
+                    "properties": {
+                      "system": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "display": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "coding"
+              ]
+            },
+            "sourcePatientInfo": {
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "reference"
+              ]
+            },
+            "related": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "identifier": {
+                    "type": "object",
+                    "properties": {
+                      "system": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "value": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "system",
+                      "value"
+                    ]
+                  },
+                  "ref": {
+                    "type": "object",
+                    "properties": {
+                      "reference": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "reference"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "encounter",
+            "event",
+            "period",
+            "facilityType",
+            "practiceSetting",
+            "sourcePatientInfo",
+            "related"
+          ]
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "text",
+        "contained",
+        "masterIdentifier",
+        "identifier",
+        "subject",
+        "type",
+        "class",
+        "author",
+        "custodian",
+        "authenticator",
+        "created",
+        "indexed",
+        "status",
+        "docStatus",
+        "relatesTo",
+        "description",
+        "securityLabel",
+        "content",
+        "context"
+      ]
+    },
+    "metaBody": {
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/DocumentReference": {
+      "parameters": [],
+      "post": {
+        "tags":[
+          "DocumentReference"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentReference"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "required": false,
+            "description": "Specify the search query for conditional create.",
+            "type": "string"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "DocumentReference could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "DocumentReference not found."
+          },
+          "422": {
+            "description": "The DocumentReference resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Create DocumentReference",
+        "description": "Create a new DocumentReference with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      },
+      "put": {
+        "tags":[
+          "DocumentReference"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentReference"
+            }
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "authenticator",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what authenticated the document"
+          },
+          {
+            "name": "author",
+            "type": "string",
+            "in": "query",
+            "description": "Who and/or what authored the document"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "in": "query",
+            "description": "Categorization of document"
+          },
+          {
+            "name": "created",
+            "type": "string",
+            "in": "query",
+            "description": "Document creation time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "custodian",
+            "type": "string",
+            "in": "query",
+            "description": "Organization which maintains the document"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "in": "query",
+            "description": "Human-readable description (title)"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Context of the document  content"
+          },
+          {
+            "name": "event",
+            "type": "string",
+            "in": "query",
+            "description": "Main Clinical Acts Documented"
+          },
+          {
+            "name": "facility",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of facility where patient was seen"
+          },
+          {
+            "name": "format",
+            "type": "string",
+            "in": "query",
+            "description": "Format/content rules for the document"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Master Version Specific Identifier"
+          },
+          {
+            "name": "indexed",
+            "type": "string",
+            "in": "query",
+            "description": "When this document reference created. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "in": "query",
+            "description": "Human language of the content (BCP-47)"
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "in": "query",
+            "description": "Uri where the data can be found"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time of service that is being documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "related-id",
+            "type": "string",
+            "in": "query",
+            "description": "Identifier of related objects or events"
+          },
+          {
+            "name": "related-ref",
+            "type": "string",
+            "in": "query",
+            "description": "Related Resource"
+          },
+          {
+            "name": "relatesto",
+            "type": "string",
+            "in": "query",
+            "description": "Target of the relationship"
+          },
+          {
+            "name": "relatesto-relation",
+            "type": "string",
+            "in": "query",
+            "description": "Combination of relation and relatesTo"
+          },
+          {
+            "name": "relation",
+            "type": "string",
+            "in": "query",
+            "description": "replaces | transforms | signs | appends"
+          },
+          {
+            "name": "securitylabel",
+            "type": "string",
+            "in": "query",
+            "description": "Document security-tags"
+          },
+          {
+            "name": "setting",
+            "type": "string",
+            "in": "query",
+            "description": "Additional details about where the content was created (e.g. clinical specialty)"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "current | superseded | entered-in-error"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of document (LOINC if possible)"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference Updated."
+          },
+          "201": {
+            "description": "DocumentReference Created."
+          },
+          "400": {
+            "description": "DocumentReference could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReference Conditional Update",
+        "description": "The conditional update interaction is used to update an existing DocumentReference based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      },
+      "delete": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "authenticator",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what authenticated the document"
+          },
+          {
+            "name": "author",
+            "type": "string",
+            "in": "query",
+            "description": "Who and/or what authored the document"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "in": "query",
+            "description": "Categorization of document"
+          },
+          {
+            "name": "created",
+            "type": "string",
+            "in": "query",
+            "description": "Document creation time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "custodian",
+            "type": "string",
+            "in": "query",
+            "description": "Organization which maintains the document"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "in": "query",
+            "description": "Human-readable description (title)"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Context of the document  content"
+          },
+          {
+            "name": "event",
+            "type": "string",
+            "in": "query",
+            "description": "Main Clinical Acts Documented"
+          },
+          {
+            "name": "facility",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of facility where patient was seen"
+          },
+          {
+            "name": "format",
+            "type": "string",
+            "in": "query",
+            "description": "Format/content rules for the document"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Master Version Specific Identifier"
+          },
+          {
+            "name": "indexed",
+            "type": "string",
+            "in": "query",
+            "description": "When this document reference created. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "in": "query",
+            "description": "Human language of the content (BCP-47)"
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "in": "query",
+            "description": "Uri where the data can be found"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time of service that is being documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "related-id",
+            "type": "string",
+            "in": "query",
+            "description": "Identifier of related objects or events"
+          },
+          {
+            "name": "related-ref",
+            "type": "string",
+            "in": "query",
+            "description": "Related Resource"
+          },
+          {
+            "name": "relatesto",
+            "type": "string",
+            "in": "query",
+            "description": "Target of the relationship"
+          },
+          {
+            "name": "relatesto-relation",
+            "type": "string",
+            "in": "query",
+            "description": "Combination of relation and relatesTo"
+          },
+          {
+            "name": "relation",
+            "type": "string",
+            "in": "query",
+            "description": "replaces | transforms | signs | appends"
+          },
+          {
+            "name": "securitylabel",
+            "type": "string",
+            "in": "query",
+            "description": "Document security-tags"
+          },
+          {
+            "name": "setting",
+            "type": "string",
+            "in": "query",
+            "description": "Additional details about where the content was created (e.g. clinical specialty)"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "current | superseded | entered-in-error"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of document (LOINC if possible)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "DocumentReference not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReference Conditional Delete",
+        "description": "The conditional delete interaction allows a client to delete DocumentReference/DocumentReferences  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      },
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "authenticator",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what authenticated the document"
+          },
+          {
+            "name": "author",
+            "type": "string",
+            "in": "query",
+            "description": "Who and/or what authored the document"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "in": "query",
+            "description": "Categorization of document"
+          },
+          {
+            "name": "created",
+            "type": "string",
+            "in": "query",
+            "description": "Document creation time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "custodian",
+            "type": "string",
+            "in": "query",
+            "description": "Organization which maintains the document"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "in": "query",
+            "description": "Human-readable description (title)"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Context of the document  content"
+          },
+          {
+            "name": "event",
+            "type": "string",
+            "in": "query",
+            "description": "Main Clinical Acts Documented"
+          },
+          {
+            "name": "facility",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of facility where patient was seen"
+          },
+          {
+            "name": "format",
+            "type": "string",
+            "in": "query",
+            "description": "Format/content rules for the document"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Master Version Specific Identifier"
+          },
+          {
+            "name": "indexed",
+            "type": "string",
+            "in": "query",
+            "description": "When this document reference created. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "in": "query",
+            "description": "Human language of the content (BCP-47)"
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "in": "query",
+            "description": "Uri where the data can be found"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time of service that is being documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "related-id",
+            "type": "string",
+            "in": "query",
+            "description": "Identifier of related objects or events"
+          },
+          {
+            "name": "related-ref",
+            "type": "string",
+            "in": "query",
+            "description": "Related Resource"
+          },
+          {
+            "name": "relatesto",
+            "type": "string",
+            "in": "query",
+            "description": "Target of the relationship"
+          },
+          {
+            "name": "relatesto-relation",
+            "type": "string",
+            "in": "query",
+            "description": "Combination of relation and relatesTo"
+          },
+          {
+            "name": "relation",
+            "type": "string",
+            "in": "query",
+            "description": "replaces | transforms | signs | appends"
+          },
+          {
+            "name": "securitylabel",
+            "type": "string",
+            "in": "query",
+            "description": "Document security-tags"
+          },
+          {
+            "name": "setting",
+            "type": "string",
+            "in": "query",
+            "description": "Additional details about where the content was created (e.g. clinical specialty)"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "current | superseded | entered-in-error"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of document (LOINC if possible)"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DocumentReference"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReferences Search",
+        "description": "Returns DocumentReferences based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}": {
+      "parameters": [],
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference Instance",
+            "schema": {
+              "$ref": "#/definitions/DocumentReference"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Read DocumentReference",
+        "description": "Returns details of DocumentReference having id given in path.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      },
+      "put": {
+        "tags":[
+          "DocumentReference"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentReference"
+            }
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference Updated."
+          },
+          "201": {
+            "description": "DocumentReference Created."
+          },
+          "400": {
+            "description": "DocumentReference could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Update DocumentReference",
+        "description": "Update an existing DocumentReference by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      },
+      "delete": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "DocumentReference not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Delete DocumentReference",
+        "description": "The delete interaction removes an existing DocumentReference.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/_history": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DocumentReference"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReference History",
+        "description": "It retrieves the history of a particular DocumentReference identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/_history": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DocumentReference"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReferences History",
+        "description": "It retrieves the history of all resources of DocumentReference.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/_history/{vid}": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference Instance",
+            "schema": {
+              "$ref": "#/definitions/DocumentReference"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReference Version Read",
+        "description": "This interaction preforms a version specific read of DocumentReference resource.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/$meta": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for DocumentReference"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReferences Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for DocumentReferences.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/$meta": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReference Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given DocumentReference resource.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/_history/{vid}/$meta": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReference Version based Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the DocumentReference.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/{type}": {
+      "get": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "type",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular DocumentReference"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": " Compartment Search",
+        "description": "Search the specified resource type in DocumentReference compartment.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/_search": {
+      "post": {
+        "tags":[
+          "DocumentReference"
+          ],
+        "consumes":[
+        "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "authenticator",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what authenticated the document"
+          },
+          {
+            "name": "author",
+            "type": "string",
+            "in": "query",
+            "description": "Who and/or what authored the document"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "in": "query",
+            "description": "Categorization of document"
+          },
+          {
+            "name": "created",
+            "type": "string",
+            "in": "query",
+            "description": "Document creation time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "custodian",
+            "type": "string",
+            "in": "query",
+            "description": "Organization which maintains the document"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "in": "query",
+            "description": "Human-readable description (title)"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Context of the document  content"
+          },
+          {
+            "name": "event",
+            "type": "string",
+            "in": "query",
+            "description": "Main Clinical Acts Documented"
+          },
+          {
+            "name": "facility",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of facility where patient was seen"
+          },
+          {
+            "name": "format",
+            "type": "string",
+            "in": "query",
+            "description": "Format/content rules for the document"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Master Version Specific Identifier"
+          },
+          {
+            "name": "indexed",
+            "type": "string",
+            "in": "query",
+            "description": "When this document reference created. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "in": "query",
+            "description": "Human language of the content (BCP-47)"
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "in": "query",
+            "description": "Uri where the data can be found"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time of service that is being documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "related-id",
+            "type": "string",
+            "in": "query",
+            "description": "Identifier of related objects or events"
+          },
+          {
+            "name": "related-ref",
+            "type": "string",
+            "in": "query",
+            "description": "Related Resource"
+          },
+          {
+            "name": "relatesto",
+            "type": "string",
+            "in": "query",
+            "description": "Target of the relationship"
+          },
+          {
+            "name": "relatesto-relation",
+            "type": "string",
+            "in": "query",
+            "description": "Combination of relation and relatesTo"
+          },
+          {
+            "name": "relation",
+            "type": "string",
+            "in": "query",
+            "description": "replaces | transforms | signs | appends"
+          },
+          {
+            "name": "securitylabel",
+            "type": "string",
+            "in": "query",
+            "description": "Document security-tags"
+          },
+          {
+            "name": "setting",
+            "type": "string",
+            "in": "query",
+            "description": "Additional details about where the content was created (e.g. clinical specialty)"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "current | superseded | entered-in-error"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "query",
+            "description": "Kind of document (LOINC if possible)"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "formData",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "authenticator",
+            "type": "string",
+            "in": "formData",
+            "description": "Who/what authenticated the document"
+          },
+          {
+            "name": "author",
+            "type": "string",
+            "in": "formData",
+            "description": "Who and/or what authored the document"
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "in": "formData",
+            "description": "Categorization of document"
+          },
+          {
+            "name": "created",
+            "type": "string",
+            "in": "formData",
+            "description": "Document creation time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "custodian",
+            "type": "string",
+            "in": "formData",
+            "description": "Organization which maintains the document"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "in": "formData",
+            "description": "Human-readable description (title)"
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "formData",
+            "description": "Context of the document  content"
+          },
+          {
+            "name": "event",
+            "type": "string",
+            "in": "formData",
+            "description": "Main Clinical Acts Documented"
+          },
+          {
+            "name": "facility",
+            "type": "string",
+            "in": "formData",
+            "description": "Kind of facility where patient was seen"
+          },
+          {
+            "name": "format",
+            "type": "string",
+            "in": "formData",
+            "description": "Format/content rules for the document"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "formData",
+            "description": "Master Version Specific Identifier"
+          },
+          {
+            "name": "indexed",
+            "type": "string",
+            "in": "formData",
+            "description": "When this document reference created. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "in": "formData",
+            "description": "Human language of the content (BCP-47)"
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "in": "formData",
+            "description": "Uri where the data can be found"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "formData",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "formData",
+            "description": "Time of service that is being documented. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "related-id",
+            "type": "string",
+            "in": "formData",
+            "description": "Identifier of related objects or events"
+          },
+          {
+            "name": "related-ref",
+            "type": "string",
+            "in": "formData",
+            "description": "Related Resource"
+          },
+          {
+            "name": "relatesto",
+            "type": "string",
+            "in": "formData",
+            "description": "Target of the relationship"
+          },
+          {
+            "name": "relatesto-relation",
+            "type": "string",
+            "in": "formData",
+            "description": "Combination of relation and relatesTo"
+          },
+          {
+            "name": "relation",
+            "type": "string",
+            "in": "formData",
+            "description": "replaces | transforms | signs | appends"
+          },
+          {
+            "name": "securitylabel",
+            "type": "string",
+            "in": "formData",
+            "description": "Document security-tags"
+          },
+          {
+            "name": "setting",
+            "type": "string",
+            "in": "formData",
+            "description": "Additional details about where the content was created (e.g. clinical specialty)"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "formData",
+            "description": "current | superseded | entered-in-error"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "formData",
+            "description": "Who/what is the subject of the document"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "in": "formData",
+            "description": "Kind of document (LOINC if possible)"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "DocumentReference bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DocumentReference"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "DocumentReferences Search using POST",
+        "description": "This interaction searches a set of DocumentReferences based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/$meta-add": {
+      "post": {
+        "tags":[
+          "DocumentReference"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "DocumentReference could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "DocumentReference not found."
+          },
+          "422": {
+            "description": "The DocumentReference resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add DocumentReference metadata",
+        "description": "Add a metadata info DocumentReference with specified id.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    },
+    "/DocumentReference/{id}/_history/{vid}/$meta-add": {
+      "post": {
+        "tags":[
+          "DocumentReference"
+          ],
+         "consumes":[
+          "application/json",
+        "application/xml"
+        ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+         "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Documentreference.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Documentreference.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "DocumentReference could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "DocumentReference not found."
+          },
+          "422": {
+            "description": "The DocumentReference resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add DocumentReference Version based Metadata",
+        "description": "Add metadata info to specified DocumentReference resource.<p><a href = 'https://www.hl7.org/fhir/documentreference.html'>FHIR documentation for DocumentReference.</a></p>"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuthV2B2C": {
+      "type": "oauth2",
+      "description": "Security scheme for B2C flow using authorization code flow.",
+      "scopes": {
+        "patient/Documentreference.read": "Read permissions for Documentreference demographics.",
+        "patient/Documentreference.write": "Write permissions for Documentreference demographics."
+      },
+      "flow": "accessCode",
+      "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken"
+    },
+  "OAuthV2B2B": {
+      "type": "oauth2",
+      "description": "Security scheme for B2B flow using authorization code flow.",
+      "flow": "application",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+      "scopes": {
+        "patient/Documentreference.read": "Read permissions for Documentreference demographics.",
+        "patient/Documentreference.write": "Write permissions for Documentreference demographics."
+      }
+    }
+  }
+}

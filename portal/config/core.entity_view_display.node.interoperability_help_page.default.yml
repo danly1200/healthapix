@@ -1,0 +1,30 @@
+uuid: 2e5c81a5-1feb-4ef0-b942-d8732e90a1d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.interoperability_help_page.body
+    - field.field.node.interoperability_help_page.field_interoperability_api_tag
+    - node.type.interoperability_help_page
+  module:
+    - text
+    - user
+id: node.interoperability_help_page.default
+targetEntityType: node
+bundle: interoperability_help_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_interoperability_api_tag: true

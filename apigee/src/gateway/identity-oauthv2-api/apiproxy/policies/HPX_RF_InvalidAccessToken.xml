@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="HPX_RF_InvalidAccessToken">
+    <DisplayName>HPX_RF_InvalidAccessToken</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{
+    "error": "Unauthorized",
+    "error_description": "Invalid AccessToken"
+}</Payload>
+            <StatusCode>401</StatusCode>
+        </Set>
+    </FaultResponse>
+</RaiseFault>

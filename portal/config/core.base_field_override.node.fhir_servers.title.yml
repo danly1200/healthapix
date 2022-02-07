@@ -1,0 +1,18 @@
+uuid: 2f168f57-fee4-4c8e-9f94-90c9e5f31d67
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.fhir_servers
+id: node.fhir_servers.title
+field_name: title
+entity_type: node
+bundle: fhir_servers
+label: 'FHIR Server'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: c65f07fa-5dc6-49cc-b28d-e2913c5d918a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_interoperability_api_tag
+    - node.type.smartdocs
+    - taxonomy.vocabulary.interoperability_api_s
+id: node.smartdocs.field_interoperability_api_tag
+field_name: field_interoperability_api_tag
+entity_type: node
+bundle: smartdocs
+label: 'Interoperability API Tag'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      interoperability_api_s: interoperability_api_s
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

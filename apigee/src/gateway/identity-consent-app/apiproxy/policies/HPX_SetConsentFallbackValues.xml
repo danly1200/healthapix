@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetConsentFallbackValues">
+    <DisplayName>HPX_SetConsentFallbackValues</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>consent.id</Name>
+        <Value>null</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>consent.exists</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>consent.valid</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>consent.existing_scopes</Name>
+        <Value>[]</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>consent.new_scopes</Name>
+        <Value>[]</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,7 @@
+name: FHIR Rebranding
+type: module
+description: Module written for rebranding functionalities
+core: 8.x
+package: custom
+dependencies:
+  - block

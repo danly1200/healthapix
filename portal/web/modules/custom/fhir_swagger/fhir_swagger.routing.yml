@@ -1,0 +1,6 @@
+fhir_swagger:
+  path: '/swagger/create'
+  defaults:
+    _controller: '\Drupal\fhir_swagger\Controller\SwaggerNodeController::content'
+  requirements:
+    _permission: 'access content'

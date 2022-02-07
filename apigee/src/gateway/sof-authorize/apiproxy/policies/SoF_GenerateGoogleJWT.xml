@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="SoF_GenerateGoogleJWT">
+    <DisplayName>SoF_GenerateGoogleJWT</DisplayName>
+    <Properties/>
+    <Type>Signed</Type>
+    <Algorithm>RS256</Algorithm>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <PrivateKey>
+        <Value ref="private.private_key"/>
+    </PrivateKey>
+    <OutputVariable>googleJwt</OutputVariable>
+    <AdditionalClaims>
+        <Claim name="scope" type="string">https://www.googleapis.com/auth/cloud-platform</Claim>
+    </AdditionalClaims>
+    <Audience ref="private.token_uri"/>
+    <Compress>false</Compress>
+    <ExpiresIn>5m</ExpiresIn>
+    <Issuer ref="private.client_email"/>
+</GenerateJWT>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AddGoogleFlowVariableToTarget">
+    <DisplayName>AddGoogleFlowVariableToTarget</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignTo createNew="true" transport="http" type="request">request</AssignTo>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Set>
+        <QueryParams>
+            <QueryParam name="sessionid">{sessionid}</QueryParam>
+            <QueryParam name="useremail">{userid}</QueryParam>
+            <QueryParam name="appName">{appName}</QueryParam>
+            <QueryParam name="fullName">{fullName}</QueryParam>
+        </QueryParams>
+        <Headers>
+            <Header name="Cookie">{request.header.Cookie}</Header>
+        </Headers>
+    </Set>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+</AssignMessage>

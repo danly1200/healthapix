@@ -1,0 +1,20 @@
+uuid: dc3b2e3a-e953-4327-8c4b-cc98b86bd4ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_blocks
+  theme:
+    - fhir_responsive_theme
+id: fhirlogocaption
+theme: fhir_responsive_theme
+region: logo_right
+weight: 0
+provider: null
+plugin: fhir_logo_caption
+settings:
+  id: fhir_logo_caption
+  label: 'FHIR Logo Caption'
+  provider: fhir_blocks
+  label_display: '0'
+visibility: {  }

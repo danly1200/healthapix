@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="HPX_GJW_AccessTokenIntrospectGenerateIDTokenRSA">
+    <DisplayName>HPX_GJW_AccessTokenIntrospectGenerateIDTokenRSA</DisplayName>
+    <Algorithm>RS384</Algorithm>
+    <PrivateKey>
+        <Id ref="privatekeyRS384Name"/>
+        <Value ref="private.privatekeyRS384"/>
+    </PrivateKey>
+    <AdditionalClaims>
+        <Claim name="fhirUser" ref="oauthv2accesstoken.HPX_GO_AccessTokenInfo.accesstoken.fhirUser"/>
+    </AdditionalClaims>
+    <Subject ref="oauthv2accesstoken.HPX_GO_AccessTokenInfo.accesstoken.userid"/>
+    <Issuer ref="issuer"/>
+    <Audience ref="oauthv2accesstoken.HPX_GO_AccessTokenInfo.accesstoken.aud"/>
+    <ExpiresIn>1h</ExpiresIn>
+    <OutputVariable>jws</OutputVariable>
+</GenerateJWT>

@@ -1,0 +1,44 @@
+uuid: e91d9d23-a94b-4759-9cce-f896901b23b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment_node_blog_audio.default
+    - field.field.node.blog_audio.body
+    - field.field.node.blog_audio.comment_node_blog_audio
+    - field.field.node.blog_audio.field_audio
+    - field.field.node.blog_audio.field_content_tag
+    - node.type.blog_audio
+  module:
+    - comment
+    - text
+    - user
+id: node.blog_audio.default
+targetEntityType: node
+bundle: blog_audio
+mode: default
+content:
+  body:
+    label: hidden
+    weight: 0
+    type: text_default
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  comment_node_blog_audio:
+    label: hidden
+    type: comment_default
+    weight: 20
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_audio: true
+  field_content_tag: true

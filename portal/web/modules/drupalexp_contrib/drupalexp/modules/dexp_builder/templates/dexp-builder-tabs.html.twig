@@ -1,0 +1,14 @@
+<div{{ attributes.addClass('dexp-builder-tabs').addClass(class) }}>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    {% for tab in tabs %}
+      <li role="presentation"><a class="{% if loop.first %}active{% endif %}" href="#{{ tab.tab_id }}" aria-controls="{{ tab.tab_id }}" role="tab" data-toggle="tab">{% if tab.title_icon is not empty %}<i class="{{ tab.title_icon}}"></i> {% endif %}{{ tab.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    {% for tab in tabs %}
+      <div role="tabpanel" id="{{ tab.tab_id }}" class="{{ tab.class }}{% if fade == 'fade' %} fade {% endif %}{% if loop.first %} show active {% endif %}">{{ tab.content|raw }}</div>
+    {% endfor %}
+  </div>
+</div>

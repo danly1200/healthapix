@@ -1,0 +1,27 @@
+ignored_config_entities:
+  - key.key.apigee_edge_connection_default
+  - key.key.healthapix_edge_configuration
+  - block.block.simplifyblock
+  - block.block.keepintouch
+  - block.block.getstarted
+  - block.block.comprehensive
+  - block.block.loginconsentappcredentials
+  - block.block.homepagefeatures
+  - block.block.homepagevideoblock
+  - block.block.virtualmobilebankingservices
+  - block.block.whatweprovide
+  - block.block.homepageslider
+  - block.block.healthcarefhirservices
+  - block.block.whyshouldyouchooseus
+  - views.view.app_gallery
+  - views.view.blog_content
+  - apigee_edge.common_app_settings
+  - fhir_conformance_report.settings
+  - fhir_restapi.apigee_auth_url.settings
+  - system.logging
+  - system.performance
+  - views.settings
+  - social_auth_google.settings
+  - smtp.settings
+_core:
+  default_config_hash: UVH1aJ4b44UM-VdPVN7hNNuuVqfReJxwfVeDQH1Hvsk

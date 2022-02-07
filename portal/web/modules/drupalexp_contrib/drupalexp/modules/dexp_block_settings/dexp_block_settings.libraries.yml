@@ -1,0 +1,52 @@
+aos:
+  js:
+    assets/js/aos.js: {}
+  css:
+    base:
+      assets/css/aos.css: {}
+jquery-ytplayer:
+  js:
+    assets/js/jquery.mb.YTPlayer.src.js: {}
+  dependencies:
+    - core/jquery
+jquery-vmplayer:
+  js:
+    assets/js/jquery.mb.vimeo_player.min.js: {}
+  dependencies:
+    - core/jquery
+parallax:
+  js:
+    assets/js/dexp.parallax.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+animate:
+  js:
+    assets/js/dexp.animate.js: {}
+  dependencies:
+    - dexp_block_settings/aos
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+animate_admin:
+  js:
+    assets/js/animate_admin.js: {}
+  css:
+    base:
+      assets/css/animate_admin.css: {}
+      assets/css/aos.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery.once
+videobg:
+  js:
+    assets/js/dexp.video_background.js: {}
+  css:
+    base:
+      assets/css/videobg.css: {}
+  dependencies:
+    #- dexp_block_settings/jquery-ytplayer
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="HPX_ExtractSingleRecord">
+    <DisplayName>HPX_ExtractSingleRecord</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://HPX_ExtractSingleRecord.js</ResourceURL>
+    <IncludeURL>jsc://jsonpath-0.8.0.js</IncludeURL>
+</Javascript>

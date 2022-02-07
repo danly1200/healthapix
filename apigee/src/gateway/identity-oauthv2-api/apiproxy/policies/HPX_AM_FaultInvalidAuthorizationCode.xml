@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_FaultInvalidAuthorizationCode">
+    <DisplayName>HPX_AM_FaultInvalidAuthorizationCode</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers/>
+        <Payload contentType="application/json">{"error":"invalid_request","error_description":"Authorization code in the request is not valid!"}</Payload>
+        <StatusCode>400</StatusCode>
+        <ReasonPhrase>Unauthorized</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

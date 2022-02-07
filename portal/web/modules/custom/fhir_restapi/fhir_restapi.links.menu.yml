@@ -1,0 +1,6 @@
+fhir_restapi.admin:
+  title: 'Apigee Management API Settings'
+  description: 'Configuration for the APIGEE Management API settings'
+  parent: system.admin_config
+  route_name: fhir_restapi.apigee_auth_url.settings
+  weight: 100

@@ -1,0 +1,23 @@
+uuid: 8a283e77-e893-4c21-a4aa-e149bb07a8c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_tags
+    - node.type.apps
+id: node.apps.field_app_tags
+field_name: field_app_tags
+entity_type: node
+bundle: apps
+label: Tags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    sort:
+      field: _none
+  handler: 'default:taxonomy_term'
+field_type: entity_reference

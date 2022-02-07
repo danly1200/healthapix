@@ -1,0 +1,15 @@
+uuid: 03b899a7-6851-4e0b-bebf-ffa3cb458880
+langcode: en
+status: true
+dependencies: {  }
+name: homepage_slider
+label: homepage_slider
+effects:
+  20c738b0-0c39-4362-ad8c-8a4b72ebdff3:
+    uuid: 20c738b0-0c39-4362-ad8c-8a4b72ebdff3
+    id: image_scale
+    weight: 1
+    data:
+      width: 2560
+      height: 407
+      upscale: false

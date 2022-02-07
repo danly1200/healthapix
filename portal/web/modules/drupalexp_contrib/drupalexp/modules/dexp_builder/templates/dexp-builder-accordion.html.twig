@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-header" role="tab" id="{{ html_id }}">
+    <{{render_el}} class="mb-0 panel-title">
+      <a role="button" class="{% if expanded %}{% else %}collapsed{% endif %}" data-toggle="collapse" data-parent="#PLACEHODER_ID" data-target="#{{ html_id }}-content" aria-expanded="{% if expanded %}true{% else %}false{% endif %}" aria-controls="{{ html_id }}-content">
+        {% if icon is not empty %}<i class="{{icon}}"></i> {% endif %}{{ title }}
+      </a>
+    </{{render_el}}>
+  </div>
+  <div id="{{ html_id }}-content" class="panel-collapse collapse{% if expanded %} in show{% endif %}" role="tabpanel" aria-labelledby="{{ html_id }}" data-parent="#PLACEHODER_ID">
+    <div class="panel-body">
+      {{ content|raw }}
+    </div>
+  </div>
+</div>

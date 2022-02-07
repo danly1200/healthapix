@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_AM_ExtractJwksDetails">
+    <DisplayName>HPX_AM_ExtractJwksDetails</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="keyId">
+            <JSONPath>$.jwksDetails.KeyId</JSONPath>
+        </Variable>
+        <Variable name="pubKey">
+            <JSONPath>$.jwksDetails.publicKey</JSONPath>
+        </Variable>
+        <Variable name="privKey">
+            <JSONPath>$.jwksDetails.privateKey</JSONPath>
+        </Variable>
+        <Variable name="kty">
+            <JSONPath>$.jwksDetails.jwks[0].kty</JSONPath>
+        </Variable>
+        <Variable name="kid">
+            <JSONPath>$.jwksDetails.jwks[0].kid</JSONPath>
+        </Variable>
+        <Variable name="use">
+            <JSONPath>$.jwksDetails.jwks[0].use</JSONPath>
+        </Variable>
+        <Variable name="n">
+            <JSONPath>$.jwksDetails.jwks[0].n</JSONPath>
+        </Variable>
+        <Variable name="e">
+            <JSONPath>$.jwksDetails.jwks[0].e</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>keypair</VariablePrefix>
+</ExtractVariables>

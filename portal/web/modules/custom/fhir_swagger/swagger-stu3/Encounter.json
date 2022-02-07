@@ -1,0 +1,2619 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "FHIR Encounter resource API documentation",
+    "description": "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+    "version": "1.4.0"
+  },
+  "servers": [
+    {
+      "url": "https://healthapix-demo-test.apigee.net/{basePath}",
+      "variables": {
+        "basePath": {
+          "enum": [
+            "v1/dstu3",
+            "v1/ghc"
+          ],
+          "default": "v1/ghc"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/Encounter": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Returns Encounters based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounters Search",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appointment",
+            "in": "query",
+            "description": "The appointment that scheduled this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "condition",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "A date within the period the Encounter lasted. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "episodeofcare",
+            "in": "query",
+            "description": "Episode(s) of care that this encounter should be recorded against",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "Identifier(s) by which this encounter is known",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "incomingreferral",
+            "in": "query",
+            "description": "The ReferralRequest that initiated this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "indication",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Length of encounter in days",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location the encounter takes place",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location-period",
+            "in": "query",
+            "description": "Time period during which the patient was present at the location. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "part-of",
+            "in": "query",
+            "description": "Another Encounter this encounter is part of",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant-type",
+            "in": "query",
+            "description": "Role of participant in encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The patient present at the encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "practitioner",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "procedure",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "description": "Reason the encounter takes place (code)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "special-arrangement",
+            "in": "query",
+            "description": "Wheelchair, translator, stretcher, etc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "planned | arrived | in-progress | onleave | finished | cancelled",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Specific type of encounter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encounter bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "The conditional update interaction is used to update an existing Encounter based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounter Conditional Update",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appointment",
+            "in": "query",
+            "description": "The appointment that scheduled this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "condition",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "A date within the period the Encounter lasted. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "episodeofcare",
+            "in": "query",
+            "description": "Episode(s) of care that this encounter should be recorded against",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "Identifier(s) by which this encounter is known",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "incomingreferral",
+            "in": "query",
+            "description": "The ReferralRequest that initiated this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "indication",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Length of encounter in days",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location the encounter takes place",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location-period",
+            "in": "query",
+            "description": "Time period during which the patient was present at the location. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "part-of",
+            "in": "query",
+            "description": "Another Encounter this encounter is part of",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant-type",
+            "in": "query",
+            "description": "Role of participant in encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The patient present at the encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "practitioner",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "procedure",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "description": "Reason the encounter takes place (code)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "special-arrangement",
+            "in": "query",
+            "description": "Wheelchair, translator, stretcher, etc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "planned | arrived | in-progress | onleave | finished | cancelled",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Specific type of encounter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Encounter"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Encounter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Encounter Updated.",
+            "content": {}
+          },
+          "201": {
+            "description": "Encounter Created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Encounter could not be parsed or failed basic FHIR validation rules (or multiple matches were found).",
+            "content": {}
+          },
+          "403": {
+            "description": "Not Authorized.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Create a new Encounter with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Create Encounter",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "description": "Specify the search query for conditional create.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Encounter"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Encounter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "Encounter could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Encounter not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The Encounter resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "The conditional delete interaction allows a client to delete Encounter/Encounters  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounter Conditional Delete",
+        "parameters": [
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appointment",
+            "in": "query",
+            "description": "The appointment that scheduled this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "condition",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "A date within the period the Encounter lasted. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "episodeofcare",
+            "in": "query",
+            "description": "Episode(s) of care that this encounter should be recorded against",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "Identifier(s) by which this encounter is known",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "incomingreferral",
+            "in": "query",
+            "description": "The ReferralRequest that initiated this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "indication",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Length of encounter in days",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location the encounter takes place",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location-period",
+            "in": "query",
+            "description": "Time period during which the patient was present at the location. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "part-of",
+            "in": "query",
+            "description": "Another Encounter this encounter is part of",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant-type",
+            "in": "query",
+            "description": "Role of participant in encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The patient present at the encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "practitioner",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "procedure",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "description": "Reason the encounter takes place (code)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "special-arrangement",
+            "in": "query",
+            "description": "Wheelchair, translator, stretcher, etc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "planned | arrived | in-progress | onleave | finished | cancelled",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Specific type of encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "204": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "404": {
+            "description": "Encounter not found.",
+            "content": {}
+          },
+          "405": {
+            "description": "Method not allowed.",
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict Error.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Returns details of Encounter having id given in path.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Read Encounter",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encounter Instance",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Encounter"
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Encounter"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Update an existing Encounter by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Update Encounter",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Encounter"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Encounter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Encounter Updated.",
+            "content": {}
+          },
+          "201": {
+            "description": "Encounter Created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Encounter could not be parsed or failed basic FHIR validation rules (or multiple matches were found).",
+            "content": {}
+          },
+          "403": {
+            "description": "Not Authorized.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "The delete interaction removes an existing Encounter.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Delete Encounter",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "204": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "404": {
+            "description": "Encounter not found.",
+            "content": {}
+          },
+          "405": {
+            "description": "Method not allowed.",
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict Error.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/_history": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "It retrieves the history of a particular Encounter identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounter History",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encounter bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/_history": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "It retrieves the history of all resources of Encounter.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounters History",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encounter bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/_history/{vid}": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "This interaction preforms a version specific read of Encounter resource.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounter Version Read",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encounter Instance",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Encounter"
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Encounter"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/$meta": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for Encounters.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounters Metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for Encounter",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/$meta": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given Encounter resource.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounter Metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/_history/{vid}/$meta": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the Encounter.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounter Version based Metadata",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/{type}": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Search the specified resource type in Encounter compartment.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": " Compartment Search",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular Encounter",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/_search": {
+      "post": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "This interaction searches a set of Encounters based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Encounters Search using POST",
+        "parameters": [
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appointment",
+            "in": "query",
+            "description": "The appointment that scheduled this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "condition",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "A date within the period the Encounter lasted. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "episodeofcare",
+            "in": "query",
+            "description": "Episode(s) of care that this encounter should be recorded against",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "Identifier(s) by which this encounter is known",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "incomingreferral",
+            "in": "query",
+            "description": "The ReferralRequest that initiated this encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "indication",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Length of encounter in days",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location the encounter takes place",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location-period",
+            "in": "query",
+            "description": "Time period during which the patient was present at the location. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "part-of",
+            "in": "query",
+            "description": "Another Encounter this encounter is part of",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "participant-type",
+            "in": "query",
+            "description": "Role of participant in encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The patient present at the encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "practitioner",
+            "in": "query",
+            "description": "Persons involved in the encounter other than the patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "procedure",
+            "in": "query",
+            "description": "Reason the encounter takes place (resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "description": "Reason the encounter takes place (code)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "special-arrangement",
+            "in": "query",
+            "description": "Wheelchair, translator, stretcher, etc.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "planned | arrived | in-progress | onleave | finished | cancelled",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Specific type of encounter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "_content": {
+                    "type": "string",
+                    "description": "Search the contents of the resource's data using a fulltext search"
+                  },
+                  "_id": {
+                    "type": "string",
+                    "description": "The resource identity"
+                  },
+                  "_language": {
+                    "type": "string",
+                    "description": "The resource language"
+                  },
+                  "_lastUpdated": {
+                    "type": "string",
+                    "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "_profile": {
+                    "type": "string",
+                    "description": "Search for resources which have the given profile"
+                  },
+                  "_security": {
+                    "type": "string",
+                    "description": "Search for resources which have the given security labels"
+                  },
+                  "_tag": {
+                    "type": "string",
+                    "description": "Search for resources which have the given tag"
+                  },
+                  "_text": {
+                    "type": "string",
+                    "description": "Search the contents of the resource's narrative using a fulltext search"
+                  },
+                  "appointment": {
+                    "type": "string",
+                    "description": "The appointment that scheduled this encounter"
+                  },
+                  "condition": {
+                    "type": "string",
+                    "description": "Reason the encounter takes place (resource)"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "A date within the period the Encounter lasted. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "episodeofcare": {
+                    "type": "string",
+                    "description": "Episode(s) of care that this encounter should be recorded against"
+                  },
+                  "identifier": {
+                    "type": "string",
+                    "description": "Identifier(s) by which this encounter is known"
+                  },
+                  "incomingreferral": {
+                    "type": "string",
+                    "description": "The ReferralRequest that initiated this encounter"
+                  },
+                  "indication": {
+                    "type": "string",
+                    "description": "Reason the encounter takes place (resource)"
+                  },
+                  "length": {
+                    "type": "integer",
+                    "description": "Length of encounter in days"
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Location the encounter takes place"
+                  },
+                  "location-period": {
+                    "type": "string",
+                    "description": "Time period during which the patient was present at the location. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "part-of": {
+                    "type": "string",
+                    "description": "Another Encounter this encounter is part of"
+                  },
+                  "participant": {
+                    "type": "string",
+                    "description": "Persons involved in the encounter other than the patient"
+                  },
+                  "participant-type": {
+                    "type": "string",
+                    "description": "Role of participant in encounter"
+                  },
+                  "patient": {
+                    "type": "string",
+                    "description": "The patient present at the encounter"
+                  },
+                  "practitioner": {
+                    "type": "string",
+                    "description": "Persons involved in the encounter other than the patient"
+                  },
+                  "procedure": {
+                    "type": "string",
+                    "description": "Reason the encounter takes place (resource)"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Reason the encounter takes place (code)"
+                  },
+                  "special-arrangement": {
+                    "type": "string",
+                    "description": "Wheelchair, translator, stretcher, etc."
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "planned | arrived | in-progress | onleave | finished | cancelled"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Specific type of encounter"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Encounter bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Encounter"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/$meta-add": {
+      "post": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Add a metadata info Encounter with specified id.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Add Encounter metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid meta payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "Encounter could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Encounter not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The Encounter resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/_history/{vid}/$meta-add": {
+      "post": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Add metadata info to specified Encounter resource.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Add Encounter Version based Metadata",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid meta payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "Encounter could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Encounter not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The Encounter resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Encounter/{id}/$everything": {
+      "get": {
+        "tags": [
+          "Encounter"
+        ],
+        "description": "Returns all the information related to a specific Encounter resource.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for Encounter.</a></p>",
+        "operationId": "Fetch Encounter Record",
+        "parameters": [
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Encounter.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags affixed to the nominated version of the resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Encounter.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Encounter.read"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Encounter": {
+        "required": [
+          "class",
+          "id",
+          "patient",
+          "resourceType",
+          "status",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "text": {
+            "required": [
+              "div",
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "div": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "class": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "patient": {
+            "required": [
+              "reference"
+            ],
+            "type": "object",
+            "properties": {
+              "reference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "metaBody": {
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "OAuthV2B2C": {
+        "type": "oauth2",
+        "description": "Security scheme for B2C flow using authorization code flow.",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+            "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken",
+            "scopes": {
+              "patient/Encounter.read": "Read permissions for Encounter demographics.",
+              "patient/Encounter.write": "Write permissions for Encounter demographics."
+            }
+          }
+        }
+      },
+      "OAuthV2B2B": {
+        "type": "oauth2",
+        "description": "Security scheme for B2B flow using authorization code flow.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+            "scopes": {
+              "patient/Encounter.read": "Read permissions for Encounter demographics.",
+              "patient/Encounter.write": "Write permissions for Encounter demographics."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractUpdateScopesParameters">
+    <DisplayName>HPX_ExtractUpdateScopesParameters</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="consent_id">
+            <JSONPath>$.consent_id</JSONPath>
+        </Variable>
+        <Variable name="new_scopes">
+            <JSONPath>$.new_scopes</JSONPath>
+        </Variable>
+        <Variable name="existing_scopes">
+            <JSONPath>$.existing_scopes</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

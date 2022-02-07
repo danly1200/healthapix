@@ -1,0 +1,12 @@
+<div class="grid-filter">
+    {% for filter in filters %}
+    <ul data-grid="#{{ id }}" class="dexp-grid-filter">
+        {% if show_all_text %}
+        <li><a href="#all" data-filter="*" class="active">{{ show_all_text|t }}</a></li>
+        {% endif %}
+        {% for term in filter %}
+        <li><a href="#{{ term.data_filter }}" data-filter="{{ term.data_filter }}">{{ term.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</div>

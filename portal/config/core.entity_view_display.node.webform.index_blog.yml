@@ -1,0 +1,23 @@
+uuid: e83dd947-9f49-48b3-a865-ae4d52f4b8c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.index_blog
+    - field.field.node.webform.body
+    - node.type.webform
+  module:
+    - user
+id: node.webform.index_blog
+targetEntityType: node
+bundle: webform
+mode: index_blog
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_webform: true

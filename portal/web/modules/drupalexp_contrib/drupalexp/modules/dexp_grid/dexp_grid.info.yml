@@ -1,0 +1,11 @@
+name: 'DrupalExp Grid'
+type: module
+description: 'Views plugin for displaying views content in a responsive grid.'
+package: DrupalExp
+dependencies:
+  - views
+version: 8.x-1.0
+core: 8.x
+'project status url': 'https://projects.drupalexp.com/updates'
+project: dexp_grid
+datestamp: 1526196877

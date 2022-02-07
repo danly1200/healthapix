@@ -1,0 +1,302 @@
+:root {
+  --mdc-theme-primary: #4582F4;
+  --mdc-theme-secondary: #4582F4; }
+
+.mdc-checkbox__native-control {
+  color: var(--mdc-theme-secondary); }
+
+.plain-content-wrapper {
+  padding: 120px 0px; }
+  .plain-content-wrapper .mdc-plain-container {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    width: 720px;
+    margin: 0px auto;
+    padding: 30px; }
+
+.clearfix {
+  clear: both; }
+
+.form-item {
+  margin: 20px 0px; }
+
+.form-submit {
+  background-color: #4582F4 !important; }
+
+.form-text {
+  caret-color: #4582F4; }
+
+.mdc-text-field--focused .mdc-notched-outline__trailing {
+  border: 2px solid #4582F4 !important;
+  border-left: none !important; }
+.mdc-text-field--focused .mdc-notched-outline__leading {
+  border: 2px solid #4582F4 !important;
+  border-right: none !important; }
+.mdc-text-field--focused .mdc-notched-outline__notch {
+  border-bottom: 2px solid #4582F4 !important; }
+  .mdc-text-field--focused .mdc-notched-outline__notch .mdc-floating-label--float-above {
+    color: #4582F4; }
+
+.user-login-form label,
+.user-pass label {
+  display: none; }
+.user-login-form .description,
+.user-pass .description {
+  display: none; }
+.user-login-form p,
+.user-pass p {
+  display: none; }
+.user-login-form .form-item-name,
+.user-pass .form-item-name {
+  float: left;
+  width: 50%; }
+.user-login-form .form-item-pass,
+.user-pass .form-item-pass {
+  float: left;
+  width: 50%; }
+.user-login-form .mdc-text-field-wrapper,
+.user-pass .mdc-text-field-wrapper {
+  margin-right: 10px; }
+.user-login-form .mdc-password-field-wrapper,
+.user-pass .mdc-password-field-wrapper {
+  margin-left: 10px; }
+.user-login-form #captcha,
+.user-pass #captcha {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 30px; }
+.user-login-form .captcha,
+.user-pass .captcha {
+  clear: both; }
+  .user-login-form .captcha .form-item-captcha-response,
+  .user-pass .captcha .form-item-captcha-response {
+    width: 100%; }
+    .user-login-form .captcha .form-item-captcha-response .mdc-text-field,
+    .user-pass .captcha .form-item-captcha-response .mdc-text-field {
+      width: 100%; }
+  .user-login-form .captcha .mdc-text-field,
+  .user-pass .captcha .mdc-text-field {
+    margin-top: 10px; }
+
+form .login-actions {
+  padding: 20px 0; }
+  form .login-actions .form-submit {
+    float: right;
+    background: #4582F4;
+    color: #fff;
+    height: auto;
+    padding: 15px 20px; }
+  form .login-actions .login-form-links {
+    float: left; }
+  form .login-actions .login-form-link {
+    margin: 10px 0; }
+    form .login-actions .login-form-link a {
+      color: #4582F4;
+      text-decoration: none; }
+      form .login-actions .login-form-link a:hover {
+        color: #174ea6; }
+
+.plain-page-menu {
+  width: 720px;
+  margin: 0px auto;
+  padding: 30px; }
+  .plain-page-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center; }
+  .plain-page-menu li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none; }
+  .plain-page-menu li a:hover {
+    color: #4582F4; }
+
+/* add app form  */
+.developer-app-add-for-developer-form, .developer-app-edit-for-developer-form {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 20px; }
+  .developer-app-add-for-developer-form #edit-file-markup, .developer-app-edit-for-developer-form #edit-file-markup {
+    width: 46%;
+    padding: 0px 10px;
+    margin: 0px;
+    border: 1px solid #989898;
+    border-radius: 5px; }
+  .developer-app-add-for-developer-form .description, .developer-app-add-for-developer-form label, .developer-app-edit-for-developer-form .description, .developer-app-edit-for-developer-form label {
+    display: none; }
+  .developer-app-add-for-developer-form .js-form-type-radio label, .developer-app-add-for-developer-form .js-form-type-checkbox label, .developer-app-edit-for-developer-form .js-form-type-radio label, .developer-app-edit-for-developer-form .js-form-type-checkbox label {
+    display: inline-block; }
+  .developer-app-add-for-developer-form .form-item-json-file label, .developer-app-edit-for-developer-form .form-item-json-file label {
+    display: inline-block; }
+  .developer-app-add-for-developer-form .stu3-fields-panel, .developer-app-edit-for-developer-form .stu3-fields-panel {
+    display: none; }
+    .developer-app-add-for-developer-form .stu3-fields-panel #edit-custom-attr-data-options, .developer-app-edit-for-developer-form .stu3-fields-panel #edit-custom-attr-data-options {
+      display: flex; }
+      .developer-app-add-for-developer-form .stu3-fields-panel #edit-custom-attr-data-options .form-item, .developer-app-edit-for-developer-form .stu3-fields-panel #edit-custom-attr-data-options .form-item {
+        margin-right: 20px; }
+  .developer-app-add-for-developer-form .stu3-fields-panel-active, .developer-app-edit-for-developer-form .stu3-fields-panel-active {
+    display: block; }
+  .developer-app-add-for-developer-form .field--name-field-fhir-storage-type, .developer-app-edit-for-developer-form .field--name-field-fhir-storage-type {
+    display: none; }
+  .developer-app-add-for-developer-form .custom_attrib, .developer-app-edit-for-developer-form .custom_attrib {
+    display: none; }
+  .developer-app-add-for-developer-form .field--name-field-fhirstore, .developer-app-add-for-developer-form .field--name-field-dataset, .developer-app-add-for-developer-form .field--name-field-project, .developer-app-add-for-developer-form .field--name-field-location, .developer-app-edit-for-developer-form .field--name-field-fhirstore, .developer-app-edit-for-developer-form .field--name-field-dataset, .developer-app-edit-for-developer-form .field--name-field-project, .developer-app-edit-for-developer-form .field--name-field-location {
+    width: 50%;
+    float: left; }
+  .developer-app-add-for-developer-form #edit-api-products--wrapper, .developer-app-edit-for-developer-form #edit-api-products--wrapper {
+    clear: both; }
+  .developer-app-add-for-developer-form .form-actions, .developer-app-edit-for-developer-form .form-actions {
+    text-align: center; }
+
+.developer-app-edit-for-developer-form .field--name-displayname .mdc-text-field, .developer-app-edit-for-developer-form .field--name-callbackurl .mdc-text-field {
+  width: 100%; }
+.developer-app-edit-for-developer-form .form-item-custom-attr-data-options {
+  float: left; }
+.developer-app-edit-for-developer-form .field--name-field-fhirstore .form-item, .developer-app-edit-for-developer-form .field--name-field-project .form-item {
+  margin-right: 10px; }
+.developer-app-edit-for-developer-form .field--name-field-dataset .form-item, .developer-app-edit-for-developer-form .field--name-field-location .form-item {
+  margin-left: 10px; }
+
+.apigee-edge--form .form-checkboxes .form-item {
+  width: 32%; }
+
+#openid-connect-login-form > div {
+  text-align: right; }
+#openid-connect-login-form #edit-openid-connect-client-google-login {
+  background: #fff url("/themes/custom/mdc_theme/images/google-icon.png") no-repeat !important;
+  background-size: 16px !important;
+  background-position: 6px 8px !important;
+  padding: 8px 0 8px 20px;
+  display: inline-block;
+  white-space: inherit;
+  letter-spacing: 0.3px;
+  width: 160px;
+  align-items: inherit;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  text-shadow: 0px 0px #000;
+  outline: none;
+  cursor: pointer;
+  font-size: 10px;
+  color: #000000DE; }
+  #openid-connect-login-form #edit-openid-connect-client-google-login:focus {
+    outline: none;
+    cursor: pointer; }
+
+.sidebar-main-content-wrapper .swagger-ui .opblock-description-wrapper p {
+  font-family: Roboto, Sans-Serif; }
+.sidebar-main-content-wrapper .swagger-ui .parameters-container th {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 500 !important; }
+.sidebar-main-content-wrapper .swagger-ui .opblock-body pre {
+  font-family: Roboto, Sans-Serif; }
+.sidebar-main-content-wrapper .swagger-ui .model, .sidebar-main-content-wrapper .swagger-ui input, .sidebar-main-content-wrapper .swagger-ui .model-title, .sidebar-main-content-wrapper .swagger-ui .parameter__name, .sidebar-main-content-wrapper .swagger-ui .parameter__type, .sidebar-main-content-wrapper .swagger-ui .parameter__deprecated, .sidebar-main-content-wrapper .swagger-ui .parameter__in, .sidebar-main-content-wrapper .swagger-ui .curl, .sidebar-main-content-wrapper .swagger-ui .request-url, .sidebar-main-content-wrapper .swagger-ui .response-col_status, .sidebar-main-content-wrapper .swagger-ui td {
+  font-family: Roboto, Sans-Serif; }
+.sidebar-main-content-wrapper .swagger-ui section.models h4, .sidebar-main-content-wrapper .swagger-ui .opblock-section-header h4, .sidebar-main-content-wrapper .swagger-ui .responses-inner h4 {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 500 !important; }
+.sidebar-main-content-wrapper .swagger-ui .info .title {
+  font-weight: 400; }
+.sidebar-main-content-wrapper .swagger-ui .info .base-url {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 400;
+  color: #00000099; }
+.sidebar-main-content-wrapper .swagger-ui .info p {
+  color: rgba(0, 0, 0, 0.87); }
+.sidebar-main-content-wrapper .swagger-ui .btn {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 400 !important; }
+.sidebar-main-content-wrapper .swagger-ui .opblock-tag-section span {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 400 !important; }
+.sidebar-main-content-wrapper .swagger-ui .dialog-ux {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 400 !important; }
+  .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-header h3, .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-header h4, .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-header h2 {
+    font-family: Roboto, Sans-Serif;
+    font-weight: 500 !important; }
+  .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-header p {
+    font-family: Roboto, Sans-Serif;
+    font-weight: 400 !important; }
+  .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-content p {
+    font-family: Roboto, Sans-Serif;
+    font-weight: 400 !important; }
+  .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-content h3, .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-content h4, .sidebar-main-content-wrapper .swagger-ui .dialog-ux .modal-ux-content h2 {
+    font-family: Roboto, Sans-Serif;
+    font-weight: 500 !important; }
+.sidebar-main-content-wrapper .swagger-ui .scheme-container .schemes label {
+  font-family: Roboto, Sans-Serif;
+  font-weight: 400 !important; }
+  .sidebar-main-content-wrapper .swagger-ui .scheme-container .schemes label select {
+    border: 1px solid #D3D3D3 !important;
+    border-radius: 4px !important;
+    opacity: 1; }
+    .sidebar-main-content-wrapper .swagger-ui .scheme-container .schemes label select option {
+      color: #434242 !important;
+      font-family: Roboto, Sans-Serif;
+      font-weight: 400 !important; }
+
+.app-create-form {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 20px;
+  width: 70%;
+  margin: 0px auto; }
+  .app-create-form label {
+    display: none; }
+  .app-create-form .form-checkboxes label {
+    display: inline-block;
+    font-size: 13px; }
+  .app-create-form .mdc-text-field {
+    width: 100%; }
+  .app-create-form #mdc-select-ul .mdc-select__anchor {
+    width: 100%; }
+  .app-create-form .scope-panel {
+    display: none;
+    padding: 0px 30px; }
+    .app-create-form .scope-panel fieldset {
+      margin: 10px 0px; }
+  .app-create-form .standard-scope-panel {
+    display: block; }
+  .app-create-form #edit-scopes {
+    padding: 0;
+    border: 1px solid #eee;
+    border-radius: 5px; }
+    .app-create-form #edit-scopes legend {
+      display: none; }
+  .app-create-form .scope-head {
+    padding: 15px 20px;
+    margin: 0;
+    background-color: #eee;
+    border-radius: 5px 5px 0px 0px;
+    font-weight: 400;
+    font-size: 15px; }
+  .app-create-form .scope-tabs-wrap {
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #eeeeee; }
+    .app-create-form .scope-tabs-wrap .scope-tab {
+      padding: 15px 20px;
+      position: relative;
+      cursor: pointer;
+      font-size: 13px; }
+    .app-create-form .scope-tabs-wrap .scope-tab-active {
+      color: #4285F4; }
+    .app-create-form .scope-tabs-wrap .scope-tab-active:before {
+      position: absolute;
+      content: "";
+      left: 0px;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+      background-color: #4285F4; }
+  .app-create-form .scope-panel .form-item {
+    display: inline-block; }
+
+/*# sourceMappingURL=layout.css.map */

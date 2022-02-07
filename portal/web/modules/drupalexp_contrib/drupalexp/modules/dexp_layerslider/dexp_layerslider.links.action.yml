@@ -1,0 +1,10 @@
+entity.dexp_slider.add_form:
+  route_name: entity.dexp_slider.add_form
+  title: 'Add Slider'
+  appears_on:
+    - entity.dexp_slider.collection
+entity.dexp_slider.import_form:
+  route_name: dexp_slider.import
+  title: 'Import Slider'
+  appears_on:
+    - entity.dexp_slider.collection

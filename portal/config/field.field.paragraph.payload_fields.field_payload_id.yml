@@ -1,0 +1,19 @@
+uuid: db63e6f5-c77b-4fa3-9359-2bab5a6a4db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_payload_id
+    - paragraphs.paragraphs_type.payload_fields
+id: paragraph.payload_fields.field_payload_id
+field_name: field_payload_id
+entity_type: paragraph
+bundle: payload_fields
+label: 'payload id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

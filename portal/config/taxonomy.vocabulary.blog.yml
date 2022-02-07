@@ -1,0 +1,8 @@
+uuid: f59cda0d-a285-453d-bf0a-79fe9861f783
+langcode: en
+status: true
+dependencies: {  }
+name: Blog
+vid: blog
+description: ''
+weight: 0

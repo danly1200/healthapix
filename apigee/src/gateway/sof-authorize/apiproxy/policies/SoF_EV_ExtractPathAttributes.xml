@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="SoF_EV_ExtractPathAttributes">
+    <DisplayName>SoF_EV_ExtractPathAttributes</DisplayName>
+    <Properties/>
+    <URIPath>
+        <Pattern ignoreCase="true">/{apiVersion}/projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhirStore}/**</Pattern>
+    </URIPath>
+    <VariablePrefix>urirequest</VariablePrefix>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

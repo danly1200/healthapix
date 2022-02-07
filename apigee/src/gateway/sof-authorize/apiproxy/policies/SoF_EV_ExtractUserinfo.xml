@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="SoF_EV_ExtractUserinfo">
+    <DisplayName>SoF_EV_ExtractUserinfo</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="sub">
+            <JSONPath>$.sub</JSONPath>
+        </Variable>
+        <Variable name="iss">
+            <JSONPath>$.iss</JSONPath>
+        </Variable>
+        <Variable name="email">
+            <JSONPath>$.email</JSONPath>
+        </Variable>
+        <Variable name="scope">
+            <JSONPath>$.scope</JSONPath>
+        </Variable>
+        <Variable name="patient">
+            <JSONPath>$.patient</JSONPath>
+        </Variable>
+        <!--Variable name="profile">
+            <JSONPath>$.profile</JSONPath>
+        </Variable>
+        <Variable name="fhirUser">
+            <JSONPath>$.fhirUser</JSONPath>
+        </Variable-->
+    </JSONPayload>
+    <VariablePrefix>userInfo</VariablePrefix>
+</ExtractVariables>

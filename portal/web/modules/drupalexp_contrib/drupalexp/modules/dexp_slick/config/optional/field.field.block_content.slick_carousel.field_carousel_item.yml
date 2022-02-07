@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.slick_carousel
+    - field.storage.block_content.field_carousel_item
+  module:
+    - field_collection
+id: block_content.slick_carousel.field_carousel_item
+field_name: field_carousel_item
+entity_type: block_content
+bundle: slick_carousel
+label: 'Carousel Item'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+  - {  }
+default_value_callback: ''
+settings: {  }
+field_type: field_collection

@@ -1,0 +1,387 @@
+
+body .footer {
+  background-color: #272727;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.front .feed-icon {
+  display: none;
+}
+
+.site-logo-span {
+  font-size: 18px;
+}
+
+.site-logo-health {
+  color: #f94b1e;
+}
+
+.site-logo-api {
+  color: #fff;
+}
+
+.apigee-footer-logo:hover, .persistent-footer-logo:hover {
+  cursor: hand;
+  cursor: pointer;
+  opacity: .9;
+}
+
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  width: 1440px;
+  padding: 4px;
+}
+
+section#block-views-block-slideshow-home-block-1 {
+  min-height: 510px;
+}
+
+.front .views-slideshow-controls-bottom .views-slideshow-pager-bullets {
+  text-align: center;
+  margin-top: 4px;
+}
+
+.front h1.js-quickedit-page-title.page-header, .path-blogs h1.js-quickedit-page-title.page-header {
+  display: none;
+}
+
+.front h1.page-header, .path-blogs h1.page-header {
+  display: none;
+}
+
+.front section.col-sm-12.padding-reset {
+  margin-top: 30px;
+}
+
+.views-slideshow-controls-bottom .views-slideshow-pager-bullets li {
+  background: #aaa;
+}
+
+.views-slideshow-controls-bottom .views-slideshow-pager-bullets li.active {
+  background: #222;
+}
+
+#views_slideshow_controls_text_previous_slideshow_home-block_1, #views_slideshow_controls_text_next_slideshow_home-block_1 {
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+  position: absolute;
+  top: 200px;
+  z-index: 999;
+  overflow: hidden;
+  display: inline-block;
+  background: transparent;
+  text-indent: -9999px;
+  border-top: 8px solid #787878;
+  border-left: 8px solid #787878;
+  transition: all 250ms ease-in-out;
+  text-decoration: none;
+  color: transparent;
+}
+
+.user-logged-in.admin #views_slideshow_controls_text_previous_slideshow_home-block_1 {
+  left: 20px;
+  transform: rotate(-45deg);
+}
+
+.user-logged-in.admin #views_slideshow_controls_text_next_slideshow_home-block_1 {
+  right: 20px;
+  transform: rotate(135deg);
+}
+
+.non-admin #views_slideshow_controls_text_previous_slideshow_home-block_1 {
+  left: 20px;
+  transform: rotate(-45deg);
+  margin-top: 7%;
+}
+
+.non-admin #views_slideshow_controls_text_next_slideshow_home-block_1 {
+  right: 20px;
+  transform: rotate(135deg);
+  margin-top: 7%;
+}
+
+#views_slideshow_controls_text_pause_slideshow_home-block_1 {
+  display: none;
+}
+/*
+*Blogs page css
+*/
+section#block-views-block-blog-content-latest-2 h2, section#block-views-block-blog-content-block-1 h2 {
+  color: #ee5425;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-family: Roboto;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  margin-top: 86px;
+}
+
+.path-blogs .well {
+  border: none;
+  padding: 9px;
+  background-color: white;
+  box-shadow: none;
+}
+
+.path-blogs li.comment-add, .page-node-type-article li.comment-add, .path-blogs .comment-comments, .path-blogs li.comment-comments.last {
+  display: none;
+}
+
+.path-blogs li.node-readmore a {
+  color: #f56450;
+}
+
+.path-blogs .view-blog-content li.node-readmore {
+  border: solid 1px #f56450;
+  width: 77px;
+  height: 33px;
+  padding-left: 6px;
+  padding-top: 7px;
+  font-size: 13px;
+  margin: 44px 6px 0px 0px;
+}
+
+.view-blog-content .field--name-body p, .view-blog-content .field--name-body span, .post-content .field--name-body ul li {
+  font-size: 14px !important;
+  font-family: Roboto !important;
+  letter-spacing: normal;
+  font-weight: 300;
+  color: #868686 !important;
+}
+
+.recent-post ul, .popular-post ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.recent-post ul li, .popular-post ul li {
+  margin-top: 5px;
+}
+
+hr.article-after-title {
+  width: 91% !important;
+  text-align: left;
+  margin-left: 0px;
+  border-top: 1px solid #eee;
+}
+
+hr {
+  border-top: 1px solid #eee;
+}
+
+.path-blogs article.contextual-region, .path-blogs .view-blog-content article {
+  margin-top: 35px !important;
+}
+
+body.path-blogs a:hover {
+  color: #F56450;
+}
+
+.path-blogs .field--name-body a {
+  color: #F56450;
+}
+
+.path-blogs .view-blog-content.view-display-id-page_blog {
+  margin-left: -6px;
+}
+
+.path-blogs .field--name-body.field--type-text-with-summary.field--label-hidden.field--item {
+  padding-right: 65px;
+}
+
+.path-blogs section.col-sm-9.padding-reset {
+  margin-top: -22px;
+}
+/*
+* Article landing page Css.
+*/
+.page-node-type-article .page-header {
+  display: none;
+}
+
+.page-node-type-article .field--name-body.field--type-text-with-summary a {
+  color: #F56450;
+}
+
+.page-node-type-article .main-container.page-container {
+  padding: 40px 15px 80px;
+}
+/*
+*Community page css.
+*/
+.page-node-type-page .region-content {
+  margin-left: 18px;
+}
+
+.page-node-type-page .region-content a {
+  color: #F56450;
+}
+
+.page-node-type-page .region-content p {
+  font-size: 13px;
+  color: #484848;
+  line-height: 18px;
+}
+/*
+*Events page
+ */
+.page-node-type-page .event-date {
+  font-size: 22px !important;
+  color: #9e9e9e !important;
+  font-family: Roboto !important;
+  font-weight: bold !important;
+  margin-top: 20px !important;
+}
+/*
+* My Apps landing page.
+ */
+.my-app-add-button {
+  float: right;
+}
+
+.my-app-list-details {
+  margin-top: 60px;
+}
+
+.add-app {
+  background: transparent;
+  border: 1px solid #B7C0C5;
+  border-radius: 5px;
+  box-shadow: 0 0 7px #DDDDDD;
+  color: #3C3D3C;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 15px 15px 15px 15px;
+}
+
+#my-apps-accordion a, #my-apps-accordion a:hover{
+  color: #F56450;
+}
+
+#my-apps-accordion span.label.label-success.pull-right {
+  margin-top: -17px;
+  text-transform: capitalize;
+}
+
+#my-apps-accordion .panel.panel-default {
+  margin-bottom: 18px;
+}
+
+#my-apps-accordion li.active>a {
+  color: white !important;
+}
+
+.my-apps-panels .panel-heading {
+  font-weight: bolder;
+}
+
+.my-apps-panels {
+  font-size: 13px;
+}
+
+.my-app-api-products .label.label-success {
+  margin-left: 50px;
+  text-transform: capitalize;
+}
+
+.no-bold {
+  font-weight: normal;
+}
+
+.my-apps-panels .panel-heading {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+.my-apps-panels .table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #0000;
+}
+/*
+App Delete modal.
+ */
+div#modal-delete-app {
+  height: 110px;
+}
+
+div#modal-delete-app p {
+  font-size: 13px;
+  padding-top: 20px;
+  color: #484848;
+}
+
+.modal-delete-app-submit, .modal-delete-app-cancel, .modal-edit-app-submit, .modal-edit-app-cancel, .developer-app-add-for-developer-form .button, .modal-edit-app-cancel-extra,
+.modal-delete-app-submit:active:hover, .modal-delete-app-cancel:active:hover, .modal-edit-app-submit:active:hover, .modal-edit-app-cancel:active:hover, .developer-app-add-for-developer-form .button:active:hover,
+.modal-edit-app-cancel-extra:active:hover, .modal-delete-app-submit:active, .modal-delete-app-cancel:active, .modal-edit-app-submit:active, .modal-edit-app-cancel:active, .developer-app-add-for-developer-form .button:active,
+.modal-delete-app-submit:hover, .modal-delete-app-cancel:hover, .modal-edit-app-submit:hover, .modal-edit-app-cancel:hover, .developer-app-add-for-developer-form .button:hover, .modal-edit-app-cancel-extra:hover {
+  color: #fff !important;
+  background-color: #009FD0 !important;
+  border-color: #009FD0 !important;
+}
+
+.my-apps-back-button>a {
+  color: #009FD0 !important;
+  font-weight: bold;
+}
+
+.modal-delete-app-submit, .modal-delete-app-cancel {
+  float: left;
+  margin-top: -73px;
+  z-index: 1000;
+  position: relative;
+}
+
+.modal-delete-app-cancel  {
+  margin-left: 90px !important;
+}
+
+.modal-edit-app-cancel {
+  display: none;
+}
+
+.my-apps-bck-btn.left {
+  border: solid #009FD0;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.my-apps-bck-btn.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+/* Add App and Edit App modal*/
+
+#edit-api-products--wrapper .fieldset-wrapper {
+  margin: 20px 0px;
+}
+
+
+
+/* Adding Radio button to select default value for custom attributes */
+
+
+.stu3-fields-panel {
+  display: none;
+}
+
+.stu3-fields-panel-active {
+  display: block;
+}
+
+.apigee-edge--form .fieldset-legend { /*changing it for the complete form as its default is 120%, very big */
+  font-size: 14px !important;
+  font-weight: 700;
+}
+
+.stu3-fields-panel .form-item-custom-attr-data-options {
+  display:inline-block;
+  margin-right: 20px;
+}
+
+.field--name-field-fhir-storage-type {
+  display: none;
+}

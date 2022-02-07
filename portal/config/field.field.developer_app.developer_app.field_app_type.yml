@@ -1,0 +1,20 @@
+uuid: bc42d6ce-2ab7-4379-bd75-5eb02842ece2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_app_type
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_app_type
+field_name: field_app_type
+entity_type: developer_app
+bundle: developer_app
+label: 'App Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

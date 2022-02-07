@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="HPX_LookupCacheForResourceList">
+    <DisplayName>HPX_LookupCacheForResourceList</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="calculatedBasePath"/>
+    </CacheKey>
+    <CacheResource>fhir-resources-cache</CacheResource>
+    <Scope>Exclusive</Scope>
+    <AssignTo>resourceList</AssignTo>
+</LookupCache>

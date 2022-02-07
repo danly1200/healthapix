@@ -1,0 +1,129 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M52.571 6.857h1280c25.247 0 45.714 20.467 45.714 45.714s-20.467 45.714-45.714 45.714h-1280c-25.247 0-45.714-20.467-45.714-45.714s20.467-45.714 45.714-45.714z",
+          "M52.571 468.571h731.429c25.247 0 45.714 20.467 45.714 45.714s-20.467 45.714-45.714 45.714h-731.429c-25.247 0-45.714-20.467-45.714-45.714s20.467-45.714 45.714-45.714z",
+          "M52.571 925.714h1097.143c25.247 0 45.714 20.467 45.714 45.714s-20.467 45.714-45.714 45.714h-1097.143c-25.247 0-45.714-20.467-45.714-45.714s20.467-45.714 45.714-45.714z"
+        ],
+        "attrs": [
+          {},
+          {},
+          {}
+        ],
+        "width": 1390,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "method-draw-image"
+        ]
+      },
+      "attrs": [
+        {},
+        {},
+        {}
+      ],
+      "properties": {
+        "order": 5,
+        "id": 0,
+        "name": "menu-toggle",
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 5,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M287.986 384c8.908 0 17.77 3.698 24.096 10.928l199.918 228.478 199.918-228.478c11.636-13.3 31.856-14.65 45.154-3.010 13.3 11.638 14.648 31.854 3.010 45.154l-224 256c-6.076 6.944-14.854 10.928-24.082 10.928s-18.006-3.984-24.082-10.928l-224-256c-11.638-13.3-10.292-33.516 3.010-45.154 6.070-5.312 13.582-7.918 21.058-7.918z"
+        ],
+        "tags": [
+          "ctrl",
+          "control"
+        ],
+        "defaultCode": 59984,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "ctrl, control",
+        "name": "ctrl",
+        "order": 6,
+        "id": 337,
+        "prevSize": 32,
+        "code": 59984
+      },
+      "setIdx": 4,
+      "setId": 1,
+      "iconIdx": 336
+    },
+    {
+      "icon": {
+        "paths": [
+          "M352 736.014c0-8.908 3.698-17.77 10.928-24.096l228.478-199.918-228.478-199.918c-13.3-11.636-14.65-31.856-3.010-45.154 11.638-13.3 31.854-14.648 45.154-3.010l256 224c6.944 6.076 10.928 14.854 10.928 24.082s-3.984 18.006-10.928 24.082l-256 224c-13.3 11.638-33.516 10.292-45.154-3.010-5.312-6.070-7.918-13.582-7.918-21.058z"
+        ],
+        "tags": [
+          "ctrl",
+          "control"
+        ],
+        "defaultCode": 59984,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "order": 7,
+        "id": 492,
+        "prevSize": 32,
+        "code": 59985,
+        "name": "ctrl1"
+      },
+      "setIdx": 4,
+      "setId": 1,
+      "iconIdx": 337
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "icomoon"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon",
+      "name": "icomoon"
+    },
+    "historySize": 50,
+    "showCodes": true,
+    "gridSize": 16,
+    "showGrid": true
+  }
+}

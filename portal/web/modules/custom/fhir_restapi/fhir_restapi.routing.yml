@@ -1,0 +1,22 @@
+fhir_restapi.my_developer_apps_list_controller_getListMyApps:
+  path: '/user/my-apps'
+  defaults:
+    _controller: '\Drupal\fhir_restapi\Controller\ListAllDeveloperApps::getAppsList'
+    _title: 'My Apps'
+  requirements:
+    _permission: 'access content'
+    _user_is_logged_in: 'TRUE'
+fhir_restapi.my_app_analytics_controller_getMyAppName:
+  path: '/user/myapps/{app}/analytics'
+  defaults:
+    _controller: '\Drupal\fhir_restapi\Controller\MyAppAnalyticsController::getMyAppAnalytic'
+    _title_callback: '\Drupal\fhir_restapi\Controller\MyAppAnalyticsController::getMyAppName'
+  requirements:
+    _permission: 'view own developer_app'
+fhir_restapi.apigee_auth_url.settings:
+  path: '/admin/config/apigee-auth-url/settings'
+  defaults:
+    _form: '\Drupal\fhir_restapi\Form\apigeeAuthSettingsForm'
+    _title: 'APIGEE Management API Details'
+  requirements:
+    _permission: 'administer site configuration'

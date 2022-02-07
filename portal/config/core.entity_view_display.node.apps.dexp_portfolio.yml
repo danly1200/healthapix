@@ -1,0 +1,80 @@
+uuid: 35bdb79b-6ca0-499b-a388-eb736db5a7d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dexp_portfolio
+    - field.field.node.apps.body
+    - field.field.node.apps.field_app_categories
+    - field.field.node.apps.field_app_image
+    - field.field.node.apps.field_app_tags
+    - field.field.node.apps.field_app_video
+    - field.field.node.apps.field_author_name
+    - field.field.node.apps.field_one_liner
+    - field.field.node.apps.field_website
+    - node.type.apps
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.apps.dexp_portfolio
+targetEntityType: node
+bundle: apps
+mode: dexp_portfolio
+content:
+  body:
+    label: above
+    weight: 5
+    type: text_summary_or_trimmed
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_app_categories:
+    label: inline
+    weight: 3
+    type: entity_reference_label
+    settings:
+      link: true
+    third_party_settings: {  }
+    region: content
+  field_app_image:
+    label: hidden
+    weight: 0
+    type: image
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_one_liner:
+    label: hidden
+    weight: 2
+    type: string
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  field_website:
+    label: hidden
+    weight: 4
+    type: link
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment_node_apps: true
+  field_app_tags: true
+  field_app_video: true
+  field_author_name: true

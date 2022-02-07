@@ -1,0 +1,33 @@
+uuid: 0e603dde-fd05-4883-9316-8920330333a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_image
+    - node.type.apps
+  module:
+    - image
+id: node.apps.field_app_image
+field_name: field_app_image
+entity_type: node
+bundle: apps
+label: 'App Images'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  alt_field: false
+  default_image: 0
+  file_directory: AppsMedia
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  title_field: false
+  alt_field_required: true
+  title_field_required: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

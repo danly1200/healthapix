@@ -1,0 +1,20 @@
+uuid: b896a3c4-5731-4779-ad23-76ba03ad3e1c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_interoperability_api_tag
+field_name: field_interoperability_api_tag
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

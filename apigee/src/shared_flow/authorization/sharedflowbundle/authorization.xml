@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="10" name="authorization">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1577095714463</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared Flow for Authorization &amp; Quota Validation.</Description>
+    <DisplayName>authorization</DisplayName>
+    <LastModifiedAt>1577095714463</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:470cb9b4f7211d8f03b507c990091968ac5f73ae94cf20f103228c67939d99012d6cad7ab6ecd202f4dc010438d2c23a52ab1665ec9d81d9aa737f2386843a0d</ManifestVersion>
+    <Policies>
+        <Policy>HPX_EnforceQuota</Policy>
+        <Policy>HPX_ExtractPathAttributes</Policy>
+        <Policy>HPX_Fault_BtoCOperationNotPermitted</Policy>
+        <Policy>HPX_Fault_InvalidResource</Policy>
+        <Policy>HPX_Fault_InvalidScope</Policy>
+        <Policy>HPX_RemoveAuthorizationHeader</Policy>
+        <Policy>HPX_RemoveFormatQueryParam</Policy>
+        <Policy>HPX_SetAcceptHeader</Policy>
+        <Policy>HPX_SharedFlow_SupportedResources</Policy>
+        <Policy>HPX_ValidateResource</Policy>
+        <Policy>HPX_ValidateScope</Policy>
+        <Policy>HPX_VerifyAccessToken</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_ValidateResource.js</Resource>
+        <Resource>jsc://HPX_ValidateScope.js</Resource>
+    </Resources>
+    <Spec/>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

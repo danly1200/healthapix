@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication async="false" continueOnError="false" enabled="true" name="SoF_BA_CalculateBasicAuthHeader">
+    <DisplayName>SoF_BA_CalculateBasicAuthHeader</DisplayName>
+    <Operation>Encode</Operation>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <User ref="FHIR_ISSUER_CLIENT_ID"/>
+    <Password ref="FHIR_ISSUER_CLIENT_SECRET"/>
+    <AssignTo createNew="true">introspect.Authorization</AssignTo>
+</BasicAuthentication>

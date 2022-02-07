@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description>Default Proxy to create flows on an API</Description>
+    <FaultRules>
+        <FaultRule name="InvalidApiKeyAuthorize">
+            <Condition>((fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKeyForGivenResource") or (fault.name = "InvalidApiKey")) and (proxy.pathsuffix MatchesPath "/authorize")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>HPX_RF_ApplicationKey</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="KVMConfigNotFound">
+            <Condition>(fault.name = "SourceMessageNotAvailable")</Condition>
+            <Step>
+                <Name>HPX_RF_InvalidKVMConfig</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="InvalidAuthorizationCode">
+            <Condition>(fault.name = "invalid_request-authorization_code_invalid")</Condition>
+            <Step>
+                <Name>HPX_AM_FaultInvalidAuthorizationCode</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="InvalidAPIKey">
+            <Condition>(oauthV2.HPX_VAK_VerifyRequestApiKey.fault.name  = "oauth.v2.InvalidApiKey")</Condition>
+            <Step>
+                <Name>HPX_RF_InvalidClientCredentials</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="InvalidRefreshToken">
+            <Step>
+                <Name>HPX_AM_FaultInvalidRefreshToken</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+            <Condition>(fault.name = "invalid_refresh_token")</Condition>
+        </FaultRule>
+        <FaultRule name="ExpiredRefreshToken">
+            <Step>
+                <Name>HPX_AM_FaultExpiredRefreshToken</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+            <Condition>(fault.name = "refresh_token_expired")</Condition>
+        </FaultRule>
+        <FaultRule name="InvalidClientToken">
+            <Step>
+                <Name>HPX_AM_FaultInvalidClientCredentials</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+            <Condition>((fault.name = "InvalidBasicAuthenticationSource") or (fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidClientIdentifier")) and ((proxy.pathsuffix MatchesPath "/accesstoken") OR (proxy.pathsuffix MatchesPath "/refreshtoken"))</Condition>
+        </FaultRule>
+        <FaultRule name="FaultsHandledByRaiseFault">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="UnhandledErrors">
+        <Step>
+            <Condition>(proxy.pathsuffix MatchesPath "/accesstoken") OR (proxy.pathsuffix MatchesPath "/refreshtoken") OR (proxy.pathsuffix MatchesPath "/getdetails")</Condition>
+            <Name>HPX_AM_FaultUnhandledError</Name>
+        </Step>
+        <Step>
+            <Name>HPX_AM_CORS</Name>
+        </Step>
+    </DefaultFaultRule>
+    <Flows>
+        <Flow name="authorize">
+            <Description>This flow is for Authorize call. This flow redirects the user to a consent application. after developer's api key validation. Stores state information.</Description>
+            <Request>
+                <Step>
+                    <Condition>(error_variable != null)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_RF_InvalidAuthorizationRequest</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_JS_ValidateRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(error_variable != null)</Condition>
+                    <Name>HPX_RF_InvalidAuthorizationRequest</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_VAK_ValidateApiKey</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_AE_GetApiProduct</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_XJ_ConvertToJSON</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_EV_GetScopes</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_ReadScopes</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_SetFhirDetails</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_JS_ValidateScopeValues</Name>
+                </Step>
+                <Step>
+                    <Condition>nonce != null and nonce != ""</Condition>
+                    <FaultRules/>
+                    <Name>HPX_LC_CheckNonceReplayAttack</Name>
+                </Step>
+                <Step>
+                    <Condition>nonce_cache_value != null</Condition>
+                    <FaultRules/>
+                    <Name>HPX_AM_AssignReplayAttackError</Name>
+                </Step>
+                <Step>
+                    <Condition>error_variable != null</Condition>
+                    <FaultRules/>
+                    <Name>HPX_RF_InvalidAuthorizationRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>nonce != null and nonce != ""</Condition>
+                    <FaultRules/>
+                    <Name>HPX_PC_SaveNonceInCache</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_JS_GenerateUUID</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_AM_SetSessionPayload</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_PC_SessionSetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_AM_RedirectToConsent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorize") and ((request.verb = "POST") or (request.verb = "GET"))</Condition>
+        </Flow>
+        <Flow name="code">
+            <Description>This flow generates authcode after user is authenticated</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_EV_ExtractScopes</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_ReadScopes</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.fhirUser Matches "Patient/*")</Condition>
+                    <Name>HPX_JS_SetPatientIdIfFhirUserIsPatient</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_VAK_ValidateApiKey</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_OA_GenerateAuthCode</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.failed = true)</Condition>
+                    <Name>HPX_AM_CodeGenerationFailed</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/code") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="access token">
+            <Description>This flow is for Access token generation</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_JS_ValidateTokenRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(invalid is true)</Condition>
+                    <Name>HPX_RF_InvalidTokenRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.grant_type = "authorization_code") or (request.formparam.grant_type = "authorization_code")</Condition>
+                    <FaultRules/>
+                    <Name>HPX_GO_GetAuthCodeAttributes</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.grant_type = "authorization_code") or (request.formparam.grant_type = "authorization_code")</Condition>
+                    <Name>HPX_JS_CheckScope</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.header.Authorization.values.count &gt; 0)</Condition>
+                    <Name>HPX_BA_DecodeBasicAuthCredentials</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.client_id.values.count &gt; 0)</Condition>
+                    <Name>HPX_EV_ExtractClientID</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.scope.values.count &gt; 0)</Condition>
+                    <Name>HPX_AM_ReAssignScopeValues</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.grant_type.values.count &gt; 0)</Condition>
+                    <Name>HPX_AM_ReAssignGrantType</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "refresh_token")</Condition>
+                    <Name>HPX_GO_ExtractRefreshTokenInformation</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_ReAssignCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_VAK_ValidateApiKey</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "refresh_token")</Condition>
+                    <Name>HPX_OA_GenerateRefreshToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "authorization_code")</Condition>
+                    <FaultRules/>
+                    <Name>HPX_OA_GenerateAccessToken</Name>
+                </Step>
+                <Step>
+                    <Condition>request.formparam.grant_type = "client_credentials"</Condition>
+                    <FaultRules/>
+                    <Name>HPX_OA_GenerateAccessTokenClientCredentials</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(response.status.code = "401")</Condition>
+                    <Name>HPX_RF_FaultOAuthV2Failed</Name>
+                </Step>
+                <Step>
+                    <Condition>request.formparam.grant_type = "client_credentials"</Condition>
+                    <FaultRules/>
+                    <Name>HPX_AM_AccessTokenResponseCC</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "authorization_code" or request.formparam.grant_type = "refresh_token") and (response.status.code = "200")</Condition>
+                    <FaultRules/>
+                    <Name>HPX_AM_AssignIssuer</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "authorization_code"  or request.formparam.grant_type = "refresh_token") and (response.status.code = "200")</Condition>
+                    <FaultRules/>
+                    <Name>HPX_EV_ExtractAccessTokenResponse</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetKeyNames</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_SetKeyDetails</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPublicKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPrivateKey</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.grant_type = "refresh_token") or (request.formparam.grant_type = "refresh_token")</Condition>
+                    <Name>HPX_GJW_GenerateIDTokenRefreshRSA</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.queryparam.grant_type = "authorization_code") or (request.formparam.grant_type = "authorization_code")</Condition>
+                    <Name>HPX_GJW_GenerateIDTokenRSA</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "authorization_code") and (response.status.code = "200")</Condition>
+                    <FaultRules/>
+                    <Name>HPX_JS_CreateScopeArray</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "refresh_token") and (response.status.code = "200")</Condition>
+                    <Name>HPX_AM_RefreshTokenResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "authorization_code") and (response.status.code = "200") and (refreshToken == true)</Condition>
+                    <FaultRules/>
+                    <Name>HPX_AM_GenerateAccessTokenResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "authorization_code") and (response.status.code = "200") and (refreshToken == false)</Condition>
+                    <Name>HPX_AM_GenerateTokenResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/accesstoken") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="smart backend">
+            <Description>Backend Services flow to generate Access token based on jwt token and system scopes</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_JS_ValidateBackendServiceRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>( error_type != null ) and ( error_type != "" )</Condition>
+                    <Name>HPX_RF_Fault_ClientCredentialsIDTokenBadRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.header.Authorization.values.count &gt; 0)</Condition>
+                    <Name>HPX_BA_DecodeBasicAuthCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_VAK_ValidateApiKey</Name>
+                </Step>
+                <Step>
+                    <Condition>(verifyapikey.HPX_VAK_ValidateApiKey.jwks_uri == null) or (verifyapikey.HPX_VAK_ValidateApiKey.jwks_uri == "")</Condition>
+                    <Name>HPX_RF_Fault_BackendServices_InvalidJwksUri</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_AssignSCUrlAndPath</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_DJW_DecodeOIDCToken</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_CompareAndUpdateJWKSUri</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_LC_GetPublicKeyFromCache</Name>
+                </Step>
+                <Step>
+                    <Condition>lookupcache.HPX_LC_GetPublicKeyFromCache.cachehit = false</Condition>
+                    <Name>HPX_SC_GetPublicKeyFromJWKSUrl</Name>
+                </Step>
+                <Step>
+                    <Condition>(lookupcache.HPX_LC_GetPublicKeyFromCache.cachehit = false) and ((ServiceCallout.HPX_SC_GetPublicKeyFromJWKSUrl.failed = true) or (ServiceCallout.response == null) or (ServiceCallout.response == ""))</Condition>
+                    <Name>HPX_RF_Fault_ErrorInJwks</Name>
+                </Step>
+                <Step>
+                    <Condition>(lookupcache.HPX_LC_GetPublicKeyFromCache.cachehit = false)</Condition>
+                    <Name>HPX_JS_AssignJwksResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>( publicKeyJwks != null ) and ( publicKeyJwks != "")</Condition>
+                    <Name>HPX_PC_PopulateJwksCache</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_VJW_VerifyOIDCTokenJwksInFlow</Name>
+                </Step>
+                <Step>
+                    <Condition>JWT.failed = "true"</Condition>
+                    <Name>HPX_RF_FaultInvalidClientAssertion</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_MatchIssuerWithClientId</Name>
+                </Step>
+                <Step>
+                    <Condition>match.failed = "true"</Condition>
+                    <Name>HPX_RF_FaultInvalidClientAssertion</Name>
+                </Step>
+                <Step>
+                    <Condition>verifyapikey.HPX_VAK_ValidateApiKey.fhir_server != null</Condition>
+                    <Name>HPX_FC_GenerateGoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "client_credentials")</Condition>
+                    <Name>HPX_OA_GenerateAccessTokenBackendServices</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(response.status.code = "401")</Condition>
+                    <Name>HPX_RF_FaultOAuthV2Failed</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.grant_type = "client_credentials")</Condition>
+                    <FaultRules/>
+                    <Name>HPX_AM_AccessTokenResponseBackendServices</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="revoke access token">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_JS_ValidateRevokeRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_BA_DecodeClientIdSecret</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_VAK_VerifyRequestApiKey</Name>
+                </Step>
+                <Step>
+                    <Condition>verifyapikey.HPX_VAK_VerifyRequestApiKey.client_secret != private.requestClient_secret</Condition>
+                    <Name>HPX_RF_InvalidCredentials</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.token_type_hint =="refresh_token") or (request.formparam.token_type_hint = null) or (request.formparam.token_type_hint = "")</Condition>
+                    <Name>HPX_GO_RefreshTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Condition>apigee.client_id  != requestClient_id</Condition>
+                    <Name>HPX_RF_InvalidRefreshToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.token_type_hint =="access_token") or (request.formparam.token_type_hint = null) or (request.formparam.token_type_hint = "")</Condition>
+                    <Name>HPX_GO_AccessTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Condition>apigee.client_id  != requestClient_id</Condition>
+                    <Name>HPX_RF_InvalidAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_OA_InvalidateAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_OA_InvalidateRefreshToken</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_AM_SetRevokeResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/revoke") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="introspect token">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_JS_ValidateRevokeRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_BA_DecodeClientIdSecret</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_VAK_VerifyRequestApiKey</Name>
+                </Step>
+                <Step>
+                    <Condition>verifyapikey.HPX_VAK_VerifyRequestApiKey.client_secret != private.requestClient_secret</Condition>
+                    <Name>HPX_RF_InvalidCredentials</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.token_type_hint =="refresh_token") or (request.formparam.token_type_hint = null) or (request.formparam.token_type_hint = "")</Condition>
+                    <Name>HPX_GO_RefreshTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Condition>(request.formparam.token_type_hint =="access_token") or (request.formparam.token_type_hint = null) or (request.formparam.token_type_hint = "")</Condition>
+                    <Name>HPX_GO_AccessTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_OA_VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_RemoveRequestAttributes</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_AccessTokenInfo.failed == false)</Condition>
+                    <Name>HPX_JS_CheckScope</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_IntrospectAssignIssuer</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_RefreshTokenInfo.failed == false)</Condition>
+                    <Name>HPX_GJW_RefreshTokenIntrospectGenerateIDTokenRSA</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetKeyNames</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPublicKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPrivateKey</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_AccessTokenInfo.failed == false)</Condition>
+                    <Name>HPX_GJW_AccessTokenIntrospectGenerateIDTokenRSA</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_RefreshTokenInfo.failed == false)</Condition>
+                    <Name>HPX_AM_RefreshTokenInfoResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_AccessTokenInfo.failed == false) and (refreshToken == true)</Condition>
+                    <Name>HPX_AM_AccessRefreshTokenInfoResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_AccessTokenInfo.failed == false) and (refreshToken == false)</Condition>
+                    <Name>HPX_AM_AccessTokenInfoResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_AccessTokenInfo.failed == true) and (oauthV2.HPX_GO_RefreshTokenInfo.failed == true)</Condition>
+                    <Name>HPX_AM_TokenInfoResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/introspect") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="manage">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_JS_ValidateManageRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(triggerError == true)</Condition>
+                    <Name>HPX_RF_FaultInvalidRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_BA_DecodeClientIdSecret</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_VAK_VerifyRequestApiKey</Name>
+                </Step>
+                <Step>
+                    <Condition>verifyapikey.HPX_VAK_VerifyRequestApiKey.client_secret != private.requestClient_secret</Condition>
+                    <Name>HPX_RF_InvalidCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_SetFhirServer</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GO_AccessTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Condition>((apigee.client_id != requestClient_id) or (oauthV2.HPX_GO_AccessTokenInfo.fault.name = "keymanagement.service.invalid_access_token"))</Condition>
+                    <Name>HPX_RF_InvalidAccessToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(oauthV2.HPX_GO_AccessTokenInfo.fault.name = "keymanagement.service.access_token_expired")</Condition>
+                    <Name>HPX_RF_ExpiredAccessToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(fhir_server_version == "r4") or (fhir_server_version == "stu3")</Condition>
+                    <Name>HPX_SC_ConsentRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(fhir_server_version == "dstu2")</Condition>
+                    <Name>HPX_SC_DSTU2ConsentRequest</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_ExtractConsentRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(NullConsentResponse == false)</Condition>
+                    <Name>HPX_FC_GenerateGoogleToken</Name>
+                </Step>
+                <Step>
+                    <Condition>(NullConsentResponse == false)</Condition>
+                    <Name>HPX_SC_DeviceDetailRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(NullConsentResponse == false)</Condition>
+                    <Name>HPX_JS_ExtractDeviceDetailsResponse</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(NullConsentResponse == false)</Condition>
+                    <Name>HPX_AM_ManagementResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(NullConsentResponse == true)</Condition>
+                    <Name>HPX_AM_ManagementResponseConsentNull</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/manage") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="jwks_url">
+            <Description/>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>HPX_KV_GetJwksDetails</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_AssignJwksResponse</Name>
+                </Step>
+            </Response>
+            <Condition>((proxy.pathsuffix MatchesPath "/.well-known/jwks.json") or (proxy.pathsuffix MatchesPath "/.well-known/openid-configuration/jwks.json")) and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupported">
+            <Description>Bad requests</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_RF_UnSupportedOperation</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Condition>(request.verb!="OPTIONS")</Condition>
+                <FaultRules/>
+                <Name>HPX_AM_CORS</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>(request.verb="OPTIONS")</Condition>
+                <FaultRules/>
+                <Name>HPX_RF_CORSPreflight</Name>
+            </Step>
+            <Step>
+                <Name>HPX_AM_CaptureHostName</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/oauth/v2</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default"/>
+</ProxyEndpoint>

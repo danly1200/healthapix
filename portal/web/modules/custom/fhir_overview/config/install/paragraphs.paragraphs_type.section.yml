@@ -1,0 +1,13 @@
+uuid: 87bfe20a-01de-44dd-abd1-c118ae315221
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fhir_overview
+id: section
+label: Section
+icon_uuid: null
+icon_default: null
+description: 'Section data for overview page'
+behavior_plugins: {  }

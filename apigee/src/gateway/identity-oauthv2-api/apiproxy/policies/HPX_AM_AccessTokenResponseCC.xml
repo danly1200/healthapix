@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_AccessTokenResponseCC">
+    <DisplayName>HPX_AM_AccessTokenResponseCC</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+		{
+			"access_token": "%oauthv2accesstoken.HPX_OA_GenerateAccessTokenClientCredentials.access_token#",
+			"token_type": "Bearer",
+			"expires_in": "%oauthv2accesstoken.HPX_OA_GenerateAccessTokenClientCredentials.expires_in#",
+			"scope": "%oauthv2accesstoken.HPX_OA_GenerateAccessTokenClientCredentials.scope#"
+		}
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="http" createNew="true"></AssignTo>
+</AssignMessage>

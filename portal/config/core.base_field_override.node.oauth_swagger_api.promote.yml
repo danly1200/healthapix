@@ -1,0 +1,22 @@
+uuid: ca7c89db-194b-4bb6-bfc1-ce10f8963d33
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.oauth_swagger_api
+id: node.oauth_swagger_api.promote
+field_name: promote
+entity_type: node
+bundle: oauth_swagger_api
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,121 @@
+<% layout('layout') -%>
+
+<div class="container main login" style="width: 100%; height:auto">
+
+    <span class="humana-h3"><%=  req.__('text.consent.authorization_required') %></span>
+    <!-- Consent Page Template -->
+    <!-- 
+        <div class="clearfix">
+          <div class="application-logo-circle">
+              <img class="img-responsive close-img" src="<%= app_logo_url%>"  style="width: 100%;">
+              <p class="caption"><%= appName%></p>
+          </div>
+          <div class="switch-arrow">
+              <img class="img-responsive close-img" src="<%= req.query.basepath%>/ui/images/Switch.png">
+          </div>
+          <div class="mobile-circle">
+              <img class="img-responsive <%= scope_class %>" src="<%= scope_icon %>">                        
+              <p class="caption"><%= user_attribute%><p>
+          </div>
+        </div> 
+      -->
+    <div id="container">
+        <!--<h3 class="singin-text"></h3>-->
+        <p class="h-text">When you share your information with third-party apps, you have the option to share both Humana and Author by Humana information. If you only select Author by Humana, then you are only sharing your Author information for the 2021 plan year and beyond. If you have not already shared your Humana information, you should follow the same process again, but this time select Humana. This way, the app will also have any of your health data that Humana has gathered in previous plan years.
+        
+        <p class="h-text">
+            <!--<%=  req.__('text.consent.the_application') %>--> 
+            <b style="color: rgba(59, 37, 78, 1);"><%= appName%> <%=  req.__('text.consent.require_access') %></b>
+       
+        <ul class="ul-h" align="left">
+            <li>Personal details like your name, address, phone number, and date of birth</li>
+            <li>Information about your Humana insurance plan(s) with Author by Humana services, such as coverage type and member ID</li>
+            <li>Written explanation of benefits, including the payments Humana has made on your behalf and the amount you paid or owe for various healthcare services as a member with Author by Humana services</li>
+            <li>History of your previous medical procedures</li>
+            <li>Description of your medical conditions as recorded by a clinician</li>
+            <li>List of your medications</li>
+            <li>History of your vaccinations or immunizations</li>
+            <li>Details of your care plans</li>
+            <li>List of providers and organizations involved in your care delivery</li>
+        </ul>
+        
+        <p class="h-text">You have the right to share your health information with this application or website, but there may be risks. Once this entity has accessed your data, it may no longer be protected by federal and state privacy laws such as HIPAA, and neither Humana nor Author by Humana operations is responsible for the privacy and security of your data. Before you share your data, be sure to review this application or website&apos;s Privacy Policy and Terms and Conditions to fully understand how they will handle your data, as well as Humana&apos;s Privacy Policy and Terms and Conditions below. At any time, you may revoke this application or website&apos;s access to collect your data via the Sharing My Information page on <a href="https://www.authorbyhumana.com" target="_blank" rel="noopener noreferrer" style="font-family: Varela Rounded, sans-serif; color:rgb(204, 65, 0); font-weight: bold; text-decoration: underline;">authorbyhumana.com</a>
+
+            <br><br>  
+            <span class="MuiTypography-root sc-hKgILt dhECjj sc-idOhPF huITip MuiTypography-body1">
+              <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true" fill="none">
+              <path d="M16 16H2V2H9V0H2C0.89 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H16C17.1 18 18 17.1 18 16V9H16V16ZM11 0V2H14.59L4.76 11.83L6.17 13.24L16 3.41V7H18V0H11Z" fill="rgba(204, 65, 0, 1)"></path>
+              </svg>
+              <span class="link"><a href="https://authorize.humana.com/legal/internet-privacy" target="_blank" rel="noopener noreferrer" class="link">Privacy Policy</a></span>
+            </span>
+            <br><br>
+            <span class="MuiTypography-root sc-hKgILt dhECjj sc-idOhPF huITip MuiTypography-body1">
+              <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true" fill="none">
+              <path d="M16 16H2V2H9V0H2C0.89 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H16C17.1 18 18 17.1 18 16V9H16V16ZM11 0V2H14.59L4.76 11.83L6.17 13.24L16 3.41V7H18V0H11Z" fill="rgba(204, 65, 0, 1)"></path>
+              </svg>
+              <span class="link"><a href="https://authorize.humana.com/legal/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="link">Terms and Conditions</a></span>
+            </span>
+        <br><br><br><br><br><br><br>
+    </div>    
+
+    <div class="input-group-container patient-container" id="tblScopes" align="left" style="display: none;">
+        <% var scopes= profile_scopes.split(" ") %>
+        <%
+            var readables = []
+            scopes.forEach(function (scope) {
+                var regex = /(patient|user)\/([A-z]{0,40}|\*).(read|write|\*)/g
+                if (regex.test(scope)) {
+                    var user = scope.substring(0, scope.indexOf("/"));
+                    var resource = scope.substring(scope.indexOf("/") + 1, scope.indexOf("."));
+                    var operation = scope.substring(scope.indexOf(".") + 1, scope.length);
+                    console.log(user, resource, operation)
+                    if (user && resource && operation) {
+                        var readable = "";
+                        if (operation === "read") {
+                            readable += "Read "
+                        } else {
+                            readable += "Add or Modify "
+                        }
+                        if (user === "patient") {
+                            readable += "your "
+                        } else {
+                            readable += "patient's "
+                        }
+                        if (resource === "Patient") {
+                            readable += "Demographics"
+                        } else if (resource === "*"){
+                             readable += "resource(s)"
+                        } else {
+                            readable += resource.replace(/[\w]([A-Z])/g, function (m) {
+                                return m[0] + " " + m[1];
+                            }) + "(s)"
+                        }
+                        readables.push(readable);
+                    } else {
+                        readables.push(scope);
+                    }
+                }else{
+                    readables.push(scope);
+                }
+            
+            })
+						 
+		    %>
+
+        <%readables.forEach(function(readable){ %>
+        <% if(readable){ %>
+        <li class="list-group-item list-consent-data"> <%= readable %></li>
+        <% }}) %>
+    </div>
+    <!-- <div class="rular"></div> -->
+    <div id="pinned" align="left">
+        <br>
+        <form action="<%= basepath%>/redirect/<%= sessionid%>" role="form">
+            <button type="submit" class="button button1"><%=  req.__('text.consent.agree') %></button>
+            <br>
+            <button type="button" class="button button2"
+                onclick="window.location='<%= redirectURL%>'"><%=  req.__('text.consent.no_thanks') %></button>
+            
+        </form>
+    </div>
+</div>

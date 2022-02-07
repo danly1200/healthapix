@@ -1,0 +1,21 @@
+uuid: 4aa06d3d-7ad5-47e7-9631-8ea011602b97
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.comment
+    - field.field.user.user.user_picture
+  module:
+    - user
+id: user.user.comment
+targetEntityType: user
+bundle: user
+mode: comment
+content:
+  member_for:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  user_picture: true

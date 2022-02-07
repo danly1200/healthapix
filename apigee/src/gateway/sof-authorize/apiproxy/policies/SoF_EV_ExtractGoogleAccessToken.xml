@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="SoF_EV_ExtractGoogleAccessToken">
+    <DisplayName>SoF_EV_ExtractGoogleAccessToken</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="access_token">
+            <JSONPath>$.access_token</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="true">googleAccessTokenResponse</Source>
+    <VariablePrefix>IAM</VariablePrefix>
+</ExtractVariables>

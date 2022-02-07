@@ -1,0 +1,27 @@
+uuid: 079e57ed-9c8e-43d3-a50c-050ee8d7f306
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_swagger_upload
+    - node.type.oauth_swagger_api
+  module:
+    - file
+id: node.oauth_swagger_api.field_swagger_upload
+field_name: field_swagger_upload
+entity_type: node
+bundle: oauth_swagger_api
+label: 'Swagger upload'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: oauth_swagger
+  file_extensions: 'json yaml yml'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

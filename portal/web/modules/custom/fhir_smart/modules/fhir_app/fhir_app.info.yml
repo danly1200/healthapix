@@ -1,0 +1,5 @@
+name: 'Fhir App'
+type: module
+description: 'Fhir App'
+core: 8.x
+package: 'GHC'

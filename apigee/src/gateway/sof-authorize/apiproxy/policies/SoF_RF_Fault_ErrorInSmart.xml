@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="SoF_RF_Fault_ErrorInSmart">
+    <DisplayName>SoF_RF_Fault_ErrorInSmart</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers>
+                <Header name="Access-Control-Allow-Origin">*</Header>
+                <Header name="Access-Control-Allow-Methods">POST, OPTIONS</Header>
+                <Header name="Access-Control-Allow-Headers">Accept, Content-Type, connection, content-length,Authorization, x-requested-with</Header>
+                <Header name="Access-Control-Allow-Credentials">true</Header>
+            </Headers>
+            <Payload contentType="application/json">{"error":"Invalid Request","error_decription":"SMART processing failed"}
+			</Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad request</ReasonPhrase>
+        </Set>
+        <AssignVariable>
+            <Name>errorHandled</Name>
+            <Value>true</Value>
+        </AssignVariable>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

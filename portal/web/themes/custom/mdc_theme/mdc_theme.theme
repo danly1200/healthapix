@@ -1,0 +1,393 @@
+<?php
+
+
+/**
+ * @file
+ * Functions to support theming in the fhir_responsive_theme theme.
+ */
+
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\file\Entity\File;
+use Drupal\Component\Serialization\Json;
+use Drupal\Core\File\FileSystemInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\node\NodeTypeInterface;
+use Drupal\Component\Utility\Html;
+
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function mdc_theme_theme_suggestions_page_alter(array &$suggestions, array $variables, $hook) {
+  $current_path = \Drupal::service('path.current')->getPath();
+
+  if ($current_path == '/user/login' || $current_path == '/user/register' || $current_path == '/user/password') {
+    $suggestions[] = 'page__plain__content';
+  }
+
+
+  // condition for twig suggestion for resource page.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $current_nid = $node->id();
+  }
+  else {
+    $current_nid = '';
+  }
+  if ($current_path == '/node/add/smartdocs' || $current_path == '/node/add/test_data' || $current_path == "/node/$current_nid/edit") {
+    $suggestions[] = 'page__resource';
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function mdc_theme_theme($existing, $type, $theme, $path) {
+  return [
+    'dual_multi_select' => [
+      'render element' => 'element',
+      'template' => 'field/dual-multi-select',
+      'preprocess functions' => [
+        'template_preprocess_select',
+      ],
+    ],
+  ];
+}
+
+
+/**
+ *
+ * Implements hook_preprocess_form().
+ */
+function mdc_theme_preprocess_form(array &$variables) {
+  $variables['#attached']['library'][] = 'mdc_theme/field-styling';
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function mdc_theme_preprocess_input(array &$variables) {
+  if (isset($variables['element']['#title'])) {
+    $variables['label'] = $variables['element']['#title'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function mdc_theme_preprocess_select(array &$variables) {
+  if (isset($variables['element']['#title'])) {
+    $variables['label'] = $variables['element']['#title'];
+  }
+}
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK() for contact form suggestion.
+ */
+function mdc_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'form__' . $variables['element']['#form_id'];
+}
+
+/**
+ * Implements hook_preprocess_page() for page.html.twig.
+ */
+function mdc_theme_preprocess_page(array &$variables) {
+
+  // Disable the cache for page
+  // To do: Needs to find alternateive solution for for user id cache issue.
+//  \Drupal::service('page_cache_kill_switch')->trigger();
+  /**
+   * @var  $site_config getting all site config details for page's slogan, name, logo and user details
+   */
+  // Add node type and page title as a class
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $path = \Drupal::service('path.current')->getPath();
+  $description = [];
+  if ($node) {
+    $node_type = $node->type->entity->label();
+    $nodebundle = $node->getType();
+    if ($nodebundle == 'fhir_servers') {
+      $path = \Drupal::service('path.current')->getPath();
+      $path_args = explode('/', $path);
+      if (isset($path_args[1]) && isset($path_args[2]) && ($path_args[1] == 'node') && (is_numeric($path_args[2]))) {
+        $variables['node_class_edit'] = 'page-node-edit-fhir_servers';
+      }
+    }
+    elseif ($nodebundle =='test_data'){
+      $node_des = node_type_get_types();
+      $description = $node_des['test_data']->getDescription();
+    }
+  }
+
+  $request = \Drupal::request();
+  if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+    $page_type = \Drupal::service('title_resolver')
+      ->getTitle($request, $route);
+
+  }
+
+  $pageName = str_replace(' ', '_', $page_type);
+  $variables['page_class'] = $pageName;
+  $site_config = Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+  $variables['description'] = $description;
+  $variables['site_slogan'] = $site_config->get('slogan');
+  $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+
+  if ($variables['is_front']) {
+    $variables['#attached']['library'][] = 'mdc_theme/home-page-styling';
+  }
+}
+
+/**
+ * Implements hook_preprocess
+ */
+function mdc_theme_preprocess(array &$variables) {
+  $variables['base_path'] = base_path();
+}
+
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for Login form alter.
+ */
+function mdc_theme_form_user_login_form_alter(&$form, &$form_state, $form_id) {
+  // Link for register page.
+  $url = Url::fromRoute('user.register');
+  $register_link = \Drupal::l(t('Create New Account'), $url);
+
+  // Link for forget password page.
+  $forget_url = Url::fromRoute('user.pass');
+  $forget_link = \Drupal::l(t('Forgot Password'), $forget_url);
+
+  $form['actions']['#prefix'] = '<div class="clearfix login-actions">';
+  $form['actions']['create_new_account']['#markup'] = '<div class="login-form-links"><div class="login-form-link nw-ac">' . $register_link . '</div>';
+  $form['actions']['forget_password']['#markup'] = '<div class="login-form-link forget-pwd nw-ac">' . $forget_link . '</div></div>';
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+  $form['actions']['#suffix'] = '</div>';
+}
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for user password form alter.
+ */
+function mdc_theme_form_user_pass_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['#prefix'] = '<div class="clearfix login-actions">';
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+  $form['actions']['#suffix'] = '</div>';
+}
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for user register form alter.
+ */
+function mdc_theme_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  $url = Url::fromRoute('user.login');
+  $login_link = \Drupal::l(t('Sign in Instead'), $url);
+  $form['actions']['#prefix'] = '<div class="clearfix login-actions">';
+  $form['#title'] = t('Register a New User');
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+  $form['actions']['signin_instead']['#markup'] = '<div class="login-form-links"><div class="login-form-link nw-ac">' . $login_link . '</div></div>';
+  //$form['actions']['signin_instead']['#markup'] = '<a class="nw-ac" href="/user/login">' . t('Sign in Instead') . '</a>';
+  $form['actions']['#suffix'] = '</div>';
+}
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for fhir_node_server content create form alter.
+ */
+function mdc_theme_form_node_fhir_servers_form_alter(&$form, &$form_state, $form_id) {
+  $form['title']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_fhir_server_base_url']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['field_fhir_version_autofill']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+  $form['#title'] = t('Register a  FHIR Server');
+
+}
+
+function mdc_theme_form_node_fhir_servers_edit_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+  $form['#title'] = t('Edit FHIR Server');
+
+}
+
+function mdc_theme_form_node_fhir_servers_delete_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+  $form['actions']['cancel']['#attributes']['class'][] = 'cancel-fhir-server mdc-button mdc-button--unelevated';
+
+
+}
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for user register form alter.
+ */
+function mdc_theme_form_developer_app_add_for_developer_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+}
+
+function mdc_theme_form_developer_app_edit_for_developer_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+}
+
+function mdc_theme_form_developer_app_delete_for_developer_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+}
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for user edit form.
+ */
+
+function mdc_theme_form_user_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#attributes']['class'][] = 'mdc-button mdc-button--unelevated';
+}
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ * Implements hook form alter for google signin form.
+ */
+function mdc_theme_form_openid_connect_login_form_alter(&$form, &$form_state, $form_id) {
+  $form['openid_connect_client_google_login']['#value'] = t('SIGN IN WITH GOOGLE');
+}
+
+/**
+ * Implements template_preprocess_html().
+ */
+function mdc_theme_preprocess_html(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node) {
+    if (isset($variables['node_type'])) {
+      // Add node-TYPE class to the <body> element.
+      $variables['attributes']['class'][] = 'page-node-' . $variables['node_type'];
+      //  $variables['attributes']->addClass('node-' . $variables['node_type']);
+    }
+    $nodebundle = $node->getType();
+    if ($nodebundle == 'fhir_servers') {
+      $variables['attributes']['class'][] = 'fhir-server-page';
+    }
+  }
+  $current_path = \Drupal::service('path.current')->getPath();
+  if($current_path == '/app/normal/add' || $current_path == '/app/smart/add' ) {
+    $variables['attributes']['class'][] = 'register-app-page';
+  }
+  else if ($current_path == '/node/add/fhir_servers' ) {
+    $variables['attributes']['class'][] = 'fhir-server-page';
+  }
+}
+
+/**
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function mdc_theme_form_node_smartdocs_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['signin_instead']['#markup'] = '<a class="cancel-fhir-server submit-btn mdc-button mdc-button--unelevated" href="/resources">' . t('Cancel') . '</a>';
+  $form['actions']['submit']['#weight'] = 0;
+  $form['actions']['submit']['#submit'][] = 'resources_form_after_submit';
+
+}
+
+/**
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function mdc_theme_form_node_smartdocs_edit_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['delete']['#access'] = FALSE;
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['signin_instead']['#markup'] = '<a class="cancel-fhir-server submit-btn mdc-button mdc-button--unelevated" href="/resources">' . t('Cancel') . '</a>';
+  $form['actions']['submit']['#weight'] = 0;
+  $form['actions']['submit']['#submit'][] = 'resources_form_after_submit';
+}
+
+//node_test_data_edit_form
+// node_test_data_form
+/**
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function mdc_theme_form_node_test_data_edit_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['delete']['#access'] = FALSE;
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['signin_instead']['#markup'] = '<a class="cancel-fhir-server submit-btn mdc-button mdc-button--unelevated" href="/manage-payloads">' . t('Cancel') . '</a>';
+  $form['actions']['submit']['#weight'] = 0;
+  $form['actions']['submit']['#submit'][] = 'payload_form_after_submit';
+}
+
+/**
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function mdc_theme_form_node_test_data_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['delete']['#access'] = FALSE;
+  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['signin_instead']['#markup'] = '<a class="cancel-fhir-server submit-btn mdc-button mdc-button--unelevated" href="/manage-payloads">' . t('Cancel') . '</a>';
+  $form['actions']['submit']['#weight'] = 0;
+  $form['actions']['submit']['#submit'][] = 'payload_form_after_submit';
+}
+
+/*
+ * Helper function for resource add page,edit page sumbit handler
+ */
+
+function resources_form_after_submit (){
+  $resource_page = new RedirectResponse(URL::fromUserInput('/resources')->toString());
+  $resource_page->send();
+}
+
+function payload_form_after_submit() {
+  $payload_page = new RedirectResponse(URL::fromUserInput('/manage-payloads')->toString());
+  $payload_page->send();
+}
+
+function mdc_theme_preprocess_node__overview_page(array &$variables) {
+  $sections = $variables['node']->get('field_section')->getValue();
+  if ($sections) {
+    $paragraghs = [];
+    foreach ($sections as $section) {
+      $pid = $section['target_id'];
+      $paragragh_load =   Paragraph::load($pid);
+      if ($paragragh_load) {
+        $paragraghs[$paragragh_load->id()] = [
+          'title' => $paragragh_load->get('field_title')->value,
+          'description' => $paragragh_load->get('field_description')->value,
+          'id' => preg_replace('/\s+/', '', $paragragh_load->get('field_title')->value),
+        ];
+      }
+    }
+  }
+  $variables['sections'] = $paragraghs;
+}
+
+function mdc_theme_preprocess_node__oauth_swagger_api(array &$variables) {
+  if($variables['node']->getTitle() == 'OAuth Authorization Code') {
+    $variables['attributes']['class'][] = 'oauth-authorization-code-hide-btn';
+  }
+}

@@ -1,0 +1,164 @@
+<?php
+
+/**
+ * @file
+ * Contains \Drupal\dexp_flickr\Plugin\Block\DexpFlickr.
+ */
+
+namespace Drupal\dexp_flickr\Plugin\Block;
+
+use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Provides a 'Flickr' block.
+ *
+ * @Block(
+ *   id = "dexp_flickr",
+ *   admin_label = @Translation("Dexp Flickr"),
+ *   category = @Translation("Custom Block")
+ * )
+ */
+class DexpFlickr extends BlockBase {
+    /**
+     * {@inheritdoc}
+     */
+    public function blockForm($form, FormStateInterface $form_state) {
+        $form = parent::blockForm($form, $form_state);
+        $config = $this->getConfiguration();
+
+        $form['flickr_source'] = array(
+            '#type' => 'select',
+            '#title' => t('Source pulling images'),
+            '#default_value' => isset($config['flickr_source']) ? $config['flickr_source']: 'user',
+            '#description' => $this->t('Pulling from a Flickr user or Flickr group or Flickr user set or Tag'),
+            '#options' => array(
+                'user' => 'User',
+                'group' => 'Group',
+                'user_set' => 'User set',
+                'all_tag' => 'Tag'
+            )
+        );
+        $form['flickr_userId'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Flickr User ID:'),
+            '#description' => $this->t('Input your Flickr User ID'),
+            '#default_value' => isset($config['flickr_userId']) ? $config['flickr_userId']: '',
+            '#states' => array(
+                'visible' => array(
+                    'select[name="settings[flickr_source]"]' => array('value' => t('user')),
+                ),
+            ),
+        );
+        $form['flickr_groupId'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Flickr Group ID:'),
+            '#description' => $this->t('Input your Flickr Group ID'),
+            '#default_value' => isset($config['flickr_groupId']) ? $config['flickr_groupId']: '',
+            '#states' => array(
+                'visible' => array(
+                    'select[name="settings[flickr_source]"]' => array('value' => t('group')),
+                ),
+            ),
+        );
+        $form['flickr_setId'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Set ID:'),
+            '#description' => $this->t('Input your Flickr Set ID'),
+            '#default_value' => isset($config['flickr_setId']) ? $config['flickr_setId']: '',
+            '#states' => array(
+                'visible' => array(
+                    'select[name="settings[flickr_source]"]' => array('value' => t('user_set')),
+                ),
+            ),
+        );
+        $form['flickr_tag'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Tags:'),
+            '#description' => $this->t('Each tag needs to be seperated by a comma'),
+            '#default_value' => isset($config['flickr_tag']) ? $config['flickr_tag']: '',
+            '#states' => array(
+                'visible' => array(
+                    'select[name="settings[flickr_source]"]' => array('value' => t('all_tag')),
+                ),
+            ),
+        );
+        $form['flickr_num_photo'] = array(
+            '#type' => 'select',
+            '#title' => t('Number of images being pulled'),
+            '#default_value' => isset($config['flickr_num_photo']) ? $config['flickr_num_photo']: 4,
+            '#description' => $this->t('How many images to show in Flickr block'),
+            '#options' => array(
+                2 => '2',3 => '3',4 => '4',5 => '5',6 => '6',7 => '7',8 => '8',9 => '9',10 => '10'),
+        );
+        $form['flickr_display'] = array(
+            '#type' => 'select',
+            '#title' => $this->t('Ordering your images'),
+            '#description' => $this->t('You can get random or latest images from Flickr'),
+            '#options' => array(
+                'latest' => 'Latest Images',
+                'random' => 'Random Images',
+            ),
+            '#default_value' => isset($config['flickr_display']) ? $config['flickr_display'] : 'latest'
+        );
+        $form['flickr_image_size'] = array(
+            '#type' => 'select',
+            '#title' => $this->t('Size of your images'),
+            '#description' => $this->t('Small square box (75 pixels by 75 pixels), Thumbnail size (longest side is 100 pixels), and Medium size(longest side is 240 pixels)'),
+            '#options' => array(
+                't' => 'Thumbnail',
+                's' => 'Small',
+                'm' => 'Medium'
+            ),
+            '#default_value' => isset($config['flickr_image_size']) ? $config['flickr_image_size'] : 't'
+        );
+        return $form;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function blockSubmit($form, FormStateInterface $form_state) {
+        $this->setConfigurationValue('flickr_source', $form_state->getValues()['flickr_source']);
+        $this->setConfigurationValue('flickr_userId', $form_state->getValues()['flickr_userId']);
+        $this->setConfigurationValue('flickr_groupId', $form_state->getValues()['flickr_groupId']);
+        $this->setConfigurationValue('flickr_setId', $form_state->getValues()['flickr_setId']);
+        $this->setConfigurationValue('flickr_num_photo', $form_state->getValues()['flickr_num_photo']);
+        $this->setConfigurationValue('flickr_display',  $form_state->getValues()['flickr_display']);
+        $this->setConfigurationValue('flickr_image_size',  $form_state->getValues()['flickr_image_size']);
+        $this->setConfigurationValue('flickr_tag',  $form_state->getValues()['flickr_tag']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build() {
+        $config = $this->getConfiguration();
+        $flickr_Id = "";
+        switch ($config['flickr_source']) {
+            case "user" :
+                $flickr_Id = "user=".$config['flickr_userId'];
+                break;
+            case "group":
+                $flickr_Id = "group=".$config['flickr_groupId'];
+                break;
+            case "user_set":
+                $flickr_Id = "set=".$config['flickr_setId'];
+                break;
+            case "all_tag":
+                $flickr_Id = "tag=".$config['flickr_tag'];
+                break;
+            default :
+                $flickr_Id = "user=".$config['flickr_userId'];
+        }
+        return array(
+            '#theme' => 'flickr',
+            '#flickr_source' => $config['flickr_source'],
+            '#flickr_id' => $flickr_Id,
+            '#flickr_num_photo' => $config['flickr_num_photo'],
+            '#flickr_image_size' => $config['flickr_image_size'],
+            '#flickr_display' => $config['flickr_display'],
+        );
+    }
+}

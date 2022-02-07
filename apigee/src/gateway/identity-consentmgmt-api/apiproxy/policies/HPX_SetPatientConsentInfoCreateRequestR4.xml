@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetPatientConsentInfoCreateRequestR4">
+    <DisplayName>HPX_SetPatientConsentInfoCreateRequestR4</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{googleToken}</Header>
+        </Headers>
+        <Verb>POST</Verb>
+        <Payload contentType="application/fhir+json" variablePrefix="@" variableSuffix="#">{"resourceType":"Consent","status":"active","scope":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/consentscope","code":"[@formatted_scopes#]"}]},"patient":{"reference":"Patient/@patient_id#"},"category":[{"coding":[{"system":"http://loinc.org","code":"59284-0"}]}],"policyRule":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v3-ActCode","code":"OPTIN"}]},"provision":{"period":{"start":"@consent_window_start_time#","end":"@consent_window_end_time#"},"actor":[{"role":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v3-ParticipationType","code":"PRCP"}]},"reference":{"reference":"Device/@device_id#"}}]}}</Payload>
+    </Set>
+    <AssignVariable>
+        <Name>targetSuffixURI</Name>
+        <Value>Consent</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

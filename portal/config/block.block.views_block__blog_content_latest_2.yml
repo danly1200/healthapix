@@ -1,0 +1,30 @@
+uuid: 64c0d9a1-d8dd-4a42-b0b5-4f16fc999da4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog_content
+  module:
+    - system
+    - views
+  theme:
+    - fhir_responsive_theme
+id: views_block__blog_content_latest_2
+theme: fhir_responsive_theme
+region: sidebar_second
+weight: -11
+provider: null
+plugin: 'views_block:blog_content-latest'
+settings:
+  id: 'views_block:blog_content-latest'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /blogs
+    negate: false
+    context_mapping: {  }

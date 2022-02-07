@@ -1,0 +1,7 @@
+dexp.settings:
+  path: '/admin/config/drupalexp'
+  defaults:
+    _title: 'DrupalExp Settings'
+    _form: '\Drupal\dexp\Form\SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

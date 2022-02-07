@@ -1,0 +1,27 @@
+uuid: b9f57206-7d20-45ab-835b-b6fe391cc21b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_audio
+    - node.type.blog_audio
+  module:
+    - file
+id: node.blog_audio.field_audio
+field_name: field_audio
+entity_type: node
+bundle: blog_audio
+label: Audio
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  description_field: false
+  file_directory: ''
+  file_extensions: 'wav mp3 mp4'
+  max_filesize: '10 MB'
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

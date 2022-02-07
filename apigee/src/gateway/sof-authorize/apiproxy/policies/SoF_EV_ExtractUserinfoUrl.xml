@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="SoF_EV_ExtractUserinfoUrl">
+    <DisplayName>SoF_EV_ExtractUserinfoUrl</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="userInfoUrl">
+            <JSONPath>$.userinfo_endpoint</JSONPath>
+        </Variable>
+    </JSONPayload>
+</ExtractVariables>

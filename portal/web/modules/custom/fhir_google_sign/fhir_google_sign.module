@@ -1,0 +1,36 @@
+<?php
+
+use Drupal\user\UserInterface;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/*
+ *  Implements hook_user_presave().
+ */
+
+function fhir_google_sign_user_presave(UserInterface $account) {
+  $first_name = $account->first_name->value;
+  $last_name = $account->last_name->value;
+
+  if( empty($first_name) ) {
+    $account->set('first_name', 'First Name');
+  }
+  if ( empty($last_name) ){
+    $account->set('last_name', 'Last Name');
+  }
+}
+
+
+
+/*
+ * Implements hook_user_login()
+ */
+
+function fhir_google_sign_user_login(\Drupal\Core\Session\AccountInterface $account) {
+    $current_route = \Drupal::routeMatch()->getRouteName();
+    if (!in_array($current_route, ['user.reset', 'user.reset.login'])) {
+        // We want to redirect user on login.
+        $homeResponse = new RedirectResponse(URL::fromUserInput('/user/my-apps')->toString());
+        $homeResponse->send();
+    }
+}

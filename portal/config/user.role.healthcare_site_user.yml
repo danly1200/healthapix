@@ -1,0 +1,10 @@
+uuid: bffdd0f5-c2e0-4a51-a1c4-260b239fd1d2
+langcode: en
+status: true
+dependencies: {  }
+id: healthcare_site_user
+label: healthcare_site_user
+weight: 3
+is_admin: null
+permissions:
+  - 'post comments'

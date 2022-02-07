@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <FaultRules>
+        <FaultRule name="InvalidAccessToken">
+            <Step>
+                <Condition>((fault.name equals "InvalidAccessToken") or ((fault.name equals "access_token_expired") or (fault.name equals "invalid_access_token")))</Condition>
+                <FaultRules/>
+                <Name>HPX_Fault_InvalidAccessToken</Name>
+            </Step>
+            <Step>
+                <Name>HPX_SetCORSHeaders</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Condition>(request.verb="OPTIONS")</Condition>
+                <FaultRules/>
+                <Name>HPX_CORSPreflight</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="dstu2-proxies">
+            <Description>dstu2-proxies</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_validateApiKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetApiProduct</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ConvertToJSON</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetTargetServerName</Name>
+                </Step>
+            </Request>
+            <Response/>
+                <Condition>(proxy.pathsuffix MatchesPath "/dstu2/*")</Condition>
+        </Flow>
+        <Flow name="stu3-proxies">
+            <Description>stu3-proxies</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_validateApiKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetApiProduct</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ConvertToJSON</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetTargetServerName</Name>
+                </Step>
+            </Request>
+            <Response/>
+                <Condition>(proxy.pathsuffix MatchesPath "/stu3/*")</Condition>
+        </Flow>
+        <Flow name="r4-proxies">
+            <Description>r4-proxies</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_VerifyAccessToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>HPX_validateApiKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetApiProduct</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ConvertToJSON</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetTargetServerName</Name>
+                </Step>
+            </Request>
+            <Response/>
+                <Condition>(proxy.pathsuffix MatchesPath "/r4/*")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>HPX_SetCORSHeaders</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/v1/ghc</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="dstu2">
+        <TargetEndpoint>dstu2-target</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/dstu2/**" )</Condition>
+    </RouteRule>
+    <RouteRule name="stu3">
+        <TargetEndpoint>stu3-target</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/stu3/**" )</Condition>
+    </RouteRule>
+    <RouteRule name="r4">
+        <TargetEndpoint>r4-target</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/r4/**" )</Condition>
+    </RouteRule>
+</ProxyEndpoint>

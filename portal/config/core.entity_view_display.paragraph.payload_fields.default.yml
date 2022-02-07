@@ -1,0 +1,40 @@
+uuid: fd1486d1-f578-47ac-86f4-cb0b03693004
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.payload_fields.field_payload
+    - field.field.paragraph.payload_fields.field_payload_id
+    - field.field.paragraph.payload_fields.field_payload_version
+    - paragraphs.paragraphs_type.payload_fields
+  module:
+    - text
+id: paragraph.payload_fields.default
+targetEntityType: paragraph
+bundle: payload_fields
+mode: default
+content:
+  field_payload:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_payload_id:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_payload_version:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

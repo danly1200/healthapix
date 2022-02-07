@@ -1,0 +1,117 @@
+<?php
+
+use Drupal\views\Views;
+use Drupal\views\ViewExecutable;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function dexp_grid_theme_registry_alter(&$theme_registry) {
+  $plugins = Views::getPluginDefinitions();
+  $path = drupal_get_path('module', 'dexp_grid');
+
+  foreach ($plugins['style'] as $style) {
+    if ($style['provider'] == 'dexp_grid') {
+      $theme = $style['theme'];
+
+      switch ($theme) {
+        case 'views_dexp_grid_bootstrap':
+          $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_dexp_grid_bootstrap';
+          break;
+      }
+      
+      $theme_registry[$theme]['path'] = $path . '/templates/' . $theme;
+      $theme_registry[$theme]['includes'][] = $theme_registry[$theme]['path'] . '/theme.inc';
+      $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_' . $theme;
+    }
+  }
+}
+
+/**
+ * Implemnets hook_theme().
+ */
+function dexp_grid_theme(){
+  return [
+    'dexp_grid_filter' => [
+      'variables' => [
+        'show_all_text' => t('Show All'),
+        'filters' => [],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function dexp_grid_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+  if('dexp_grid_views' == $view->getStyle()->getPluginId()){
+    $options = $view->getStyle()->options;
+    if($options['grid_filter'] && $options['grid_filter_vocabulary']){
+      $grid_filter_vocabulary = $options['grid_filter_vocabulary'];
+      $filter = [];
+      foreach(\Drupal::entityManager()->getStorage('taxonomy_term')->loadTree($options['grid_filter_vocabulary']) as $term){
+        $term->data_filter = Html::getClass($term->name);
+        $filter[] = $term;
+      }
+      $filters[] = $filter;
+      $filter_html = [
+        '#theme' => 'dexp_grid_filter',
+        '#filters' => $filters,
+        '#show_all_text' => $options['grid_filter_show_all_text'],
+      ];
+      $options = array(
+        'id' => 'grid_filter',
+        'table' => 'views',
+        'field' => 'area_text_custom',
+        'relationship' => 'none',
+        'group_type' => 'none',
+        'admin_label' => '',
+        'empty' => TRUE,
+        'tokenize' => FALSE,
+        'content' => render($filter_html),
+        'plugin_id' => 'text_custom',
+      );
+      $view->setHandler($display_id, 'header', 'grid_filter', $options);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function dexp_grid_preprocess_views_view(&$vars) {
+  $view = $vars['view'];
+  if('dexp_grid_views' == $view->getStyle()->getPluginId()){
+    $vars['attributes']['class'][] = 'views-view-dexp-grid';
+    $vars['rows']['#theme_wrappers'][] = 'container';
+    $vars['rows']['#suffix'] = '<div class="dexp-grid-sizer" style="display: none"></div><div id="dexp-grid-message"><span>Saving...</span></div> ';
+    $vars['rows']['#attributes'] = [
+      'class' => [
+        'dexp-grid-inner',
+        'clearfix',
+      ],
+    ];
+    $options = $view->getStyle()->options;
+    $uuid_service = \Drupal::service('uuid');
+    $uuid = $uuid_service->generate();
+    $vars['attributes']['data-uuid'] = $uuid;
+    $vars['#attached']['drupalSettings']['dexp_grid'][$uuid] = array(
+      'view' => $view->id(),
+      'display_id' => $view->current_display,
+      'lg_cols' => (int)$options['lg_cols'],
+      'md_cols' => (int)$options['md_cols'],
+      'sm_cols' => (int)$options['sm_cols'],
+      'xs_cols' => (int)$options['xs_cols'],
+      'margin' => (int)$options['grid_margin'],
+      'ratio' => (float)$options['grid_ratio'],
+    );
+    if ($options['grid_style'] == 'masonry_resize') {
+      $vars['attributes']['class'][] = 'dexp-grid-masonry-resize';
+      if(\Drupal::currentUser()->hasPermission('administer dexp grid masonry')){
+        $vars['#attached']['library'][] = 'dexp_grid/grid_admin';
+      }
+    }
+  }
+}

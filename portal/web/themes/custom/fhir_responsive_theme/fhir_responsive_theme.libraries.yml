@@ -1,0 +1,32 @@
+global-styling:
+  css:
+    theme:
+      css/fhir_responsive.css : {}
+      css/style.css : {}
+      css/layout.css: {}
+
+global-scripts:
+  js:
+    js/fhir_responsive_theme.js : {}
+    js/fhir_script.js : {}
+font-awesome-css:
+  css:
+    theme:
+      css/font_awesome/css/font-awesome.css: {}
+
+scss-files:
+  css:
+    theme:
+      css/font_awesome/scss/_bordered-pulled.scss: {}
+      css/font_awesome/scss/_animated.scss: {}
+      css/font_awesome/scss/_core.scss: {}
+      css/font_awesome/scss/_fixed-width.scss: {}
+      css/font_awesome/scss/_icons.scss: {}
+      css/font_awesome/scss/_larger.scss: {}
+      css/font_awesome/scss/_list.scss: {}
+      css/font_awesome/scss/_mixins.scss: {}
+      css/font_awesome/scss/_path.scss: {}
+      css/font_awesome/scss/_rotated-flipped.scss: {}
+      css/font_awesome/scss/_stacked.scss: {}
+      css/font_awesome/scss/_variables.scss: {}
+      css/font_awesome/scss/font-awesome.scss: {}

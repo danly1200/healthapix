@@ -1,0 +1,7 @@
+name: 'Fhir Server'
+type: module
+description: 'Fhir Server'
+core: 8.x
+package: 'GHC'
+
+

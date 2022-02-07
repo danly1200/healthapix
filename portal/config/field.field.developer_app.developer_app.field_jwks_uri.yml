@@ -1,0 +1,20 @@
+uuid: 0d2171fa-9004-40d4-b06a-81f06ca37062
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_jwks_uri
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_jwks_uri
+field_name: field_jwks_uri
+entity_type: developer_app
+bundle: developer_app
+label: 'Jwks uri'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

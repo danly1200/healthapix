@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="HPX_OA_GenerateAccessToken">
+    <DisplayName>HPX_OA_GenerateAccessToken</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Code>request.formparam.code</Code>
+    <Attributes>
+        <Attribute name="fhirUser" display="true" ref="oauthv2authcode.HPX_GO_GetAuthCodeAttributes.fhirUser">null</Attribute>
+        <Attribute name="patient_id" display="true" ref="oauthv2authcode.HPX_GO_GetAuthCodeAttributes.patient">null</Attribute>
+        <Attribute name="aud" display="true" ref="oauthv2authcode.HPX_GO_GetAuthCodeAttributes.aud">null</Attribute>
+    </Attributes>
+    <ExpiresIn>3600000</ExpiresIn>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <GrantType>request.formparam.grant_type</GrantType>
+    <Operation>GenerateAccessToken</Operation>
+    <RedirectUri>request.formparam.redirect_uri</RedirectUri>
+    <GenerateResponse enabled="true">
+        <Format>FORM_PARAM</Format>
+    </GenerateResponse>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <Scope>oauthv2authcode.HPX_GO_GetAuthCodeAttributes.scope</Scope>
+    <SupportedGrantTypes>
+        <GrantType>authorization_code</GrantType>
+    </SupportedGrantTypes>
+    <Tokens/>
+</OAuthV2>

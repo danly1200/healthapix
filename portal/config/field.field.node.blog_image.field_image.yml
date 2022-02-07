@@ -1,0 +1,38 @@
+uuid: fcdbf80e-4e83-4225-b706-988e7d3bf05e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image
+    - node.type.blog_image
+  module:
+    - image
+id: node.blog_image.field_image
+field_name: field_image
+entity_type: node
+bundle: blog_image
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: ''
+  file_extensions: 'jpg jpeg png gif'
+  max_filesize: '5 MB'
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  max_resolution: ''
+  min_resolution: ''
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

@@ -1,0 +1,533 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Binary resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+- url: https://gcp-hcls-test.apigee.net/v1/ghc/r4
+tags:
+- name: Binary
+paths:
+  /Binary:
+    get:
+      tags:
+      - Binary
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: Search the contents of the resource's narrative using a fulltext search
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: food | medication | environment | other - Category of Substance
+          schema:
+            type: string
+        - name: criticality
+          in: query
+          description: low | high | unable-to-assess
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'When recorded. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: identifier
+          in: query
+          description: External ids for this item
+          schema:
+            type: string
+        - name: last-date
+          in: query
+          description: 'Date(/time) of last known occurrence of a reaction. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: manifestation
+          in: query
+          description: Clinical symptoms/signs associated with the Event
+          schema:
+            type: string
+        - name: onset
+          in: query
+          description: 'Date(/time) when manifestations showed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: patient
+          in: query
+          description: Who the sensitivity is for
+          schema:
+            type: string
+        - name: recorder
+          in: query
+          description: Who recorded the sensitivity
+          schema:
+            type: string
+        - name: reporter
+          in: query
+          description: Source of the information about the allergy
+          schema:
+            type: string
+        - name: route
+          in: query
+          description: How the subject was exposed to the substance
+          schema:
+            type: string
+        - name: severity
+          in: query
+          description: mild | moderate | severe (of event as a whole)
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: active | unconfirmed | confirmed | inactive | resolved | refuted | entered-in-error
+          schema:
+            type: string
+        - name: substance
+          in: query
+          description: 'Substance, (or class) considered to be responsible for risk'
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: allergy | intolerance - Underlying mechanism (if known)
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Binary'
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+    post:
+      tags:
+      - Binary
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Binary'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+  /Binary/{id}:
+    get:
+      tags:
+      - Binary
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Binary'
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+    put:
+      tags:
+      - Binary
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/Binary'
+        required: false
+      responses:
+        '200':
+          description: Binary Updated.
+          content: {}
+        '201':
+          description: Binary Created.
+          content: {}
+        '400':
+          description: Binary could not be parsed or failed basic FHIR validation rules (or multiple matches were found).
+          content: {}
+        '403':
+          description: Not Authorized.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+    delete:
+      tags:
+      - Binary
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: No Content.
+          content: {}
+        '204':
+          description: No Content.
+          content: {}
+        '404':
+          description: Composition not found.
+          content: {}
+        '405':
+          description: Method not allowed.
+          content: {}
+        '409':
+          description: Conflict Error.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+  /Binary/{id}/_history:
+    get:
+      tags:
+      - Binary
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+  /Binary/{id}/_history/{vid}:
+    get:
+      tags:
+      - Binary
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Binary'
+      security:
+        - OAuthV2B2B:
+            - system/Binary.read
+            - system/Binary.write
+components:
+  schemas:
+    Binary:
+      required:
+      - contentType
+      - data
+      - id
+      - meta
+      - resourceType
+      - securityContext
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        contentType:
+          minLength: 1
+          type: string
+        securityContext:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        data:
+          minLength: 1
+          type: string
+        meta:
+          required:
+          - tag
+          type: object
+          properties:
+            tag:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Binary.read: Read permissions for Binary demographics.
+            system/Binary.write: Write permissions for Binary demographics.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Binary.read: Read permissions for Binary demographics.
+            system/Binary.write: Write permissions for Binary demographics.

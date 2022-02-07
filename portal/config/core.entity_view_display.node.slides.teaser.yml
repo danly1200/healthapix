@@ -1,0 +1,33 @@
+uuid: 508b02c5-3185-446c-96ff-ed281d5a5968
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.slides.body
+    - field.field.node.slides.field_slides_image
+    - node.type.slides
+  module:
+    - text
+    - user
+id: node.slides.teaser
+targetEntityType: node
+bundle: slides
+mode: teaser
+content:
+  body:
+    label: hidden
+    weight: 0
+    type: text_summary_or_trimmed
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment_node_slides: true
+  field_slides_image: true

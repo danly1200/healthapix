@@ -1,0 +1,2232 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "FHIR Procedure resource API documentation",
+    "description": "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+    "version": "1.4.0"
+  },
+  "servers": [
+    {
+      "url": "https://healthapix-demo-test.apigee.net/{basePath}",
+      "variables": {
+        "basePath": {
+          "enum": [
+            "v1/dstu3",
+            "v1/ghc"
+          ],
+          "default": "v1/ghc"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/Procedure": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Returns Procedures based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedures Search",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "A code to identify a  procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date/Period the procedure was performed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The encounter associated with the procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "A unique identifier for a procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Where the procedure happened",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "Search by subject - a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "The reference to the practitioner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Search by subject",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Procedure bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "The conditional update interaction is used to update an existing Procedure based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedure Conditional Update",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "A code to identify a  procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date/Period the procedure was performed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The encounter associated with the procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "A unique identifier for a procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Where the procedure happened",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "Search by subject - a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "The reference to the practitioner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Search by subject",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Procedure"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Procedure"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Procedure Updated.",
+            "content": {}
+          },
+          "201": {
+            "description": "Procedure Created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Procedure could not be parsed or failed basic FHIR validation rules (or multiple matches were found).",
+            "content": {}
+          },
+          "403": {
+            "description": "Not Authorized.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Create a new Procedure with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Create Procedure",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "description": "Specify the search query for conditional create.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Procedure"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Procedure"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "Procedure could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Procedure not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The Procedure resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "The conditional delete interaction allows a client to delete Procedure/Procedures  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedure Conditional Delete",
+        "parameters": [
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "A code to identify a  procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date/Period the procedure was performed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The encounter associated with the procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "A unique identifier for a procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Where the procedure happened",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "Search by subject - a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "The reference to the practitioner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Search by subject",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "204": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "404": {
+            "description": "Procedure not found.",
+            "content": {}
+          },
+          "405": {
+            "description": "Method not allowed.",
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict Error.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Returns details of Procedure having id given in path.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Read Procedure",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Procedure Instance",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Procedure"
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Procedure"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Update an existing Procedure by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Update Procedure",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Procedure"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Procedure"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Procedure Updated.",
+            "content": {}
+          },
+          "201": {
+            "description": "Procedure Created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Procedure could not be parsed or failed basic FHIR validation rules (or multiple matches were found).",
+            "content": {}
+          },
+          "403": {
+            "description": "Not Authorized.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "The delete interaction removes an existing Procedure.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Delete Procedure",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "204": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "404": {
+            "description": "Procedure not found.",
+            "content": {}
+          },
+          "405": {
+            "description": "Method not allowed.",
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict Error.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/_history": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "It retrieves the history of a particular Procedure identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedure History",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Procedure bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/_history": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "It retrieves the history of all resources of Procedure.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedures History",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Procedure bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/_history/{vid}": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "This interaction preforms a version specific read of Procedure resource.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedure Version Read",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Procedure Instance",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Procedure"
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Procedure"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/$meta": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for Procedures.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedures Metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for Procedure",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/$meta": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given Procedure resource.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedure Metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/_history/{vid}/$meta": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the Procedure.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedure Version based Metadata",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/{type}": {
+      "get": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Search the specified resource type in Procedure compartment.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": " Compartment Search",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular Procedure",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/_search": {
+      "post": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "This interaction searches a set of Procedures based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Procedures Search using POST",
+        "parameters": [
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "A code to identify a  procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date/Period the procedure was performed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The encounter associated with the procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "A unique identifier for a procedure",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Where the procedure happened",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "Search by subject - a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "The reference to the practitioner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Search by subject",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "_content": {
+                    "type": "string",
+                    "description": "Search the contents of the resource's data using a fulltext search"
+                  },
+                  "_id": {
+                    "type": "string",
+                    "description": "The resource identity"
+                  },
+                  "_language": {
+                    "type": "string",
+                    "description": "The resource language"
+                  },
+                  "_lastUpdated": {
+                    "type": "string",
+                    "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "_profile": {
+                    "type": "string",
+                    "description": "Search for resources which have the given profile"
+                  },
+                  "_security": {
+                    "type": "string",
+                    "description": "Search for resources which have the given security labels"
+                  },
+                  "_tag": {
+                    "type": "string",
+                    "description": "Search for resources which have the given tag"
+                  },
+                  "_text": {
+                    "type": "string",
+                    "description": "Search the contents of the resource's narrative using a fulltext search"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "A code to identify a  procedure"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Date/Period the procedure was performed. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "encounter": {
+                    "type": "string",
+                    "description": "The encounter associated with the procedure"
+                  },
+                  "identifier": {
+                    "type": "string",
+                    "description": "A unique identifier for a procedure"
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Where the procedure happened"
+                  },
+                  "patient": {
+                    "type": "string",
+                    "description": "Search by subject - a patient"
+                  },
+                  "performer": {
+                    "type": "string",
+                    "description": "The reference to the practitioner"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "Search by subject"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Procedure bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Procedure"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/$meta-add": {
+      "post": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Add a metadata info Procedure with specified id.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Add Procedure metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid meta payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "Procedure could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Procedure not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The Procedure resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/Procedure/{id}/_history/{vid}/$meta-add": {
+      "post": {
+        "tags": [
+          "Procedure"
+        ],
+        "description": "Add metadata info to specified Procedure resource.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for Procedure.</a></p>",
+        "operationId": "Add Procedure Version based Metadata",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid meta payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "Procedure could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Procedure not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The Procedure resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Procedure.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Procedure.write"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Procedure": {
+        "required": [
+          "code",
+          "followUp",
+          "id",
+          "notes",
+          "performedDateTime",
+          "performer",
+          "reasonCodeableConcept",
+          "resourceType",
+          "status",
+          "subject",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "text": {
+            "required": [
+              "div",
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "div": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "subject": {
+            "required": [
+              "reference"
+            ],
+            "type": "object",
+            "properties": {
+              "reference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "code": {
+            "required": [
+              "coding",
+              "text"
+            ],
+            "type": "object",
+            "properties": {
+              "coding": {
+                "minItems": 1,
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "required": [
+                    "code",
+                    "display",
+                    "system"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "code": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "display": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "text": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "reasonCodeableConcept": {
+            "required": [
+              "text"
+            ],
+            "type": "object",
+            "properties": {
+              "text": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "performer": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "actor": {
+                  "required": [
+                    "display",
+                    "reference"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "reference": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "display": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "performedDateTime": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "followUp": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "required": [
+                "text"
+              ],
+              "type": "object",
+              "properties": {
+                "text": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "notes": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "required": [
+                "text"
+              ],
+              "type": "object",
+              "properties": {
+                "text": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "metaBody": {
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "OAuthV2B2C": {
+        "type": "oauth2",
+        "description": "Security scheme for B2C flow using authorization code flow.",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+            "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken",
+            "scopes": {
+              "patient/Procedure.read": "Read permissions for Procedure demographics.",
+              "patient/Procedure.write": "Write permissions for Procedure demographics."
+            }
+          }
+        }
+      },
+      "OAuthV2B2B": {
+        "type": "oauth2",
+        "description": "Security scheme for B2B flow using authorization code flow.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+            "scopes": {
+              "patient/Procedure.read": "Read permissions for Procedure demographics.",
+              "patient/Procedure.write": "Write permissions for Procedure demographics."
+            }
+          }
+        }
+      }
+    }
+  }
+}

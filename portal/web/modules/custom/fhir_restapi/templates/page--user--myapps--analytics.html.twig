@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation for Analytics page.
+ *
+ * @ingroup templates
+ */
+#}
+<div class="my-app-analytics">
+  <div class="container mdc-layout-grid">
+    <div class="row mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--align-middle">
+        <div class="my-apps-bck-btn">
+          <i class="arrow left "></i> <a class="form-submit" href="{{ url('fhir_restapi.my_developer_apps_list_controller_getListMyApps') }}">Back to My Apps</a>
+        </div>
+        <div class="my-apps-analytics-form">
+{#          <div class="app-analytic-title">#}
+{#            <h2>#}
+{#              <strong>#}
+{#                {{ displayName }} - Analytics#}
+{#              </strong>#}
+{#            </h2>#}
+{#          </div>#}
+          {{ analytics_form }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

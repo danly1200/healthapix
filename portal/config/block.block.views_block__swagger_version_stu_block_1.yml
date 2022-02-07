@@ -1,0 +1,32 @@
+uuid: 5b902a3a-4f8d-4934-907d-2d06d950b6d9
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.swagger_version_stu
+  module:
+    - node
+    - views
+  theme:
+    - fhir_responsive_theme
+id: views_block__swagger_version_stu_block_1
+theme: fhir_responsive_theme
+region: content
+weight: -12
+provider: null
+plugin: 'views_block:swagger_version_stu-block_1'
+settings:
+  id: 'views_block:swagger_version_stu-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      smartdocs: smartdocs
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

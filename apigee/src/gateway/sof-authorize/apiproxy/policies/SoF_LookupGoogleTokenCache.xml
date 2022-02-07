@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="SoF_LookupGoogleTokenCache">
+    <DisplayName>SoF_LookupGoogleTokenCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="SERVICE_ACCOUNT_NAME"/>
+    </CacheKey>
+    <CacheResource>sof-resources-cache</CacheResource>
+    <Scope>Exclusive</Scope>
+    <AssignTo>backend.config</AssignTo>
+</LookupCache>

@@ -1,0 +1,23 @@
+uuid: 2f8cc0b6-5ce9-415a-bf43-0d089e6fdd79
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.time_line
+    - field.field.node.page.body
+    - node.type.page
+  module:
+    - user
+id: node.page.time_line
+targetEntityType: node
+bundle: page
+mode: time_line
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_page: true

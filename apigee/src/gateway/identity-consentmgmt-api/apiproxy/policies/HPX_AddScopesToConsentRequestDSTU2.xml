@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AddScopesToConsentRequestDSTU2">
+    <DisplayName>HPX_AddScopesToConsentRequestDSTU2</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{googleToken}</Header>
+        </Headers>
+        <Verb>PATCH</Verb>
+        <Payload contentType="application/json-patch+json" variablePrefix="@" variableSuffix="#">[{"op":"replace","path":"/term/0","value":{"text":"[@combined_scopes#]"}}]</Payload>
+    </Set>
+    <AssignVariable>
+        <Name>targetSuffixURI</Name>
+        <Template>Contract/{consent_id}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

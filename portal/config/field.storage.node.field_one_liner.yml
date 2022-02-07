@@ -1,0 +1,21 @@
+uuid: fd3a368f-f8e0-4634-a03d-b5eba5401d81
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_one_liner
+field_name: field_one_liner
+entity_type: node
+type: string
+settings:
+  max_length: 75
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

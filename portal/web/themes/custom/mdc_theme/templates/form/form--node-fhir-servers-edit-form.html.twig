@@ -1,0 +1,40 @@
+<form{{ attributes }}>
+{#  <h3 class="mdc-typography--headline3 server-title">{{ element['#title'] }}</h3>#}
+  <div class="fhir-server-create edit-file-server">
+    <div class="fhir-server-create-body">
+      <div class="mdc-layout-grid fhir-server-title">
+        {{ element.field_fhir_api_products }}
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell--span-8-desktop">
+            {{ element.title }}</div>
+          <div class="mdc-layout-grid__cell--span-4-desktop version-dropdown">
+            {{ element.field_fhir_version_autofill }}
+          </div>
+
+        </div>
+        {{ element.field_fhir_server_base_url }}
+
+        <div class="file-drag-drop">
+          <div class="or-class"><span>OR</span></div>
+          {{ element.field_server_file }}
+
+          {{ element.file_server }}
+
+        </div>
+        <div class="submit-button">
+          {{ element.actions.submit }}
+          <a href="{{ path('fhir_datasets.listing_datasets') }}"
+             class="cancel-fhir-server submit-btn mdc-button mdc-button--unelevated"> CANCEL
+          </a>
+          {{ element.form_build_id }}
+          {{ element.form_id }}
+          {{ element.form_token }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+
+

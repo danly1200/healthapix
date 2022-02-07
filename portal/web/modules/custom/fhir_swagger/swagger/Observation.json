@@ -1,0 +1,2692 @@
+{
+"swagger": "2.0",
+  "info":{
+   "description": 
+    "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+   "version": "1.4.0",
+   "title": "FHIR Observation resource API documentation"
+  },
+  "host": "healthapix-demo-test.apigee.net",
+  "schemes":[
+     "https"
+     ],
+  "basePath": "/v1/dstu2",
+  "produces":[
+    "application/json+fhir;charset=UTF-8",
+    "application/xml+fhir;charset=UTF-8"
+    ], 
+  "definitions": {
+    "Observation": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "fhir_comments": {
+              "type": "array",
+              "items": {
+                "properties": {}
+              }
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "div": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "fhir_comments",
+            "status",
+            "div"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "object",
+          "properties": {
+            "fhir_comments": {
+              "type": "array",
+              "items": {
+                "properties": {}
+              }
+            },
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "fhir_comments",
+            "coding"
+          ]
+        },
+        "code": {
+          "type": "object",
+          "properties": {
+            "fhir_comments": {
+              "type": "array",
+              "items": {
+                "properties": {}
+              }
+            },
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "fhir_comments": {
+                    "type": "array",
+                    "items": {
+                      "properties": {}
+                    }
+                  },
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "_display": {
+                    "type": "object",
+                    "properties": {
+                      "fhir_comments": {
+                        "type": "array",
+                        "items": {
+                          "properties": {}
+                        }
+                      }
+                    },
+                    "required": [
+                      "fhir_comments"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "fhir_comments",
+            "coding"
+          ]
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "encounter": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "effectiveDateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valueQuantity": {
+          "type": "object",
+          "properties": {
+            "fhir_comments": {
+              "type": "array",
+              "items": {
+                "properties": {}
+              }
+            },
+            "value": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            },
+            "system": {
+              "type": "string",
+              "minLength": 1
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "fhir_comments",
+            "value",
+            "unit",
+            "system",
+            "code"
+          ]
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "text",
+        "status",
+        "category",
+        "code",
+        "subject",
+        "encounter",
+        "effectiveDateTime",
+        "valueQuantity"
+      ]
+    },
+    "metaBody": {
+      "type": "string"
+    }
+  },
+  "paths": {
+   "/Observation": {
+      "parameters": [],
+      "post": {
+        "tags":[
+          "Observation"
+          ],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Observation"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "required": false,
+            "description": "Specify the search query for conditional create.",
+            "type": "string"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Observation could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Observation not found."
+          },
+          "422": {
+            "description": "The Observation resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Create Observation",
+        "description": "Create a new Observation with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      },
+      "put": {
+         "tags":[
+          "Observation"
+          ],
+         "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Observation"
+            }
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The classification of the type of observation"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "The code of the observation type"
+          },
+          {
+            "name": "code-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-date",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "component-code",
+            "type": "string",
+            "in": "query",
+            "description": "The component code of the observation type"
+          },
+          {
+            "name": "component-code-component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.component.value[x] is missing."
+          },
+          {
+            "name": "component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "component-value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.value[x] is missing."
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "query",
+            "description": "Obtained date/time. If the obtained element is a period, a date that falls in the period. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "in": "query",
+            "description": "The Device that generated the observation data."
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Healthcare event related to the observation"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The unique id for a particular observation"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "performer",
+            "type": "string",
+            "in": "query",
+            "description": "Who performed the observation"
+          },
+          {
+            "name": "related-target",
+            "type": "string",
+            "in": "query",
+            "description": "Resource that is related to this one"
+          },
+          {
+            "name": "related-target-related-type",
+            "type": "string",
+            "in": "query",
+            "description": "Related Observations - search on related-type and related-target together"
+          },
+          {
+            "name": "related-type",
+            "type": "string",
+            "in": "query",
+            "description": "has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"
+          },
+          {
+            "name": "specimen",
+            "type": "string",
+            "in": "query",
+            "description": "Specimen used for this observation"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "The status of the observation"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about"
+          },
+          {
+            "name": "value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "value-date",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a date or period of time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a string, and also searches in CodeableConcept.text"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation Updated."
+          },
+          "201": {
+            "description": "Observation Created."
+          },
+          "400": {
+            "description": "Observation could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observation Conditional Update",
+        "description": "The conditional update interaction is used to update an existing Observation based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      },
+      "delete": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The classification of the type of observation"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "The code of the observation type"
+          },
+          {
+            "name": "code-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-date",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "component-code",
+            "type": "string",
+            "in": "query",
+            "description": "The component code of the observation type"
+          },
+          {
+            "name": "component-code-component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.component.value[x] is missing."
+          },
+          {
+            "name": "component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "component-value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.value[x] is missing."
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "query",
+            "description": "Obtained date/time. If the obtained element is a period, a date that falls in the period. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "in": "query",
+            "description": "The Device that generated the observation data."
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Healthcare event related to the observation"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The unique id for a particular observation"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "performer",
+            "type": "string",
+            "in": "query",
+            "description": "Who performed the observation"
+          },
+          {
+            "name": "related-target",
+            "type": "string",
+            "in": "query",
+            "description": "Resource that is related to this one"
+          },
+          {
+            "name": "related-target-related-type",
+            "type": "string",
+            "in": "query",
+            "description": "Related Observations - search on related-type and related-target together"
+          },
+          {
+            "name": "related-type",
+            "type": "string",
+            "in": "query",
+            "description": "has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"
+          },
+          {
+            "name": "specimen",
+            "type": "string",
+            "in": "query",
+            "description": "Specimen used for this observation"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "The status of the observation"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about"
+          },
+          {
+            "name": "value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "value-date",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a date or period of time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Observation not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observation Conditional Delete",
+        "description": "The conditional delete interaction allows a client to delete Observation/Observations  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      },
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The classification of the type of observation"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "The code of the observation type"
+          },
+          {
+            "name": "code-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-date",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "component-code",
+            "type": "string",
+            "in": "query",
+            "description": "The component code of the observation type"
+          },
+          {
+            "name": "component-code-component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.component.value[x] is missing."
+          },
+          {
+            "name": "component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "component-value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.value[x] is missing."
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "query",
+            "description": "Obtained date/time. If the obtained element is a period, a date that falls in the period. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "in": "query",
+            "description": "The Device that generated the observation data."
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Healthcare event related to the observation"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The unique id for a particular observation"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "performer",
+            "type": "string",
+            "in": "query",
+            "description": "Who performed the observation"
+          },
+          {
+            "name": "related-target",
+            "type": "string",
+            "in": "query",
+            "description": "Resource that is related to this one"
+          },
+          {
+            "name": "related-target-related-type",
+            "type": "string",
+            "in": "query",
+            "description": "Related Observations - search on related-type and related-target together"
+          },
+          {
+            "name": "related-type",
+            "type": "string",
+            "in": "query",
+            "description": "has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"
+          },
+          {
+            "name": "specimen",
+            "type": "string",
+            "in": "query",
+            "description": "Specimen used for this observation"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "The status of the observation"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about"
+          },
+          {
+            "name": "value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "value-date",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a date or period of time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a string, and also searches in CodeableConcept.text"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Observation"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observations Search",
+        "description": "Returns Observations based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}": {
+      "parameters": [],
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation Instance",
+            "schema": {
+              "$ref": "#/definitions/Observation"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Read Observation",
+        "description": "Returns details of Observation having id given in path.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      },
+      "put": {
+         "tags":[
+          "Observation"
+          ],
+         "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Observation"
+            }
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation Updated."
+          },
+          "201": {
+            "description": "Observation Created."
+          },
+          "400": {
+            "description": "Observation could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Update Observation",
+        "description": "Update an existing Observation by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      },
+      "delete": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "Observation not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Delete Observation",
+        "description": "The delete interaction removes an existing Observation.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/_history": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Observation"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observation History",
+        "description": "It retrieves the history of a particular Observation identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/_history": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Observation"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observations History",
+        "description": "It retrieves the history of all resources of Observation.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/_history/{vid}": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation Instance",
+            "schema": {
+              "$ref": "#/definitions/Observation"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observation Version Read",
+        "description": "This interaction preforms a version specific read of Observation resource.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/$meta": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for Observation"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observations Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for Observations.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/$meta": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observation Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given Observation resource.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/_history/{vid}/$meta": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer [access_token]",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observation Version based Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the Observation.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/{type}": {
+      "get": {
+         "tags":[
+          "Observation"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "type",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular Observation"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": " Compartment Search",
+        "description": "Search the specified resource type in Observation compartment.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/_search": {
+      "post": {
+         "tags":[
+          "Observation"
+          ],
+        "consumes":[
+        "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "+_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). Two dates can be used to specify an interval. The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "query",
+            "description": "The classification of the type of observation"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "The code of the observation type"
+          },
+          {
+            "name": "code-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-date",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "component-code",
+            "type": "string",
+            "in": "query",
+            "description": "The component code of the observation type"
+          },
+          {
+            "name": "component-code-component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-quantity",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.component.value[x] is missing."
+          },
+          {
+            "name": "component-value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "component-value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "component-value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the component observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "data-absent-reason",
+            "type": "string",
+            "in": "query",
+            "description": "The reason why the expected value in the element Observation.value[x] is missing."
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "query",
+            "description": "Obtained date/time. If the obtained element is a period, a date that falls in the period. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "in": "query",
+            "description": "The Device that generated the observation data."
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "query",
+            "description": "Healthcare event related to the observation"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "The unique id for a particular observation"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "performer",
+            "type": "string",
+            "in": "query",
+            "description": "Who performed the observation"
+          },
+          {
+            "name": "related-target",
+            "type": "string",
+            "in": "query",
+            "description": "Resource that is related to this one"
+          },
+          {
+            "name": "related-target-related-type",
+            "type": "string",
+            "in": "query",
+            "description": "Related Observations - search on related-type and related-target together"
+          },
+          {
+            "name": "related-type",
+            "type": "string",
+            "in": "query",
+            "description": "has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"
+          },
+          {
+            "name": "specimen",
+            "type": "string",
+            "in": "query",
+            "description": "Specimen used for this observation"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "The status of the observation"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "query",
+            "description": "The subject that the observation is about"
+          },
+          {
+            "name": "value-concept",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "value-date",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a date or period of time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "value-quantity",
+            "type": "integer",
+            "in": "query",
+            "description": "The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "value-string",
+            "type": "string",
+            "in": "query",
+            "description": "The value of the observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "formData",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "in": "formData",
+            "description": "The classification of the type of observation"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "formData",
+            "description": "The code of the observation type"
+          },
+          {
+            "name": "code-value-concept",
+            "type": "string",
+            "in": "formData",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-date",
+            "type": "string",
+            "in": "formData",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-quantity",
+            "type": "string",
+            "in": "formData",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "code-value-string",
+            "type": "string",
+            "in": "formData",
+            "description": "Both code and one of the value parameters"
+          },
+          {
+            "name": "component-code",
+            "type": "string",
+            "in": "formData",
+            "description": "The component code of the observation type"
+          },
+          {
+            "name": "component-code-component-value-concept",
+            "type": "string",
+            "in": "formData",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-quantity",
+            "type": "string",
+            "in": "formData",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-code-component-value-string",
+            "type": "string",
+            "in": "formData",
+            "description": "Both component code and one of the component value parameters"
+          },
+          {
+            "name": "component-data-absent-reason",
+            "type": "string",
+            "in": "formData",
+            "description": "The reason why the expected value in the element Observation.component.value[x] is missing."
+          },
+          {
+            "name": "component-value-concept",
+            "type": "string",
+            "in": "formData",
+            "description": "The value of the component observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "component-value-quantity",
+            "type": "integer",
+            "in": "formData",
+            "description": "The value of the component observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "component-value-string",
+            "type": "string",
+            "in": "formData",
+            "description": "The value of the component observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "data-absent-reason",
+            "type": "string",
+            "in": "formData",
+            "description": "The reason why the expected value in the element Observation.value[x] is missing."
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "in": "formData",
+            "description": "Obtained date/time. If the obtained element is a period, a date that falls in the period. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "in": "formData",
+            "description": "The Device that generated the observation data."
+          },
+          {
+            "name": "encounter",
+            "type": "string",
+            "in": "formData",
+            "description": "Healthcare event related to the observation"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "formData",
+            "description": "The unique id for a particular observation"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "formData",
+            "description": "The subject that the observation is about (if patient)"
+          },
+          {
+            "name": "performer",
+            "type": "string",
+            "in": "formData",
+            "description": "Who performed the observation"
+          },
+          {
+            "name": "related-target",
+            "type": "string",
+            "in": "formData",
+            "description": "Resource that is related to this one"
+          },
+          {
+            "name": "related-target-related-type",
+            "type": "string",
+            "in": "formData",
+            "description": "Related Observations - search on related-type and related-target together"
+          },
+          {
+            "name": "related-type",
+            "type": "string",
+            "in": "formData",
+            "description": "has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"
+          },
+          {
+            "name": "specimen",
+            "type": "string",
+            "in": "formData",
+            "description": "Specimen used for this observation"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "formData",
+            "description": "The status of the observation"
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "in": "formData",
+            "description": "The subject that the observation is about"
+          },
+          {
+            "name": "value-concept",
+            "type": "string",
+            "in": "formData",
+            "description": "The value of the observation, if the value is a CodeableConcept"
+          },
+          {
+            "name": "value-date",
+            "type": "string",
+            "in": "formData",
+            "description": "The value of the observation, if the value is a date or period of time. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "value-quantity",
+            "type": "integer",
+            "in": "formData",
+            "description": "The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+          },
+          {
+            "name": "value-string",
+            "type": "string",
+            "in": "formData",
+            "description": "The value of the observation, if the value is a string, and also searches in CodeableConcept.text"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.read"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.read"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "Observation bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Observation"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Observations Search using POST",
+        "description": "This interaction searches a set of Observations based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/$meta-add": {
+      "post": {
+         "tags":[
+          "Observation"
+          ],
+         "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Observation could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Observation not found."
+          },
+          "422": {
+            "description": "The Observation resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Observation metadata",
+        "description": "Add a metadata info Observation with specified id.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    },
+    "/Observation/{id}/_history/{vid}/$meta-add": {
+      "post": {
+         "tags":[
+          "Observation"
+          ],
+         "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "required":true,
+            "name": "vid",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+       "security": [
+         {
+           "OAuthV2B2C": [
+             "patient/Observation.write"
+           ]
+         },
+         {
+           "OAuthV2B2B": [
+             "patient/Observation.write"
+           ]
+         }
+       ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "Observation could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "Observation not found."
+          },
+          "422": {
+            "description": "The Observation resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add Observation Version based Metadata",
+        "description": "Add metadata info to specified Observation resource.<p><a href = 'https://www.hl7.org/fhir/observation.html'>FHIR documentation for Observation.</a></p>"
+      }
+    }
+  },
+   "securityDefinitions": {
+    "OAuthV2B2C": {
+      "type": "oauth2",
+      "description": "Security scheme for B2C flow using authorization code flow.",
+      "scopes": {
+        "patient/Observation.read": "Read permissions for Observation demographics.",
+        "patient/Observation.write": "Write permissions for Observation demographics."
+      },
+      "flow": "accessCode",
+      "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken"
+    },
+  "OAuthV2B2B": {
+      "type": "oauth2",
+      "description": "Security scheme for B2B flow using authorization code flow.",
+      "flow": "application",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+      "scopes": {
+        "patient/Observation.read": "Read permissions for Observation demographics.",
+        "patient/Observation.write": "Write permissions for Observation demographics."
+      }
+    }
+  }
+}

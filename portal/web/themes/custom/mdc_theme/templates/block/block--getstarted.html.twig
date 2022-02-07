@@ -1,0 +1,18 @@
+<div class="get-started-block">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-get-started-left-content mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop">
+      <h3 class="mdc-typography--headline3 getstarted-title">{{ content.field_content_title }}</h3>
+      <div class="mdc-typography--body1 left-content">
+        {{ content.body }}
+      </div>
+      {% if content.field_button %}
+        {{ content.field_button }}
+      {% endif %}
+    </div>
+    <div class="mdc-get-started-image-right mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+      <div class="get-started-image"> {{ content.field_image }}</div>
+    </div>
+  </div>
+</div>
+
+

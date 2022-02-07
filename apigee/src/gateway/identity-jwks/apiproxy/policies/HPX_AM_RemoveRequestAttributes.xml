@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_RemoveRequestAttributes">
+    <DisplayName>HPX_AM_RemoveRequestAttributes</DisplayName>
+    <Properties/>
+    <Remove>
+        <Headers/>
+        <QueryParams/>
+        <Payload/>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

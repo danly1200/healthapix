@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="HPX_PopulatePaginationDataInitial">
+    <DisplayName>HPX_PopulatePaginationData</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <CacheKey>
+        <Prefix>url</Prefix>
+        <KeyFragment ref="sessionid"></KeyFragment>
+    </CacheKey>
+    <CacheResource>consent-session-cache</CacheResource>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>1200</TimeoutInSec>
+    </ExpirySettings>
+    <Source>paginationData</Source>
+</PopulateCache>

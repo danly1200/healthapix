@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="3" name="unsupported-operation">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1576754212521</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared flow to throw an error when operation is identified as not supported.</Description>
+    <DisplayName>unsupported-resources</DisplayName>
+    <LastModifiedAt>1577083391293</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:7d9216604e6de8ad4f111ad8c71215074ffe9462be4d68f47e2d808cb519de3b23df370a6f0cd8bbf5656cfb86366cbecefa7354579f147b07f007c171edcad6</ManifestVersion>
+    <Policies>
+        <Policy>HPX_Fault_ThrowError</Policy>
+        <Policy>HPX_SetErrorVariablesBtoC</Policy>
+        <Policy>HPX_SetErrorVariablesDefault</Policy>
+    </Policies>
+    <Resources/>
+    <Spec/>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

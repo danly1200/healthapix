@@ -1,0 +1,22 @@
+uuid: f5ee2670-9d9e-42c6-91a5-58c6ff8c7fb1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: test_data
+label: 'Test data'
+type: 'canonical_entities:node'
+pattern: 'testdata/[node:title]/[node:field_version:entity:name]'
+selection_criteria:
+  d1224d81-1b0c-4f92-9ce6-39f5fff7ef01:
+    id: node_type
+    bundles:
+      test_data: test_data
+    negate: false
+    context_mapping:
+      node: node
+    uuid: d1224d81-1b0c-4f92-9ce6-39f5fff7ef01
+selection_logic: and
+weight: -5
+relationships: {  }

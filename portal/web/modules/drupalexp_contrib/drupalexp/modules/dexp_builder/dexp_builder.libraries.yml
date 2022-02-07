@@ -1,0 +1,162 @@
+backend:
+  js:
+    assets/js/builder.admin.js: {}
+  css:
+    component:
+      vendor/font-awesome/css/font-awesome.css: {}
+      assets/css/bootstrap-grid.min.css: {}
+      assets/css/builder.admin.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui.sortable
+    - core/jquery.ui.dialog
+    - core/drupal.dialog
+encode:
+  js:
+    assets/js/encode.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once  
+frontend:
+  #js:
+  # assets/js/dexp-builder.js: {}
+  css:
+    base:
+      assets/css/builder.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+fontawesome:
+  css:
+    base:
+      vendor/font-awesome/css/font-awesome.css: {}
+streamline:
+  css:
+    base:
+      vendor/streamline-icon/streamline-icon.css: {}
+etline:
+  css:
+    base:
+      vendor/et-line/style.css: {}
+glyphicons:
+  css:
+    base:
+      vendor/glyphicon/css/glyphicon.css: {}
+jquery-appear:
+  js:
+    assets/js/jquery.appear.min.js: {}
+  dependencies:
+    - core/jquery
+aos:
+  js:
+    assets/js/aos.js: {}
+  css:
+    base:
+      assets/css/aos.css: {}
+animate:
+  js:
+    assets/js/dexp.animate.js: {}
+  dependencies:
+    - dexp_builder/aos
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+parallax:
+  js:
+    assets/js/dexp.parallax.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+skillbar:
+  js:
+    assets/js/dexp-skillbar.js: {}
+  dependencies:
+    - dexp_builder/jquery-appear
+progresscircle:
+  js:
+    assets/js/dexp-progress-circle.js: {}
+  dependencies:
+    - dexp_builder/jquery-appear
+stats:
+  js:
+    assets/js/dexp-stats.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - dexp_builder/jquery-appear
+button:
+  css:
+    base:
+      assets/css/button.css: {}
+video-popup:
+  js:
+    assets/js/dexp-video-popup.js: {}
+gallery:
+  js:
+    assets/js/dexp-gallery.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+gmap:
+  js:
+    assets/js/dexp-gmap.js: {}
+  css:
+    base:
+      assets/css/dexp-gmap.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+gmap-admin:
+  js:
+    assets/js/dexp-gmap-admin.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+gmap-api:
+  js:
+    //maps.google.com/maps/api/js?key=AIzaSyDxEbNqGFZgYVWjiUD8MoT5sNnYfFdskEo: {}
+googlechart:
+  js:
+    https://www.gstatic.com/charts/loader.js: {}
+    assets/js/dexp-googlechart.js: {}
+countdown:
+  js:
+    assets/js/jquery.countdown.min.js: {}
+    assets/js/dexp-countdown.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+slick:
+  remote: http://kenwheeler.github.io/slick/
+  version: 1.x
+  license:
+    name: MIT
+    url: https://github.com/kenwheeler/slick/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    /libraries/slick/slick/slick.min.js: { weight: -3, minified: true }
+  css:
+    base:
+      /libraries/slick/slick/slick.css: {}
+  dependencies:
+    - core/jquery
+slick-carousels:
+  js:
+    assets/js/dexp-slick.js: {}
+  css:
+    base:
+      assets/css/dexp-slick.css: {}
+  dependencies:
+    - dexp_builder/slick
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSetiings

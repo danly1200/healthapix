@@ -1,0 +1,21 @@
+uuid: 22f7cd77-ef35-45cf-9ea6-1e9cc9cdbe59
+langcode: en
+status: true
+dependencies:
+  module:
+    - apigee_edge
+id: developer_app.field_requested_scopes
+field_name: field_requested_scopes
+entity_type: developer_app
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

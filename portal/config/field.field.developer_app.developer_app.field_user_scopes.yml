@@ -1,0 +1,20 @@
+uuid: 63c251cb-a61d-4674-ba57-e6762b460526
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_user_scopes
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_user_scopes
+field_name: field_user_scopes
+entity_type: developer_app
+bundle: developer_app
+label: 'User Scopes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

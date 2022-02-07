@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="SetCallbackHTMLContent">
+    <DisplayName>SetCallbackHTMLContent</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="text/html">
+            <html>
+                <head>
+                    <title>Callback</title>
+                    <script src="/openid/js/callback.js"/>
+                </head>
+            </html>
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

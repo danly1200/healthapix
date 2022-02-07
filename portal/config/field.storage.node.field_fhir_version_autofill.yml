@@ -1,0 +1,20 @@
+uuid: fab844d0-e13d-4fbf-88fc-fb610756adc6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_fhir_version_autofill
+field_name: field_fhir_version_autofill
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

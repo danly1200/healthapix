@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="HPX_SharedFlow_SupportedResources">
+    <DisplayName>HPX_SharedFlow_SupportedResources</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>supported-resources</SharedFlowBundle>
+</FlowCallout>

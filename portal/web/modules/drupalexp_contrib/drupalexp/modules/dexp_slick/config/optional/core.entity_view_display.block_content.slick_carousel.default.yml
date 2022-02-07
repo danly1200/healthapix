@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.slick_carousel
+    - field.field.block_content.slick_carousel.field_carousel_item
+  module:
+    - field_collection
+id: block_content.slick_carousel.default
+targetEntityType: block_content
+bundle: slick_carousel
+mode: default
+content:
+  field_carousel_item:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: field_collection_items
+hidden: {  }

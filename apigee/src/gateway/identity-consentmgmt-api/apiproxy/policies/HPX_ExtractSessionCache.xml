@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractSessionCache">
+    <DisplayName>HPX_ExtractSessionCache</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="targetBaseURI">
+            <JSONPath>$.targetBaseURI</JSONPath>
+        </Variable>
+        <Variable name="googleToken">
+            <JSONPath>$.googleToken</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">paginationData</Source>
+</ExtractVariables>

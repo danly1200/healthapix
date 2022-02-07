@@ -1,0 +1,13 @@
+variable_one:
+  single_proxy_dstu3_product: single_proxy_dstu3_product
+  dstu2-b2c: 'Patient Information in DSTU2 format'
+  ghcapitestproduct: ghcapitestproduct
+  testFHIRproduct_DSTU3: testFHIRproduct_DSTU3
+  datastore_product: 'Internal Datastore Product'
+  testFHIRproduct: testFHIRproduct
+  identityproduct: 'Identity App Product'
+  helloworld: helloworld
+variable_options:
+  'GHC DSTU3': 'CHC FHIR APIs STU3'
+  'HAPI DSTU3': 'HAPI DSTU3'
+  'HAPI DSTU2': 'HAPI DSTU2'

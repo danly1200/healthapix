@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: slick_carousel
+label: 'Slick Carousel'
+revision: 0
+description: 'Create slick carousel element'

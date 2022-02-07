@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="HPX_AM_ExtractJwksDetails" version="SHA-512:20b47ee88bb755bd2efd3f37f324125716c6f789f9c7c9e658b5577dd346cf57a16565ea96c431b03f00a1639823a91434a2b9a731d6e7378e486d2608c97ecb"/>
+        <VersionInfo resourceName="HPX_AM_JwksStatus" version="SHA-512:9d2afdfdea9d86b8771782ca8e2769b0edf0994147361e4201b4982372bdfba49ba4f0e8dd628d5a03f396f49a8e15de50fff474adda15c3e4b9b43ad606d059"/>
+        <VersionInfo resourceName="HPX_AM_RemoveRequestAttributes" version="SHA-512:83a3eb56572c9b5192113d03e3d7df7f0d2b3a1253b0a70a4746174533a8363f5d6b5d741a1f6dd02a9f4c8f01408f676a2a49742e8bda0a353823141150f730"/>
+        <VersionInfo resourceName="HPX_JS_AnalyzeKVM" version="SHA-512:e417f7e6b8ae5693f301a919f76830097a4da751bbc5d550ef4a7f2a16332cafe15376d22a921c817d3da46c50ee0cf02c7faca3f87204c04e46317f48aac785"/>
+        <VersionInfo resourceName="HPX_JS_AssignVariables" version="SHA-512:36ae49bd465452370a505c5140f153134fa357141adea63ba7f88cc96d8bf55dc6dd6ef24fda1ab12c489d7006c145e9f106c921d29ca1569ea1eae4494d226f"/>
+        <VersionInfo resourceName="HPX_KV_CreateKeyJwks" version="SHA-512:4f8901356566f909ea6a46c7bb63c0239ff14a77c5a2d9a0e2578bd2b0111d4b0a09870f08f806b53a017545c36584b5fe1eb565d756b3ed44a170a599b1c5af"/>
+        <VersionInfo resourceName="HPX_KV_CreatePrivateKey" version="SHA-512:cfb2157788c17ae9b2e8960ea3b22b74e59eaea8b8f9a8d45e00c6b71c559987c6f6f1b4358a9aa73450128e4ab46a38e516a884355f0c5375786a07382d43bf"/>
+        <VersionInfo resourceName="HPX_KV_GetKeyNames" version="SHA-512:6264a5276dc5f5e8e0ae1b6330592e171ffdca3ac99ae658c7e185a4d6342227013dbcb25f53c17456c83ae574ccfc6c654d870d6c191cfa815a4da0ad879014"/>
+        <VersionInfo resourceName="HPX_KV_GetPrivateKey" version="SHA-512:5f2deb2514edbb1f90ec7db37fa0098676fd79b551286a4d4fac867969af32dd575278142f2a1e24ee56c9b12b49e375878b42da720ed7c99755cdf42dd0b943"/>
+        <VersionInfo resourceName="HPX_KV_GetPublicKey" version="SHA-512:158b7ce00c402fd9466f3f47c119c608282ca026a12274c1ab48203562317de1ada526152eb7d4fad2723941f212a4f8150110f656f19daaffee7495be6a078b"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:1c1f48cf98598b821912a7a984625103b7e5c8249486b4f5e0761b90e281004070b884609f205d5e1e20dff9f5b1df824a5563a338c90c58ba21d8ce9b2397f6"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="hosted://app.yaml" version="SHA-512:5379e27b4bf4461e0d574dc86cadb3bffce3526b0d1d6ed9c18723438a331d7cd3cf154b1abe48fe0898674cd60f6307924f64e2c8d006f7afe31e705fbbc49d"/>
+        <VersionInfo resourceName="hosted://index.js" version="SHA-512:a8a747ab64941652d3b05e3e80d0da7e6dd9fa1a50e6b5224ca0e467746b6c8565bc014338de39108682428df8ef2aafa39e7366dace248f1ec6eae4494abd8f"/>
+        <VersionInfo resourceName="hosted://package.json" version="SHA-512:71cc4c85f2797a3f881c81530ba96860b9e56c3f85ca59534de9a8e08bb0c994e6cb927cc06fae8e6480af9d9bbcebe571be62778396ea3fb31a41b2f8a1f4ab"/>
+        <VersionInfo resourceName="hosted://provisionNewKeyPair.js" version="SHA-512:b65c90177f69a2008e467b909b2cd9cea5b07269ca4e0c9317fa5aa4214702329b3dbb1bbdef0ee0ead64da4b9ecca865bf8fd699b9cb661bbd7435b8ad5be23"/>
+        <VersionInfo resourceName="jsc://AnalyzeKVM.js" version="SHA-512:573f24fda45a4e7521616692363af1f0d1b97337e71d7bf03e27b0e38654ffd956da3dafdfe93652b29fdb306eadc0d1bf5ff417515bebb58bb81ce74dbff3c7"/>
+        <VersionInfo resourceName="jsc://AssignVariables.js" version="SHA-512:fe9af749ed1133add258eb343f8b7af35083df4f74eb76275d96a2f870e1acdaf735b14e9e635ca1c93b364e43ce34f0b3bd9c545eacf04c2562e28eab8de6bb"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:33db9a132d2a68d98ea775c6a288ab490825b0d580933c1aaecbd8d6b7d10a8fa97ae71b54995f05af0f463cd17cc0ffcbf65be0fd89e2c8e5e931125e9785f1"/>
+    </TargetEndpoints>
+</Manifest>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>HPX_SharedFlow_SupportedResources</Name>
+    </Step>
+    <Step>
+        <Name>HPX_ExtractPathAttributes</Name>
+    </Step>
+    <Step>
+        <Condition>(request.queryparam._getpages.values.count = 0) and !((proxy.pathsuffix is "" or proxy.pathsuffix is "/") and (request.verb="POST"))</Condition>
+        <Name>HPX_ValidateResource</Name>
+    </Step>
+    <Step>
+        <Condition>(isValidResource is false)</Condition>
+        <Name>HPX_Fault_InvalidResource</Name>
+    </Step>
+    <Step>
+        <Name>HPX_VerifyAccessToken</Name>
+    </Step>
+    <Step>
+        <Condition>((proxy.pathsuffix is "" or proxy.pathsuffix is "/") and (grant_type is "authorization_code") and (request.verb="POST"))</Condition>
+        <Name>HPX_Fault_BtoCOperationNotPermitted</Name>
+    </Step>
+    <Step>
+        <Condition>(request.queryparam._getpages.values.count = 0) and !((proxy.pathsuffix is "" or proxy.pathsuffix is "/") and (request.verb="POST"))</Condition>
+        <Name>HPX_ValidateScope</Name>
+    </Step>
+    <Step>
+        <Condition>(validScopeFound is false)</Condition>
+        <Name>HPX_Fault_InvalidScope</Name>
+    </Step>
+    <Step>
+        <Name>HPX_RemoveAuthorizationHeader</Name>
+    </Step>
+    <Step>
+        <Name>HPX_EnforceQuota</Name>
+    </Step>
+    <Step>
+        <Condition>((request.queryparam._format != "") and (request.queryparam._format != null))</Condition>
+        <Name>HPX_SetAcceptHeader</Name>
+    </Step>
+    <Step>
+        <Name>HPX_RemoveFormatQueryParam</Name>
+    </Step>
+</SharedFlow>

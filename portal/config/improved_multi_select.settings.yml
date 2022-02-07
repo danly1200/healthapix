@@ -1,0 +1,15 @@
+isall: false
+url: "/app/smart/add\r\n/app/edit/*"
+selectors: ''
+placeholder_text: 'Search API Scopes'
+filtertype: partial
+js_regex: false
+orderable: false
+groupresetfilter: false
+remove_required_attr: false
+buttontext_add: '>'
+buttontext_addall: »
+buttontext_del: '<'
+buttontext_delall: «
+buttontext_moveup: 'Move up'
+buttontext_movedown: 'Move down'

@@ -1,0 +1,23 @@
+uuid: 62c6f334-8cab-426c-a413-631bf32d40dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fhir_api_products
+    - node.type.fhir_servers
+id: node.fhir_servers.field_fhir_api_products
+field_name: field_fhir_api_products
+entity_type: node
+bundle: fhir_servers
+label: 'fhir api products'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:api_product'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

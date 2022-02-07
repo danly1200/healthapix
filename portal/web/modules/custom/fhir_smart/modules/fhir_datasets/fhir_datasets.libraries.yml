@@ -1,0 +1,6 @@
+fhir_datasets.datasetlist:
+  js:
+    js/datasetlist.js: {}
+  css:
+    theme:
+      css/datasetlist.css: {}

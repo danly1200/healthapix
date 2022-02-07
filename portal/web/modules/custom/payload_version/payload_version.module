@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains payload_version.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function payload_version_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the payload_version module.
+    case 'help.page.payload_version':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Payload version') . '</p>';
+      return $output;
+
+    default:
+  }
+}

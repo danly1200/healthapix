@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SetGoogleUserID">
+    <DisplayName>HPX_SetGoogleUserID</DisplayName>
+    <AssignVariable>
+        <Name>userid</Name>
+        <Ref>jwt.HPX_VerifyGoogleIDTokenJWT.claim.email</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

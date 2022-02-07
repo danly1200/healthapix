@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_SC_DSTU2ConsentRequest">
+    <DisplayName>HPX_SC_DSTU2ConsentRequest</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">Bearer {request.formparam.token}</Header>
+            </Headers>
+            <QueryParams>
+                <QueryParam name="patient">{oauthv2accesstoken.HPX_GO_AccessTokenInfo.accesstoken.patient}</QueryParam>
+            </QueryParams>
+            <Verb>GET</Verb>
+        </Set>
+    </Request>
+    <Response>HPX_ConsentRequestCalloutResponse</Response>
+    <LocalTargetConnection>
+        <Path>/v1/{fhir_server_version}/{fhir_server_name}/Contract</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

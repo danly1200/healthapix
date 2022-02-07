@@ -1,0 +1,2798 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "FHIR DiagnosticReport resource API documentation",
+    "description": "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+    "version": "1.4.0"
+  },
+  "servers": [
+    {
+      "url": "https://healthapix-demo-test.apigee.net/{basePath}",
+      "variables": {
+        "basePath": {
+          "enum": [
+            "v1/dstu3",
+            "v1/ghc"
+          ],
+          "default": "v1/ghc"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/DiagnosticReport": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Returns DiagnosticReports based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReports Search",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Which diagnostic discipline/department created the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "The code for the report as a whole, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The clinically relevant time of the report. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "diagnosis",
+            "in": "query",
+            "description": "A coded diagnosis on the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The Encounter when the order was made",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "An identifier for the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "image",
+            "in": "query",
+            "description": "A reference to the image source.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "issued",
+            "in": "query",
+            "description": "When the report was issued. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The subject of the report if a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "Who was the source of the report (organization)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "request",
+            "in": "query",
+            "description": "Reference to the test or procedure request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "result",
+            "in": "query",
+            "description": "Link to an atomic result (observation resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "specimen",
+            "in": "query",
+            "description": "The specimen details",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "The subject of the report",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "The conditional update interaction is used to update an existing DiagnosticReport based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReport Conditional Update",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Which diagnostic discipline/department created the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "The code for the report as a whole, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The clinically relevant time of the report. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "diagnosis",
+            "in": "query",
+            "description": "A coded diagnosis on the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The Encounter when the order was made",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "An identifier for the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "image",
+            "in": "query",
+            "description": "A reference to the image source.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "issued",
+            "in": "query",
+            "description": "When the report was issued. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The subject of the report if a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "Who was the source of the report (organization)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "request",
+            "in": "query",
+            "description": "Reference to the test or procedure request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "result",
+            "in": "query",
+            "description": "Link to an atomic result (observation resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "specimen",
+            "in": "query",
+            "description": "The specimen details",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "The subject of the report",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticReport"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticReport"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport Updated.",
+            "content": {}
+          },
+          "201": {
+            "description": "DiagnosticReport Created.",
+            "content": {}
+          },
+          "400": {
+            "description": "DiagnosticReport could not be parsed or failed basic FHIR validation rules (or multiple matches were found).",
+            "content": {}
+          },
+          "403": {
+            "description": "Not Authorized.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Create a new DiagnosticReport with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "Create DiagnosticReport",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "description": "Specify the search query for conditional create.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticReport"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticReport"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "DiagnosticReport could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "DiagnosticReport not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The DiagnosticReport resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "The conditional delete interaction allows a client to delete DiagnosticReport/DiagnosticReports  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReport Conditional Delete",
+        "parameters": [
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Which diagnostic discipline/department created the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "The code for the report as a whole, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The clinically relevant time of the report. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "diagnosis",
+            "in": "query",
+            "description": "A coded diagnosis on the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The Encounter when the order was made",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "An identifier for the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "image",
+            "in": "query",
+            "description": "A reference to the image source.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "issued",
+            "in": "query",
+            "description": "When the report was issued. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The subject of the report if a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "Who was the source of the report (organization)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "request",
+            "in": "query",
+            "description": "Reference to the test or procedure request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "result",
+            "in": "query",
+            "description": "Link to an atomic result (observation resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "specimen",
+            "in": "query",
+            "description": "The specimen details",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "The subject of the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "204": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "404": {
+            "description": "DiagnosticReport not found.",
+            "content": {}
+          },
+          "405": {
+            "description": "Method not allowed.",
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict Error.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Returns details of DiagnosticReport having id given in path.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "Read DiagnosticReport",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport Instance",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticReport"
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticReport"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Update an existing DiagnosticReport by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "Update DiagnosticReport",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid data payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticReport"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticReport"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport Updated.",
+            "content": {}
+          },
+          "201": {
+            "description": "DiagnosticReport Created.",
+            "content": {}
+          },
+          "400": {
+            "description": "DiagnosticReport could not be parsed or failed basic FHIR validation rules (or multiple matches were found).",
+            "content": {}
+          },
+          "403": {
+            "description": "Not Authorized.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "The delete interaction removes an existing DiagnosticReport.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "Delete DiagnosticReport",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "204": {
+            "description": "No Content.",
+            "content": {}
+          },
+          "404": {
+            "description": "DiagnosticReport not found.",
+            "content": {}
+          },
+          "405": {
+            "description": "Method not allowed.",
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict Error.",
+            "content": {}
+          },
+          "412": {
+            "description": "The given criteria is not selective enough.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/_history": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "It retrieves the history of a particular DiagnosticReport identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReport History",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/_history": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "It retrieves the history of all resources of DiagnosticReport.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReports History",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/_history/{vid}": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "This interaction preforms a version specific read of DiagnosticReport resource.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReport Version Read",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "schema": {
+              "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport Instance",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticReport"
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticReport"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/$meta": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for DiagnosticReports.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReports Metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for DiagnosticReport",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/$meta": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given DiagnosticReport resource.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReport Metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/_history/{vid}/$meta": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the DiagnosticReport.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReport Version based Metadata",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/{type}": {
+      "get": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Search the specified resource type in DiagnosticReport compartment.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": " Compartment Search",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "schema": {
+              "type": "string",
+              "x-consoleDefault": "application/json"
+            },
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular DiagnosticReport",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/_search": {
+      "post": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "This interaction searches a set of DiagnosticReports based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "DiagnosticReports Search using POST",
+        "parameters": [
+          {
+            "name": "_content",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_id",
+            "in": "query",
+            "description": "The resource identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_language",
+            "in": "query",
+            "description": "The resource language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_lastUpdated",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "_profile",
+            "in": "query",
+            "description": "Search for resources which have the given profile",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_security",
+            "in": "query",
+            "description": "Search for resources which have the given security labels",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tag",
+            "in": "query",
+            "description": "Search for resources which have the given tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_text",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Which diagnostic discipline/department created the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "The code for the report as a whole, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The clinically relevant time of the report. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "diagnosis",
+            "in": "query",
+            "description": "A coded diagnosis on the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "encounter",
+            "in": "query",
+            "description": "The Encounter when the order was made",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "An identifier for the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "image",
+            "in": "query",
+            "description": "A reference to the image source.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "issued",
+            "in": "query",
+            "description": "When the report was issued. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "patient",
+            "in": "query",
+            "description": "The subject of the report if a patient",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "performer",
+            "in": "query",
+            "description": "Who was the source of the report (organization)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "request",
+            "in": "query",
+            "description": "Reference to the test or procedure request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "result",
+            "in": "query",
+            "description": "Link to an atomic result (observation resource)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "specimen",
+            "in": "query",
+            "description": "The specimen details",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "The subject of the report",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "_content": {
+                    "type": "string",
+                    "description": "Search the contents of the resource's data using a fulltext search"
+                  },
+                  "_id": {
+                    "type": "string",
+                    "description": "The resource identity"
+                  },
+                  "_language": {
+                    "type": "string",
+                    "description": "The resource language"
+                  },
+                  "_lastUpdated": {
+                    "type": "string",
+                    "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "_profile": {
+                    "type": "string",
+                    "description": "Search for resources which have the given profile"
+                  },
+                  "_security": {
+                    "type": "string",
+                    "description": "Search for resources which have the given security labels"
+                  },
+                  "_tag": {
+                    "type": "string",
+                    "description": "Search for resources which have the given tag"
+                  },
+                  "_text": {
+                    "type": "string",
+                    "description": "Search the contents of the resource's narrative using a fulltext search"
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Which diagnostic discipline/department created the report"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "The code for the report as a whole, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "The clinically relevant time of the report. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "diagnosis": {
+                    "type": "string",
+                    "description": "A coded diagnosis on the report"
+                  },
+                  "encounter": {
+                    "type": "string",
+                    "description": "The Encounter when the order was made"
+                  },
+                  "identifier": {
+                    "type": "string",
+                    "description": "An identifier for the report"
+                  },
+                  "image": {
+                    "type": "string",
+                    "description": "A reference to the image source."
+                  },
+                  "issued": {
+                    "type": "string",
+                    "description": "When the report was issued. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+                    "format": "date"
+                  },
+                  "patient": {
+                    "type": "string",
+                    "description": "The subject of the report if a patient"
+                  },
+                  "performer": {
+                    "type": "string",
+                    "description": "Who was the source of the report (organization)"
+                  },
+                  "request": {
+                    "type": "string",
+                    "description": "Reference to the test or procedure request."
+                  },
+                  "result": {
+                    "type": "string",
+                    "description": "Link to an atomic result (observation resource)"
+                  },
+                  "specimen": {
+                    "type": "string",
+                    "description": "The specimen details"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "The status of the report"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the report"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "DiagnosticReport bundle",
+            "content": {
+              "application/json+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              },
+              "application/xml+fhir;charset=UTF-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DiagnosticReport"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.read"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/$meta-add": {
+      "post": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Add a metadata info DiagnosticReport with specified id.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "Add DiagnosticReport metadata",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string",
+              "default": "Bearer [access_token]"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid meta payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "DiagnosticReport could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "DiagnosticReport not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The DiagnosticReport resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      }
+    },
+    "/DiagnosticReport/{id}/_history/{vid}/$meta-add": {
+      "post": {
+        "tags": [
+          "DiagnosticReport"
+        ],
+        "description": "Add metadata info to specified DiagnosticReport resource.<p><a href = 'https://www.hl7.org/fhir/diagnosticreport.html'>FHIR documentation for DiagnosticReport.</a></p>",
+        "operationId": "Add DiagnosticReport Version based Metadata",
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "schema": {
+              "type": "string",
+              "default": "Bearer [access_token]"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "schema": {
+              "type": "string",
+              "default": "application/json+fhir;charset=UTF-8"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The logical resource id associated with the Resource.",
+            "required": true,
+            "schema": {
+              "pattern": "[a-z0-9\\-\\.]{1,64}",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body should be a valid meta payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/metaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation",
+            "content": {}
+          },
+          "400": {
+            "description": "DiagnosticReport could not be parsed or failed basic FHIR validation rules",
+            "content": {}
+          },
+          "404": {
+            "description": "DiagnosticReport not found.",
+            "content": {}
+          },
+          "422": {
+            "description": "The DiagnosticReport resource violated applicable FHIR profiles or server business rules.",
+            "content": {}
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {}
+          }
+        },
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Diagnosticreport.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Diagnosticreport.write"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DiagnosticReport": {
+        "required": [
+          "_issued",
+          "category",
+          "code",
+          "contained",
+          "effectiveDateTime",
+          "encounter",
+          "id",
+          "identifier",
+          "issued",
+          "performer",
+          "presentedForm",
+          "resourceType",
+          "result",
+          "status",
+          "subject",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "text": {
+            "required": [
+              "div",
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "div": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "contained": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "resourceType",
+                "status"
+              ],
+              "type": "object",
+              "properties": {
+                "referenceRange": {
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "high": {
+                        "required": [
+                          "code",
+                          "system",
+                          "unit",
+                          "value"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "system": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "code": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "low": {
+                        "required": [
+                          "code",
+                          "system",
+                          "unit",
+                          "value"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "system": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "code": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "code": {
+                  "required": [
+                    "coding",
+                    "text"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "coding": {
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "code",
+                          "display",
+                          "system"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "system": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "code": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "display": {
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "text": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                },
+                "performer": {
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "display",
+                      "reference"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "reference": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "display": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "subject": {
+                  "required": [
+                    "reference"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "reference": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                },
+                "id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "_id": {
+                  "required": [
+                    "fhir_comments"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "fhir_comments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    }
+                  }
+                },
+                "resourceType": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "status": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "valueQuantity": {
+                  "required": [
+                    "code",
+                    "system",
+                    "unit",
+                    "value"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "unit": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "system": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "code": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "identifier": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "required": [
+                "system",
+                "value"
+              ],
+              "type": "object",
+              "properties": {
+                "system": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "category": {
+            "required": [
+              "coding"
+            ],
+            "type": "object",
+            "properties": {
+              "coding": {
+                "minItems": 1,
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "required": [
+                    "code",
+                    "system"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "code": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "code": {
+            "required": [
+              "coding",
+              "fhir_comments",
+              "text"
+            ],
+            "type": "object",
+            "properties": {
+              "coding": {
+                "minItems": 1,
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "required": [
+                    "code",
+                    "display",
+                    "system"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "system": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "code": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "display": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "fhir_comments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "text": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "subject": {
+            "required": [
+              "reference"
+            ],
+            "type": "object",
+            "properties": {
+              "reference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "encounter": {
+            "required": [
+              "reference"
+            ],
+            "type": "object",
+            "properties": {
+              "reference": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "effectiveDateTime": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "issued": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "_issued": {
+            "required": [
+              "fhir_comments"
+            ],
+            "type": "object",
+            "properties": {
+              "fhir_comments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "performer": {
+            "required": [
+              "display",
+              "reference"
+            ],
+            "type": "object",
+            "properties": {
+              "reference": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "display": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "result": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "required": [
+                "reference"
+              ],
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "fhir_comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          },
+          "presentedForm": {
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "required": [
+                "contentType",
+                "data",
+                "language",
+                "title"
+              ],
+              "type": "object",
+              "properties": {
+                "data": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "fhir_comments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                },
+                "language": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "title": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "contentType": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "metaBody": {
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "OAuthV2B2C": {
+        "type": "oauth2",
+        "description": "Security scheme for B2C flow using authorization code flow.",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+            "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken",
+            "scopes": {
+              "patient/Diagnosticreport.read": "Read permissions for Diagnosticreport demographics.",
+              "patient/Diagnosticreport.write": "Write permissions for Diagnosticreport demographics."
+            }
+          }
+        }
+      },
+      "OAuthV2B2B": {
+        "type": "oauth2",
+        "description": "Security scheme for B2B flow using authorization code flow.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+            "scopes": {
+              "patient/Diagnosticreport.read": "Read permissions for Diagnosticreport demographics.",
+              "patient/Diagnosticreport.write": "Write permissions for Diagnosticreport demographics."
+            }
+          }
+        }
+      }
+    }
+  }
+}

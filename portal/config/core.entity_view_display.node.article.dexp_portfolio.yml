@@ -1,0 +1,45 @@
+uuid: ce358dce-8def-4aac-83dc-36daa15f2ec3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dexp_portfolio
+    - field.field.node.article.body
+    - field.field.node.article.comment
+    - field.field.node.article.field_categories
+    - field.field.node.article.field_content_tag
+    - field.field.node.article.field_image
+    - field.field.node.article.field_keywords
+    - field.field.node.article.field_media
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - text
+    - user
+id: node.article.dexp_portfolio
+targetEntityType: node
+bundle: article
+mode: dexp_portfolio
+content:
+  body:
+    label: hidden
+    weight: 0
+    type: text_summary_or_trimmed
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment: true
+  comment_node_article: true
+  field_categories: true
+  field_content_tag: true
+  field_image: true
+  field_keywords: true
+  field_media: true
+  field_tags: true

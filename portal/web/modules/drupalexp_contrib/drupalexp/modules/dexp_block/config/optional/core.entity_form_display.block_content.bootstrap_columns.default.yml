@@ -1,0 +1,27 @@
+uuid: 064a6b2d-18ba-46ed-a1f1-bb38383f7573
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bootstrap_columns
+    - field.field.block_content.bootstrap_columns.field_columns
+  module:
+    - field_collection
+id: block_content.bootstrap_columns.default
+targetEntityType: block_content
+bundle: bootstrap_columns
+mode: default
+content:
+  field_columns:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: field_collection_embed
+  info:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,26 @@
+uuid: 2e2d5aea-97a1-4daa-991d-4ed200a54667
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_visibility_groups
+    - fhir_blocks
+  theme:
+    - mdc_theme
+id: fhirsocialbottom_2
+theme: mdc_theme
+region: footer
+weight: -18
+provider: null
+plugin: fhir_social_bottom
+settings:
+  id: fhir_social_bottom
+  label: 'FHIR Social Bottom'
+  provider: fhir_blocks
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

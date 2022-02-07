@@ -1,0 +1,62 @@
+uuid: 97454f95-f748-4eed-99ba-97957adef002
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - context
+    - dexp_block_settings
+    - system
+  theme:
+    - mdc_theme
+third_party_settings:
+  dexp_block_settings:
+    animate: ''
+    animate_duration: '1000'
+    animate_delay: 0
+    background_color: ''
+    background_image: 'file:0'
+    background_position: ''
+    background_image_type: default
+    background_repeat: no-repeat
+    background_size: auto
+    background_video: ''
+    background_video_controls: 0
+    background_video_mute: 0
+    background_video_start_at: null
+    exclude_block_title: 0
+    custom_class: ''
+    custom_content_class: ''
+    custom_css: ''
+id: pagetitle
+theme: mdc_theme
+region: content
+weight: -20
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/app/smart/add\r\n/app/normal/add\r\n/fhir-datasets\r\n/conformance-report\r\n/getting-started\r\n/user/myapps/*/analytics\r\n/node/add/fhir_servers"
+    negate: false
+    context_mapping: {  }
+  request_path_exclusion:
+    id: request_path_exclusion
+    pages: ''
+    negate: null
+    context_mapping: {  }
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    view_inclusion: {  }
+    context_mapping: {  }

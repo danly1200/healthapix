@@ -1,0 +1,32 @@
+uuid: 808aae2f-9c71-4067-80df-f6c357923245
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.swagger_version_stu
+  module:
+    - node
+    - views
+  theme:
+    - mdc_theme
+id: mdc_theme_views_block__swagger_version_stu_block_1
+theme: mdc_theme
+region: content
+weight: -7
+provider: null
+plugin: 'views_block:swagger_version_stu-block_1'
+settings:
+  id: 'views_block:swagger_version_stu-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      smartdocs: smartdocs
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

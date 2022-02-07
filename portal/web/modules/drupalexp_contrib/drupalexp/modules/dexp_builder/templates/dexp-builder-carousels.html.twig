@@ -1,0 +1,17 @@
+<div{{ attributes }}>
+  <div class="dexp-builder-slick-carousel-inner">
+    {% for item in carousels %}
+      <div class="dexp-slick-item {{item.class}}">
+        {{item.content|raw}}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<style type="text/css">
+  #{{ wrapper_id }} >.dexp-builder-slick-carousel-inner >.slick-list{
+    margin-left: -20px;
+  }
+  #{{ wrapper_id }} >.dexp-builder-slick-carousel-inner >.slick-list >.slick-track >.slick-slide{
+    margin-left: 20px;
+  }
+</style>

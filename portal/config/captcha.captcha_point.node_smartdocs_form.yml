@@ -1,0 +1,7 @@
+uuid: 5559d5e7-dc7d-408d-bbff-4f44db44e014
+langcode: en
+status: false
+dependencies: {  }
+formId: node_smartdocs_form
+captchaType: default
+label: null

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="rewrite-links">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1568705746869</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared flow to re-write link references from target endpoint containing target endpoint URL.</Description>
+    <DisplayName>rewrite-links</DisplayName>
+    <LastModifiedAt>1568715385577</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:b25991fc3caca45d6ad5c4cc25e5429d814b083dd93324e4116f2bd1123b63c8923f75c0a6bf08657d4fc809e9fff8a59e042c4c2fcbd7b715d9d39bdd9b7697</ManifestVersion>
+    <Policies>
+        <Policy>HPX_ReWriteLinks</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_ReWriteLinks.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

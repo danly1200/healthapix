@@ -1,0 +1,28 @@
+uuid: 2a91192f-9160-4115-8fb4-3867da635127
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.section
+  enforced:
+    module:
+      - fhir_overview
+  module:
+    - text
+_core:
+  default_config_hash: KfwFG7wUlYmXQFUeFw7eDbI3Orh1JMgMM3YIAo6Sf98
+id: paragraph.section.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: section
+label: Description
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

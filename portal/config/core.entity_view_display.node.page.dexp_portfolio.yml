@@ -1,0 +1,23 @@
+uuid: b6b4bdc7-0a3f-4d4b-b113-546dc7eccca6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dexp_portfolio
+    - field.field.node.page.body
+    - node.type.page
+  module:
+    - user
+id: node.page.dexp_portfolio
+targetEntityType: node
+bundle: page
+mode: dexp_portfolio
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_page: true

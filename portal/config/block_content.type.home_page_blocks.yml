@@ -1,0 +1,8 @@
+uuid: ec2fa94a-6507-469d-b930-2585f0c1d83c
+langcode: en
+status: true
+dependencies: {  }
+id: home_page_blocks
+label: 'home page blocks'
+revision: 0
+description: ''

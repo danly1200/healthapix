@@ -1,0 +1,22 @@
+<div
+  class="modal-content modal-content ui-dialog ui-resizable ui-resizable-disabled ui-draggable ui-draggable-disabled request-pass-popup">
+  <div class="modal-header ui-dialog-titlebar ui-draggable-handle">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Request new password</h4>
+  </div>
+  <div class="modal-body">
+    <div class="forgot-pass-popup">
+      <form{{ attributes }}>
+        {{ element.status_messages }}
+        {{ element.name }}
+        {{ element.captcha }}
+        {{ element.actions.submit }}
+        {{ element.form_build_id }} {# required #}
+        {{ element.form_id }}
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+</div>

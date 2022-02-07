@@ -1,0 +1,35 @@
+uuid: a1fab8e7-d769-4b47-b877-588928ea2863
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.blog_video.body
+    - field.field.node.blog_video.field_content_tag
+    - field.field.node.blog_video.field_video
+    - node.type.blog_video
+  module:
+    - text
+    - user
+id: node.blog_video.teaser
+targetEntityType: node
+bundle: blog_video
+mode: teaser
+content:
+  body:
+    label: hidden
+    weight: 0
+    type: text_summary_or_trimmed
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment_node_blog_video: true
+  field_content_tag: true
+  field_video: true

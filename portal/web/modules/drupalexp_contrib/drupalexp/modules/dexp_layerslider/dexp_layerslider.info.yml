@@ -1,0 +1,11 @@
+name: 'DrupalExp LayerSlider'
+type: module
+description: 'LayerSlider Module base on Revolution Plugin'
+core: 8.x
+version: 8.x-1.4
+package: DrupalExp
+dependencies:
+  - image_browser
+'project status url': 'https://projects.drupalexp.com/updates'
+project: dexp_layerslider
+datestamp: 1542361578

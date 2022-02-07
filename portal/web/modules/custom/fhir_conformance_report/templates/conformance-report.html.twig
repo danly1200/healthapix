@@ -1,0 +1,206 @@
+{% set key_val = {} %}
+<div id="conformance-verbiage">
+{{ conformance_verbiage  }}
+</div>
+<div id="conformance-report-caption">
+  <span>
+    <i class="material-icons add-icon">file_copy</i>
+    <span class="conformance-icon-desc">= Read (HTTP GET)</span>
+  </span> ,&nbsp&nbsp
+  <span>
+    <i class="material-icons add-icon">edit</i>
+    <span class="conformance-icon-desc">= Update (HTTP PUT)</span>
+  </span>,&nbsp&nbsp
+  <span>
+    <i class="material-icons add-icon">delete</i>
+    <span class="conformance-icon-desc">= Delete (HTTP DELETE)</span>
+  </span>,&nbsp&nbsp
+  <span>
+    <i class="material-icons add-icon">add</i>
+    <span class="conformance-icon-desc">= Create (HTTP POST)</span>
+  </span>,&nbsp&nbsp
+  <span>
+    <i class="material-icons add-icon">search</i>
+    <span class="conformance-icon-desc">= Search (HTTP GET/POST)</span>
+  </span>&nbsp&nbsp
+</div>
+
+<div class="mdc-data-table conformance-page">
+  <table>
+    <thead>
+    <tr class="mdc-data-table__table" aria-label="conformance">
+      <th class="mdc-data-table__header-cell" role="columnheader" scope="col"></th>
+      {% for key, item in conformance_data %}
+        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">{{ key |upper }}</th>
+        {% set key_val = key_val|merge({(key):key}) %}
+      {% endfor %}
+    </tr>
+    </thead>
+    <tbody class="mdc-data-table__content">
+    <tr class="support-conformance-class mdc-data-table__row">
+      <td colspan="100%" class="mdc-data-table__cell">Support</td>
+    </tr>
+    {# Version Row #}
+    <tr class="mdc-data-table__row">
+      <td class="mdc-data-table__cell">FHIR Version</td>
+      {% for keyrow, itemrow in key_val %}
+        <td class="mdc-data-table__cell">
+          {% for keyver, itemver in conformance_data %}
+            {% if keyver == keyrow %}
+              {% for keyver1, itemver1 in itemver %}
+                {% if keyver1 == 'fhir_version' %}
+                  {{ itemver1 }}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </td>
+      {% endfor %}
+    </tr>
+    {# Format td#}
+    <tr class="mdc-data-table__row">
+      <td class="mdc-data-table__cell">Format/json</td>
+      {% for keyrow, itemrow in key_val %}
+        <td class="mdc-data-table__cell">
+          {% for keyver, itemver in conformance_data %}
+            {% if keyver == keyrow %}
+              {% for keyver1, itemver1 in itemver %}
+                {% if keyver1 == 'format' %}
+                  {% for keyver2, itemver2 in itemver1 %}
+                    {% if itemver2 == 'json' %}
+                      <i class="material-icons done-icon mdc-button__icon" aria-hidden="true">done</i>
+                    {% else %}
+                      <i class="material-icons clear-icon mdc-button__icon" aria-hidden="true">clear</i>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </td>
+      {% endfor %}
+    </tr>
+    <tr class="resource-conformance-class mdc-data-table__row">
+      <td colspan="100%" class="mdc-data-table__cell">Resources</td>
+    </tr>
+{#    {% set search_params_data_arr = {} %}#}
+
+    {# Resource body #}
+    {% for key, item in resources_list %}
+      <tr class="mdc-data-table__row">
+        <td class="mdc-data-table__cell">{{ item }}
+          {% if resource_search_params[item] is not empty %}
+             <a href="#{{ item }}" id="params-link" class="{{ item }}-params">params<span class="hide params-open">[-]</span></a>
+          {% endif %}
+        </td>
+        {% for key0, item0 in key_val %}
+          <td class="mdc-data-table__cell">
+          {% for key1, item1 in conformance_data %}
+            {% if key1 == key0 %}
+              {% for key2, item2 in item1 %}
+                {% if key2 == 'resources_data' %}
+                  {% if item in item2|keys %}
+                    {% for key3, item3 in item2 %}
+                      {% if key3 == item %}
+{#                        {{ kint(item3) }}#}
+                        {% if 'read' in item3.interactions %}
+                          <a class="navtext"><i class="material-icons add-icon">file_copy</i></a>
+                        {% else %}
+                          -
+                        {% endif %}
+                        {% if 'update' in item3.interactions %}
+                          <a class="navtext"><i class="material-icons add-icon">edit</i></a>
+                        {% else %}
+                          -
+                        {% endif %}
+                        {% if 'delete' in item3.interactions %}
+                          <a class="navtext"><i class="material-icons add-icon">delete</i></a>
+                        {% else %}
+                          -
+                        {% endif %}
+                        {% if 'create' in item3.interactions %}
+                          <a class="navtext"><i class="material-icons add-icon">add</i></a>
+                        {% else %}
+                          -
+                        {% endif %}
+                        {% if 'search-type' in item3.interactions %}
+                          <a class="navtext"><i class="material-icons add-icon">search</i></a>
+                        {% else %}
+                          -
+                        {% endif %}
+                      {% endif %}
+
+                    {% endfor %}
+                  {% else %}
+                     - - - - -
+                  {% endif %}
+
+                {% endif %}
+              {% endfor %}
+
+            {% endif %}
+          {% endfor %}
+        {% else %}
+
+          </td>
+        {% endfor %}
+      </tr>
+
+
+      <tr id={{ item }}-params class="mdc-data-table__row hide">
+        {% for res_name, param_name in resource_search_params %}
+          {% if res_name == item %}
+            <td colspan="100%" class="mdc-data-table__cell">
+              <div class="mdc-data-table">
+                <table class="mdc-data-table__table search_params_table">
+                  <tbody class="mdc-data-table__content">
+                    {% for ke,val in param_name %}
+                    <tr class="mdc-data-table__row">
+                      <td class="param-name mdc-data-table__cell">{{ ke }} ({{ val }})</td>
+                      {% for key0, item0 in key_val %}
+                        <td class="param-name-val mdc-data-table__cell">
+                          {% for key1, item1 in conformance_data %}
+                            {% if key1 == key0 %}
+                              {% for key2, item2 in item1 %}
+                                {% if key2 == 'resources_data' %}
+                                {% if res_name in item2|keys %}
+{#                                  {% for key3, item3 in item2 %}#}
+{#                                    {% if key3 == res_name %}#}
+{#                                      {% if ke in item3.search_params|keys and val in item3.search_params %}#}
+                                      {% if ke in item2[res_name].search_params|keys and val in item2[res_name].search_params %}
+                                        <i class="material-icons mdc-button__icon" aria-hidden="true">done</i>
+                                      {% else %}
+                                        -
+                                      {% endif %}
+{#                                    {% endif %}#}
+{#                                  {% endfor %}#}
+                                {% else %}
+                                  -
+                                {% endif %}
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          {% endfor %}
+                        </td>
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </td>
+
+          {% endif %}
+        {% endfor %}
+      </tr>
+
+
+
+
+    {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,35 @@
+name: FHIR Responsive Theme
+type: theme
+description: 'A Responsive theme for the FHIR devportal'
+package: Other
+core: 8.x
+libraries:
+  - fhir_responsive_theme/global-styling
+  - fhir_responsive_theme/font-awesome-css
+  - fhir_responsive_theme/global-script
+  - fhir_responsive_theme/global-scripts
+logo: logo.png
+
+base theme: bootstrap
+
+regions:
+  logo_right: Logo Right
+  navigation_collapsible: Navigation (Collapsible)
+  navigation: Navigation
+  page_top: Page top
+  header: Top Bar
+  help: Help
+  homepage_header: Homepage Header
+  #  right_sidebar: Right sidebar
+  #  left_sidebar: Left sidebar
+  sidebar_first: Primary
+  sidebar_second: Secondary
+  #  frontpage_panel_left: Frontpage Panel Left
+  #  frontpage_panel_center: Frontpage Panel Center
+  #  frontpage_panel_right: Frontpage Panel Right
+  content: Content
+  footer: Footer
+  page_bottom: Page bottom
+  copyright: Copyright
+  socials_bottom: Socials Bottom
+

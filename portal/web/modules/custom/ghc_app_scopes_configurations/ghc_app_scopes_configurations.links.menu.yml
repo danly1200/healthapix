@@ -1,0 +1,6 @@
+ghc_app_scopes_configurations.scope_config_form:
+  title: 'Configure App Scopes'
+  route_name: ghc_app_scopes_configurations.scope_config_form
+  description: 'Configing App user, patient scopes'
+  parent: system.admin_config
+  weight: 99

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractPaginationData">
+    <DisplayName>HPX_ExtractPaginationData</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="targetBaseURI">
+            <JSONPath>$.targetBaseURI</JSONPath>
+        </Variable>
+        <Variable name="googleToken">
+            <JSONPath>$.googleToken</JSONPath>
+        </Variable>
+        <Variable name="currentPageURI">
+            <JSONPath>$.currentPageURI</JSONPath>
+        </Variable>
+        <Variable name="nextPageURI">
+            <JSONPath>$.nextPageURI</JSONPath>
+        </Variable>
+        <Variable name="previousPageURI">
+            <JSONPath>$.previousPageURI</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">paginationData</Source>
+    <VariablePrefix>hpx.pagination</VariablePrefix>
+</ExtractVariables>

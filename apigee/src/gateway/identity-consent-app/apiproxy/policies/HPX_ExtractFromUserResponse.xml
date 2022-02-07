@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_ExtractFromUserResponse">
+    <DisplayName>ExtractFromUserResponse</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="id">
+            <JSONPath>$.id</JSONPath>
+        </Variable>
+        <Variable name="resourceType">
+            <JSONPath>$.resourceType</JSONPath>
+        </Variable>
+        <Variable name="name" type="string">
+            <JSONPath>$.name</JSONPath>
+        </Variable>
+        <Variable name="request.queryparam.patientId">
+            <JSONPath>$.id</JSONPath>
+        </Variable>
+        <Variable name="request.queryparam.userid">
+            <JSONPath>$.id</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">validateUserResponse</Source>
+</ExtractVariables>

@@ -1,0 +1,32 @@
+uuid: fdf7d8b5-ef59-47e5-ae7e-19e621add5b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.interoperability_help_page.body
+    - field.field.node.interoperability_help_page.field_interoperability_api_tag
+    - node.type.interoperability_help_page
+  module:
+    - text
+    - user
+id: node.interoperability_help_page.teaser
+targetEntityType: node
+bundle: interoperability_help_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_interoperability_api_tag: true

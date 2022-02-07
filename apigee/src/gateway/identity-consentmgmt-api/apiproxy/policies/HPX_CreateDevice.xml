@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_CreateDevice">
+    <DisplayName>HPX_CreateDevice</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="createDeviceRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{googleToken}</Header>
+            </Headers>
+            <Verb>POST</Verb>
+            <Payload contentType="application/fhir+json" variablePrefix="@" variableSuffix="#">{"resourceType":"Device","identifier":[{"system":"http://acme.com/ehr/client-ids","value":"@client_id#"}],"type":{"text":"SMART-ON-FHIR"},"manufacturer":"@developer_email#","version":"10.23","contact":[{"system":"url","value":"https://smart-app-callback-url/"}],"url":"https://smart-app-launch-url/"}</Payload>
+        </Set>
+    </Request>
+    <Response>createDeviceResponse</Response>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="ghcapiserver"/>
+        </LoadBalancer>
+        <Path>/{targetBaseURI}/Device</Path>
+    </HTTPTargetConnection>
+</ServiceCallout>

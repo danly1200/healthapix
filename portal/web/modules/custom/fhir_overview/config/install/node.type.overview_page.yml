@@ -1,0 +1,21 @@
+uuid: 11dffd59-e907-4d65-96d0-34821db84504
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+  enforced:
+    module:
+      - fhir_overview
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Overview Page'
+type: overview_page
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: true

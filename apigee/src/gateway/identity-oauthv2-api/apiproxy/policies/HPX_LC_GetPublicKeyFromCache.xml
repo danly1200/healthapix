@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache enabled="true" continueOnError="true" async="false" name="HPX_LC_GetPublicKeyFromCache">
+    <DisplayName>HPX_LC_GetPublicKeyFromCache</DisplayName>
+    <CacheResource>backend-services-jwks-cache</CacheResource>
+    <AssignTo>publicKeyJwks</AssignTo>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="verifyapikey.HPX_VAK_ValidateApiKey.jwks_uri"/>
+    </CacheKey>
+</LookupCache>

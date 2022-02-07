@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="SoF_ReWriteLinks">
+    <DisplayName>SoF_ReWriteLinks</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://SoF_ReWriteLinks.js</ResourceURL>
+</Javascript>

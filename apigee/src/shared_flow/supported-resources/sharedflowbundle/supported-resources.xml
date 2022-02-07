@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="supported-resources">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1576573096812</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared Flow to retrieve the list of supported resources dynamically.</Description>
+    <DisplayName>supported-resources</DisplayName>
+    <LastModifiedAt>1576575485606</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:b962c9e26151fdbf10195d41bfa03fbe6a64c1e2cac875609d20732c393dc9578d18f8f338b9430e06ff4275a8f851482ff22c8905d763c3908d4e245e3b1adc</ManifestVersion>
+    <Policies>
+        <Policy>HPX_CreateDelay</Policy>
+        <Policy>HPX_ExtractResourceNames</Policy>
+        <Policy>HPX_LookupCacheForResourceList</Policy>
+        <Policy>HPX_PopulateCacheWithResourceList</Policy>
+        <Policy>HPX_Retrieve_Metadata</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_CreateDelay.js</Resource>
+        <Resource>jsc://HPX_ExtractResourceNames.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

@@ -1,0 +1,15 @@
+preview_style:
+  js:
+    assets/js/preview.js: {}
+dexp-piegraph:
+  js:
+    assets/js/dexp-piegraph.js: {}
+  css:
+    base:
+      assets/css/dexp-piegraph.css: {}
+  dependencies:
+    - core/jquery
+dexp-flipbox:
+  css:
+    base:
+      assets/css/dexp-flipbox.css: {}

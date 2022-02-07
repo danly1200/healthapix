@@ -1,0 +1,66 @@
+.dexp-builder-slick-carousel{
+  position: relative;
+}
+.dexp-builder-slick-carousel .slick-prev::before, .dexp-builder-slick-carousel .slick-next::before{
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #121212;
+  border: 1px solid #eee;
+  line-height: 40px;
+}
+.dexp-builder-slick-carousel .slick-dots{
+  line-height: 12px;
+  bottom: -24px;
+  z-index: 3;
+  left: 0;
+  height: 22px;
+}
+.dexp-builder-slick-carousel .slick-dots li{
+  height: 12px;
+  width: 12px;
+  margin: 5px 3px;
+}
+.dexp-builder-slick-carousel .slick-dots li button{
+  height: 12px;
+  width: 12px;
+  padding:0;
+}
+.dexp-builder-slick-carousel .slick-dots li button::before{
+  height: 12px;
+  width: 12px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 12px;
+}
+.dexp-builder-slick-carousel .slick-list{
+  z-index: 1;
+}
+.dexp-builder-slick-carousel .slick-prev, .dexp-builder-slick-carousel .slick-next{
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  margin-top: 0px;
+  line-height: 40px;
+}
+.dexp-builder-slick-carousel .slick-prev{
+  left: 0;
+}
+.dexp-builder-slick-carousel .slick-next{
+  right: 0;
+}
+.dexp-builder-slick-carousel .slick-slider{
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.dexp-builder-slick-carousel .slick-slide{
+  overflow: hidden;
+  outline: 0;
+}
+.dexp-builder-slick-carousel .slick-slide:focus, .dexp-builder-slick-carousel .slick-slide:active{
+  outline: 0;
+}
+.dexp-builder-slick-carousel.hide-control-at-end .slick-arrow.slick-disabled{
+  display: none !important;
+}

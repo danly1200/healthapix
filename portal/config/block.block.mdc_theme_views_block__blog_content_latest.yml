@@ -1,0 +1,30 @@
+uuid: d380c3ce-5bab-4afe-aa5b-68b930c90459
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.blog_content
+  module:
+    - system
+    - views
+  theme:
+    - mdc_theme
+id: mdc_theme_views_block__blog_content_latest
+theme: mdc_theme
+region: content
+weight: 2
+provider: null
+plugin: 'views_block:blog_content-latest'
+settings:
+  id: 'views_block:blog_content-latest'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /blogs
+    negate: false
+    context_mapping: {  }

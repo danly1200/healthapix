@@ -1,0 +1,26 @@
+uuid: 607c7b26-ffbf-4003-ae7f-3d3e2558d51b
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_blocks
+    - system
+  theme:
+    - mdc_theme
+id: mdc_theme_fhirappgallery
+theme: mdc_theme
+region: content
+weight: -12
+provider: null
+plugin: fhir_app_gallery
+settings:
+  id: fhir_app_gallery
+  label: 'FHIR App Gallery'
+  provider: fhir_blocks
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

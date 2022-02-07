@@ -1,0 +1,33 @@
+uuid: c9ad6d39-925c-40d0-917c-e6894f24bfbc
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - fhir_overview
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.overview_page.body
+    - node.type.overview_page
+  module:
+    - text
+    - user
+id: node.overview_page.teaser
+targetEntityType: node
+bundle: overview_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="SmartLaunchSecurity" version="SHA-512:ffc1f736474c5a27625f70c0d3e12447fdeab44396c10983eb9633b55a5e7e2ac7bf2fdffc166de2c4e100a45f5b1af2b3367491d9fbd480ef2d5c284ce49d21"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources>
+        <VersionInfo resourceName="jsc://SmartLaunchSecurity.js" version="SHA-512:7ae7cb36a0328785a805dea5f3bba726392e467926f327787d20afb46476f636ab604ef5a251bf12643399d145244a30e3f8cb4ce0d3de7c5d73f018a160a0ed"/>
+    </Resources>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:b2cbd8b231d3999f9228255ab2b8dbb6514d7320cf97d64361eb2174b8bf8d8a4509dfc95b1011afd65297f7ac30bb7da80f251a356ea5518b2cde7c50947850"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

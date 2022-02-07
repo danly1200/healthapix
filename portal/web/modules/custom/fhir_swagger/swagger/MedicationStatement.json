@@ -1,0 +1,2019 @@
+{
+  "swagger": "2.0",
+  "info":{
+  "description": 
+    "Fast Healthcare Interoperability Resources (FHIR, pronounced \"Fire\") defines a set of \"Resources\" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation. \n",
+  "version": "1.4.0",
+  "title": "FHIR MedicationStatement resource API documentation"
+  },
+  "host": "healthapix-demo-test.apigee.net",
+  "schemes":[
+     "https"
+     ],
+  "basePath": "/v1/dstu2",
+  "produces":[
+    "application/json+fhir;charset=UTF-8",
+    "application/xml+fhir;charset=UTF-8"
+    ],
+  "definitions": {
+    "MedicationStatement": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "div": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "status",
+            "div"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "medicationReference": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            },
+            "_reference": {
+              "type": "object",
+              "properties": {
+                "fhir_comments": {
+                  "type": "array",
+                  "items": {
+                    "properties": {}
+                  }
+                }
+              },
+              "required": [
+                "fhir_comments"
+              ]
+            }
+          },
+          "required": [
+            "reference",
+            "_reference"
+          ]
+        },
+        "patient": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "effectiveDateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "informationSource": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference"
+          ]
+        },
+        "dateAsserted": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wasNotTaken": {
+          "type": "boolean"
+        },
+        "reasonForUseCodeableConcept": {
+          "type": "object",
+          "properties": {
+            "coding": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "system",
+                  "code",
+                  "display"
+                ],
+                "properties": {
+                  "system": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "code": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "display": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "coding"
+          ]
+        },
+        "note": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "dosage": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "required": [
+              "text",
+              "asNeededBoolean"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "timing": {
+                "type": "object",
+                "properties": {
+                  "repeat": {
+                    "type": "object",
+                    "properties": {
+                      "frequency": {
+                        "type": "number"
+                      },
+                      "period": {
+                        "type": "number"
+                      },
+                      "periodUnit": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "frequency",
+                      "period",
+                      "periodUnit"
+                    ]
+                  }
+                },
+                "required": [
+                  "repeat"
+                ]
+              },
+              "asNeededBoolean": {
+                "type": "boolean"
+              },
+              "route": {
+                "type": "object",
+                "properties": {
+                  "coding": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "system",
+                        "code",
+                        "display"
+                      ],
+                      "properties": {
+                        "system": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "code": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "display": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "coding"
+                ]
+              },
+              "quantityQuantity": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "maxDosePerPeriod": {
+                "type": "object",
+                "properties": {
+                  "numerator": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number"
+                      },
+                      "unit": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "system": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "unit",
+                      "system",
+                      "code"
+                    ]
+                  },
+                  "denominator": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number"
+                      },
+                      "system": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "code": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "system",
+                      "code"
+                    ]
+                  }
+                },
+                "required": [
+                  "numerator",
+                  "denominator"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "resourceType",
+        "id",
+        "text",
+        "status",
+        "medicationReference",
+        "patient",
+        "effectiveDateTime",
+        "informationSource",
+        "dateAsserted",
+        "wasNotTaken",
+        "reasonForUseCodeableConcept",
+        "note",
+        "dosage"
+      ]
+    },
+    "metaBody": {
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/MedicationStatement": {
+      "parameters": [],
+      "post": {
+        "tags":["MedicationStatement"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MedicationStatement"
+            }
+          },
+          {
+            "name": "If-None-Exist",
+            "in": "header",
+            "required": false,
+            "description": "Specify the search query for conditional create.",
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "MedicationStatement could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "MedicationStatement not found."
+          },
+          "422": {
+            "description": "The MedicationStatement resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Create MedicationStatement",
+        "description": "Create a new MedicationStatement with a server assigned id.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      },
+      "put": {
+         "tags":["MedicationStatement"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MedicationStatement"
+            }
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication code"
+          },
+          {
+            "name": "effective",
+            "type": "string",
+            "in": "query",
+            "description": "Date when patient was taking (or not taking) the medication. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements with this external identifier"
+          },
+          {
+            "name": "medication",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication reference"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of a patient to list statements  for"
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "in": "query",
+            "description": "Who the information in the statement came from"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements that match the given status"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement Updated."
+          },
+          "201": {
+            "description": "MedicationStatement Created."
+          },
+          "400": {
+            "description": "MedicationStatement could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatement Conditional Update",
+        "description": "The conditional update interaction is used to update an existing MedicationStatement based on some identification criteria, rather than by logical id.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      },
+      "delete": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication code"
+          },
+          {
+            "name": "effective",
+            "type": "string",
+            "in": "query",
+            "description": "Date when patient was taking (or not taking) the medication. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements with this external identifier"
+          },
+          {
+            "name": "medication",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication reference"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of a patient to list statements  for"
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "in": "query",
+            "description": "Who the information in the statement came from"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements that match the given status"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "MedicationStatement not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatement Conditional Delete",
+        "description": "The conditional delete interaction allows a client to delete MedicationStatement/MedicationStatements  based on some selection criteria, rather than by a specific logical id.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      },
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication code"
+          },
+          {
+            "name": "effective",
+            "type": "string",
+            "in": "query",
+            "description": "Date when patient was taking (or not taking) the medication. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements with this external identifier"
+          },
+          {
+            "name": "medication",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication reference"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of a patient to list statements  for"
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "in": "query",
+            "description": "Who the information in the statement came from"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements that match the given status"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MedicationStatement"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatements Search",
+        "description": "Returns MedicationStatements based on filter criteria OR Provides provision for pagination (stateid, page, page_size, _pretty & _bundletype are query parameters used for Paging).<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}": {
+      "parameters": [],
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement Instance",
+            "schema": {
+              "$ref": "#/definitions/MedicationStatement"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Read MedicationStatement",
+        "description": "Returns details of MedicationStatement having id given in path.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      },
+      "put": {
+         "tags":["MedicationStatement"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid data payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MedicationStatement"
+            }
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement Updated."
+          },
+          "201": {
+            "description": "MedicationStatement Created."
+          },
+          "400": {
+            "description": "MedicationStatement could not be parsed or failed basic FHIR validation rules (or multiple matches were found)."
+          },
+          "403": {
+            "description": "Not Authorized."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Update MedicationStatement",
+        "description": "Update an existing MedicationStatement by its id (or create it if it is new).<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      },
+      "delete": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content."
+          },
+          "204": {
+            "description": "No Content."
+          },
+          "404": {
+            "description": "MedicationStatement not found."
+          },
+          "405": {
+            "description": "Method not allowed."
+          },
+          "409": {
+            "description": "Conflict Error."
+          },
+          "412": {
+            "description": "The given criteria is not selective enough."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Delete MedicationStatement",
+        "description": "The delete interaction removes an existing MedicationStatement.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/_history": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MedicationStatement"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatement History",
+        "description": "It retrieves the history of a particular MedicationStatement identified by the given id in path.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/_history": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MedicationStatement"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatements History",
+        "description": "It retrieves the history of all resources of MedicationStatement.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/_history/{vid}": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "_count",
+            "in": "query",
+            "description": "Number of records needed in response.",
+            "type": "integer"
+          },
+          {
+            "name": "_since",
+            "in": "query",
+            "description": "Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.",
+            "type": "string",
+            "pattern": "([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement Instance",
+            "schema": {
+              "$ref": "#/definitions/MedicationStatement"
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatement Version Read",
+        "description": "This interaction preforms a version specific read of MedicationStatement resource.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/$meta": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels used for MedicationStatement"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatements Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for MedicationStatements.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/$meta": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatement Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given MedicationStatement resource.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/_history/{vid}/$meta": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all tags, profiles and security labels affixed to the nominated version of the resource."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatement Version based Metadata",
+        "description": "Retrieves a summary of the profiles, tags, and security labels for given version of the MedicationStatement.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/{type}": {
+      "get": {
+         "tags":["MedicationStatement"],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "_format",
+            "in": "query",
+            "description": "Format of data to be returned.",
+            "type": "string",
+            "x-consoleDefault": "application/json"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "The set of resources associated with a particular MedicationStatement"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": " Compartment Search",
+        "description": "Search the specified resource type in MedicationStatement compartment.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/_search": {
+      "post": {
+         "tags":["MedicationStatement"],
+        "consumes":[
+          "application/x-www-form-urlencoded" 
+          ],
+        "parameters": [
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "query",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "query",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "query",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "query",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "query",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication code"
+          },
+          {
+            "name": "effective",
+            "type": "string",
+            "in": "query",
+            "description": "Date when patient was taking (or not taking) the medication. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements with this external identifier"
+          },
+          {
+            "name": "medication",
+            "type": "string",
+            "in": "query",
+            "description": "Return administrations of this medication reference"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "query",
+            "description": "The identity of a patient to list statements  for"
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "in": "query",
+            "description": "Who the information in the statement came from"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "Return statements that match the given status"
+          },
+          {
+            "name": "_content",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's data using a fulltext search"
+          },
+          {
+            "name": "_id",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource identity"
+          },
+          {
+            "name": "_language",
+            "type": "string",
+            "in": "formData",
+            "description": "The resource language"
+          },
+          {
+            "name": "_lastUpdated",
+            "type": "string",
+            "in": "formData",
+            "description": "Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "_profile",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given profile"
+          },
+          {
+            "name": "_security",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given security labels"
+          },
+          {
+            "name": "_tag",
+            "type": "string",
+            "in": "formData",
+            "description": "Search for resources which have the given tag"
+          },
+          {
+            "name": "_text",
+            "type": "string",
+            "in": "formData",
+            "description": "Search the contents of the resource's narrative using a fulltext search"
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "in": "formData",
+            "description": "Return administrations of this medication code"
+          },
+          {
+            "name": "effective",
+            "type": "string",
+            "in": "formData",
+            "description": "Date when patient was taking (or not taking) the medication. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.",
+            "format": "date"
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "in": "formData",
+            "description": "Return statements with this external identifier"
+          },
+          {
+            "name": "medication",
+            "type": "string",
+            "in": "formData",
+            "description": "Return administrations of this medication reference"
+          },
+          {
+            "name": "patient",
+            "type": "string",
+            "in": "formData",
+            "description": "The identity of a patient to list statements  for"
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "in": "formData",
+            "description": "Who the information in the statement came from"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "formData",
+            "description": "Return statements that match the given status"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.read"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.read"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "MedicationStatement bundle",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MedicationStatement"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "MedicationStatements Search using POST",
+        "description": "This interaction searches a set of MedicationStatements based on some filter criteria. Search interactions take a series of parameters of name'='value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/$meta-add": {
+      "post": {
+         "tags":["MedicationStatement"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "MedicationStatement could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "MedicationStatement not found."
+          },
+          "422": {
+            "description": "The MedicationStatement resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add MedicationStatement metadata",
+        "description": "Add a metadata info MedicationStatement with specified id.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    },
+    "/MedicationStatement/{id}/_history/{vid}/$meta-add": {
+      "post": {
+         "tags":["MedicationStatement"],
+        "consumes":[
+          "application/json",
+          "application/xml"
+          ],
+        "parameters": [
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Resource data",
+            "in": "body",
+            "description": "The request body should be a valid meta payload.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/metaBody"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "description": "Specify access token for API in the given format: Bearer [access_token].",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "description": "The Accept request-header field can be used to specify certain media types which are acceptable for the response.",
+            "in": "header",
+            "required": false,
+            "default": "application/json+fhir;charset=UTF-8",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The logical resource id associated with the Resource.",
+            "type": "string",
+            "pattern": "[a-z0-9\\-\\.]{1,64}",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "security": [
+          {
+            "OAuthV2B2C": [
+              "patient/Medicationstatement.write"
+            ]
+          },
+          {
+            "OAuthV2B2B": [
+              "patient/Medicationstatement.write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json+fhir;charset=UTF-8",
+          "application/xml+fhir;charset=UTF-8"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful creation"
+          },
+          "400": {
+            "description": "MedicationStatement could not be parsed or failed basic FHIR validation rules"
+          },
+          "404": {
+            "description": "MedicationStatement not found."
+          },
+          "422": {
+            "description": "The MedicationStatement resource violated applicable FHIR profiles or server business rules."
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        },
+        "operationId": "Add MedicationStatement Version based Metadata",
+        "description": "Add metadata info to specified MedicationStatement resource.<p><a href = 'https://www.hl7.org/fhir/medicationstatement.html'>FHIR documentation for MedicationStatement.</a></p>"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuthV2B2C": {
+      "type": "oauth2",
+      "description": "Security scheme for B2C flow using authorization code flow.",
+      "scopes": {
+        "patient/Medicationstatement.read": "Read permissions for MedicationStatement demographics.",
+        "patient/Medicationstatement.write": "Write permissions for MedicationStatement demographics."
+      },
+      "flow": "accessCode",
+      "authorizationUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/authorize",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken"
+    },
+    "OAuthV2B2B": {
+      "type": "oauth2",
+      "description": "Security scheme for B2B flow using authorization code flow.",
+      "flow": "application",
+      "tokenUrl": "https://healthapix-demo-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials",
+      "scopes": {
+         "patient/Medicationstatement.read": "Read permissions for MedicationStatement demographics.",
+        "patient/Medicationstatement.write": "Write permissions for MedicationStatement demographics."
+      }
+    }  
+  }
+}

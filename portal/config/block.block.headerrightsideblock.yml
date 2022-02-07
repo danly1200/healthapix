@@ -1,0 +1,26 @@
+uuid: 1a5a2054-8ebb-45e4-9fdb-7816462ec46f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - fhir_rebranding
+  theme:
+    - mdc_theme
+id: headerrightsideblock
+theme: mdc_theme
+region: header_right_block
+weight: -18
+provider: null
+plugin: header_right_block
+settings:
+  id: header_right_block
+  label: 'Header Right side Block'
+  provider: fhir_rebranding
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }

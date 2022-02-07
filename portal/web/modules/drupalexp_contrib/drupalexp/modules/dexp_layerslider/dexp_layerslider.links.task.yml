@@ -1,0 +1,26 @@
+# Slider routing definition
+dexp_slider.settings_tab:
+  route_name: dexp_slider.settings
+  title: 'Settings'
+  base_route: dexp_slider.settings
+
+entity.dexp_slider.canonical:
+  route_name: entity.dexp_slider.canonical
+  base_route: entity.dexp_slider.canonical
+  title: 'View'
+
+entity.dexp_slider.edit_form:
+  route_name: entity.dexp_slider.edit_form
+  base_route: entity.dexp_slider.canonical
+  title: Edit
+
+entity.dexp_slider.delete_form:
+  route_name:  entity.dexp_slider.delete_form
+  base_route:  entity.dexp_slider.canonical
+  title: Delete
+  weight: 10
+
+entity.dexp_slider.list_tab:
+  route_name: entity.dexp_slider.collection
+  base_route: system.admin_content
+  title: Layer Sliders

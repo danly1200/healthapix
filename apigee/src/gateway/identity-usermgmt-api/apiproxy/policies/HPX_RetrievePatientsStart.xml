@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_RetrievePatientsStart">
+    <DisplayName>HPX_RetrievePatientsStart</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="true" variable="patientsRequest">
+        <Set>
+            <Headers>
+                <Header name="Authorization">{hpx.pagination.googleToken}</Header>
+            </Headers>
+            <Verb>GET</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>patientsResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://healthcare.googleapis.com/{hpx.pagination.targetBaseURI}/Patient?_count=20</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

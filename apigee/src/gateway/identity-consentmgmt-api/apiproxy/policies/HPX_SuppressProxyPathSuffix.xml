@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_SuppressProxyPathSuffix">
+    <DisplayName>HPX_SuppressProxyPathSuffix</DisplayName>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>display.copy</Name>
+        <Ref>request.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

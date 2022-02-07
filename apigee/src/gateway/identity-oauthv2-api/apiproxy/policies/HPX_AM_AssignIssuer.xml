@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_AssignIssuer">
+    <DisplayName>HPX_AM_AssignIssuer</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>issuer</Name>
+        <Ref>verifyapikey.HPX_VAK_ValidateApiKey.apiproduct.fhir_server_url</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jku</Name>
+        <Value>{{ healthapix_issuer_url }}</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

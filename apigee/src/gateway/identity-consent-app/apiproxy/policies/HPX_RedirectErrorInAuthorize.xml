@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault name="HPX_RedirectErrorInAuthorize">
+    <DisplayName>RedirectErrorInAuthorize</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <FaultResponse>
+        <Set>
+            <StatusCode>302</StatusCode>
+            <Headers>
+                <Header name="Location">/openid/errorflow?error={flowError}&amp;discription=invalid%20session</Header>
+                <!--<Header name="Location">{redirect_uri}?error=invalid_request&amp;description={flowError}&amp;state={req_state}</Header>-->
+            </Headers>
+            <Payload contentType="text/plain"/>
+        </Set>
+    </FaultResponse>
+</RaiseFault>

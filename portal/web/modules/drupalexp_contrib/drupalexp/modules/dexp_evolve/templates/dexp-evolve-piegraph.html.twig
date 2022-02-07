@@ -1,0 +1,9 @@
+<div class="dexp-pie-chart-wrapper  {{class}}">
+    <div class="dexp-pie-chart" data-percent="{{ percent }}" data-icon="{{icon}}"></div>    
+</div>
+{% if title is not empty %}
+    {{ heading|raw }}
+{% endif %}
+{% if content is not empty %}
+    <span class="dexp-pie-chart-content">{{ content|raw }}</span>
+{% endif %}

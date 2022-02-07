@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractGoogleState">
+    <DisplayName>ExtractStateSessionId</DisplayName>
+    <Source>request</Source>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <QueryParam name="state">
+        <Pattern>{sessionid}</Pattern>
+    </QueryParam>
+</ExtractVariables>

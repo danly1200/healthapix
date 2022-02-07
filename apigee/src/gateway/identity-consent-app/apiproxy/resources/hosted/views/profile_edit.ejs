@@ -1,0 +1,98 @@
+
+    <div class="container main login" style="width: 100%; height:auto">
+      
+        <form role="form" action="<%= basepath%>/profile/update?sessionid=<%= sessionid%>" method="post" >
+            <div class="input-group-container">
+              <table style="width: 100%; height:auto; margin: 0">
+
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.emailId')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="email"  value="<%= email%>" readonly>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.firstname')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="first_name"  value="<%= name%>">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.lastname')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="surname"  value="<%= surname%>">
+                  </td>
+                </tr>
+                  <tr>
+                      <td style=" width:25%; text-align:right;"> <label><%=req.__('text.register.lable.password')%>:</label></td>
+                      <td style=" width:75%; text-align:left; margin-left:5px;">
+
+                          <input class="form-control" placeholder="" type="password" name="password"  value="<%= password%>" >
+                          <input class="form-control" placeholder="" type="password" name="oldpassword"  value="<%= password%>" style="display:none;">
+                      </td>
+                  </tr>
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.phone')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="msisdn"  value="<%= msisdn%>" readonly>
+                  </td>
+                </tr>
+                <!-- Changes done here -->
+                <tr>
+                    <td colspan="2" style=" width:100%;"> 
+                  <hr>
+                    Address
+                  <hr>
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.house')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+                    <input class="form-control" placeholder="" type="text" name="house"  value="<%= addr1%>">
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.street')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+                    <input class="form-control" placeholder="" type="text" name="street"  value="<%= addr2%>">
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.city')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+                    <input class="form-control" placeholder="" type="text" name="city"  value="<%= city%>" >
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.state')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+                    <input class="form-control" placeholder="" type="text" name="state"  value="<%= state%>">
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label><%=req.__('text.profile_edit.lable.country')%>:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+                    <input class="form-control" placeholder="" type="text" name="country"   value="<%= country%>" >
+                  </td>
+                </tr>
+              <!-- Changes done till here -->
+              </table>
+            </div>
+            <div class="input-group-container">
+                <button type="submit" class="btn btn-warning btn-group-lg btn-block"><%=req.__('text.profile_edit.lable.update_info')%></button>
+                <button type="button" class="btn btn-warning btn-group-lg btn-block" onclick="window.location='<%=req.query.basepath%>/index?sessionid=<%= sessionid%>'" ><%=req.__('text.profile_edit.lable.cancel')%></button>
+
+            </div>
+        </form>
+   
+    </div>	
+
+
+
+

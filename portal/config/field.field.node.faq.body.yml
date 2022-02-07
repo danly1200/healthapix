@@ -1,0 +1,23 @@
+uuid: 20db57cf-7acc-4df9-8c63-d64284392847
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.faq
+  module:
+    - text
+id: node.faq.body
+field_name: body
+entity_type: node
+bundle: faq
+label: Answer
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="HPX_GenerateAuthCode.Callout">
+    <DisplayName>GenerateAuthCode.Callout</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="false" variable="authcode.request">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>authcode.response</Response>
+    <LocalTargetConnection>
+        <Properties/>
+        <Path>/oauth/v2/code</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

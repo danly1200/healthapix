@@ -1,0 +1,71 @@
+#block-views-block-test-data-list-block-1 {
+  border: 1px solid #E3E3E3; }
+  #block-views-block-test-data-list-block-1 h2 {
+    padding: 10px 30px;
+    background-color: #F0F0F0;
+    margin: 0px;
+    letter-spacing: 0.42px;
+    color: #434242;
+    font-size: 18px; }
+  #block-views-block-test-data-list-block-1 .swagger-api-list-links {
+    display: block;
+    padding: 0px;
+    margin: 0px; }
+  #block-views-block-test-data-list-block-1 .views-field-title {
+    border-bottom: 1px solid #E3E3E3; }
+    #block-views-block-test-data-list-block-1 .views-field-title a {
+      letter-spacing: 0.15px;
+      color: #00000099;
+      display: block;
+      padding: 15px 30px;
+      font-size: 14px; }
+  #block-views-block-test-data-list-block-1 a.isactive {
+    background-color: #E3E3E3; }
+
+#block-testdataapitabs .swagger-api-tabs {
+  margin: 0px;
+  border-bottom: 1px solid #E3E3E3;
+  padding: 0px; }
+  #block-testdataapitabs .swagger-api-tabs .swagger-api-tab a {
+    color: #00000099;
+    padding: 25px 40px;
+    display: block; }
+  #block-testdataapitabs .swagger-api-tabs .swagger-api-tab.STU3 {
+    display: none; }
+  #block-testdataapitabs .swagger-api-tabs .swagger-api-tab-active a {
+    color: #487EF4;
+    border-bottom: 2px solid #4582F4; }
+
+.page-node-test_data .sidebar-main-content-wrapper {
+  border: unset; }
+
+.node-test-data .mdc-tab--active {
+  color: #487EF4;
+  border-bottom: 2px solid #4582F4; }
+.node-test-data .inner-payload .payload-id-section, .node-test-data .inner-payload .payload-body-section {
+  border: 1px solid #E3E3E3;
+  padding: 30px 20px;
+  margin-bottom: 10px;
+  line-height: 0px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87); }
+.node-test-data .inner-payload .payload-id-section {
+  border-top: unset; }
+.node-test-data .inner-payload .payload-body-section {
+  line-height: 26px; }
+  .node-test-data .inner-payload .payload-body-section p {
+    word-wrap: break-word; }
+.node-test-data .mdc-tab-scroller__scroll-content {
+  margin: 0px;
+  border-bottom: 1px solid #E3E3E3;
+  padding: 0px; }
+
+#block-loginconsentappcredentials .mdc-text-field-wrapper {
+  padding: 20px 0px; }
+#block-loginconsentappcredentials h2 {
+  margin: 0px;
+  letter-spacing: 0.42px;
+  color: #434242;
+  font-size: 18px; }
+
+/*# sourceMappingURL=testdata.css.map */

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_RF_InvalidKVMConfig">
+    <DisplayName>HPX_RF_InvalidKVMConfig</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Access-Control-Allow-Origin">*</Header>
+            <Header name="Access-Control-Allow-Methods">POST, GET, OPTIONS</Header>
+            <Header name="Access-Control-Allow-Headers">Accept, Content-Type, connection, content-length, Authorization, x-requested-with</Header>
+            <Header name="Access-Control-Allow-Credentials">true</Header>
+        </Headers>
+        <Payload contentType="application/json">{"error":"invalid_client","error_description":"Developer app has opted for Google Healthcare Product. However, service account credentials are not configured."}</Payload>
+        <StatusCode>401</StatusCode>
+        <ReasonPhrase>Unauthorized</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

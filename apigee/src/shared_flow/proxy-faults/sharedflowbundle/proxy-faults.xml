@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="2" name="proxy-faults">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1568892418165</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared Flow to handle errors in fhir proxy endpoint</Description>
+    <DisplayName>proxy-faults</DisplayName>
+    <LastModifiedAt>1577083219349</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:5c9a3dbb52de0f8c9e9c8ffd0972d0ba64b3c1a75e8b75eab5b65577cd33ea10e4e250cd1e8bdd22369ad327c6031604aabae63fdcbae4e9ec126161ad137629</ManifestVersion>
+    <Policies>
+        <Policy>HPX_CalculateRetryAfter</Policy>
+        <Policy>HPX_Fault_B2COperationNotSupported</Policy>
+        <Policy>HPX_Fault_GenericFault</Policy>
+        <Policy>HPX_Fault_HandleCORSPreFlight</Policy>
+        <Policy>HPX_Fault_InsufficientScope</Policy>
+        <Policy>HPX_Fault_InvalidAccessToken</Policy>
+        <Policy>HPX_Fault_InvalidRequestBody</Policy>
+        <Policy>HPX_Fault_InvalidResource</Policy>
+        <Policy>HPX_Fault_NoRecordsForGivenId</Policy>
+        <Policy>HPX_Fault_QuotaViolation</Policy>
+        <Policy>HPX_Fault_SpikeArrestViolation</Policy>
+        <Policy>HPX_Fault_ThreatDetected</Policy>
+        <Policy>HPX_JSONtoXML</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_CalculateRetryAfter.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

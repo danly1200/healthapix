@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="HPX_PopulateCacheWithResourceList">
+    <DisplayName>HPX_PopulateCacheWithResourceList</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="calculatedBasePath"/>
+    </CacheKey>
+    <CacheResource>fhir-resources-cache</CacheResource>
+    <Scope>Exclusive</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>864000</TimeoutInSec>
+    </ExpirySettings>
+    <Source>resourceList</Source>
+</PopulateCache>

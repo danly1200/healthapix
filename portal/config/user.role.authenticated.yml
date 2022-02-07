@@ -1,0 +1,30 @@
+uuid: 9b4b4e7e-af22-4447-8a33-dc9ef70140ae
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: btW6TFHajhy7Eo6YUvdFiPh4TcPggo8GBXYctjV6zag
+id: authenticated
+label: 'authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'analytics own developer_app'
+  - 'create developer apps'
+  - 'create developer_app'
+  - 'create smartdocs content'
+  - 'delete developer apps'
+  - 'delete own developer_app'
+  - 'edit developer apps'
+  - 'restful get api_resource'
+  - 'restful get apigee_cred_resource'
+  - 'search content'
+  - 'update own developer_app'
+  - 'use text format filtered_html'
+  - 'view developer apps'
+  - 'view faq page'
+  - 'view files'
+  - 'view own developer_app'

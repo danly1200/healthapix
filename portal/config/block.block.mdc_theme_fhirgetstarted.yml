@@ -1,0 +1,26 @@
+uuid: f124b38b-9885-41a7-8c7e-8454e8391db9
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_blocks
+    - system
+  theme:
+    - mdc_theme
+id: mdc_theme_fhirgetstarted
+theme: mdc_theme
+region: content
+weight: -14
+provider: null
+plugin: fhir_get_started
+settings:
+  id: fhir_get_started
+  label: 'FHIR get started'
+  provider: fhir_blocks
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

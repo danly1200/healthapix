@@ -1,0 +1,21 @@
+uuid: 2c10106a-bbc1-4771-98d2-415a5e9f1e75
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.home_page_blocks
+    - field.storage.block_content.field_content_title
+  module:
+    - text
+id: block_content.home_page_blocks.field_content_title
+field_name: field_content_title
+entity_type: block_content
+bundle: home_page_blocks
+label: 'content title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a view template to display a list of rows.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the container.
+ * - rows: A list of rows for this list.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's contents.
+ * - title: The title of this group of rows. May be empty.
+ * - list: @todo.
+ *   - type: Starting tag will be either a ul or ol.
+ *   - attributes: HTML attributes for the list element.
+ *
+ * @see template_preprocess_views_view_list()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'views-view-dexp-grid-bootstrap',
+    'clearfix',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if title %}
+    <h3>{{ title }}</h3>
+  {% endif %}
+  <div{{ row_inner_attributes }}>
+    {% for row in items %}
+      <div{{ row.attributes }}>
+        {% if wrapper_row %}<div class="{{ wrapper_row_class }}">{% endif %}
+        {{ row.content }}
+        {% if wrapper_row %}</div>{% endif %}
+      </div>
+      {% set surplus = loop.index % xl_cols %}
+      {% if xl_cols in [5, 7, 8, 9, 10, 11] %}
+        {% if surplus == 0 %}
+          <div class="xl-w-100"></div>
+        {% endif %}
+      {% endif %}
+      {% set surplus = loop.index % lg_cols %}
+      {% if lg_cols in [5, 7, 8, 9, 10, 11] %}
+        {% if surplus == 0 %}
+          <div class="lg-w-100"></div>
+        {% endif %}
+      {% endif %}
+      {% set surplus = loop.index % md_cols %}
+      {% if md_cols in [5, 7, 8, 9, 10, 11] %}
+        {% if surplus == 0 %}
+          <div class="md-w-100"></div>
+        {% endif %}
+      {% endif %}
+      {% set surplus = loop.index % sm_cols %}
+      {% if sm_cols in [5, 7, 8, 9, 10, 11] %}
+        {% if surplus == 0 %}
+          <div class="sm-w-100"></div>
+        {% endif %}
+      {% endif %}
+      {% set surplus = loop.index % xs_cols %}
+      {% if xs_cols in [5, 7, 8, 9, 10, 11] %}
+        {% if surplus == 0 %}
+          <div class="xs-w-100"></div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

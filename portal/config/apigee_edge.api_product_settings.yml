@@ -1,0 +1,12 @@
+langcode: en
+entity_label_singular: API
+entity_label_plural: APIs
+cache_expiration: 900
+access:
+  public:
+    anonymous: anonymous
+    authenticated: authenticated
+  private: {  }
+  internal: {  }
+_core:
+  default_config_hash: cIMvnlNx9ps4NB-Zbfea8FCIikY8EBsJ2QiJ-kxHMYE

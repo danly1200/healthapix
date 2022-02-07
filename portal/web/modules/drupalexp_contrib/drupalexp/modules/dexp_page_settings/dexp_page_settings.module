@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * @file
+ * Module for page setting.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\file\Entity\File;
+use Drupal\dexp_page_settings\DexpPageSettings;
+use Drupal\dexp\Dexp;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+
+function dexp_page_settings_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+	$node = \Drupal::routeMatch()->getParameter('node');
+  if($node){
+    $node_type = $node->getType();
+  }else{
+    $node_type = preg_replace('/node_(.*)_form/','$1', $form_id);
+  }
+  
+  if(isset($node)){
+		$nid = $node->id();
+	}else{
+    $nid = 0;
+  }
+  $settings = new DexpPageSettings($nid);
+  $preset_options = array('not-set'=>'Default');
+  if(!isset($form['advanced']['dexp_page_settings'])){
+    $form['advanced']['dexp_page_settings'] = array();
+  }
+	$form['advanced']['dexp_page_settings'] += array(
+		'#type' => 'details',
+		'#title' => t('DrupalExp Settings'),
+		'#collapsible' => TRUE,
+		'#collapsed' => TRUE,
+		'#weight' => 100
+	);
+  
+  $viewmodes = \Drupal::entityManager()->getViewModes('node');
+  $active_viewmodes = \Drupal::service('config.factory')->listAll('core.entity_view_display.node.'. $node_type. '.');
+  $options = array();
+  foreach($active_viewmodes as $viewmode){
+    $viewmode = str_replace('core.entity_view_display.node.'. $node_type. '.', '', $viewmode);
+    if($viewmode == 'default'){
+      $options[$viewmode] = '- not set -';
+    }else{
+      $options[$viewmode] = t($viewmodes[$viewmode]['label']);
+    }
+  }
+  
+  $form['advanced']['dexp_page_settings']['node_viewmode'] = array(
+    '#type' => 'select',
+    '#title' => t('Detail page view mode'),
+    '#options' => $options,
+    '#default_value' => $settings->get('node_viewmode','default'),
+  );
+  
+  // Preset settings
+  if(class_exists('\Drupal\drupalexp\DrupalExp')){
+    $theme_name = \Drupal::config('system.theme')->get('default');
+    $theme = new \Drupal\drupalexp\DrupalExp($theme_name);
+    $presets = $theme->getPresets();
+    if(is_array($presets)){
+      $options = ['' => '- not set -'];
+      foreach($presets as $key => $preset){
+        $options[$key] = $key;
+      }
+      $form['advanced']['dexp_page_settings']['node_custom_preset'] = array(
+        '#type' => 'select',
+        '#title' => t('Custom Preset'),
+        '#options' => $options,
+        '#default_value' => $settings->get('node_custom_preset', ''),
+      );
+    }
+  }
+  $form['advanced']['dexp_page_settings']['node_custom_wapper_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Custom HTML class'),
+    '#default_value' => $settings->get('node_custom_wapper_class', ''),
+    '#description' => t('Add Custom class(es) to body tag'),
+  );
+  
+  $form['advanced']['dexp_page_settings']['node_custom_logo'] = array(
+    '#type' => 'image_browser',
+    '#title' => t('Custom logo'),
+    '#default_value' => $settings->get('node_custom_logo', 0),
+  );
+  
+  foreach (array_keys($form['actions']) as $action) {
+		if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+			$form['actions'][$action]['#submit'][] = 'dexp_page_settings_node_form_submit';
+		}
+	}
+}
+
+function dexp_page_settings_node_form_submit(&$form, FormStateInterface $form_state){
+  if($nid = $form_state->getValue('nid')){
+    $node_viewmode = $form_state->getValue('node_viewmode');
+    $node_custom_logo = $form_state->getValue('node_custom_logo');
+    $node_custom_preset = $form_state->getValue('node_custom_preset');
+    $fid = str_replace('file:', '', $node_custom_logo);
+    $file = File::load($fid);
+    if($file){
+      $file->setPermanent();
+      $file->save();
+      $file_usage = \Drupal::service('file.usage');
+      $file_usage->add($file, 'dexp_page_settings', 'node', $nid);
+    }
+    $settings = new DexpPageSettings($nid);
+    $settings->set('node_viewmode',$node_viewmode);
+    $settings->set('node_custom_logo',$node_custom_logo);
+    if(class_exists('\Drupal\drupalexp\DrupalExp')){
+      $settings->set('node_custom_preset',$node_custom_preset);
+    }
+    $settings->set('node_custom_wapper_class',$form_state->getValue('node_custom_wapper_class'));
+  }
+}
+
+/**
+ * Implement hook_entity_view_mode_alter
+ */
+function dexp_page_settings_entity_view_mode_alter(&$view_mode, EntityInterface $entity, $context){
+  if ($entity->getEntityTypeId() == 'node' && $view_mode == 'full') {
+    $settings = new DexpPageSettings($entity->id());
+    $custom_viewmode = $settings->get('node_viewmode', 'default');
+    if($custom_viewmode != 'default'){
+      $view_mode = $custom_viewmode;
+    }elseif($custom_viewmode = theme_get_setting($entity->getType().'_view_mode')){
+      $view_mode = $custom_viewmode == 'default'?$view_mode:$custom_viewmode;
+    }
+  }
+}
+
+/**
+ * Implement hook_preprocess_html()
+ */
+function dexp_page_settings_preprocess_html(&$variables){
+  if($nid = \Drupal::routeMatch()->getRawParameter('node')){
+    $page_settings = new DexpPageSettings($nid);
+    if($custom_class = $page_settings->get('node_custom_wapper_class','')){
+      $variables['attributes']['class'][] = $custom_class;
+    }
+  }
+}
+
+/**
+ * Implement hook_preprocess_block()
+ */
+function dexp_page_settings_preprocess_block(&$variables){
+  if($variables['plugin_id'] == 'system_branding_block'){
+    $variables['#cache']['max-age'] = 0;
+    if($nid = \Drupal::routeMatch()->getRawParameter('node')){
+      $page_settings = new DexpPageSettings($nid);
+      if($custom_logo = $page_settings->get('node_custom_logo','')){
+        $fid = str_replace('file:', '', $custom_logo);
+        $file = File::load($fid);
+        if($file){
+          $variables['content']['site_logo']['#uri'] = file_create_url($file->getFileUri());
+        }
+      }
+    }
+  }
+}

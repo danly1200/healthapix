@@ -1,0 +1,25 @@
+<div{{ attributes }}>
+  <div class="dexp-slick-carousel-inner">
+    {% for key, item in items[0] %}
+      <div class="dexp-slick-item">
+        {% for _key, _item in items %}
+          {{ items[_key][key] }}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+  {% if options.arrows %}
+  <div class="slick-controls">
+    <button type="button" class="slick-prev">Prev</button>
+    <button type="button" class="slick-next">Next</button>
+  </div>
+  {% endif %}
+</div>
+<style type="text/css">
+  #{{ id }} >.dexp-slick-carousel-inner >.slick-list{
+    margin-left: -{{ options.slideMargin }}px;
+  }
+  #{{ id }} >.dexp-slick-carousel-inner >.slick-list >.slick-track >.slick-slide{
+    margin-left: {{ options.slideMargin }}px;
+  }
+</style>

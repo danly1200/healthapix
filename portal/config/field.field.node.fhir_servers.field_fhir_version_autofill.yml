@@ -1,0 +1,29 @@
+uuid: 8aa8f2e9-64a2-4852-af3f-5cf9919ff132
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fhir_version_autofill
+    - node.type.fhir_servers
+    - taxonomy.vocabulary.fhir_datasets
+id: node.fhir_servers.field_fhir_version_autofill
+field_name: field_fhir_version_autofill
+entity_type: node
+bundle: fhir_servers
+label: 'FHIR Version'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      fhir_datasets: fhir_datasets
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: api_version
+field_type: entity_reference

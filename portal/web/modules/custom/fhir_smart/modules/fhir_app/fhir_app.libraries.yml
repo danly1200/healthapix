@@ -1,0 +1,6 @@
+fhir_apps.app_customizations:
+  js:
+    js/app_custom.js: {}
+  css:
+    theme:
+      css/app_custom.css: {}

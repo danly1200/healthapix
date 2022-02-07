@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="true" enabled="true" name="SoF_EV_ExtractSmartConfiguration">
+    <DisplayName>SoF_EV_ExtractSmartConfiguration</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="introspectUrl">
+            <JSONPath>$.introspection_endpoint</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">smartWellKnownResponse</Source>
+    <VariablePrefix>smart</VariablePrefix>
+</ExtractVariables>

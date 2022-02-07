@@ -1,0 +1,22 @@
+uuid: e2834249-6dfb-435a-a132-1b075daa67fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.fhir_servers
+id: node.fhir_servers.promote
+field_name: promote
+entity_type: node
+bundle: fhir_servers
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

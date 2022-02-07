@@ -1,0 +1,27 @@
+GHC:
+  fhir_version: STU3
+  gcp_project:
+    name: projectid
+    number: 172657815065
+  location:
+    name: us-central1
+  dataset:
+    name: dataset_stu3
+  fhir_store_name:
+    name: fhirstore_stu3_1
+  custom_proxy:
+    option: no
+    proxy: custom_apigee_proxy_name_1
+    product: custom_product_name_1
+  backupBucketName: fhirstore_configurations
+  use_fhirstore_as_proxy_name: no
+  import_data:
+    option: yes
+    bucket_name: hcls_testing_data_fhir_10_patients
+    file_names:
+      name: fhir_stu3_ndjson/**.ndjson
+      type: resource
+  service_account:
+    option: no
+    name: stu3serviceaccountuser
+    role: roles/healthcare.fhirResourceReader

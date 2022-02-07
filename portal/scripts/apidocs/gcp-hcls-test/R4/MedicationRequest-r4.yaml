@@ -1,0 +1,361 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® MedicationRequest resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+  - url: https://gcp-hcls-test.apigee.net/v1/ghc/r4
+tags:
+  - name: MedicationRequest
+paths:
+  /MedicationRequest:
+    get:
+      tags:
+        - MedicationRequest
+      parameters:
+        - name: code
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: identifier
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: patient
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: medication
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: authoredon
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            format: date
+        - name: category
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            format: date
+        - name: encounter
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: intended-dispenser
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: intended-performer
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: intended-performertype
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: intent
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: priority
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: requester
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: subject
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: _format
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          x-consoleDefault: application/json
+      responses:
+        "200":
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicationRequest'
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+    post:
+      tags:
+        - MedicationRequest
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/requestBodies/MedicationRequest'
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+  /MedicationRequest/{id}:
+    get:
+      tags:
+        - MedicationRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/MedicationRequest'
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+    put:
+      tags:
+        - MedicationRequest
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/requestBodies/MedicationRequest'
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+    delete:
+      tags:
+        - MedicationRequest
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+  /MedicationRequest/{id}/_history:
+    get:
+      tags:
+        - MedicationRequest
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: _count
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: _since
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+  /MedicationRequest/{id}/_history/{vid}:
+    get:
+      tags:
+        - MedicationRequest
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: vid
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/MedicationRequest'
+      security:
+        - OAuthV2B2B:
+            - system/MedicationRequest.read
+            - system/MedicationRequest.write
+components:
+  schemas:
+    MedicationRequest: {}
+  requestBodies:
+    MedicationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MedicationRequest'
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/MedicationRequest.read: Read permissions for MedicationRequest demographics.
+            system/MedicationRequest.write: Write permissions for MedicationRequest demographics.

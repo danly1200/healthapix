@@ -1,0 +1,31 @@
+GHC:
+  fhir_version: DSTU2
+  proxyurl: https://healthapix-dev-dev.apigee.net/
+  google_api_version: v1beta1
+  pubsub_topic: projects/dacfhir/topics/dstu2uat
+  enable_update_create: false
+  disable_referential_integrity: true
+  disable_resource_versioning: false
+  enable_history_import: false
+  gcp_project:
+    name: dacfhir
+    number: 172650815065
+  location:
+    name: us-central1
+  dataset:
+    name: hc-dataset-dev
+  fhir_store_name:
+    name: dstu2
+  custom_proxy:
+    option: false
+    proxy: custom_apigee_proxy_name_34
+    product: custom_product_name_34
+  backupBucketName: fhirstore_configurations
+  use_fhirstore_as_proxy_name: no
+  import_data:
+    option: true
+    bucket_name: fhirstore_data
+    file_names:
+      name: fhir_dstu2_ndjson_regular_resources/**.ndjson
+      type: resource
+  service_account: service_account_key.json

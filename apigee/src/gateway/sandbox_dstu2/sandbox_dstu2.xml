@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="sandbox_dstu2">
+    <Basepaths>/v1/dstu2/sandbox_dstu2</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1614167279520</CreatedAt>
+    <CreatedBy>shashank@digitalapicraft.com</CreatedBy>
+    <Description>API Proxy connecting to Google FHIR Healthcare DSTU2 APIs</Description>
+    <DisplayName>sandbox_dstu2</DisplayName>
+    <LastModifiedAt>1614167328555</LastModifiedAt>
+    <LastModifiedBy>shashank@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:c8fffa6cd44c184d29832faa008e34afa2ea84394b77fd220a552ce23b0dbf12f1b7ae4b13a1f64290dc92bec3f66d1afb28db03cec0fefca140579c7b832130:ap-northeast-1</ManifestVersion>
+    <Policies>
+        <Policy>HPX_AM_ExtractHost</Policy>
+        <Policy>HPX_AM_WellKnownResponse</Policy>
+        <Policy>HPX_ExtractSingleRecord</Policy>
+        <Policy>HPX_Fault_BtoCOperationFailed</Policy>
+        <Policy>HPX_Fault_BtoCOperationNotPermitted</Policy>
+        <Policy>HPX_Fault_NoRecordsForGivenId</Policy>
+        <Policy>HPX_MetadataWorkAroundToken</Policy>
+        <Policy>HPX_MetadataWorkAroundVariables</Policy>
+        <Policy>HPX_ReadDefaultAppClientId</Policy>
+        <Policy>HPX_SetClientIdForMetadata</Policy>
+        <Policy>HPX_SetExportResources</Policy>
+        <Policy>HPX_SetPatientAndIdQueryFilter</Policy>
+        <Policy>HPX_SetPatientFormFilter</Policy>
+        <Policy>HPX_SetPatientQueryFilter</Policy>
+        <Policy>HPX_SharedFlow_Authorization</Policy>
+        <Policy>HPX_SharedFlow_GoogleToken</Policy>
+        <Policy>HPX_SharedFlow_ProxyFaults</Policy>
+        <Policy>HPX_SharedFlow_ReWriteLinks</Policy>
+        <Policy>HPX_SharedFlow_ResponseHeaders</Policy>
+        <Policy>HPX_SharedFlow_SpikeArrest</Policy>
+        <Policy>HPX_SharedFlow_TargetFaults</Policy>
+        <Policy>HPX_SharedFlow_ThreatProtection</Policy>
+        <Policy>HPX_SharedFlow_UnsupportedOperation</Policy>
+        <Policy>HPX_Smart-launch-security</Policy>
+        <Policy>HPX_SuppressProxyPathSuffix</Policy>
+        <Policy>HPX_ValidatePatientReference</Policy>
+        <Policy>HPX_ValidatePatientReferencePATCH</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://HPX_ExtractSingleRecord.js</Resource>
+        <Resource>jsc://HPX_SetPatientAndIdQueryFilter.js</Resource>
+        <Resource>jsc://HPX_SetPatientFormFilter.js</Resource>
+        <Resource>jsc://HPX_SetPatientQueryFilter.js</Resource>
+        <Resource>jsc://HPX_ValidatePatientReference.js</Resource>
+        <Resource>jsc://HPX_ValidatePatientReferencePATCH.js</Resource>
+        <Resource>jsc://jsonpath-0.8.0.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>Bulk Export</TargetEndpoint>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

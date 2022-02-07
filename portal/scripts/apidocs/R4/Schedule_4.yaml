@@ -1,0 +1,1026 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® Schedule resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+- url: https://org-env.apigee.net/v1/ghc/r4
+tags:
+- name: Schedule
+paths:
+  /Schedule:
+    get:
+      tags:
+      - Schedule
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Specify access token for API in the given format: Bearer [access_token].'
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+        schema:
+          type: string
+          default: application/fhir+json;charset=utf-8
+      - name: _content
+        in: query
+        description: Search the contents of the resource's data using a fulltext search
+        schema:
+          type: string
+      - name: _tag
+        in: query
+        description: Search for resources which have the given tag
+        schema:
+          type: string
+      - name: _lastUpdated
+        in: query
+        description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+        schema:
+          type: string
+          format: date
+      - name: _security
+        in: query
+        description: Search for resources which have the given security labels
+        schema:
+          type: string
+      - name: _profile
+        in: query
+        description: Search for resources which have the given profile
+        schema:
+          type: string
+      - name: _text
+        in: query
+        description: Search the contents of the resource's narrative using a fulltext search
+        schema:
+          type: string
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: actor
+        in: query
+        description: The individual(HealthcareService, Practitioner, Location, ...)
+          to find a Schedule for
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: Search for Schedule resources that have a period that contains
+          this date specified
+        schema:
+          type: string
+          format: date
+      - name: identifier
+        in: query
+        description: A Schedule Identifier
+        schema:
+          type: string
+      - name: specialty
+        in: query
+        description: Type of specialty needed
+        schema:
+          type: string
+      - name: service-category
+        in: query
+        description: High-level category
+        schema:
+          type: string
+      - name: service-type
+        in: query
+        description: The type of appointments that can be booked into associated slot(s)
+        schema:
+          type: string
+      - name: active
+        in: query
+        description: Is the schedule in active use
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+    post:
+      tags:
+      - Schedule
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      requestBody:
+        description: The request body should be a valid data payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: Schedule could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: Schedule not found.
+          content: {}
+        '422':
+          description: The Schedule resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  /Schedule/{id}:
+    get:
+      tags:
+      - Schedule
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Schedule'
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+    put:
+      tags:
+      - Schedule
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid data payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+        required: true
+      responses:
+        '200':
+          description: Schedule Updated.
+          content: {}
+        '201':
+          description: Schedule Created.
+          content: {}
+        '400':
+          description: Schedule could not be parsed or failed basic FHIR validation rules (or multiple matches were found).
+          content: {}
+        '403':
+          description: Not Authorized.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+    delete:
+      tags:
+      - Schedule
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  /Schedule/{id}/_history:
+    get:
+      tags:
+      - Schedule
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  /Schedule/{id}/_history/{vid}:
+    get:
+      tags:
+      - Schedule
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Schedule'
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  /Schedule/$meta:
+    get:
+      tags:
+        - Schedule
+      description: 'Retrieves a summary of the profiles, tags, and security labels for Schedules.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: Schedules Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for Schedule'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  '/Schedule/{id}/$meta':
+    get:
+      tags:
+        - Schedule
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given Schedule resource.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: Schedule Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  '/Schedule/{id}/_history/{vid}/$meta':
+    get:
+      tags:
+        - Schedule
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given version of the Schedule.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: Schedule Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated version of the resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  '/Schedule/{id}/{type}':
+    get:
+      tags:
+        - Schedule
+      description: 'Search the specified resource type in Schedule compartment.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: ' Compartment Search'
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: The set of resources associated with a particular Schedule
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  /Schedule/_search:
+    post:
+      tags:
+        - Schedule
+      description: 'This interaction searches a set of Schedules based on some filter criteria. Search interactions take a series of parameters of name''=''value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: Schedules Search using POST
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: Search the contents of the resource's narrative using a fulltext search
+          schema:
+            type: string
+        - name: actor
+          in: query
+          description: 'The individual(HealthcareService, Practitioner, Location, ...) to find a Schedule for'
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Search for Schedule resources that have a period that contains this date specified. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: identifier
+          in: query
+          description: A Schedule Identifier
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: The type of appointments that can be booked into associated slot(s)
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                _content:
+                  type: string
+                  description: Search the contents of the resource's data using a fulltext search
+                _id:
+                  type: string
+                  description: The resource identity
+                _language:
+                  type: string
+                  description: The resource language
+                _lastUpdated:
+                  type: string
+                  description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                _profile:
+                  type: string
+                  description: Search for resources which have the given profile
+                _security:
+                  type: string
+                  description: Search for resources which have the given security labels
+                _tag:
+                  type: string
+                  description: Search for resources which have the given tag
+                _text:
+                  type: string
+                  description: Search the contents of the resource's narrative using a fulltext search
+                actor:
+                  type: string
+                  description: 'The individual(HealthcareService, Practitioner, Location, ...) to find a Schedule for'
+                date:
+                  type: string
+                  description: 'Search for Schedule resources that have a period that contains this date specified. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                identifier:
+                  type: string
+                  description: A Schedule Identifier
+                type:
+                  type: string
+                  description: The type of appointments that can be booked into associated slot(s)
+      responses:
+        '200':
+          description: Schedule bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  '/Schedule/{id}/$meta-add':
+    post:
+      tags:
+        - Schedule
+      description: 'Add a metadata info Schedule with specified id.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: Add Schedule metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: Schedule could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: Schedule not found.
+          content: {}
+        '422':
+          description: The Schedule resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+  '/Schedule/{id}/_history/{vid}/$meta-add':
+    post:
+      tags:
+        - Schedule
+      description: 'Add metadata info to specified Schedule resource.<p><a href = ''https://www.hl7.org/fhir/schedule.html''>FHIR documentation for Schedule.</a></p>'
+      operationId: Add Schedule Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: Schedule could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: Schedule not found.
+          content: {}
+        '422':
+          description: The Schedule resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/Schedule.read
+            - system/Schedule.write
+components:
+  schemas:
+    Schedule:
+      required:
+      - active
+      - actor
+      - comment
+      - id
+      - identifier
+      - meta
+      - planningHorizon
+      - resourceType
+      - serviceCategory
+      - serviceType
+      - specialty
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - system
+            - use
+            - value
+            type: object
+            properties:
+              use:
+                minLength: 1
+                type: string
+              system:
+                minLength: 1
+                type: string
+              value:
+                minLength: 1
+                type: string
+        active:
+          type: boolean
+        serviceCategory:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - code
+                  - display
+                  type: object
+                  properties:
+                    code:
+                      minLength: 1
+                      type: string
+                    display:
+                      minLength: 1
+                      type: string
+        serviceType:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - code
+                  - display
+                  type: object
+                  properties:
+                    code:
+                      minLength: 1
+                      type: string
+                    display:
+                      minLength: 1
+                      type: string
+        specialty:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              coding:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - code
+                  - display
+                  type: object
+                  properties:
+                    code:
+                      minLength: 1
+                      type: string
+                    display:
+                      minLength: 1
+                      type: string
+        actor:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+        planningHorizon:
+          required:
+          - end
+          - start
+          type: object
+          properties:
+            start:
+              minLength: 1
+              type: string
+            end:
+              minLength: 1
+              type: string
+        comment:
+          minLength: 1
+          type: string
+        meta:
+          required:
+          - tag
+          type: object
+          properties:
+            tag:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+    metaBody:
+      type: string
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://org-env.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Schedule.read: Read permissions for Schedule demographics.
+            system/Schedule.write: Write permissions for Schedule demographics.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/Schedule.read: Read permissions for Schedule demographics.
+            system/Schedule.write: Write permissions for Schedule demographics.

@@ -1,0 +1,36 @@
+<div{{ attributes }}>
+{% if layout == 'layout_1' %}
+  {% if icon %}<div class="box-icon">{{ icon|raw }}</div>{% endif %}
+  {% if title %}<div class="box-title">{{ title }}</div>{% endif %}
+  {% if content %}<div class="box-content">{{ content }}</div>{% endif %}
+  {% if readmore %}<div class="box-readmore">{{ readmore }}</div>{% endif %}
+{% elseif layout == 'layout_2' %}
+  {% if title %}<div class="box-title">{{ title }}</div>{% endif %}
+  {% if icon %}<div class="box-icon">{{ icon|raw }}</div>{% endif %}
+  {% if content %}<div class="box-content">{{ content }}</div>{% endif %}
+  {% if readmore %}<div class="box-readmore">{{ readmore }}</div>{% endif %}
+{% elseif layout == 'layout_3' %}
+  <div class="box-title-wrapper row">
+    {% if icon %}<div class="col-auto{% if icon_alignment == 'right' %} order-last{% endif %}"><div class="box-icon">{{ icon|raw }}</div></div>{% endif %}
+    {% if title %}<div class="col"><div class="box-title">{{ title }}</div></div>{% endif %}
+  </div>
+  {% if content %}<div class="box-content">{{ content }}</div>{% endif %}
+  {% if readmore %}<div class="box-readmore">{{ readmore }}</div>{% endif %}
+{% elseif layout == 'layout_4' %}
+  <div class="box-wrapper row">
+    <div class="box-icon-wrapper col-auto{% if icon_alignment == 'right' %} order-last{% endif %}">
+    {% if icon %}<div class="box-icon">{{ icon|raw }}</div>{% endif %}
+    </div>
+    <div class="box-title-wrapper col">
+      {% if title %}<div class="box-title">{{ title }}</div>{% endif %}
+      {% if content %}<div class="box-content">{{ content }}</div>{% endif %}
+      {% if readmore %}<div class="box-readmore">{{ readmore }}</div>{% endif %}
+    </div>
+  </div>
+{% else %}
+  {% if icon %}<div class="box-icon">{{ icon|raw }}</div>{% endif %}
+  {% if title %}<div class="box-title">{{ title }}</div>{% endif %}
+  {% if content %}<div class="box-content">{{ content }}</div>{% endif %}
+  {% if readmore %}<div class="box-readmore">{{ readmore }}</div>{% endif %}
+{% endif %}
+</div>

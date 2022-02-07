@@ -1,0 +1,15 @@
+#edit-dexp-block-settings-animate-settings{
+  position: relative;
+}
+#edit-dexp-block-settings-animate-settings #animate-sample{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  right: 50px;
+}
+#edit-dexp-block-settings-animate-settings #animate-sample div{
+  background: #ccc;
+  width: 200px;
+  height: 100px;
+}

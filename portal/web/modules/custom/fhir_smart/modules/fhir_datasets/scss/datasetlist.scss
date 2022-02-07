@@ -1,0 +1,80 @@
+$bgcolor: #F8F8F8;
+
+.acc-datasets {
+  img.download_icon {
+    width: 70%;
+    opacity: 0.7;
+  }
+  img.nodownload_icon{
+    width: 90%;
+  }
+  .acc__item {
+    margin-bottom: 11px !important;
+    background: $bgcolor 0% 0% no-repeat padding-box;
+    border: 1px solid #D9D8D8;
+    border-radius: 5px 5px 0px 0px;
+    opacity: 1;
+    position: relative;
+    .dataset__title {
+      display: block;
+      position: relative;
+      text-align: left;
+      padding: 20px 50px;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: normal ;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .dataset__server__panel {
+    background: #fff;
+    color: #212121;
+    display: none;
+    margin: 0;
+    padding: 2em;
+    text-align: left;
+    .material-icons {
+      font-size: 18px;
+    }
+    table {
+      width: 100%;
+      td.mdc-data-table__cell {
+        text-overflow: unset;
+      }
+      tr.server-table-header {
+        background-color: $bgcolor;
+      }
+    }
+    .mdc-data-table__row:not(.mdc-data-table__row--selected) {
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+
+}
+
+.dataset__server {
+    text-align: right;
+    margin-top: -50px;
+    margin-bottom: 20px;
+  .mdc-button:not(:disabled) {
+    background-color: #4285F4;
+  }
+  .mdc-button--outlined:not(:disabled) {
+    border-color: #4285F4 ;
+  }
+  .mdc-button {
+    height: 30px;
+  }
+  .mdc-button__icon {
+    color: #fff;
+  }
+  .mdc-button__label {
+      color: #fff;
+      font-size: 12px;
+  }
+}
+

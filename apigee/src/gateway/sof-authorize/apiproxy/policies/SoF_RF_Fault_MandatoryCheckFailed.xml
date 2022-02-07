@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="SoF_RF_Fault_MandatoryCheckFailed">
+    <DisplayName>SoF_RF_Fault_MandatoryCheckFailed</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers>
+                <Header name="Access-Control-Allow-Origin">*</Header>
+                <Header name="Access-Control-Allow-Methods">POST, OPTIONS</Header>
+                <Header name="Access-Control-Allow-Headers">Accept, Content-Type, connection, content-length,Authorization, x-requested-with</Header>
+                <Header name="Access-Control-Allow-Credentials">true</Header>
+            </Headers>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"error":"@error_name#","error_description":"@error_description#"}
+			</Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>Unauthorized</ReasonPhrase>
+        </Set>
+        <AssignVariable>
+            <Name>errorHandled</Name>
+            <Value>true</Value>
+        </AssignVariable>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

@@ -1,0 +1,9 @@
+fhir_server:
+  js:
+    js/serverform.js: {}
+  dependencies:
+    - core/drupal.ajax
+    - core/jquery
+  css:
+    theme:
+      css/serverform.css: {}

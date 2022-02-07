@@ -1,0 +1,8 @@
+services:
+  plugin.manager.fonticon:
+    class: Drupal\dexp_builder\FontIcon\FontIconPluginManager
+    parent: default_plugin_manager
+  dexp_builder.shortcode:
+    class: Drupal\dexp_builder\Controller\BuilderShortcodeService
+  dexp_builder.fonticon:
+    class: Drupal\dexp_builder\FontIcon\FontIconService

@@ -1,0 +1,20 @@
+uuid: faf4e519-50b3-4246-92de-c412c21340c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.developer_app.field_fhir_app_type
+  module:
+    - apigee_edge
+id: developer_app.developer_app.field_fhir_app_type
+field_name: field_fhir_app_type
+entity_type: developer_app
+bundle: developer_app
+label: 'Fhir App Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

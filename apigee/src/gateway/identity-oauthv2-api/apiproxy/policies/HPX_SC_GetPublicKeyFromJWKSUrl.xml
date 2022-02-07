@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="HPX_SC_GetPublicKeyFromJWKSUrl">
+    <DisplayName>HPX_SC_GetPublicKeyFromJWKSUrl</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request variable="jwkskeysetRequest" clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Verb>GET</Verb>
+            <Headers>
+                <Header name="Accept">application/json</Header>
+            </Headers>
+            <Payload/>
+        </Set>
+    </Request>
+    <Response>jwkskeysetResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://{sc_urlhost}/{sc_urlpath}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

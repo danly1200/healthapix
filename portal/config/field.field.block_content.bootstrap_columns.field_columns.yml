@@ -1,0 +1,25 @@
+uuid: fef98e01-8091-41a1-ba4e-81957404634e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.bootstrap_columns
+    - field.storage.block_content.field_columns
+  module:
+    - field_collection
+_core:
+  default_config_hash: qx8iRkCTzfnO4JS8V3mujQwulVW6tu6PmEHK7wJ_kWY
+id: block_content.bootstrap_columns.field_columns
+field_name: field_columns
+entity_type: block_content
+bundle: bootstrap_columns
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+  - {  }
+default_value_callback: ''
+settings: {  }
+field_type: field_collection

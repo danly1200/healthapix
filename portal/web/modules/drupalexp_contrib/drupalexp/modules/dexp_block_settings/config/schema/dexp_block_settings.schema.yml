@@ -1,0 +1,43 @@
+block.block.*.third_party.dexp_block_settings:
+  type: mapping
+  label: Block advanced settings
+  mapping:
+    animate:
+      type: string
+      label: Block appears effect
+    animate_delay:
+      type: integer
+      label: Block appears effect delay
+    background_color:
+      type: string
+      label: Block background color
+    background_image:
+      type: string
+      label: Block background image
+    background_image_type:
+      type: string
+      label: Block background image type
+    background_repeat:
+      type: string
+      label: Block background image repeat
+    background_size:
+      type: string
+      label: Block background size
+    background_video:
+      type: string
+      label: Block background video url
+    background_video_start_at:
+      type: integer
+      label: Block background video start
+    exclude_block_title:
+      type: integer
+      label: Block settings exclude title
+    custom_class:
+      type: string
+      label: Block custom class
+    custom_content_class:
+      type: string
+      label: Block content custom class
+    custom_css:
+      type: string
+      label: Block custom css

@@ -1,0 +1,1172 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0-oas3
+  description: >-
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire")
+    defines a set of "Resources" that represent granular clinical concepts. The
+    resources can be managed in isolation, or aggregated into complex documents.
+    Technically, FHIR® is designed for the web; the resources are based on
+    simple JSON structures, with an http-based RESTful protocol where each
+    resource has predictable URL. Where possible, open internet standards are
+    used for data representation. The FHIR® DSTU2 API docs are part of the FHIR®
+    Specifications (v1.0.2: DSTU2). The current version which supercedes this
+    version is 4.0.1 (R4). This section contains API docs for the few commonly
+    used DSTU2 resources. API docs for other resources can be added by API
+    publishers on request.
+  title: HL7® FHIR® Procedure resource API documentation
+paths:
+  /Procedure:
+    parameters: []
+    post:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          required: false
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: Procedure could not be parsed or failed basic FHIR validation rules
+        '404':
+          description: Procedure not found.
+        '422':
+          description: >-
+            The Procedure resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Create Procedure
+      description: >-
+        Create a new Procedure with a server assigned id.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/Procedure'
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            The prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: >-
+            Search the contents of the resource's narrative using a fulltext
+            search
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: A code to identify a  procedure
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            Date/Period the procedure was performed. The date parameter format
+            is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used
+            on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: encounter
+          in: query
+          description: The encounter associated with the procedure
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: A unique identifier for a procedure
+          schema:
+            type: string
+        - name: location
+          in: query
+          description: Where the procedure happened
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: Search by subject - a patient
+          schema:
+            type: string
+        - name: performer
+          in: query
+          description: The reference to the practitioner
+          schema:
+            type: string
+        - name: subject
+          in: query
+          description: Search by subject
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: Procedure bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Procedure'
+        default:
+          description: unexpected error
+      operationId: Procedures Search
+      description: >-
+        Returns Procedures based on filter criteria OR Provides provision for
+        pagination (stateid, page, page_size, _pretty & _bundletype are query
+        parameters used for Paging).<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+  '/Procedure/{id}':
+    parameters: []
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: Procedure Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Procedure'
+        default:
+          description: unexpected error
+      operationId: Read Procedure
+      description: >-
+        Returns details of Procedure having id given in path.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+    put:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.write
+      responses:
+        '200':
+          description: Procedure Updated.
+        '201':
+          description: Procedure Created.
+        '400':
+          description: >-
+            Procedure could not be parsed or failed basic FHIR validation rules
+            (or multiple matches were found).
+        '403':
+          description: Not Authorized.
+        '412':
+          description: The given criteria is not selective enough.
+        default:
+          description: unexpected error
+      operationId: Update Procedure
+      description: >-
+        Update an existing Procedure by its id (or create it if it is new).<p><a
+        href = 'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/Procedure'
+    delete:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.write
+      responses:
+        '200':
+          description: No Content.
+        '204':
+          description: No Content.
+        '404':
+          description: Procedure not found.
+        '405':
+          description: Method not allowed.
+        '409':
+          description: Conflict Error.
+        '412':
+          description: The given criteria is not selective enough.
+        default:
+          description: unexpected error
+      operationId: Delete Procedure
+      description: >-
+        The delete interaction removes an existing Procedure.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+  '/Procedure/{id}/_history':
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: >-
+            Specify an instant to only include resource versions that were
+            created at or after the given instant in time. An instant in time is
+            known at least to the second and always includes a time zone.
+          schema:
+            type: string
+            pattern: >-
+              ([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: Procedure bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Procedure'
+        default:
+          description: unexpected error
+      operationId: Procedure History
+      description: >-
+        It retrieves the history of a particular Procedure identified by the
+        given id in path.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+  '/Procedure/{id}/_history/{vid}':
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: >-
+            Specify an instant to only include resource versions that were
+            created at or after the given instant in time. An instant in time is
+            known at least to the second and always includes a time zone.
+          schema:
+            type: string
+            pattern: >-
+              ([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: Procedure Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Procedure'
+        default:
+          description: unexpected error
+      operationId: Procedure Version Read
+      description: >-
+        This interaction preforms a version specific read of Procedure
+        resource.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR
+        documentation for Procedure.</a></p>
+  /Procedure/$meta:
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for Procedure'
+        default:
+          description: unexpected error
+      operationId: Procedures Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for
+        Procedures.<p><a href = 'https://www.hl7.org/fhir/procedure.html'>FHIR
+        documentation for Procedure.</a></p>
+  '/Procedure/{id}/$meta':
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: >-
+            List of all tags, profiles and security labels affixed to the
+            nominated resource.
+        default:
+          description: unexpected error
+      operationId: Procedure Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for given
+        Procedure resource.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+  '/Procedure/{id}/_history/{vid}/$meta':
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: >-
+            List of all tags, profiles and security labels affixed to the
+            nominated version of the resource.
+        default:
+          description: unexpected error
+      operationId: Procedure Version based Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for given
+        version of the Procedure.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+  '/Procedure/{id}/{type}':
+    get:
+      tags:
+        - Procedure
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: The set of resources associated with a particular Procedure
+        default:
+          description: unexpected error
+      operationId: ' Compartment Search'
+      description: >-
+        Search the specified resource type in Procedure compartment.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+  /Procedure/_search:
+    post:
+      tags:
+        - Procedure
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            The prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: >-
+            Search the contents of the resource's narrative using a fulltext
+            search
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: A code to identify a  procedure
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            Date/Period the procedure was performed. The date parameter format
+            is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used
+            on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: encounter
+          in: query
+          description: The encounter associated with the procedure
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: A unique identifier for a procedure
+          schema:
+            type: string
+        - name: location
+          in: query
+          description: Where the procedure happened
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: Search by subject - a patient
+          schema:
+            type: string
+        - name: performer
+          in: query
+          description: The reference to the practitioner
+          schema:
+            type: string
+        - name: subject
+          in: query
+          description: Search by subject
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.read
+      responses:
+        '200':
+          description: Procedure bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Procedure'
+        default:
+          description: unexpected error
+      operationId: Procedures Search using POST
+      description: >-
+        This interaction searches a set of Procedures based on some filter
+        criteria. Search interactions take a series of parameters of
+        name'='value pairs encoded as an application/x-www-form-urlencoded
+        submission for a POST.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _content:
+                  description: >-
+                    Search the contents of the resource's data using a fulltext
+                    search
+                  type: string
+                _id:
+                  description: The resource identity
+                  type: string
+                _language:
+                  description: The resource language
+                  type: string
+                _lastUpdated:
+                  description: >-
+                    Only return resources which were last updated as specified
+                    by the given range. The date parameter format is
+                    yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be
+                    used on the parameter value.
+                  type: string
+                  format: date
+                _profile:
+                  description: Search for resources which have the given profile
+                  type: string
+                _security:
+                  description: Search for resources which have the given security labels
+                  type: string
+                _tag:
+                  description: Search for resources which have the given tag
+                  type: string
+                _text:
+                  description: >-
+                    Search the contents of the resource's narrative using a
+                    fulltext search
+                  type: string
+                code:
+                  description: A code to identify a  procedure
+                  type: string
+                date:
+                  description: >-
+                    Date/Period the procedure was performed. The date parameter
+                    format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <=
+                    and < may be used on the parameter value.
+                  type: string
+                  format: date
+                encounter:
+                  description: The encounter associated with the procedure
+                  type: string
+                identifier:
+                  description: A unique identifier for a procedure
+                  type: string
+                location:
+                  description: Where the procedure happened
+                  type: string
+                patient:
+                  description: Search by subject - a patient
+                  type: string
+                performer:
+                  description: The reference to the practitioner
+                  type: string
+                subject:
+                  description: Search by subject
+                  type: string
+  '/Procedure/{id}/$meta-add':
+    post:
+      tags:
+        - Procedure
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: Procedure could not be parsed or failed basic FHIR validation rules
+        '404':
+          description: Procedure not found.
+        '422':
+          description: >-
+            The Procedure resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Add Procedure metadata
+      description: >-
+        Add a metadata info Procedure with specified id.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/metaBody'
+  '/Procedure/{id}/_history/{vid}/$meta-add':
+    post:
+      tags:
+        - Procedure
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Procedure.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: Procedure could not be parsed or failed basic FHIR validation rules
+        '404':
+          description: Procedure not found.
+        '422':
+          description: >-
+            The Procedure resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Add Procedure Version based Metadata
+      description: >-
+        Add metadata info to specified Procedure resource.<p><a href =
+        'https://www.hl7.org/fhir/procedure.html'>FHIR documentation for
+        Procedure.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/metaBody'
+servers:
+  - url: 'https://gcp-hcls-test.apigee.net/v1/ghc/dstu2'
+components:
+  requestBodies:
+    metaBody:
+      content:
+        application/fhir+json;charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/metaBody'
+      description: The request body should be a valid meta payload.
+      required: true
+    Procedure:
+      content:
+        application/fhir+json;charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Procedure'
+      description: The request body should be a valid data payload.
+      required: true
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Procedure.read: Read permissions for Procedure demographics.
+            system/Procedure.write: Write permissions for Procedure demographics.
+  schemas:
+    Procedure:
+      description: ''
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            div:
+              type: string
+              minLength: 1
+          required:
+            - status
+            - div
+        subject:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+          required:
+            - reference
+        status:
+          type: string
+          minLength: 1
+        code:
+          type: object
+          properties:
+            coding:
+              type: array
+              uniqueItems: true
+              minItems: 1
+              items:
+                required:
+                  - system
+                  - code
+                  - display
+                properties:
+                  system:
+                    type: string
+                    minLength: 1
+                  code:
+                    type: string
+                    minLength: 1
+                  display:
+                    type: string
+                    minLength: 1
+            text:
+              type: string
+              minLength: 1
+          required:
+            - coding
+            - text
+        reasonCodeableConcept:
+          type: object
+          properties:
+            text:
+              type: string
+              minLength: 1
+          required:
+            - text
+        performer:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            properties:
+              actor:
+                type: object
+                properties:
+                  reference:
+                    type: string
+                    minLength: 1
+                  display:
+                    type: string
+                    minLength: 1
+                required:
+                  - reference
+                  - display
+        performedDateTime:
+          type: string
+          minLength: 1
+        followUp:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            required:
+              - text
+            properties:
+              text:
+                type: string
+                minLength: 1
+        notes:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            required:
+              - text
+            properties:
+              text:
+                type: string
+                minLength: 1
+      required:
+        - resourceType
+        - id
+        - text
+        - subject
+        - status
+        - code
+        - reasonCodeableConcept
+        - performer
+        - performedDateTime
+        - followUp
+        - notes
+    metaBody:
+      type: string

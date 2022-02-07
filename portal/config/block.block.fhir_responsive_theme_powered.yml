@@ -1,0 +1,22 @@
+uuid: ad320b94-fb49-4569-a7f1-3985d4bbf7cb
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - fhir_responsive_theme
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: fhir_responsive_theme_powered
+theme: fhir_responsive_theme
+region: logo_right
+weight: -9
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

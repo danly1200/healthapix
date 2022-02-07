@@ -1,0 +1,36 @@
+uuid: bab88412-70c7-47d9-aefc-08b112fa1d10
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment_node_apps
+    - field.field.comment.comment_node_apps.comment_body
+  module:
+    - text
+id: comment.comment_node_apps.default
+targetEntityType: comment
+bundle: comment_node_apps
+mode: default
+content:
+  author:
+    weight: -2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  comment_body:
+    weight: 0
+    type: text_textarea
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  subject:
+    type: string_textfield
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

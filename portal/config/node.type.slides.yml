@@ -1,0 +1,11 @@
+uuid: eee959cc-4a62-4042-9d4d-c13fff120d85
+langcode: en
+status: true
+dependencies: {  }
+name: Slides
+type: slides
+description: 'This content type is used to create the slides for the slideshow on the home page'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

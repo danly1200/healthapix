@@ -1,0 +1,41 @@
+{% set element_class = ['builder-element',attr.class] %}
+{% if shortcode == 'dexp_builder_col' %}
+  {% for screen in ['xs', 'sm', 'md', 'lg', 'xl'] %}
+    {% if screen == 'xs' %}
+      {% if attr[screen] == '' %}
+        {% set element_class = element_class|merge(['col']) %}
+      {% else %}
+        {% set element_class = element_class|merge(['col-'~attr[screen]]) %}
+      {% endif %}
+    {% else %}
+      {% if attr[screen] != 'not-set' %}
+        {% if attr[screen] == '' %}
+          {% set element_class = element_class|merge(['col-'~screen]) %}
+        {% else %}
+          {% set element_class = element_class|merge(['col-'~screen~'-'~attr[screen]]) %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+<div {{ attributes.addClass(element_class) }}>
+  <ul class="element-toolbar">
+    <li class="pull-left"><span class="fa fa-arrows"></span> {{ title }}</li>
+    <li><span class="fa {% if attributes.hasClass('collapse') %}fa-caret-left{% else %}fa-sort-desc{% endif %} toggle-element"></span></li>
+    <li><span class="fa fa-edit edit-element" title="{{ 'Edit'|t }}"></span></li>
+    {% if haschild %}<li><span class="fa fa-plus add-element" title="{{ 'Add element'|t }}"></span></li>{% endif %}
+    <li><span class="fa fa-copy clone-element" title="{{ 'Duplicate'|t }}"></span></li>
+    <li><span class="fa fa-trash-o delete-element" title="{{ 'Delete'|t }}"></span></li>
+  </ul>
+  <div class="builder-element-inner">
+  {% set row_class = '' %}
+  {% if shortcode == 'dexp_builder_row' %}
+      <div class="container-fluid">
+      {% set row_class = 'row' %}
+      {% endif %}
+      <div class="element-content{% if haschild %} has-child{% endif %} {{ row_class }}">{{ content|raw }}</div>
+      {% if shortcode == 'dexp_builder_row' %}
+      </div>
+      {% endif %}
+  </div>
+</div>

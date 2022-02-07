@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_GetConsentInfo">
+    <DisplayName>HPX_GetConsentInfo</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="getConsentInfoRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{googleToken}</Header>
+            </Headers>
+        </Set>
+    </Request>
+    <Response>getConsentInfoResponse</Response>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="ghcapiserver"/>
+        </LoadBalancer>
+        <Path>/{targetBaseURI}/Consent/{consent_id}</Path>
+    </HTTPTargetConnection>
+</ServiceCallout>

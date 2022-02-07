@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <link rel="icon" href="<%= req.query.basepath%>/ui/images/icons/favicon.svg">
+  <% if (display == "page" || display == "" || display == null) {%>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <% } %>
+  <% if (display == "touch") {%>
+  <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <% } %>
+
+  <!-- <link href="<%= req.query.basepath%>/ui/stylesheets/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Bootstrap Material Design Css links-->
+  <!-- Material Design for Bootstrap fonts and icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap">
+  <link rel="stylesheet" href="<%= req.query.basepath%>/ui/stylesheets/bootstrap-material-design.min.css">
+  <!-- Bootstrap Material Design Css links-->
+
+  <link href="<%= req.query.basepath%>/ui/stylesheets/main.css" rel="stylesheet">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <link rel="icon" href="<%= req.query.basepath%>/ui/images/logo.png"  type="image/png" sizes="16x16">
+  
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap Material Design js Supporting-->
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+    integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+    integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+    crossorigin="anonymous"></script>
+  <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+  <!-- Bootstrap Material Design js Supporting-->
+
+  <!-- <script src="<%= req.query.basepath%>/ui/js/bootstrap.min.js"></script> -->
+  <script src="<%= req.query.basepath%>/js/app.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  
+<!-- custom style for Author by Humana -->
+<style>
+   .h-text{
+      text-align: justify;
+      font-size: 12px;
+      color: rgba(69, 77, 79, 1);
+      text-shadow: none !important;
+    }
+   .btn-block-pad {
+    padding: 13px 50px 13px 50px !important;
+   }
+    .humana-h3 {
+    color: rgba(59, 37, 78, 1);
+    font-size: 1.625rem;
+    font-family: Libre Baskerville, serif;
+    font-weight: bold;
+    line-height: 1.167;
+    text-align: left;
+    }
+    /* Buttons */
+    .h-custom-primary{
+      font-family: Gotham Rounded;
+      width: 100px !important;
+      font-size: 14px !important;
+      padding: 8px !important;
+      background: #ff854d !important;
+      color: black !important;
+      border: 1px solid #ff854d !important;
+    }
+    .h-custom-primary-clr{
+      color: #2B83FC !important;
+    }
+    .h-custom-secondary-outline{
+      width: 100px !important;
+      font-size: 14px !important;
+      padding: 8px !important;
+      color: #cc4100 !important;
+      text-decoration: underline;
+      border: !important;
+      margin-right: 5% !important;
+    }
+    
+    #pinned {
+    position:  fixed;
+    bottom: 10;
+    width: 100%;
+    } 
+  
+  
+</style>
+
+</head>
+
+<body>
+  <% if (display != "popup") {%> <div id="overlay_shield"></div> <% } %>
+  <div class="outer-container" <% if (display == "popup") {%> style="width: auto; min-width: 320px;" <% } %>>
+    
+    <header align="center">
+      <div class="header-logo" align="center">
+      <!-- <a href="#"><img class="logo-img" src="<%= req.query.basepath%>/ui/images/gcloud-logo.png"></a> -->
+      <a href="#"><img width="70" src="https://s3-us-west-2.amazonaws.com/axomo/mm/axomo/6899/resources/2-9inch__author-logo-2c-pms.png"></a>
+      </div>
+      <!-- locale dropdown -->
+      <!--
+      <div class="locale-dropdown" align="center">
+        <form class="" action="<%= req.query.basepath%>/locale" method="post">
+          <input type="hidden" class="next" name="next">
+          <select onchange="this.form.submit()" name="locale" class="bg-select select-locale">
+            <option value="es" style="background-color: #fff !important;height: 20px !important;">Espanol</option>
+            <option value="en">English</option>
+          </select>
+          <i class="material-icons header-dropdown-icon">arrow_drop_down</i>
+        </form>
+      </div>
+      <div class="header-close-div" align="right">
+        <span class="btn-group-sm"> <button type="button" class="btn bmd-btn-fab" style="box-shadow: none;">
+          <i class="material-icons header-close-icon">close</i>
+        </button></span>
+      </div>
+      -->
+      <!--  
+      <a class="navbar-brand" href="#"><img class="img-responsive logo-img" src="<%= req.query.basepath%>/ui/images/gcloud-logo.png"></a>
+          
+      <div class="header-country">
+        <form class="" action="<%= req.query.basepath%>/locale" method="post">
+          <input type="hidden" class="next" name="next">
+          <select onchange="this.form.submit()" name="locale" class="bg-select select-locale">
+            <option value="es">Espanol</option>
+            <option value="en">English</option>
+          </select>
+        </form>
+        <% if (redirectURL != null && redirectURL != "" && display != "popup" ) {%>
+          <a href="<%= redirectURL%>" style="width: 25%;"><img class="img-responsive close-img close-winodw"
+              src="<%= req.query.basepath%>/ui/images/close-icon.png"></a>
+          <% } %>
+      </div>
+       -->
+    </header>
+    <!-- logged in user -->
+    <div class="user-info clearfix" style="display: <%=showUserInfoDiv?'visible':'none' %>">
+      <% if(logged_in_user_email != null && logged_in_user_email != "") { %>
+      <% if(logged_in_user_image == null || logged_in_user_image == "") {
+               logged_in_user_image = req.query.basepath+"/ui/images/avatar.png"
+                }%>
+      <div class="logged-in-container">
+       <div style="width: 15%;" align="center"><img style="width: 40px;" src="<%= logged_in_user_image%>"></div>
+        <div class="details">
+          <p class="user-name"><%= logged_in_user_first_name%> <%= logged_in_user_surname%></p>
+          <p class="user-email"><%= logged_in_user_email%></p>
+        </div>
+        <!--
+        <div style="width: 15%;" align="center"><a  href="<%= req.query.basepath%>/myapps?sessionid=<%= sessionid%>">
+          <img style="width: 40px;" src="<%= req.query.basepath%>/ui/images/appstore.png" alt="Consented Apps" />
+        </a>
+        </div>
+        -->
+      </div>
+
+      <% } %>
+    </div>
+    <!-- Body -->
+    <%- body %>
+
+  </div>
+
+  <div class="modal fade" id="grassModal" tabindex="-1" role="dialog" aria-labelledby="grassModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="grassModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default grass-btn" data-dismiss="modal">Cancel</button>
+          <button id="confirm-revoke-consent" type="button" class="btn btn-default grass-btn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <% if (display == "popup") {%>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>
+    $(function () {
+      $(".close-window").click(function () {
+        window.opener.location.href = "<%= redirectURL%>";
+        self.close();
+      });
+    });
+  </script>
+  <% } %>
+
+  <script>
+    $(document).ready(function () {
+      $(".next").val(window.location.href);
+      $('.select-locale').val('<%=  req.getLocale() %>');
+    });
+  </script>
+  <script src="<%= req.query.basepath%>/ui/js/validations.js"></script>
+</body>
+
+</html>

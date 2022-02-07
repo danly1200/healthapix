@@ -1,0 +1,15 @@
+add slider entities:
+  title: 'Create new Slider entities'
+
+administer slider entities:
+  title: 'Administer Slider entities'
+  description: 'Allow to access the administration form to configure Slider entities.'
+
+delete slider entities:
+  title: 'Delete Slider entities'
+
+edit slider entities:
+  title: 'Edit Slider entities'
+
+view slider entities:
+  title: 'View Slider entities'

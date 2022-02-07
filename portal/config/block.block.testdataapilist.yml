@@ -1,0 +1,33 @@
+uuid: 57fbbfa4-11cf-44be-b6bb-f4ab7235ce17
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_visibility_groups
+    - node
+  theme:
+    - mdc_theme
+id: testdataapilist
+theme: mdc_theme
+region: sidebar_left
+weight: -17
+provider: null
+plugin: testdata_api_list
+settings:
+  id: testdata_api_list
+  label: 'Test Data API list'
+  provider: fhir_customizations
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      test_data: test_data
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

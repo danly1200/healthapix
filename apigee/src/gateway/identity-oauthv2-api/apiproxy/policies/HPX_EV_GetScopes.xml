@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="HPX_EV_GetScopes">
+    <DisplayName>HPX_EV_GetScopes</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="productScopes">
+            <JSONPath>$.ApiProduct.Scopes.Scope</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">apiProductJSON</Source>
+</ExtractVariables>

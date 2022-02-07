@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables name="HPX_GenerateAuthCode.ExtractResponse">
+    <DisplayName>GenerateAuthCode.ExtractResponse</DisplayName>
+    <Source>authcode.response</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Header name="Location">
+        <Pattern>{appCallBackUrl}</Pattern>
+    </Header>
+    <JSONPayload>
+        <Variable name="errorCode" type="string">
+            <JSONPath>$.ErrorCode</JSONPath>
+        </Variable>
+        <Variable name="errorMessage" type="string">
+            <JSONPath>$.Error</JSONPath>
+        </Variable>
+    </JSONPayload>
+</ExtractVariables>

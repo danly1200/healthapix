@@ -1,0 +1,470 @@
+<?php
+
+/**
+ * @file
+ * Contains dexp_layerslider.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dexp_layerslider\Layer;
+use Drupal\Component\Serialization\Json;
+/**
+ * Implements hook_help().
+ */
+function dexp_layerslider_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dexp_layerslider module.
+    case 'help.page.dexp_layerslider':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('LayerSlider Module base on Revolution Plugin') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dexp_layerslider_theme() {
+  $theme = [];
+  
+  $theme['slider_edit'] = array(
+    'variables' => [
+      'slides' => []
+    ],
+  );
+  
+  $theme['dexp_layerslider_slider'] = array(
+    'variables' => [
+      'slider' => [],
+      'html_id' => '',
+    ],
+  );
+  
+  $theme['dexp_layerslider_slide'] = array(
+    'variables' => [
+      'settings' => null,
+      'slide' => []
+    ],
+  );
+  
+  $theme['dexp_layerslider_layer'] = array(
+    'variables' => [
+      'settings' => null,
+      'layer' => []
+    ],
+  );
+  return $theme;
+}
+
+function template_preprocess_dexp_layerslider_slider(&$vars){
+  $slider = $vars['slider'];
+  $slides = $slider->getSlides();
+  $settings = $slider->getSettings();
+  if(count($slides) == 1 && $settings->loopsingle){
+    $slides[] = $slides[0];
+  }
+  $vars['slides'] = [];
+  $vars['settings'] = $settings;
+  $vars['attributes']['id'] = $vars['html_id'];
+  $vars['attributes']['data-version'] = "5.4.5";
+  $vars['attributes']['style'] = "height:{$settings->startheight}px";
+  foreach($slides as $slide){
+    $vars['slides'][] = array(
+      '#theme' => 'dexp_layerslider_slide',
+      '#slide' => $slide,
+      '#settings' => $settings,
+    );
+  }
+  $vars['#attached']['drupalSettings']['dexp_layerslider'] = [
+    'extensionsPath' => file_url_transform_relative(file_create_url(drupal_get_path('module', 'dexp_layerslider') . '/vendor/rs/js/extensions/')),
+  ];
+}
+
+function template_preprocess_dexp_layerslider_slide(&$vars){
+  $slide = $vars['slide'];
+  $vars['layers'] = [];
+  foreach($slide['layers'] as $k => $layer){
+    $layer['z_index'] = $k + 5;
+    $vars['layers'][] = array(
+      '#theme' => 'dexp_layerslider_layer',
+      '#layer' => new Layer($layer, $vars['settings']),
+      '#settings' => $vars['settings'],
+    );
+  }
+  $vars['attributes']['data-title'] = $slide['title'];
+  $vars['attributes']['data-transition'] = is_array($slide['data_transition'])? implode(',',$slide['data_transition']) : $slide['data_transition'];
+  $vars['attributes']['data-slotamount'] = $slide['data_slotamount'];
+  //$vars['attributes']['data-masterspeed'] = $slide->data_masterspeed;
+  if(isset($slide['data_transition_easein'])){
+    $vars['attributes']['data-easein'] = $slide['data_transition_easein'];
+  }
+  if(isset($slide['data_transition_easeout'])){
+    $vars['attributes']['data-easeout'] = $slide['data_transition_easeout'];
+  }
+  if($slide['data_bgfit'] == '(% %)'){
+    $slide['data_bgfit'] = $slide['data_bgfit_x'] . '% ' . $slide['data_bgfit_y'] . '%';
+  }
+  //$vars['attributes']['data-mediafilter'] = '_1977';
+  //if($slide->data_delay){
+    //$vars['attributes']['data-delay'] = $slide->data_delay;
+  //}
+  //if($slide->data_link){
+  //  $vars['attributes']['data-link'] = $slide->data_link;
+  //}
+  if($slide['background_type'] == 'color'){
+    $slide['background_image']['url'] = file_create_url(drupal_get_path('module','dexp_layerslider') . '/assets/images/transparent.png');
+    if(isset($slide['background_color']) && $slide['background_color'] != ''){
+      $vars['attributes']['style'] = 'background-color:' . $slide['background_color'];
+    }else{
+      $vars['attributes']['style'] = 'background-color: transparent';
+    }  
+  }elseif($slide['background_type'] == 'transparent'){
+    $slide['background_image']['url'] = file_create_url(drupal_get_path('module','dexp_layerslider') . '/assets/images/transparent.png');
+  }elseif(in_array($slide['background_type'], ['youtube','vimeo','html5video'])){
+    if($slide['bg_video_poster_type'] == 'custom'){
+      $slide['background_image']['url'] = $slide['bg_video_poster_custom']['url'];
+    }else{
+      $slide['background_image']['url'] = $slide['video_poster_url'];
+    }
+  }
+  if(!isset($slide['background_image']['url']) || empty($slide['background_image']['url'])){
+    //Transparent image
+    $slide['background_image']['url'] = file_create_url(drupal_get_path('module','dexp_layerslider') . '/assets/images/transparent.png');
+  }
+  $slide['dummy'] = file_create_url(drupal_get_path('module','dexp_layerslider') . '/assets/images/dummy.png');
+  
+  $slide['background_image']['fid'] = 'file:0';
+  if($slide['thumbnail_image']['url']){
+    $vars['attributes']['data-thumb'] = $slide['thumbnail_image']['url'];
+  }else{
+    $vars['attributes']['data-thumb'] = $slide['background_image']['url'];
+  }
+  if(isset($slide['background_youtube']) && $slide['background_youtube']){
+    //preg_match("#([\/|\?|&]vi?[\/|=]|youtu\.be\/|embed\/)([a-zA-Z0-9_-]+)#", $slide['background_youtube'], $matches);
+    //$slide['background_youtube'] = end($matches);
+  }
+  $vars['slide'] = $slide;
+  $vars['base_url'] = \Drupal::request()->getScheme() . '://' . \Drupal::request()->getHost();
+}
+
+function template_preprocess_dexp_layerslider_layer(&$vars){
+  $layer = $vars['layer'];
+  if($layer->width == '') $layer->width = 'auto';
+  if($layer->height == '') $layer->height = 'auto';
+  $settings = $vars['settings'];
+  $vars['attributes']['data-visibility'] = Json::encode($layer->getVisibility());
+  $data_frames = [];
+  if(!isset($layer->incomingclasses)){
+    $layer->outgoingclasses = 'noanim';
+  }
+  if(!isset($layer->outgoingclasses)){
+    $layer->outgoingclasses = 'noanimout';
+  }
+  $in = dexp_layerslider_layer_animation($layer->incomingclasses);
+  $out = dexp_layerslider_layer_animation($layer->outgoingclasses);
+  $in['delay'] = isset($layer->data_start) ? $layer->data_start : 0;
+  $in['speed'] = isset($layer->data_speed) ? $layer->data_speed : 0;
+  if(isset($layer->data_easing) &&  $layer->data_easing == 'default'){
+    $in['ease'] = $layer->data_easing;
+  }
+  if(isset($layer->data_endeasing) &&  $layer->data_endeasing == 'default'){
+    $out['ease'] = $layer->data_endeasing;
+  }
+  if(isset($layer->data_end) && $layer->data_end){
+    $out['delay'] = '+' . ($layer->data_end - $layer->data_start - $layer->data_speed);
+  }else{
+    $out['delay'] = 'wait';
+  }
+  if(isset($layer->data_endspeed) && $layer->data_endspeed){
+    $out['speed'] = $layer->data_endspeed;
+  }
+  if($layer->incomingclasses == 'customin'){
+    $in['from'] = $layer->customin;
+  }
+  if($layer->outgoingclasses == 'customout'){
+    $out['to'] = $layer->customout;
+  }
+  $data_frames = [$in, $out];
+  $vars['attributes']['data-frames'] = Json::encode($data_frames);/// "[{'delay':0,'speed': 300,'from':'opaciy:0','to':'opaciy:1'},{'delay':'wait','speed':300,'to':'opacity:0'}]";
+  $vars['attributes']['data-width'][] = Json::encode($layer->getResponsive('width'));//'["auto"]';
+  $vars['attributes']['data-height'][] = Json::encode($layer->getResponsive('height'));//'["auto"]';
+  $vars['attributes']['class'][] = 'tp-caption';
+  if(isset($layer->resizeme) && $layer->resizeme){
+    $vars['attributes']['class'][] = 'tp-resizeme';
+    $vars['attributes']['data-responsive'] = 'on';
+  }else{
+    $vars['attributes']['data-responsive'] = 'off';
+  }
+  if(isset($layer->custom_class) && $layer->custom_class){
+    $vars['attributes']['class'][] = $layer->custom_class;
+  }
+  $vars['attributes']['data-x'] = Json::encode($layer->getResponsive('left'));
+  $vars['attributes']['data-y'] = Json::encode($layer->getResponsive('top'));
+  $vars['attributes']['data-hoffset'] = Json::encode($layer->getResponsive('hoffset'));
+  $vars['attributes']['data-voffset'] = Json::encode($layer->getResponsive('voffset'));
+  $vars['attributes']['data-basealign'] = $layer->basealign;//'grid';
+  $css = [];
+  switch($layer->type){
+    case 'text':
+      $vars['attributes']['data-type'] = 'text';
+      //$vars['attributes']['data-height'] = 'none';
+      //$vars['attributes']['data-width'] = 'none';
+      $custom_css = $string = trim(preg_replace('/\s\s+/', ' ', $layer->custom_css));
+      $css = explode(';', $custom_css);
+      foreach($css as $k => $v){
+        if(count(explode(':', $v)) != 2){
+          unset($css[$k]);
+        }
+      }
+      if($layer->getResponsiveNum('font_size')[0]){
+        $vars['attributes']['data-fontsize'] = Json::encode($layer->getResponsiveNum('font_size'));
+      }
+      if(isset($layer->font_color) && $layer->font_color){
+        //$css[] = 'color:' . $layer->font_color;
+        $vars['attributes']['data-color'] = Json::encode($layer->getResponsive('font_color'));
+      }
+      $vars['attributes']['data-paddingleft'] = Json::encode($layer->getResponsive('padding_left'));
+      $vars['attributes']['data-paddingtop'] = Json::encode($layer->getResponsive('padding_top'));
+      $vars['attributes']['data-paddingright'] = Json::encode($layer->getResponsive('padding_right'));
+      $vars['attributes']['data-paddingbottom'] = Json::encode($layer->getResponsive('padding_bottom'));
+      if(isset($layer->google_font) && $layer->google_font){
+        $google_fonts = file_get_contents(drupal_get_path('module', 'dexp_layerslider').'/vendor/google-fonts-api/google-fonts-api.json');
+        $google_fonts = Json::decode($google_fonts);
+        foreach($google_fonts['items'] as $font){
+          if($font['family'] == $layer->google_font){
+            if(isset($font['kind'])){
+              $vars['#attached']['drupalSettings']['dexp_layerslider']['google_fonts'][$layer->google_font . $layer->font_style] = array(
+                'family' => $layer->google_font,
+                'variant' => $layer->font_style,
+              );
+            }
+          }
+        }
+        $font_weight = preg_replace('/[a-z]+/', '', $layer->font_style);
+        $font_style = preg_replace('/[0-9]+/', '', $layer->font_style);
+        $font_weight = is_numeric($font_weight)?$font_weight:400;
+        $font_style = $font_style == 'italic'?'italic':'normal';
+        $css[] = 'font-family:\'' . $layer->google_font.'\'';
+        $css[] = 'font-weight:' . $font_weight;
+        $css[] = 'font-style:' . $font_style;
+      }
+      if(isset($layer->font_lineheight) && $layer->font_lineheight){
+        $vars['attributes']['data-lineheight'] = Json::encode($layer->getResponsiveNum('font_lineheight'));
+      }
+      break;
+    case 'image':
+      $layer->image_alt  = basename($layer->image['url']);
+      $layer->ww = Json::encode($layer->getResponsiveNum('width'));
+      $layer->hh = Json::encode($layer->getResponsiveNum('height'));
+      break;
+    case 'video':
+      $vars['attributes']['class'][] = 'tp-videolayer';
+      $vars['attributes']['data-type'][] = 'video';
+      $vars['attributes']['data-videoloop'][] = $layer->video_loop;
+      if($layer->video_nextslideatend){
+        $vars['attributes']['data-nextslideatend'][] = 'true';
+      }
+      if($layer->video_force_rewind){
+        $vars['attributes']['data-forcerewind'][] = 'on';
+      }
+      //unset($vars['attributes']['data-width']);
+      //unset($vars['attributes']['data-height']);
+      //$vars['attributes']['data-type'][] = 'video';
+      $vars['attributes']['data-videowidth'] = Json::encode($layer->getResponsive('width'));
+      $vars['attributes']['data-videoheight'] = Json::encode($layer->getResponsive('height'));
+      if($layer->video_fullscreen){
+        $vars['attributes']['class'][] = 'fullscreenvideo';
+        $vars['attributes']['data-basealign'] = 'slide';
+        $vars['attributes']['data-videowidth'] = '100%';
+        $vars['attributes']['data-videoheight'] = '100%';
+        $vars['attributes']['data-x'] = 0;
+        $vars['attributes']['data-y'] = 0;
+        unset($vars['attributes']['data-hoffset']);
+        unset($vars['attributes']['data-voffset']);
+        $vars['attributes']['data-dottedoverlay'] = $layer->video_dottedoverlay;
+        if($layer->video_fullcover){
+          $vars['attributes']['data-forceCover'] = 1;
+          $vars['attributes']['data-aspectratio'] = $layer->video_aspectratio;
+        }
+      }
+      $vars['attributes']['data-autoplay'] = $layer->video_autoplay?'on':'off';
+      $vars['attributes']['data-autoplayonlyfirsttime'] = $layer->autoplayonlyfirsttime == 'true'?'true':'false';
+      if($layer->video_type == 'youtube'){
+        $vars['attributes']['data-ytid'] = $layer->youtube_video;
+      }elseif($layer->video_type == 'vimeo'){
+        $vars['attributes']['data-vimeoid'] = $layer->vimeo_video;
+      }else{
+        $vars['attributes']['data-videomp4'] = $layer->html5_video_mp4;
+        $vars['attributes']['data-videowebm'] = $layer->html5_video_webm;
+        $vars['attributes']['data-videoogv'] = $layer->html5_video_ogv;
+      }
+      global $base_url;
+      if($layer->video_type == 'youtube'){
+        $vars['attributes']['data-videoattributes'] = "version=3&enablejsapi=1&html5=1&hd=1&wmode=opaque&showinfo=0&rel=0&origin=" . \Drupal::request()->getScheme() . '://' . \Drupal::request()->getHost();
+      }elseif($layer->video_type == 'vimeo'){
+        $vars['attributes']['data-videoattributes'] = "title=0&byline=0&portrait=0&api=1&origin=" . \Drupal::request()->getScheme() . '://' . \Drupal::request()->getHost();
+      }
+      $vars['attributes']['data-videocontrols'] = $layer->video_controls?'controls':'none';
+      if($layer->video_mute){
+        $vars['attributes']['data-volume'] = 'mute';
+      }else{
+        $vars['attributes']['data-volume'] = $layer->video_volume;
+      }
+      if($layer->video_poster_type == 'custom'){
+        if(isset($layer->video_poster['url']) && $layer->video_poster['url']){
+          $vars['attributes']['data-videoposter'] = $layer->video_poster['url'];
+        }
+      }elseif($layer->video_poster_type == 'video_thumbnail'){
+        $vars['attributes']['data-videoposter'] = $layer->video_poster_url;
+      }
+      break;
+  }
+  $layer_actions = [];
+  if($layer->click_action == 'link'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'simplelink',
+      'target' => $layer->link_target,
+      'url' => $layer->link,
+      'delay' => 0
+    ];
+    //
+  }elseif($layer->click_action == 'scrollbelow'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'scrollbelow',
+      'offset' => $layer->scroll_offset,
+      'speed' => $layer->scroll_speed,
+      'delay' => 0,
+      'ease' => 'Linear.easeNone'
+    ];
+  }elseif($layer->click_action == 'nextslide'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'jumptoslide',
+      'slide' => 'next',
+      'delay' => 0,
+    ];
+  }elseif($layer->click_action == 'prevslide'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'jumptoslide',
+      'slide' => 'previous',
+      'delay' => 0,
+    ];
+  }elseif($layer->click_action == 'startvideo'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'playvideo',
+      'layer' => $layer->videotoaction,// 'firstvideo',//'backgroundvideo',
+      'delay' => 0,
+    ];
+  }elseif($layer->click_action == 'stopvideo'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'stopvideo',
+      'layer' => $layer->videotoaction,// 'firstvideo',//'backgroundvideo',
+      'delay' => 0,
+    ];
+  }elseif($layer->click_action == 'togglevideo'){
+    $layer_actions[] = [
+      'event'=> 'click',
+      'action' => 'togglevideo',
+      'layer' => $layer->videotoaction,// 'firstvideo',//'backgroundvideo',
+      'delay' => 0,
+    ];
+  }
+  if(!empty($layer_actions)){
+    $vars['attributes']['data-actions'] = Json::encode($layer_actions);
+  }
+  $css[] = 'z-index:' . $layer->z_index;
+  $vars['attributes']['style'] = implode(';', $css);//'z-index:' . $layer->z_index;
+  //$vars['attributes']['style'] = implode(';', $css);
+  $vars['inner_css'] = implode(';', $css);
+  if(isset($layer->link) && $layer->link){
+    $vars['attributes']['data-link'] = $layer->link;
+  }
+}
+
+function dexp_layerslider_layer_animation($type = null){
+  //if(empty($type)) return [];
+  $start_animations = [
+    'notransition' => '{"speed":2000,"frame":"0","to":"o:1;","ease":"Power2.easeInOut"}',
+    'noanim' => '{"speed":2000,"frame":"0","to":"o:1;","ease":"Power2.easeInOut"}',
+    'fade' => '{"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'sft' => '{"speed":300,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'sfb' => '{"speed":300,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'sfl' => '{"speed":300,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'sfr' => '{"speed":300,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'lfr' => '{"speed":1500,"frame":"0","from":"x:right;","to":"o:1;","ease":"Power3.easeOut"}',
+    'lfl' => '{"speed":300,"frame":"0","from":"x:left;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'lft' => '{"speed":300,"frame":"0","from":"y:top;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'lfb' => '{"speed":300,"frame":"0","from":"y:bottom;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'skewfromleft' => '{"speed":300,"frame":"0","from":"x:left;skX:45px;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'skewfromright' => '{"speed":300,"frame":"0","from":"x:right;skX:-85px;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'skewfromleftshort' => '{"speed":300,"frame":"0","from":"x:-200px;skX:85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'skewfromrightshort' => '{"speed":300,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'randomrotate' => '{"speed":300,"frame":"0","from":"x:{-250,250};y:{-150,150};rX:{-90,90};rY:{-90,90};rZ:{-360,360};sX:0;sY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'LettersFlyInFromBottom' => '{"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[100%];z:0;rZ:-35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'LettersFlyInFromLeft' => '{"split":"chars","splitdelay":0.1,"speed":2000,"frame":"0","from":"x:[-105%];z:0;rX:0deg;rY:0deg;rZ:-90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'LettersFlyInFromRight' => '{"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'LettersFlyInFromTop' => '{"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[-100%];z:0;rZ:35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'MaskedZoomOut' => '{"speed":1000,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeOut"}',
+    'PopUpSmooth' => '{"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'RotateInFromBottom' => '{"speed":1500,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'RotateInFormZero' => '{"speed":1500,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeOut"}',
+    'SlideMaskFromBottom' => '{"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"}',
+    'SlideMaskFromLeft' => '{"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'SlideMaskFromRight' => '{"speed":1500,"frame":"0","from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'SlideMaskFromTop' => '{"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"}',
+    'SmoothPopUp_One' => '{"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeOut"}',
+    'SmoothPopUp_Two' => '{"speed":1000,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power2.easeOut"}',
+    'smoothPopupFromRight' => '{"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"}',
+    'SmoothMaskFromRight' => '{"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"}',
+    'SmoothMaskFromLeft' => '{"speed":1500,"frame":"0","from":"x:[175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[-100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"}',
+    'SmoothSlideFromBottom' => '{"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'blockfromleft' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blockfromleft","frame":"0","from":"z:0;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'blockfromright' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blockfromright","frame":"0","from":"z:0;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'blockfromtop' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blockfromtop","frame":"0","from":"z:0;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'blockfrombottom' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blockfrombottom","frame":"0","from":"z:0;","to":"o:1;","ease":"Power4.easeInOut"}',
+    'tp-fade' => '{"speed":1500,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeOut"}',
+    'customin' => '{"speed":1000,"from":"", "to":"o:1;","ease":"Power3.easeOut"}',
+    //Animations out
+    'fadeout' => '{"speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}',
+    'SlideMaskToTop' => '{"speed":300,"frame":"999","to":"y:[-100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}',
+    'auto' => '{"speed":300,"frame":"999","to":"auto:auto;","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}',
+    'blocktoleft' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blocktoleft","frame":"999","to":"z:0;","ease":"Power4.easeInOut"}',
+    'blocktoright' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blocktoright","frame":"999","to":"z:0;","ease":"Power4.easeInOut"}',
+    'blocktotop' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blocktotop","frame":"999","to":"z:0;","ease":"Power4.easeInOut"}',
+    'blocktobottom' => '{"speed":2000,"sfxcolor":"#fff","sfx_effect":"blocktobottom","frame":"999","to":"z:0;","ease":"Power4.easeInOut"}',
+    'BounceOut' => '{"speed":500,"frame":"999","to":"rZ:0deg;sX:0.7;sY:0.7;opacity:0;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Back.easeIn"}',
+    'Fade-Out-Long' => '{"speed":1000,"frame":"999","to":"opacity:0;","ease":"Power2.easeIn"}',
+    'SlideMaskToBottom' => '{"speed":300,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}',
+    'SlideMaskToLeft' => '{"speed":1000,"frame":"999","to":"x:[-100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}',
+    'SlideMaskToRight' => '{"speed":1000,"frame":"999","to":"x:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power3.easeInOut"}',
+    'SlurpOut' => '{"speed":1000,"frame":"999","to":"y:[100%];rZ:0deg;sX:0.7;sY:0.7;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}',
+    'SmoothCropToBottom' => '{"speed":1000,"frame":"999","to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}',
+    'stt' => '{"speed":1000,"frame":"999","to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}',
+    'stb' => '{"speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}',
+    'stl' => '{"speed":1000,"frame":"999","to":"x:-50px;opacity:0;","ease":"Power2.easeInOut"}',
+    'str' => '{"speed":1000,"frame":"999","to":"x:50px;opacity:0;","ease":"Power2.easeInOut"}',
+    'ltr' => '{"speed":1000,"frame":"999","to":"x:right;","ease":"Power2.easeInOut"}',
+    'ltl' => '{"speed":1000,"frame":"999","to":"x:left;","ease":"Power2.easeInOut"}',
+    'ltt' => '{speed":1000,"frame":"999","to":"y:top;","ease":"Power2.easeInOut"}',
+    'ltb' => '{"speed":1000,"frame":"999","to":"y:bottom;","ease":"Power2.easeInOut"}',
+    'skewtoleft' => '{"speed":1000,"frame":"999","to":"x:left;skX:45px;","ease":"Power2.easeInOut"}',
+    'skewtoright' => '{"speed":1000,"frame":"999","to":"x:right;skX:-85px;","ease":"Power2.easeInOut"}',
+    'skewtorightshort' => '{"speed":1000,"frame":"999","to":"x:200px;skX:-85px;opacity:0;","ease":"Power2.easeInOut"}',
+    'skewtoleftshort' => '{"speed":1000,"frame":"999","to":"x:-200px;skX:85px;opacity:0;","ease":"Power2.easeInOut"}',
+    'randomrotateout' => '{"speed":1000,"frame":"999","to":"x:{-250,250};y:{-150,150};rX:{-90,90};rY:{-90,90};rZ:{-360,360};sX:0;sY:0;opacity:0;","ease":"Power2.easeInOut"}',
+    'noanimout' => '{"delay":"wait","speed":300,"frame":"999","ease":"Power3.easeInOut"}',
+    'customout' => '{"speed":1000, "to":"","ease":"Power3.easeOut"}',
+  ];
+  if($type===null){
+    return $start_animations;
+  }
+  return isset($start_animations[$type]) ? json_decode($start_animations[$type], true) : [];
+}

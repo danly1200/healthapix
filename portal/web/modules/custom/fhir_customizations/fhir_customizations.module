@@ -1,0 +1,86 @@
+<?php
+
+/**
+ * Implements hook_preprocess_page() for page.html.twig.
+ */
+function fhir_customizations_preprocess_page(array &$variables) {
+  // Add node type and page title as a class
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node) {
+    $node_type = $node->type->entity->label();
+    $nodebundle =$node->getType();
+    if($nodebundle == 'test_data'){
+      $variables['#attached']['library'][] = 'fhir_customizations/fhir_customizations.testdata';
+    }
+  }
+
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
+ */
+
+function fhir_customizations_node_presave(Drupal\node\NodeInterface $node) {
+  if($node->bundle() == "smartdocs") {
+    if(!$node->isNew()) {
+      $title = $node->getTitle();
+      $old_title = $node->original->getTitle();
+      if ($title != $old_title) {
+        $resource_name = preg_replace('/\s/', '', $old_title);
+        $new_resource_name = preg_replace('/\s/', '', $title);
+        $config = \Drupal::config('ghc_app_scopes_configurations.scopeconfig')
+          ->get();
+        if ($config[$resource_name . '___showToPatientScope'] == 1) {
+          $config[$new_resource_name . '___showToPatientScope'] = 1;
+          unset($config[$resource_name . '___showToPatientScope']);
+        }
+        if ($config[$resource_name . '___showToUserScope'] == 1) {
+          $config[$new_resource_name . '___showToUserScope'] = 1;
+          unset($config[$resource_name . '___showToUserScope']);
+        }
+        if ($config[$resource_name . '___showWritePatient'] == 1) {
+          $config[$new_resource_name . '___showWritePatient'] = 1;
+          unset($config[$resource_name . '___showWritePatient']);
+        }
+        if ($config[$resource_name . '___showReadPatient'] == 1) {
+          $config[$new_resource_name . '___showReadPatient'] = 1;
+          unset($config[$resource_name . '___showReadPatient']);
+        }
+        if ($config[$resource_name . '___showWriteUser'] == 1) {
+          $config[$new_resource_name . '___showWriteUser'] = 1;
+          unset($config[$resource_name . '___showWriteUser']);
+        }
+        if ($config[$resource_name . '___showReadUser'] == 1) {
+          $config[$new_resource_name . '___showReadUser'] = 1;
+          unset($config[$resource_name . '___showReadUser']);
+        }
+        $scope_config = \Drupal::service('config.factory')->getEditable('ghc_app_scopes_configurations.scopeconfig');
+        $scope_config->setData($config);
+        $scope_config->save();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node entities.
+ */
+
+function fhir_customizations_node_insert(Drupal\node\NodeInterface $node) {
+  if($node->bundle() == "smartdocs") {
+    $title = $node->getTitle();
+    $resource_name = preg_replace('/\s/', '', $title);
+    $config = \Drupal::config('ghc_app_scopes_configurations.scopeconfig')->get();
+    $config[$resource_name . '___showToPatientScope'] = 1;
+    $config[$resource_name . '___showToUserScope'] = 1;
+    $config[$resource_name . '___showWritePatient'] = 1;
+    $config[$resource_name . '___showReadPatient'] = 1;
+    $config[$resource_name . '___showWriteUser'] = 1;
+    $config[$resource_name . '___showReadUser'] = 1;
+
+    $scope_config = \Drupal::service('config.factory')->getEditable('ghc_app_scopes_configurations.scopeconfig');
+    $scope_config->setData($config);
+    $scope_config->save();
+
+  }
+}

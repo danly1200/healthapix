@@ -1,0 +1,7 @@
+fhir_customizations.swagger_not_found:
+  path: '/swagger-not-found/{nid}'
+  defaults:
+    _controller: '\Drupal\fhir_customizations\Controller\SwaggerNodeNotFoundController::swagger_not_found'
+    _title: 'Api does not exist'
+  requirements:
+    _access: 'TRUE'

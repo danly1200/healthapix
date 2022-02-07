@@ -1,0 +1,44 @@
+uuid: a991af58-2a12-4324-a99d-b27cd8c174d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oauth_swagger_api.body
+    - field.field.node.oauth_swagger_api.field_swagger_upload
+    - node.type.oauth_swagger_api
+  module:
+    - swagger_ui_formatter
+    - user
+id: node.oauth_swagger_api.default
+targetEntityType: node
+bundle: oauth_swagger_api
+mode: default
+content:
+  field_swagger_upload:
+    weight: 1
+    label: hidden
+    settings:
+      validator: default
+      validator_url: ''
+      doc_expansion: list
+      show_top_bar: false
+      sort_tags_by_name: false
+      supported_submit_methods:
+        get: get
+        put: put
+        post: post
+        delete: delete
+        options: options
+        head: head
+        patch: patch
+    third_party_settings: {  }
+    type: swagger_ui_file
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_interoperability_api_tag: true

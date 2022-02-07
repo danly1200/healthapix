@@ -1,0 +1,29 @@
+
+  	    <div class="container main login" style="width: 100%; height:auto">
+    <!-- Reset Password page template -->
+          <form role="form" class="form-signin" action="<%= basepath%>/reset?sessionid=<%= sessionid%>"  onsubmit="" method="post">
+            <h4 class="register-form-title"><%=req.__('text.reset.password_recovery')%></h4>
+	         <div style="display: <%= showErrorMessage%>"><font color="red"><%= error%></font></div>
+            <div class="form-group">
+              <input name="username" class="form-control" placeholder="<%=req.__('text.reset.emailId')%>" type="text">
+            </div>
+<!--            <div class="form-group">-->
+<!--              <input name="password" class="form-control" placeholder="<%=req.__('text.reset.enter_new_password')%>" type="password">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <input name="confirmPass" class="form-control" placeholder="<%=req.__('text.reset.enter_cnfm_password')%>" type="password">-->
+<!--            </div>-->
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-warning grass-btn"><%=req.__('text.reset.reset_password')%></button>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <button type="button" class="btn btn-warning btn-error" type="button" onclick="window.location='<%= basepath%>/index?sessionid=<%= sessionid%>'" ><%=req.__('label.cancel')%></button>
+                </div>
+              </div>
+            </div>
+          </form>
+  </div>

@@ -1,0 +1,8 @@
+uuid: cdb767d5-6c35-411b-a61c-ca272737d732
+langcode: en
+status: true
+dependencies: {  }
+id: comment_node_blog_video
+label: 'Video comment'
+target_entity_type_id: node
+description: null

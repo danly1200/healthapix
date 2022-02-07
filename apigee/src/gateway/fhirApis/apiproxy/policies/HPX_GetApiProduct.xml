@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AccessEntity enabled="true" continueOnError="false" async="false" name="HPX_GetApiProduct">
+    <DisplayName>HPX_GetApiProduct</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <EntityIdentifier ref="apiproduct.name"/>
+    <EntityType value="apiproduct"/>
+</AccessEntity>

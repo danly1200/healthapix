@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_Retrieve_RelatedPatient">
+    <DisplayName>HPX_Retrieve_Relative</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="true" variable="relatedPatientRequest">
+        <Set>
+            <Headers>
+                <Header name="Authorization">{hpx.pagination.googleToken}</Header>
+                <Header name="Accept">application/json</Header>
+            </Headers>
+            <Verb>GET</Verb>
+            <Path>/{request.queryparam.relative}</Path>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>relatedPatientResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://healthcare.googleapis.com/{hpx.pagination.targetBaseURI}/RelatedPerson</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

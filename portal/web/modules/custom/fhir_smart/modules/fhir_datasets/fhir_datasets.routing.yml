@@ -1,0 +1,9 @@
+fhir_datasets.listing_datasets:
+  path: '/fhir-datasets'
+  defaults:
+    _controller: '\Drupal\fhir_datasets\Controller\FHIRDatasetList::getDatasetList'
+    _title: 'Manage FHIR Servers'
+  requirements:
+    _role: 'administrator + api_team'
+  options:
+    no_cache: 'TRUE'

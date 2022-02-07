@@ -1,0 +1,1311 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0-oas3
+  description: >-
+    Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced "Fire")
+    defines a set of "Resources" that represent granular clinical concepts. The
+    resources can be managed in isolation, or aggregated into complex documents.
+    Technically, FHIR® is designed for the web; the resources are based on
+    simple JSON structures, with an http-based RESTful protocol where each
+    resource has predictable URL. Where possible, open internet standards are
+    used for data representation. The FHIR® DSTU2 API docs are part of the FHIR®
+    Specifications (v1.0.2: DSTU2). The current version which supercedes this
+    version is 4.0.1 (R4). This section contains API docs for the few commonly
+    used DSTU2 resources. API docs for other resources can be added by API
+    publishers on request.
+  title: HL7® FHIR® Encounter resource API documentation
+paths:
+  /Encounter:
+    parameters: []
+    post:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          required: false
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: Encounter could not be parsed or failed basic FHIR validation rules
+        '404':
+          description: Encounter not found.
+        '422':
+          description: >-
+            The Encounter resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Create Encounter
+      description: >-
+        Create a new Encounter with a server assigned id.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/Encounter'
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            The prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: >-
+            Search the contents of the resource's narrative using a fulltext
+            search
+          schema:
+            type: string
+        - name: appointment
+          in: query
+          description: The appointment that scheduled this encounter
+          schema:
+            type: string
+        - name: condition
+          in: query
+          description: Reason the encounter takes place (resource)
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            A date within the period the Encounter lasted. The date parameter
+            format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may
+            be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: episodeofcare
+          in: query
+          description: Episode(s) of care that this encounter should be recorded against
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: Identifier(s) by which this encounter is known
+          schema:
+            type: string
+        - name: incomingreferral
+          in: query
+          description: The ReferralRequest that initiated this encounter
+          schema:
+            type: string
+        - name: indication
+          in: query
+          description: Reason the encounter takes place (resource)
+          schema:
+            type: string
+        - name: length
+          in: query
+          description: Length of encounter in days
+          schema:
+            type: integer
+        - name: location
+          in: query
+          description: Location the encounter takes place
+          schema:
+            type: string
+        - name: location-period
+          in: query
+          description: >-
+            Time period during which the patient was present at the location.
+            The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes
+            >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: part-of
+          in: query
+          description: Another Encounter this encounter is part of
+          schema:
+            type: string
+        - name: participant
+          in: query
+          description: Persons involved in the encounter other than the patient
+          schema:
+            type: string
+        - name: participant-type
+          in: query
+          description: Role of participant in encounter
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: The patient present at the encounter
+          schema:
+            type: string
+        - name: practitioner
+          in: query
+          description: Persons involved in the encounter other than the patient
+          schema:
+            type: string
+        - name: procedure
+          in: query
+          description: Reason the encounter takes place (resource)
+          schema:
+            type: string
+        - name: reason
+          in: query
+          description: Reason the encounter takes place (code)
+          schema:
+            type: string
+        - name: special-arrangement
+          in: query
+          description: 'Wheelchair, translator, stretcher, etc.'
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: planned | arrived | in-progress | onleave | finished | cancelled
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Specific type of encounter
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: Encounter bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Encounter'
+        default:
+          description: unexpected error
+      operationId: Encounters Search
+      description: >-
+        Returns Encounters based on filter criteria OR Provides provision for
+        pagination (stateid, page, page_size, _pretty & _bundletype are query
+        parameters used for Paging).<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+  '/Encounter/{id}':
+    parameters: []
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: Encounter Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Encounter'
+        default:
+          description: unexpected error
+      operationId: Read Encounter
+      description: >-
+        Returns details of Encounter having id given in path.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+    put:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.write
+      responses:
+        '200':
+          description: Encounter Updated.
+        '201':
+          description: Encounter Created.
+        '400':
+          description: >-
+            Encounter could not be parsed or failed basic FHIR validation rules
+            (or multiple matches were found).
+        '403':
+          description: Not Authorized.
+        '412':
+          description: The given criteria is not selective enough.
+        default:
+          description: unexpected error
+      operationId: Update Encounter
+      description: >-
+        Update an existing Encounter by its id (or create it if it is new).<p><a
+        href = 'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/Encounter'
+    delete:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.write
+      responses:
+        '200':
+          description: No Content.
+        '204':
+          description: No Content.
+        '404':
+          description: Encounter not found.
+        '405':
+          description: Method not allowed.
+        '409':
+          description: Conflict Error.
+        '412':
+          description: The given criteria is not selective enough.
+        default:
+          description: unexpected error
+      operationId: Delete Encounter
+      description: >-
+        The delete interaction removes an existing Encounter.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+  '/Encounter/{id}/_history':
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: >-
+            Specify an instant to only include resource versions that were
+            created at or after the given instant in time. An instant in time is
+            known at least to the second and always includes a time zone.
+          schema:
+            type: string
+            pattern: >-
+              ([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: Encounter bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Encounter'
+        default:
+          description: unexpected error
+      operationId: Encounter History
+      description: >-
+        It retrieves the history of a particular Encounter identified by the
+        given id in path.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+  '/Encounter/{id}/_history/{vid}':
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - required: true
+          name: vid
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: >-
+            Specify an instant to only include resource versions that were
+            created at or after the given instant in time. An instant in time is
+            known at least to the second and always includes a time zone.
+          schema:
+            type: string
+            pattern: >-
+              ([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: Encounter Instance
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Encounter'
+        default:
+          description: unexpected error
+      operationId: Encounter Version Read
+      description: >-
+        This interaction preforms a version specific read of Encounter
+        resource.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR
+        documentation for Encounter.</a></p>
+  /Encounter/$meta:
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for Encounter'
+        default:
+          description: unexpected error
+      operationId: Encounters Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for
+        Encounters.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR
+        documentation for Encounter.</a></p>
+  '/Encounter/{id}/$meta':
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: >-
+            List of all tags, profiles and security labels affixed to the
+            nominated resource.
+        default:
+          description: unexpected error
+      operationId: Encounter Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for given
+        Encounter resource.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+  '/Encounter/{id}/_history/{vid}/$meta':
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - required: true
+          name: vid
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: >-
+            List of all tags, profiles and security labels affixed to the
+            nominated version of the resource.
+        default:
+          description: unexpected error
+      operationId: Encounter Version based Metadata
+      description: >-
+        Retrieves a summary of the profiles, tags, and security labels for given
+        version of the Encounter.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+  '/Encounter/{id}/{type}':
+    get:
+      tags:
+        - Encounter
+      parameters:
+        - required: true
+          name: type
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          x-consoleDefault: application/fhir+json;charset=utf-8
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: The set of resources associated with a particular Encounter
+        default:
+          description: unexpected error
+      operationId: ' Compartment Search'
+      description: >-
+        Search the specified resource type in Encounter compartment.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+  /Encounter/_search:
+    post:
+      tags:
+        - Encounter
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: >-
+            Only return resources which were last updated as specified by the
+            given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ).
+            The prefixes >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: >-
+            Search the contents of the resource's narrative using a fulltext
+            search
+          schema:
+            type: string
+        - name: appointment
+          in: query
+          description: The appointment that scheduled this encounter
+          schema:
+            type: string
+        - name: condition
+          in: query
+          description: Reason the encounter takes place (resource)
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            A date within the period the Encounter lasted. The date parameter
+            format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may
+            be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: episodeofcare
+          in: query
+          description: Episode(s) of care that this encounter should be recorded against
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: Identifier(s) by which this encounter is known
+          schema:
+            type: string
+        - name: incomingreferral
+          in: query
+          description: The ReferralRequest that initiated this encounter
+          schema:
+            type: string
+        - name: indication
+          in: query
+          description: Reason the encounter takes place (resource)
+          schema:
+            type: string
+        - name: length
+          in: query
+          description: Length of encounter in days
+          schema:
+            type: integer
+        - name: location
+          in: query
+          description: Location the encounter takes place
+          schema:
+            type: string
+        - name: location-period
+          in: query
+          description: >-
+            Time period during which the patient was present at the location.
+            The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes
+            >, >=, <= and < may be used on the parameter value.
+          schema:
+            type: string
+            format: date
+        - name: part-of
+          in: query
+          description: Another Encounter this encounter is part of
+          schema:
+            type: string
+        - name: participant
+          in: query
+          description: Persons involved in the encounter other than the patient
+          schema:
+            type: string
+        - name: participant-type
+          in: query
+          description: Role of participant in encounter
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: The patient present at the encounter
+          schema:
+            type: string
+        - name: practitioner
+          in: query
+          description: Persons involved in the encounter other than the patient
+          schema:
+            type: string
+        - name: procedure
+          in: query
+          description: Reason the encounter takes place (resource)
+          schema:
+            type: string
+        - name: reason
+          in: query
+          description: Reason the encounter takes place (code)
+          schema:
+            type: string
+        - name: special-arrangement
+          in: query
+          description: 'Wheelchair, translator, stretcher, etc.'
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: planned | arrived | in-progress | onleave | finished | cancelled
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Specific type of encounter
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      responses:
+        '200':
+          description: Encounter bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Encounter'
+        default:
+          description: unexpected error
+      operationId: Encounters Search using POST
+      description: >-
+        This interaction searches a set of Encounters based on some filter
+        criteria. Search interactions take a series of parameters of
+        name'='value pairs encoded as an application/x-www-form-urlencoded
+        submission for a POST.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _content:
+                  description: >-
+                    Search the contents of the resource's data using a fulltext
+                    search
+                  type: string
+                _id:
+                  description: The resource identity
+                  type: string
+                _language:
+                  description: The resource language
+                  type: string
+                _lastUpdated:
+                  description: >-
+                    Only return resources which were last updated as specified
+                    by the given range. The date parameter format is
+                    yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be
+                    used on the parameter value.
+                  type: string
+                  format: date
+                _profile:
+                  description: Search for resources which have the given profile
+                  type: string
+                _security:
+                  description: Search for resources which have the given security labels
+                  type: string
+                _tag:
+                  description: Search for resources which have the given tag
+                  type: string
+                _text:
+                  description: >-
+                    Search the contents of the resource's narrative using a
+                    fulltext search
+                  type: string
+                appointment:
+                  description: The appointment that scheduled this encounter
+                  type: string
+                condition:
+                  description: Reason the encounter takes place (resource)
+                  type: string
+                date:
+                  description: >-
+                    A date within the period the Encounter lasted. The date
+                    parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >,
+                    >=, <= and < may be used on the parameter value.
+                  type: string
+                  format: date
+                episodeofcare:
+                  description: >-
+                    Episode(s) of care that this encounter should be recorded
+                    against
+                  type: string
+                identifier:
+                  description: Identifier(s) by which this encounter is known
+                  type: string
+                incomingreferral:
+                  description: The ReferralRequest that initiated this encounter
+                  type: string
+                indication:
+                  description: Reason the encounter takes place (resource)
+                  type: string
+                length:
+                  description: Length of encounter in days
+                  type: integer
+                location:
+                  description: Location the encounter takes place
+                  type: string
+                location-period:
+                  description: >-
+                    Time period during which the patient was present at the
+                    location. The date parameter format is
+                    yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be
+                    used on the parameter value.
+                  type: string
+                  format: date
+                part-of:
+                  description: Another Encounter this encounter is part of
+                  type: string
+                participant:
+                  description: Persons involved in the encounter other than the patient
+                  type: string
+                participant-type:
+                  description: Role of participant in encounter
+                  type: string
+                patient:
+                  description: The patient present at the encounter
+                  type: string
+                practitioner:
+                  description: Persons involved in the encounter other than the patient
+                  type: string
+                procedure:
+                  description: Reason the encounter takes place (resource)
+                  type: string
+                reason:
+                  description: Reason the encounter takes place (code)
+                  type: string
+                special-arrangement:
+                  description: 'Wheelchair, translator, stretcher, etc.'
+                  type: string
+                status:
+                  description: >-
+                    planned | arrived | in-progress | onleave | finished |
+                    cancelled
+                  type: string
+                type:
+                  description: Specific type of encounter
+                  type: string
+  '/Encounter/{id}/$meta-add':
+    post:
+      tags:
+        - Encounter
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: Encounter could not be parsed or failed basic FHIR validation rules
+        '404':
+          description: Encounter not found.
+        '422':
+          description: >-
+            The Encounter resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Add Encounter metadata
+      description: >-
+        Add a metadata info Encounter with specified id.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/metaBody'
+  '/Encounter/{id}/_history/{vid}/$meta-add':
+    post:
+      tags:
+        - Encounter
+      parameters:
+        - required: true
+          name: vid
+          in: path
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          description: The logical resource id associated with the Resource.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.write
+      responses:
+        '201':
+          description: Successful creation
+        '400':
+          description: Encounter could not be parsed or failed basic FHIR validation rules
+        '404':
+          description: Encounter not found.
+        '422':
+          description: >-
+            The Encounter resource violated applicable FHIR profiles or server
+            business rules.
+        default:
+          description: unexpected error
+      operationId: Add Encounter Version based Metadata
+      description: >-
+        Add metadata info to specified Encounter resource.<p><a href =
+        'https://www.hl7.org/fhir/encounter.html'>FHIR documentation for
+        Encounter.</a></p>
+      requestBody:
+        $ref: '#/components/requestBodies/metaBody'
+  '/Encounter/{id}/$everything':
+    get:
+      tags:
+        - Encounter
+      description: >-
+        Returns all the information related to a specific Encounter
+        resource.<p><a href = 'https://www.hl7.org/fhir/encounter.html'>FHIR
+        documentation for Encounter.</a></p>
+      operationId: Fetch Encounter Record
+      security:
+        - OAuthV2B2B:
+            - system/Encounter.read
+      parameters:
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+        - name: id
+          description: The logical resource id associated with the Encounter.
+          required: true
+          in: path
+          schema:
+            type: string
+            pattern: '[a-z0-9\-\.]{1,64}'
+        - name: Authorization
+          in: header
+          required: false
+          description: >-
+            Specify access token for API in the given format: Bearer
+            [access_token].
+          schema:
+            type: string
+        - name: Accept
+          description: >-
+            The Accept request-header field can be used to specify certain media
+            types which are acceptable for the response.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: List of all tags affixed to the nominated version of the resource.
+        default:
+          description: unexpected error
+servers:
+  - url: 'https://gcp-hcls-test.apigee.net/v1/ghc/dstu2'
+components:
+  requestBodies:
+    Encounter:
+      content:
+        application/fhir+json;charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Encounter'
+      description: The request body should be a valid data payload.
+      required: true
+    metaBody:
+      content:
+        application/fhir+json;charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/metaBody'
+      description: The request body should be a valid meta payload.
+      required: true
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://gcp-hcls-test.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/Encounter.read: Read permissions for Encounter demographics.
+            system/Encounter.write: Write permissions for Encounter demographics.
+  schemas:
+    Encounter:
+      description: ''
+      type: object
+      properties:
+        resourceType:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            div:
+              type: string
+              minLength: 1
+          required:
+            - status
+            - div
+        status:
+          type: string
+          minLength: 1
+        class:
+          type: string
+          minLength: 1
+        patient:
+          type: object
+          properties:
+            reference:
+              type: string
+              minLength: 1
+          required:
+            - reference
+      required:
+        - resourceType
+        - id
+        - text
+        - status
+        - class
+        - patient
+    metaBody:
+      type: string

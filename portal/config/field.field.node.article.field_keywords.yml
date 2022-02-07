@@ -1,0 +1,23 @@
+uuid: f7a1223a-36af-41d5-98fa-161c8e84cc4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_keywords
+    - node.type.article
+id: node.article.field_keywords
+field_name: field_keywords
+entity_type: node
+bundle: article
+label: Keywords
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    sort:
+      field: _none
+  handler: 'default:taxonomy_term'
+field_type: entity_reference

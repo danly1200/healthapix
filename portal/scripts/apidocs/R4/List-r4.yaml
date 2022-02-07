@@ -1,0 +1,444 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® List resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+  - url: https://org-env.apigee.net/v1/ghc/r4
+tags:
+  - name: List
+paths:
+  /List:
+    get:
+      tags:
+        - List
+      parameters:
+        - name: code
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: date
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            format: date
+        - name: identifier
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: patient
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: encounter
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: empty-reason
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: item
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: notes
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: source
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: subject
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: title
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: _format
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          x-consoleDefault: application/json
+      responses:
+        "200":
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/List'
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+    post:
+      tags:
+        - List
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/requestBodies/List'
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+  /List/{id}:
+    get:
+      tags:
+        - List
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/List'
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+    put:
+      tags:
+        - List
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/requestBodies/List'
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+    delete:
+      tags:
+        - List
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+  /List/{id}/_history:
+    get:
+      tags:
+        - List
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: _count
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: _since
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+  /List/{id}/_history/{vid}:
+    get:
+      tags:
+        - List
+      parameters:
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: vid
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/List'
+      security:
+        - OAuthV2B2B:
+            - system/List.read
+            - system/List.write
+components:
+  schemas:
+    Account_text:
+      required:
+        - div
+        - status
+      type: object
+      properties:
+        status:
+          minLength: 1
+          type: string
+        div:
+          minLength: 1
+          type: string
+    Account_identifier:
+      required:
+        - system
+        - value
+      properties:
+        system:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+    Account_coverage:
+      required:
+        - reference
+      type: object
+      properties:
+        reference:
+          minLength: 1
+          type: string
+    Account_meta:
+      required:
+        - tag
+      type: object
+      properties:
+        tag:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Account_type_coding'
+    CarePlan_code:
+      required:
+        - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+    List_entry:
+      required:
+        - deleted
+      properties:
+        flag:
+          $ref: '#/components/schemas/CarePlan_code'
+        deleted:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/Account_coverage'
+    List:
+      required:
+        - date
+        - encounter
+        - entry
+        - id
+        - identifier
+        - meta
+        - mode
+        - resourceType
+        - source
+        - status
+        - subject
+        - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          $ref: '#/components/schemas/Account_text'
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Account_identifier'
+        status:
+          minLength: 1
+          type: string
+        mode:
+          minLength: 1
+          type: string
+        subject:
+          $ref: '#/components/schemas/Account_coverage'
+        encounter:
+          $ref: '#/components/schemas/Account_coverage'
+        date:
+          minLength: 1
+          type: string
+        source:
+          $ref: '#/components/schemas/Account_coverage'
+        entry:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/List_entry'
+        meta:
+          $ref: '#/components/schemas/Account_meta'
+  requestBodies:
+    List:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/List'
+  securitySchemes:
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/List.read: Read permissions for List demographics.
+            system/List.write: Write permissions for List demographics.

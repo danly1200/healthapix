@@ -1,0 +1,95 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0) }}
+<span class="dexp-menu-toogle">Menu</span>
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% set first_item = items|first %}
+    {% set megamenu_options = first_item.url.getOption('dexp_megamenu') %}
+    {% if megamenu_options.dexp_megamenu_type == '' %}
+      {% if menu_level == 0 %}
+        <ul{{ attributes.addClass('menu') }}>
+      {% else %}
+        <ul class="menu depth-{{ menu_level }}">
+      {% endif %}
+    {% endif %}
+    {% for item in items %}
+      {% set megamenu = item.url.getOption('dexp_megamenu') %}
+      {%
+        set classes = [
+          'menu-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+        ]
+      %}
+      {% if megamenu.dexp_megamenu_type == 'row' %}
+        <div data-width="{{ megamenu.dexp_megamenu_width|trim }}" class="mega-menu-item {{ megamenu.dexp_megamenu_width }} container depth-{{ menu_level }}">
+          <div class="row">
+            {% if item.below %}
+              <span class="dexp-submenu-toogle"></span>
+              {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+            {% endif %}
+          </div>
+        </div>
+      {% elseif megamenu.dexp_megamenu_type == 'column' %}
+        <div class="mega-menu-col col-12 col-lg-{{ megamenu.dexp_megamenu_column_width }}">
+          {% if megamenu.dexp_megamenu_show_column_title == 'yes' %}
+            <h3 class="dexp-megamenu-column-title">{{ item.title }}</h3>
+          {% endif %}
+          {% if item.below %}
+            <span class="dexp-submenu-toogle"></span>
+            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {% endif %}
+        </div>
+      {% else %}
+        <li{{ item.attributes.addClass(classes) }}>
+					{% if megamenu.dexp_megamenu_remove_link == 1 %}
+            <span class="dexp-nolink"> {% if megamenu.dexp_megamenu_icon %}<span class="{{ megamenu.dexp_megamenu_icon }}"></span> {% endif %} {{ item.title }}</span>
+          {% else %}
+						{% if megamenu.dexp_megamenu_icon %}
+							{% set title %}
+                <span class="{{ megamenu.dexp_megamenu_icon }}"></span> {{ item.title }}
+              {% endset %}
+              {{ link(title, item.url, item.attributes) }}
+						{% else %}
+							{{ link(item.title, item.url, item.attributes) }}
+						{% endif %}
+          {% endif %}
+          {% if item.below %}
+            <span class="dexp-submenu-toogle"></span>
+            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+    {% if megamenu_options.dexp_megamenu_type == '' %}
+      </ul>
+    {% endif %}
+  {% endif %}
+{% endmacro %}

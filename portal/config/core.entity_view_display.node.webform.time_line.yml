@@ -1,0 +1,23 @@
+uuid: d274e2a7-a705-4c03-b9cb-521d30f1643d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.time_line
+    - field.field.node.webform.body
+    - node.type.webform
+  module:
+    - user
+id: node.webform.time_line
+targetEntityType: node
+bundle: webform
+mode: time_line
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_webform: true

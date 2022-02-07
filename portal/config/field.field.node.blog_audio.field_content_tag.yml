@@ -1,0 +1,51 @@
+uuid: 11da3c5b-f1f9-4d8a-b031-938753902efd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_tag
+    - node.type.blog_audio
+id: node.blog_audio.field_content_tag
+field_name: field_content_tag
+entity_type: node
+bundle: blog_audio
+label: 'Content Tag'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    tid: 2
+    vid: 4
+    name: blog
+    description: null
+    format: null
+    weight: 0
+    uuid: 3ca42855-b930-4cfa-a8f9-58e2e110fd46
+    vocabulary_machine_name: content_type_tag
+    metatags: {  }
+    rdf_mapping:
+      description:
+        predicates:
+          - 'skos:definition'
+      name:
+        predicates:
+          - 'rdfs:label'
+          - 'skos:prefLabel'
+      parent:
+        predicates:
+          - 'skos:broader'
+        type: rel
+      rdftype:
+        - 'skos:Concept'
+      vid:
+        predicates:
+          - 'skos:inScheme'
+        type: rel
+default_value_callback: ''
+settings:
+  handler_settings:
+    sort:
+      field: _none
+  handler: 'default:taxonomy_term'
+field_type: entity_reference

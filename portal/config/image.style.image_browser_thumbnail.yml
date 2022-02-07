@@ -1,0 +1,17 @@
+uuid: 9dc99917-c975-440f-b50e-a49aa452c37d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: BlF2EwoeQW21RWezXgVyg-BttdOkWrsRWz1cTzxNj80
+name: image_browser_thumbnail
+label: 'Image browser thumbnail'
+effects:
+  bfe2eba3-4b7e-498f-aa6e-8e909cee1478:
+    uuid: bfe2eba3-4b7e-498f-aa6e-8e909cee1478
+    id: image_scale
+    weight: 2
+    data:
+      width: 180
+      height: 150
+      upscale: false

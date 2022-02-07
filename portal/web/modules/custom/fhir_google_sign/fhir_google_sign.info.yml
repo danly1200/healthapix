@@ -1,0 +1,9 @@
+name: 'FHIR Google Sign in'
+type: module
+description: 'To set Firstname and lastname for Google sign in user.'
+core: 8.x
+package: custom
+
+dependencies:
+  - drupal:user
+  - entity:entity

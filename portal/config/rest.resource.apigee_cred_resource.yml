@@ -1,0 +1,18 @@
+uuid: 3676604a-152d-4af5-9960-31fa1a988711
+langcode: en
+status: true
+dependencies:
+  module:
+    - fhir_apigee_cred_api
+    - serialization
+    - user
+id: apigee_cred_resource
+plugin_id: apigee_cred_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

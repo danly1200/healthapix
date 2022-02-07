@@ -1,0 +1,59 @@
+uuid: 0e98b2de-6595-4ae6-94ef-3dac40944b3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.api_list_page
+  module:
+    - api_customization
+    - block_visibility_groups
+    - context
+    - dexp_block_settings
+  theme:
+    - mdc_theme
+third_party_settings:
+  dexp_block_settings:
+    animate: ''
+    animate_duration: '1000'
+    animate_delay: 0
+    background_color: ''
+    background_image: 'file:0'
+    background_position: ''
+    background_image_type: default
+    background_repeat: no-repeat
+    background_size: auto
+    background_video: ''
+    background_video_controls: 0
+    background_video_mute: 0
+    background_video_start_at: null
+    exclude_block_title: 0
+    custom_class: ''
+    custom_content_class: ''
+    custom_css: ''
+id: interoperabilityapiblock
+theme: mdc_theme
+region: sidebar_left
+weight: -23
+provider: null
+plugin: interoperability_apiblock
+settings:
+  id: interoperability_apiblock
+  label: 'Interoperability apiblock'
+  provider: api_customization
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: api_list_page
+    context_mapping: {  }
+  request_path_exclusion:
+    id: request_path_exclusion
+    pages: ''
+    negate: null
+    context_mapping: {  }
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    view_inclusion: {  }
+    context_mapping: {  }

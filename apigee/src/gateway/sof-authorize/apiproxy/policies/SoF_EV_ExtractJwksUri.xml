@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="SoF_EV_ExtractJwksUri">
+    <DisplayName>SoF_EV_ExtractJwksUri</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="url">
+            <JSONPath>$.jwks_uri</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <VariablePrefix>idpJwks</VariablePrefix>
+    <Source clearPayload="false">oidcWellKnownResponse</Source>
+</ExtractVariables>

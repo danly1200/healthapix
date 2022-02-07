@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains fhir_conformance_report.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function fhir_conformance_report_theme($existing, $type, $theme, $path) {
+  return [
+    'conformance__report' => [
+      'render element' => 'children',
+      'template' => 'conformance-report',
+      'path' => $path . '/templates',
+      'variables' => [
+        'conformance_data' => '',
+        'resources_list' => '',
+        'resource_search_params' => '',
+        'conformance_verbiage' => '',
+      ],
+    ],
+  ];
+}

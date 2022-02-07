@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="stu3">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>HPX_LookupSessionCache</Name>
+            </Step>
+            <Step>
+                <Name>HPX_ExtractSessionCache</Name>
+            </Step>
+            <Step>
+                <Name>HPX_StoreIncomingRequestVerb</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Validate Consent">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractValidateConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetClientDeviceInfo</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractDeviceIdentifier</Name>
+                </Step>
+                <Step>
+                    <Condition>(device_id is null)</Condition>
+                    <Name>HPX_ConsentDoesNotExistsOrInvalid</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetPatientConsentInfoRequest</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_ValidatePatientConsent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/validate") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Create Consent">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractValidateConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetClientDeviceInfo</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractDeviceIdentifier</Name>
+                </Step>
+                <Step>
+                    <Condition>(device_id is null)</Condition>
+                    <Name>HPX_CreateDevice</Name>
+                </Step>
+                <Step>
+                    <Condition>(device_id is null)</Condition>
+                    <Name>HPX_ExtractDeviceIdentifier</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PrepareForConsentCreation</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetPatientConsentInfoCreateRequest</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_ProcessCreateConsentResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/create") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Add Tokens">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractAddTokensToConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AddTokensToConsentRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/add-tokens") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Update Tokens">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractAddTokensToConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_UpdateTokensOnConsentRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/update-tokens") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Update Scopes">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractUpdateScopesParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_PrepareForUpdateConsentScopes</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AddScopesToConsentRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/update-scopes") and (incoming.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Revoke Consent">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>HPX_ExtractRevokeConsentParameters</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_GetConsentInfo</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_ExtractTokensFromConsentResponse</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_InvalidateAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_SetConsentRevokeRequest</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/revoke") and (incoming.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>HPX_SetContentTypeHeader</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/stu3/identity/consent/v1</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

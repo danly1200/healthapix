@@ -1,0 +1,22 @@
+uuid: 19c256e5-4493-4796-823b-c1d1a8eb2405
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.fhir_datasets
+id: taxonomy_term.fhir_datasets.default
+targetEntityType: taxonomy_term
+bundle: fhir_datasets
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true

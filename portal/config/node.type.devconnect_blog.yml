@@ -1,0 +1,11 @@
+uuid: c50d9b82-dffb-4f06-9826-5a0507359437
+langcode: en
+status: true
+dependencies: {  }
+name: 'Devconnect Blog entry'
+type: devconnect_blog
+description: 'Use for devconnect blogging function.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="HPX_GJW_GenerateIDTokenRSA">
+    <DisplayName>HPX_GJW_GenerateIDTokenRSA</DisplayName>
+    <Algorithm>RS384</Algorithm>
+    <PrivateKey>
+        <Id ref="privKeyN"/>
+        <Value ref="private.privatekeyRS384"/>
+    </PrivateKey>
+    <AdditionalClaims>
+        <Claim name="fhirUser" ref="oauthv2authcode.HPX_GO_GetAuthCodeAttributes.fhirUser"/>
+    </AdditionalClaims>
+    <Subject ref="userid"/>
+    <Issuer ref="issuer"/>
+    <Audience ref="oauthv2authcode.HPX_GO_GetAuthCodeAttributes.aud"/>
+    <ExpiresIn>1h</ExpiresIn>
+    <AdditionalHeaders>
+        <Claim name="jku" ref="jku"/>
+    </AdditionalHeaders>
+    <OutputVariable>jws</OutputVariable>
+</GenerateJWT>

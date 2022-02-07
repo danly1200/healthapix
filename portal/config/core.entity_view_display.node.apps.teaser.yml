@@ -1,0 +1,73 @@
+uuid: fb816ac3-dc6a-438a-b776-3bd10505e4c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.apps.body
+    - field.field.node.apps.comment_node_apps
+    - field.field.node.apps.field_app_categories
+    - field.field.node.apps.field_app_image
+    - field.field.node.apps.field_app_tags
+    - field.field.node.apps.field_app_video
+    - field.field.node.apps.field_author_name
+    - field.field.node.apps.field_one_liner
+    - field.field.node.apps.field_website
+    - node.type.apps
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.apps.teaser
+targetEntityType: node
+bundle: apps
+mode: teaser
+content:
+  body:
+    type: text_default
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_app_image:
+    label: hidden
+    weight: 0
+    type: image
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_one_liner:
+    label: hidden
+    weight: 1
+    type: string
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  field_website:
+    type: link
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  links:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  comment_node_apps: true
+  field_app_categories: true
+  field_app_tags: true
+  field_app_video: true
+  field_author_name: true

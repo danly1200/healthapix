@@ -1,0 +1,38 @@
+uuid: bbbb9eb9-4ae3-4e7f-befe-6c02c6d7940e
+langcode: en
+status: true
+dependencies: {  }
+id: api_team
+label: 'API Team'
+weight: 11
+is_admin: null
+permissions:
+  - 'access dragdropfile entity browser pages'
+  - 'access file_upload entity browser pages'
+  - 'administer entity browsers'
+  - 'administer nodes'
+  - 'create fhir_servers content'
+  - 'create terms in fhir_datasets'
+  - 'create test_data content'
+  - 'delete any fhir_servers content'
+  - 'delete any smartdocs content'
+  - 'delete any test_data content'
+  - 'delete fhir_servers revisions'
+  - 'delete own fhir_servers content'
+  - 'delete own smartdocs content'
+  - 'delete own test_data content'
+  - 'delete terms in fhir_datasets'
+  - 'dropzone upload files'
+  - 'edit any fhir_servers content'
+  - 'edit any smartdocs content'
+  - 'edit any test_data content'
+  - 'edit own fhir_servers content'
+  - 'edit own smartdocs content'
+  - 'edit own test_data content'
+  - 'edit terms in fhir_datasets'
+  - 'revert fhir_servers revisions'
+  - 'use text format basic_html'
+  - 'use text format filtered_html'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
+  - 'view fhir_servers revisions'

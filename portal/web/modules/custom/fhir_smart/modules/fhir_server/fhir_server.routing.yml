@@ -1,0 +1,8 @@
+fhir_server.get_product_details_from_apigee:
+  path: '/get-product-details-from-apigee'
+  defaults:
+    _controller: '\Drupal\fhir_server\Controller\GetDetailsFromApigeeForm::getProductDetailsFromApigee'
+    _title: 'Get Product Details From Apigee'
+  requirements:
+    _permission: 'access content'
+

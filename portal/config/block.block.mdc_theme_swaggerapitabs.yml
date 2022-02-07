@@ -1,0 +1,28 @@
+uuid: 8d1d9ba5-0e5a-4bb0-a99f-a6468abcf2c3
+langcode: en
+status: false
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.api_list_tabs
+  module:
+    - block_visibility_groups
+    - fhir_customizations
+  theme:
+    - mdc_theme
+id: mdc_theme_swaggerapitabs
+theme: mdc_theme
+region: content
+weight: -17
+provider: null
+plugin: swagger_api_tabs
+settings:
+  id: swagger_api_tabs
+  label: 'Swagger API Tabs'
+  provider: fhir_customizations
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: api_list_tabs
+    context_mapping: {  }

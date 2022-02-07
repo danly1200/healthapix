@@ -1,0 +1,23 @@
+uuid: 09f44740-2148-41dc-8ae7-ca25b77c77b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_categories
+    - node.type.apps
+id: node.apps.field_app_categories
+field_name: field_app_categories
+entity_type: node
+bundle: apps
+label: Categories
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler_settings:
+    sort:
+      field: _none
+  handler: 'default:taxonomy_term'
+field_type: entity_reference

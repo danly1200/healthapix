@@ -1,0 +1,42 @@
+uuid: c7b212d8-627f-430a-94fc-0e025d3691f2
+langcode: en
+status: true
+dependencies:
+  module:
+    - dropzonejs_eb_widget
+name: dragdropfile
+label: dragdropfile
+display: iframe
+display_configuration:
+  width: '650'
+  height: '400'
+  link_text: ''
+  auto_open: true
+selection_display: multi_step_display
+selection_display_configuration:
+  entity_type: node
+  display: label
+  display_settings: {  }
+  select_text: Upload
+  selection_hidden: false
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  94ca411b-196b-479d-b148-1ac0b211cc5d:
+    settings:
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drag and Drop server meta data file'
+      max_filesize: 8M
+      extensions: 'yml json'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: !!float 1
+      resize_method: contain
+      thumbnail_method: contain
+      submit_text: 'BROWSE FILE'
+      auto_select: true
+    uuid: 94ca411b-196b-479d-b148-1ac0b211cc5d
+    weight: 1
+    label: dropzonejs
+    id: dropzonejs

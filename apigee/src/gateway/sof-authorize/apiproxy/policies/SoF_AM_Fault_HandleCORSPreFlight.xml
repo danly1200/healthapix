@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="SoF_AM_Fault_HandleCORSPreFlight">
+    <DisplayName>SoF_AM_Fault_HandleCORSPreFlight</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>errorHandled</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

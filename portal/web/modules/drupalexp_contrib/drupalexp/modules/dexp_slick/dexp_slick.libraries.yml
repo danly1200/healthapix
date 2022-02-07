@@ -1,0 +1,25 @@
+slick:
+  remote: http://kenwheeler.github.io/slick/
+  version: 1.x
+  license:
+    name: MIT
+    url: https://github.com/kenwheeler/slick/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    /libraries/slick/slick/slick.min.js: { weight: -3, minified: true }
+  css:
+    base:
+      /libraries/slick/slick/slick.css: {}
+  dependencies:
+    - core/jquery    
+dexp_slick:
+  js:
+    assets/js/dexp-slick.js: {}
+  css:
+    base:
+      assets/css/dexp-slick.css: {}
+  dependencies:
+    - dexp_slick/slick
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSetiings

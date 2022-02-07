@@ -1,0 +1,30 @@
+uuid: fdabeb84-e2f6-492b-9bec-17fa6340d2af
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.slideshow_home
+  module:
+    - system
+    - views
+  theme:
+    - mdc_theme
+id: mdc_theme_views_block__slideshow_home_block_1
+theme: mdc_theme
+region: content
+weight: -11
+provider: null
+plugin: 'views_block:slideshow_home-block_1'
+settings:
+  id: 'views_block:slideshow_home-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

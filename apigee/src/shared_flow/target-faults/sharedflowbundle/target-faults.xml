@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="target-faults">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1569239240736</CreatedAt>
+    <CreatedBy>ronson@digitalapicraft.com</CreatedBy>
+    <Description>Shared Flow to handle errors in fhir target endpoint</Description>
+    <DisplayName>target-faults</DisplayName>
+    <LastModifiedAt>1569244152915</LastModifiedAt>
+    <LastModifiedBy>ronson@digitalapicraft.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:23bb0f7ce9d598b2feeacdbcf25955188be3907de4bd885cbe2eb09fd0ed00a094f584e1a586096adab8addb68df91e050e56d15d7cffc7bd3946a11a90d4e46</ManifestVersion>
+    <Policies>
+        <Policy>HPX_Fault_Redirect</Policy>
+        <Policy>HPX_Fault_TargetErrorHandler</Policy>
+        <Policy>HPX_JSONtoXML</Policy>
+        <Policy>HPX_ValidateTargetResponse</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://HPX_ValidateTargetResponse.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

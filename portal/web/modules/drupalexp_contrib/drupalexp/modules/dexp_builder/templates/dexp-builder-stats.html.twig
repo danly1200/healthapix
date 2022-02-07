@@ -1,0 +1,11 @@
+<div{{ attributes }}>
+  {% if icon is not empty %}
+    <div class="stats-icon">{{ icon|raw }}</div>
+  {% endif %}
+  <div class="stats-number">
+    {% if counter_prefix is not empty %}<span class="stats-prefix">{{ counter_prefix }}</span>{% endif %}<span class="stats-count">{{ number }}</span>{% if counter_suffix is not empty %}<span class="stats-suffix">{{ counter_suffix }}</span>{% endif %}
+  </div>
+  {% if title is not empty %}
+    {{ title }}
+  {% endif %}
+</div>

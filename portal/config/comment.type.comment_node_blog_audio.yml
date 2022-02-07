@@ -1,0 +1,8 @@
+uuid: 7c4bd9e0-0ee0-4d7b-9d77-3b701ee6c8de
+langcode: en
+status: true
+dependencies: {  }
+id: comment_node_blog_audio
+label: 'Audio comment'
+target_entity_type_id: node
+description: null

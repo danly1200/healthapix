@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="true" async="false" name="HPX_JS_GenerateUUID">
+	<DisplayName>HPX_JS_GenerateUUID</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ResourceURL>jsc://HPX_GenerateUUID.js</ResourceURL>
+</Javascript>

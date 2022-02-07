@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_SC_DeviceDetailRequest">
+    <DisplayName>HPX_SC_DeviceDetailRequest</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="DeviceDetailRequest">
+        <Set>
+            <Headers>
+                <Header name="Authorization">Bearer {IAM.access_token}</Header>
+            </Headers>
+            <QueryParams>
+                <QueryParam name="_id">{deviceId}</QueryParam>
+            </QueryParams>
+            <Verb>GET</Verb>
+            <Path/>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>HPX_DeviceDetailRequestCalloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <LoadBalancer>
+            <Server name="ghcapiserver"/>
+        </LoadBalancer>
+        <Path>{google_fhirstore_url}/Device</Path>
+    </HTTPTargetConnection>
+</ServiceCallout>

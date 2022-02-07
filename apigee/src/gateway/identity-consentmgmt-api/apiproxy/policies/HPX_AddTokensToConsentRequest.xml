@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AddTokensToConsentRequest">
+    <DisplayName>HPX_AddTokensToConsentRequest</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{googleToken}</Header>
+        </Headers>
+        <Verb>PATCH</Verb>
+        <Payload contentType="application/json-patch+json" variablePrefix="@" variableSuffix="#">[{"op":"add","path":"/except/0/class/1","value":{"code":"@access_token#","system":"http: //hl7.org/fhir/smart/access_token"}},{"op":"add","path":"/except/0/class/2","value":{"code":"@refresh_token#","system":"http: //hl7.org/fhir/smart/refresh_token"}}]</Payload>
+    </Set>
+    <AssignVariable>
+        <Name>targetSuffixURI</Name>
+        <Template>Consent/{consent_id}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

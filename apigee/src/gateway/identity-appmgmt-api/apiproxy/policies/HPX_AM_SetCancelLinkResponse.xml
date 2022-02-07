@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_SetCancelLinkResponse">
+    <DisplayName>HPX_AM_SetCancelLinkResponse</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+            "approve": "https://@request_host#@proxy.basepath#/approve?rid=@hashed_token#",
+            "revoke": "https://@request_host#@proxy.basepath#/revoke?rid=@hashed_token#",
+            "cancel": "https://@request_host#@proxy.basepath#/cancel?rid=@hashed_token#"
+            }
+            </Payload>
+        <StatusCode>200</StatusCode>
+        <ReasonPhrase>Ok</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

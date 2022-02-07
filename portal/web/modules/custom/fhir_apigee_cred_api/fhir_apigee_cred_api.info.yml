@@ -1,0 +1,5 @@
+name: FHIR App listing API
+description: Define's a custom REST Resource for GET method for getting Apigee developer app list
+package: Custom
+type: module
+core: 8.x

@@ -1,0 +1,243 @@
+/* Builder row */
+.builder-row.row-flex{
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+.builder-row.row-flex:before, .builder-row.row-flex:after{
+  width: 0;
+  display: none;
+}
+/*Skillbar*/
+.dexp-builder-skill-bar{
+  margin-top: 30px;
+}
+.dexp-builder-skill-bar .progress{
+  overflow: visible;
+}
+.dexp-builder-skill-bar .progress-bar{
+  position: relative;
+}
+.dexp-builder-skill-bar .progress-title{
+  position: absolute;
+  color: #000;
+  text-align: initial;
+  width: 100%;
+}
+.dexp-builder-skill-bar .progress-percent{
+  right: 0;
+  position: absolute;
+}
+
+.dexp-builder-title.backword .dexp-title{
+  position: relative;
+  z-index: 0;
+}
+.dexp-builder-title.backword .dexp-title:before{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.middle-center{
+  position: relative;
+}
+.middle-center >*{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+.dexp-clearfix{
+  clear: both;
+  width: 100%;
+}
+.dexp-builder-box .box-title-wrapper{
+    -ms-flex-align: center!important;
+    align-items: center!important;
+}
+/* Button */
+.dexp-button.btn-default{
+    background-color: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    color: #656565;
+}
+.dexp-button.btn-default:hover{
+    background-color: darken(#e6e6e6, 10%);
+}
+.dexp-button.btn-primary,
+.dexp-button.btn-secondary,
+.dexp-button.btn-success,
+.dexp-button.btn-danger,
+.dexp-button.btn-info,
+.dexp-button.btn-dark{
+    color: #FFF;
+}
+.dexp-button.btn-primary:hover,
+.dexp-button.btn-secondary:hover,
+.dexp-button.btn-success:hover,
+.dexp-button.btn-danger:hover,
+.dexp-button.btn-info:hover,
+.dexp-button.btn-dark:hover{
+    color: #FFF;
+}
+.dexp-button.btn-warning,
+.dexp-button.btn-light{
+    color: #333;
+}
+.dexp-button.btn-warning:hover,
+.dexp-button.btn-light:hover{
+    color: #333;
+}
+.dexp-button.btn-outline-default{
+    border: 1px solid #e6e6e6;
+    color: #656565;
+}
+.dexp-button.btn-outline-default:hover{
+    background-color: #e6e6e6;
+}
+.dexp-button.btn-outline-primary{
+    color: #007bff;
+}
+.dexp-button.btn-outline-secondary{
+    color: #6c757d;
+}
+.dexp-button.btn-outline-success{
+    color: #28a745;
+}
+.dexp-button.btn-outline-danger{
+    color: #dc3545;
+}
+.dexp-button.btn-outline-info{
+    color: #17a2b8;
+}
+.dexp-button.btn-outline-dark{
+    color: #343a40;
+}
+.dexp-button.btn-outline-primary:hover,
+.dexp-button.btn-outline-secondary:hover,
+.dexp-button.btn-outline-success:hover,
+.dexp-button.btn-outline-danger:hover,
+.dexp-button.btn-outline-info:hover,
+.dexp-button.btn-outline-dark:hover{
+    color: #FFF;
+}
+.dexp-button.btn-outline-warning{
+    color: #ffc107;
+}
+.dexp-button.btn-outline-light{
+    color: #f8f9fa;
+}
+.dexp-button.btn-outline-warning:hover,
+.dexp-button.btn-outline-light:hover{
+    color: #333;
+}
+
+.dexp-stats .stats-icon{
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+.dexp-stats .stats-number{
+    font-size: 60px;
+    line-height: 60px;
+    margin-bottom: 10px;
+}
+.dexp-stats .stats-prefix{
+    font-size: 70%;
+}
+.dexp-stats .stats-suffix{
+    font-size: 70%;
+}
+/* Progress Circle */
+.dexp-builder-progress-circle .dexp-progress-circle-wrapper{
+    position: relative;
+}
+.dexp-builder-progress-circle .dexp-progress-circle {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+.dexp-builder-progress-circle .dexp-progress-bar {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+.dexp-builder-progress-circle .dexp-progress-color {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    display: none;
+}
+.dexp-builder-progress-circle .dexp-progress-content {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    text-align: center;
+    display: table;
+}
+.dexp-builder-progress-circle .dexp-progress-content span {
+    display: block;
+}
+.dexp-builder-progress-circle .dexp-progress-content-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.dexp-builder-progress-circle .dexp-progress-content p:last-child {
+    margin-bottom: 0;
+}
+.dexp-builder-progress-circle .dexp-progress-circle-title{
+    margin: 25px 0 10px;
+}
+.dexp-google-chart-wrapper{
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+.dexp-builder-progress-bar .dexp-progress-bar{
+    -webkit-transition: width 1s ease; /* Safari */
+    transition:  width 1s ease;
+    position: relative;
+    height: 100%;
+}
+.dexp-builder-progress-bar .dexp-progress-percent{
+    position: absolute;
+    right: -10px;
+    top: -25px;
+    color:#000;
+}
+.dexp-builder-gmap{
+    min-height: 200px;
+}
+.dexp-countdown-clock{
+    display: flex;
+    flex-direction: row;
+}
+.dexp-countdown-clock span{
+    margin-right: 4px;
+}
+.dexp-countdown-clock span.value{
+    font-weight: 600;
+    font-size: 25px;
+}
+.dexp-countdown-clock span.label{
+    font-weight: normal;
+    font-size: 20px;
+}
+.dexp-countdown-clock.clock-expired{
+    color: red;
+}
+.dexp-builder-gallery ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.dexp-builder-gallery ul li{
+    display: inline-block;
+    padding: 5px;
+}

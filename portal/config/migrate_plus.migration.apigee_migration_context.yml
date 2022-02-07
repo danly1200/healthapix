@@ -1,0 +1,26 @@
+uuid: 4d4a57ec-bbda-4a87-b673-f8b7b20ed1d9
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vXRbmCcHsFHAOvUCWCU-0pI03JWQSapWsMImU4kxwiw
+id: apigee_migration_context
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: apigee_migration
+label: Context
+source:
+  plugin: apigee_migration_context
+process:
+  name: name
+  label: label
+  weight: weight
+  status: status
+  description: description
+  langcode: langcode
+  requireAllConditions: requireAllConditions
+destination:
+  plugin: 'entity:context'
+migration_dependencies: null

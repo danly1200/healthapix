@@ -1,0 +1,7 @@
+dexp_block_settings.settings:
+  path: '/admin/config/user-interface/dexp_block_settings'
+  defaults:
+    _title: 'Block animation settings'
+    _form: '\Drupal\dexp_block_settings\Form\SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

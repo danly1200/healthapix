@@ -1,0 +1,21 @@
+uuid: ac32a5f2-b143-4af0-b4ba-df9a3b13d1b0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_fhir_server_base_url
+field_name: field_fhir_server_base_url
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

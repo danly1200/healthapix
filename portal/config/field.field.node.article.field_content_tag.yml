@@ -1,0 +1,31 @@
+uuid: 51c327be-8937-4db9-a029-b10e96d4bb26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_tag
+    - node.type.article
+id: node.article.field_content_tag
+field_name: field_content_tag
+entity_type: node
+bundle: article
+label: 'Content Tag'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    tid: 2
+    vid: 2
+    name: blog
+    description: null
+    format: null
+    weight: 0
+    vocabulary_machine_name: content_type_tag
+default_value_callback: ''
+settings:
+  handler_settings:
+    sort:
+      field: _none
+  handler: 'default:taxonomy_term'
+field_type: entity_reference

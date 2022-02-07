@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="HPX_KV_CreateKeyJwks" mapIdentifier="HPX_Config">
+    <DisplayName>HPX_KV_CreateKeyJwks</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Put override="true">
+        <Key>
+            <Parameter>publickeyRS384Name</Parameter>
+        </Key>
+        <Value ref="pubKeyName"/>
+    </Put>
+    <Put override="true">
+        <Key>
+            <Parameter ref="pubKeyName"/>
+        </Key>
+        <Value ref="keypair.pubKey"/>
+    </Put>
+    <Put override="true">
+        <Key>
+            <Parameter>privatekeyRS384Name</Parameter>
+        </Key>
+        <Value ref="privKeyName"/>
+    </Put>
+    <Put override="true">
+        <Key>
+            <Parameter>jwksJson</Parameter>
+        </Key>
+        <Value ref="_jwks"/>
+    </Put>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

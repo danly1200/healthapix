@@ -1,0 +1,40 @@
+shuffle:
+  version: 1.0
+  js:
+    assets/js/jquery.shuffle.min.js: {}
+grid_filter:
+  version: 1.0
+  js:
+    assets/js/dexp_grid_filter.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquerySettings
+    - core/jquery.once
+    - core/drupal
+    - dexp_grid/shuffle
+grid_masonry:
+  version: 1.x
+  js:
+    assets/js/dexp_grid.js: {}
+  css:
+    theme:
+      assets/css/dexp-grid.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - core/jquery.once
+    - core/drupal
+    - dexp_grid/shuffle
+grid_admin:
+  version: 1.x
+  js:
+    assets/js/dexp_grid_admin.js: {}
+  dependencies:
+    - dexp_grid/grid_masonry
+    - core/jquery.ui.resizable
+    - core/drupal.ajax
+grid_bootstrap:
+  version: 1.x
+  css:
+    base:
+      assets/css/grid-bootstrap.css: {}

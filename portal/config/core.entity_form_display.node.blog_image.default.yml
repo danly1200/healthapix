@@ -1,0 +1,103 @@
+uuid: ffb7c383-2b33-4216-b403-3022c27d3325
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blog_image.body
+    - field.field.node.blog_image.comment_node_blog_image
+    - field.field.node.blog_image.field_content_tag
+    - field.field.node.blog_image.field_image
+    - node.type.blog_image
+  module:
+    - comment
+    - path
+    - text
+id: node.blog_image.default
+targetEntityType: node
+bundle: blog_image
+mode: default
+content:
+  body:
+    weight: -4
+    type: text_textarea_with_summary
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  comment_node_blog_image:
+    type: comment_default
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_content_tag:
+    weight: 6
+    type: entity_reference_autocomplete
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 15
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 120
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 16
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_image: true

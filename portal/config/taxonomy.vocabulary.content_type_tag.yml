@@ -1,0 +1,8 @@
+uuid: 06d20fcd-5ed7-4c9f-9d45-2f05e4e37499
+langcode: en
+status: true
+dependencies: {  }
+name: 'Content Grouping Tag'
+vid: content_type_tag
+description: 'Used to group pieces of content, specifically blog entries'
+weight: 0

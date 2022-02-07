@@ -1,0 +1,60 @@
+<li {{ attributes }}>
+    <img 
+      src="{{ slide.dummy }}"
+      data-lazyload="{{ slide.background_image.url }}"
+      data-bgposition="{{ slide.data_bgposition }}"
+      data-bgfit="{{ slide.data_bgfit }}"
+      {% if slide.data_kenburns %}
+        data-kenburns="on"
+        data-scalestart="{{ slide.data_scalestart }}"
+        data-scaleend="{{ slide.data_scaleend }}"
+        data-duration="{{ slide.data_duration }}"
+        data-ease="{{ slide.data_ease }}"
+      {% endif %}
+      {% if slide.data_bgpositionend %}
+      data-bgpositionend="{{ slide.data_bgpositionend }}"
+      {% endif %}
+      {% if (slide.data_kenburns == 'on') %}
+      data-bgrepeat="no-repeat"
+      data-bgfitend="100"
+      data-zoomstart=""
+      {% endif %}
+      class="rev-slidebg"
+      {% if slide.background_type == 'color' %}
+      data-bgcolor="{{ slide.background_color }}"
+      {% endif %}
+      alt="Slide Background Image"/>
+    {% if slide.background_type in ['youtube','vimeo','html5video']  %}
+      <div class="rs-background-video-layer"
+        {% if slide.background_type == 'youtube' %}
+        data-ytid="{{ slide.background_youtube }}"
+        data-videoattributes="version=3&enablejsapi=1&html5=1&hd=1&wmode=opaque&showinfo=0&rel=0&origin={{ base_url }}"
+        {% endif %}
+        {% if slide.background_type == 'vimeo' %}
+        data-vimeoid="{{ slide.background_vimeo }}"
+        data-videoattributes="background=1&title=0&byline=0&portrait=0&api=1&autoplay=1"
+        {% endif %}
+        {% if slide.background_type == 'html5video' %}
+        data-videomp4="{{ slide.background_html5_mp4 }}" 
+        data-videowebm="{{ slide.background_html5_webm }}"
+        {% endif %}
+        data-videowidth="100%" 
+        data-videoheight="100%"  
+        data-videopreload="auto"
+        data-forceCover="1"
+        data-dottedoverlay="{{ slide.data_dottedoverlay }}"
+        data-aspectratio="{{ slide.data_aspectratio }}"
+        data-volume="100"
+        data-videostartat="{{ slide.data_videostartat }}"
+        {% if slide.data_videoendat %}
+        data-videoendat="{{ slide.data_videoendat }}"
+        {% endif %}
+        data-autoplay="true"
+        data-forcerewind="on" 
+        data-nextslideatend="true" 
+        data-videoloop="{{ slide.data_videoloop }}"></div>
+    {% endif %}
+    {% for key, layer in layers  %}
+        {{ layer }}
+    {% endfor %}
+</li>

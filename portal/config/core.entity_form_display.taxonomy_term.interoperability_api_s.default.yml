@@ -1,0 +1,54 @@
+uuid: 473e9973-f967-4144-b427-29231e82995d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.interoperability_api_s.field_api_content_link
+    - taxonomy.vocabulary.interoperability_api_s
+  module:
+    - link
+    - path
+    - text
+id: taxonomy_term.interoperability_api_s.default
+targetEntityType: taxonomy_term
+bundle: interoperability_api_s
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+      rows: 5
+    third_party_settings: {  }
+  field_api_content_link:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+hidden: {  }

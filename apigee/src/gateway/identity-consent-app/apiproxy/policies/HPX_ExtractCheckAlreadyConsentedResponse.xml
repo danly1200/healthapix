@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables name="HPX_ExtractCheckAlreadyConsentedResponse">
+    <DisplayName>ExtractCheckAlreadyConsentedResponse</DisplayName>
+    <Source>previousConsentResponse</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="valid">
+            <JSONPath>$.valid</JSONPath>
+        </Variable>
+        <Variable name="exists">
+            <JSONPath>$.exists</JSONPath>
+        </Variable>
+        <Variable name="id">
+            <JSONPath>$.id</JSONPath>
+        </Variable>
+        <Variable name="new_scopes">
+            <JSONPath>$.new_scopes</JSONPath>
+        </Variable>
+        <Variable name="existing_scopes">
+            <JSONPath>$.existing_scopes</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <VariablePrefix>consent</VariablePrefix>
+</ExtractVariables>

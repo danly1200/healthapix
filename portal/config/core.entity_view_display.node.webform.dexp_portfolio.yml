@@ -1,0 +1,23 @@
+uuid: 153cb31a-0775-4005-9850-4a42ce820831
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.dexp_portfolio
+    - field.field.node.webform.body
+    - node.type.webform
+  module:
+    - user
+id: node.webform.dexp_portfolio
+targetEntityType: node
+bundle: webform
+mode: dexp_portfolio
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  comment_node_webform: true

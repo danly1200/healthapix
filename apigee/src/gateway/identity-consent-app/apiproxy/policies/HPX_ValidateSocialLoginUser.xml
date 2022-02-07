@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="true" enabled="true" name="HPX_ValidateSocialLoginUser">
+    <DisplayName>HPX_ValidateSocialLoginUser</DisplayName>
+    <Request clearPayload="true">
+        <Set>
+            <Headers>
+                <Header name="Accept">application/json</Header>
+            </Headers>
+            <QueryParams>
+                <QueryParam name="identifier">{user_id}</QueryParam>
+                <QueryParam name="serverName">{fhirServer}</QueryParam>
+                <QueryParam name="sessionId">{sessionid}</QueryParam>
+                <QueryParam name="client_id">{client_id}</QueryParam>
+            </QueryParams>
+            <Verb>GET</Verb>
+        </Set>
+    </Request>
+    <Response>validateUserResponse</Response>
+    <LocalTargetConnection>
+        <Path>/identity-users/v1/user</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

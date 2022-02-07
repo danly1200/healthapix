@@ -1,0 +1,12 @@
+name: 'DrupalExp Core'
+type: module
+description: 'Core module of DrupalExp Framework.'
+package: DrupalExp
+version: 8.x-1.0
+core: 8.x
+configure: dexp.settings
+dependencies:
+  - field_group
+'project status url': 'https://projects.drupalexp.com/updates'
+project: dexp
+datestamp: 1527319963

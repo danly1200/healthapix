@@ -1,0 +1,5 @@
+name: 'GHC App Scopes Configurations'
+type: module
+description: 'Module to configure App scopes from API-Resources.'
+core: 8.x
+package: 'GHC'

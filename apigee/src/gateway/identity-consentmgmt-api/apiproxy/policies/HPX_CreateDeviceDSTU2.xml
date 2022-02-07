@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_CreateDeviceDSTU2">
+    <DisplayName>HPX_CreateDeviceDSTU2</DisplayName>
+    <Request clearPayload="true" variable="createDeviceRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{googleToken}</Header>
+            </Headers>
+            <Verb>POST</Verb>
+            <Payload contentType="application/fhir+json" variablePrefix="@" variableSuffix="#">{"resourceType":"Device","identifier":[{"system":"http://goodcare.org/devices/id","value":"@client_id#"}],"status":"available"}</Payload>
+        </Set>
+    </Request>
+    <Response>createDeviceResponse</Response>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="ghcapiserver"/>
+        </LoadBalancer>
+        <Path>/{targetBaseURI}/Device</Path>
+    </HTTPTargetConnection>
+</ServiceCallout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="HPX_CheckAlreadyConsentedServiceCallout2">
+    <DisplayName>HPX_CheckAlreadyConsented.ServiceCallout2</DisplayName>
+    <Properties/>
+    <Request clearPayload="true">
+        <Set>
+            <Headers>
+                <Header name="Accept">application/json</Header>
+            </Headers>
+            <QueryParams>
+                <QueryParam name="sessionId">{sessionid}</QueryParam>
+            </QueryParams>
+            <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"client_id":"@client_id#","patient_id":"@hpx.user.id#","scopes":"@scope#"}</Payload>
+            <Verb>POST</Verb>
+            <Path>/validate</Path>
+        </Set>
+    </Request>
+    <Response>previousConsentResponse</Response>
+    <LocalTargetConnection>
+        <Properties/>
+        <Path>/{toLowerCase(fhirVersion:r4)}/identity/consent/v1</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

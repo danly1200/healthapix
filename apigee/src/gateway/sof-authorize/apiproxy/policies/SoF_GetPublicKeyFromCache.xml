@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache enabled="true" continueOnError="true" async="false" name="SoF_GetPublicKeyFromCache">
+    <DisplayName>SoF_GetPublicKeyFromCache</DisplayName>
+    <CacheResource>sof-jwks-cache</CacheResource>
+    <AssignTo>publicKeyJwks</AssignTo>
+    <Scope>Application</Scope>
+    <CacheKey>
+        <KeyFragment ref="idpJwks.url"/>
+    </CacheKey>
+</LookupCache>

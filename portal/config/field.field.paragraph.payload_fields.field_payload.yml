@@ -1,0 +1,21 @@
+uuid: 79f25280-35c1-4eff-920e-6becc68da21a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_payload
+    - paragraphs.paragraphs_type.payload_fields
+  module:
+    - text
+id: paragraph.payload_fields.field_payload
+field_name: field_payload
+entity_type: paragraph
+bundle: payload_fields
+label: payload
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

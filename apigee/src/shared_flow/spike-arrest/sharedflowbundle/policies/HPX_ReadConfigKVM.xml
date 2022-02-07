@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations encrypted="false" mapIdentifier="HPX_Config" async="false" continueOnError="false" enabled="true" name="HPX_ReadConfigKVM">
+    <DisplayName>HPX_ReadConfigKVM</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <InitialEntries/>
+    <Get assignTo="spikearrest.ratelimit">
+        <Key>
+            <Parameter>spikearrest.ratelimit</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="dstu2.b2b.path.filter.map">
+        <Key>
+            <Parameter>dstu2.b2b.path.filter.map</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="stu3.b2b.path.filter.map">
+        <Key>
+            <Parameter>stu3.b2b.path.filter.map</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="r4.b2b.path.filter.map">
+        <Key>
+            <Parameter>r4.b2b.path.filter.map</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="dstu2.b2c.payload.filter.map">
+        <Key>
+            <Parameter>dstu2.b2c.payload.filter.map</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="stu3.b2c.payload.filter.map">
+        <Key>
+            <Parameter>stu3.b2c.payload.filter.map</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="r4.b2c.payload.filter.map">
+        <Key>
+            <Parameter>r4.b2c.payload.filter.map</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

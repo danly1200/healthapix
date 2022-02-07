@@ -1,0 +1,52 @@
+uuid: 217b1be7-9696-4b74-8469-63cd08372a66
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_visibility_groups
+    - dexp_block_settings
+    - dexp_layerslider
+    - system
+  theme:
+    - mdc_theme
+third_party_settings:
+  dexp_block_settings:
+    animate: ''
+    animate_duration: '1000'
+    animate_delay: 0
+    background_color: ''
+    background_image: 'file:0'
+    background_position: ''
+    background_image_type: default
+    background_repeat: no-repeat
+    background_size: auto
+    background_video: ''
+    background_video_controls: 0
+    background_video_mute: 0
+    background_video_start_at: null
+    exclude_block_title: 0
+    custom_class: ''
+    custom_content_class: ''
+    custom_css: ''
+id: homepageslider
+theme: mdc_theme
+region: home_content_header
+weight: -25
+provider: null
+plugin: 'dexp_layerslider:1'
+settings:
+  id: 'dexp_layerslider:1'
+  label: 'Home page slider'
+  provider: dexp_layerslider
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

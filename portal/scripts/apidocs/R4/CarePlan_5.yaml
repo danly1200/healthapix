@@ -1,0 +1,1425 @@
+openapi: 3.0.1
+info:
+  title: HL7® FHIR® CarePlan resource API documentation
+  description: "Fast Healthcare Interoperability Resources (HL7® FHIR®, pronounced \"Fire\"\
+  ) defines a set of \"Resources\" that represent granular clinical concepts. The resources\
+  \ can be managed in isolation, or aggregated into complex documents. Technically, FHIR is\
+  \ designed for the web; the resources are based on simple JSON structures, with an\
+  \ http-based RESTful protocol where each resource has predictable URL. Where possible,\
+  \ open internet standards are used for data representation. The FHIR® R4 API docs are part\
+  \ of the FHIR® Specifications (v4.0.1: R4). The is the current published version. This\
+  \ section contains API docs for the R4 resources required to meet the CMS and ONC\
+  \ interoperability and data access requirements. API docs for other resources can be added\
+  \ by API publishers on request. \n"
+servers:
+- url: https://org-env.apigee.net/v1/ghc/r4
+tags:
+- name: CarePlan
+paths:
+  /CarePlan:
+    get:
+      tags:
+      - CarePlan
+      parameters:
+      - name: _language
+        in: query
+        description: The language of the resource
+        schema:
+          type: string
+      - name: care-team
+        in: query
+        description: Who's involved in plan?
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: Time period plan covers
+        schema:
+          type: string
+          format: date
+      - name: identifier
+        in: query
+        description: External Ids for this plan
+        schema:
+          type: string
+      - name: goal
+        in: query
+        description: Desired outcome of plan
+        schema:
+          type: string
+      - name: performer
+        in: query
+        description: Matches if the practitioner is listed as a performer in any of
+          the "simple" activities.  (For performers of the detailed activities, chain
+          through the activitydetail search parameter.)
+        schema:
+          type: string
+      - name: replaces
+        in: query
+        description: CarePlan replaced by this CarePlan
+        schema:
+          type: string
+      - name: subject
+        in: query
+        description: Who the care plan is for
+        schema:
+          type: string
+      - name: instantiates-canonical
+        in: query
+        description: Instantiates FHIR protocol or definition
+        schema:
+          type: string
+      - name: part-of
+        in: query
+        description: Part of referenced CarePlan
+        schema:
+          type: string
+      - name: encounter
+        in: query
+        description: Encounter created as part of
+        schema:
+          type: string
+      - name: intent
+        in: query
+        description: proposal | plan | order | option
+        schema:
+          type: string
+      - name: activity-reference
+        in: query
+        description: Activity details defined in specific resource
+        schema:
+          type: string
+      - name: condition
+        in: query
+        description: Health issues this plan addresses
+        schema:
+          type: string
+      - name: based-on
+        in: query
+        description: Fulfills CarePlan
+        schema:
+          type: string
+      - name: patient
+        in: query
+        description: Who the care plan is for
+        schema:
+          type: string
+      - name: activity-date
+        in: query
+        description: Specified date occurs within period specified by CarePlan.activity.detail.scheduled[x]
+        schema:
+          type: string
+          format: date
+      - name: instantiates-uri
+        in: query
+        description: Instantiates external protocol or definition
+        schema:
+          type: string
+      - name: _id
+        in: query
+        description: The ID of the resource
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Type of plan
+        schema:
+          type: string
+      - name: activity-code
+        in: query
+        description: Detail type of activity
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: draft | active | suspended | completed | entered-in-error | cancelled
+          | unknown
+        schema:
+          type: string
+      - name: _format
+        in: query
+        schema:
+          type: string
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarePlan'
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+    post:
+      tags:
+      - CarePlan
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: If-None-Exist
+          in: header
+          description: Specify the search query for conditional create.
+          schema:
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/CarePlan'
+        required: false
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: CarePlan could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: CarePlan not found.
+          content: {}
+        '422':
+          description: The CarePlan resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}:
+    get:
+      tags:
+      - CarePlan
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/CarePlan'
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+    put:
+      tags:
+      - CarePlan
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        content:
+          'application/fhir+json;charset=utf-8':
+            schema:
+              $ref: '#/components/schemas/CarePlan'
+        required: false
+      responses:
+        '200':
+          description: CarePlan Updated.
+          content: {}
+        '201':
+          description: CarePlan Created.
+          content: {}
+        '400':
+          description: CarePlan could not be parsed or failed basic FHIR validation rules (or multiple matches were found).
+          content: {}
+        '403':
+          description: Not Authorized.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      x-codegen-request-body-name: body
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+    delete:
+      tags:
+      - CarePlan
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+            default: 'Bearer [access_token]'
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: No Content.
+          content: {}
+        '204':
+          description: No Content.
+          content: {}
+        '404':
+          description: CarePlan not found.
+          content: {}
+        '405':
+          description: Method not allowed.
+          content: {}
+        '409':
+          description: Conflict Error.
+          content: {}
+        '412':
+          description: The given criteria is not selective enough.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}/_history:
+    get:
+      tags:
+      - CarePlan
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}/_history/{vid}:
+    get:
+      tags:
+      - CarePlan
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: _count
+          in: query
+          description: Number of records needed in response.
+          schema:
+            type: integer
+        - name: _since
+          in: query
+          description: Specify an instant to only include resource versions that were created at or after the given instant in time. An instant in time is known at least to the second and always includes a time zone.
+          schema:
+            pattern: '([1-9][0-9]{3}|0[0-9]{3})(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]+)?|(24:00:00(\.0+)?))(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?)?)?)?'
+            type: string
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            'application/fhir+json;charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/CarePlan'
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/$meta:
+    get:
+      tags:
+        - CarePlan
+      description: 'Retrieves a summary of the profiles, tags, and security labels for CarePlans.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: CarePlans Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels used for CarePlan'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}/$meta:
+    get:
+      tags:
+        - CarePlan
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given CarePlan resource.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: CarePlan Metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}/_history/{vid}/$meta:
+    get:
+      tags:
+        - CarePlan
+      description: 'Retrieves a summary of the profiles, tags, and security labels for given version of the CarePlan.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: CarePlan Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: 'List of all tags, profiles and security labels affixed to the nominated version of the resource.'
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}/{type}:
+    get:
+      tags:
+        - CarePlan
+      description: 'Search the specified resource type in CarePlan compartment.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: ' Compartment Search'
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: _format
+          in: query
+          description: Format of data to be returned.
+          schema:
+            type: string
+            x-consoleDefault: application/fhir+json;charset=utf-8
+          x-consoleDefault: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      responses:
+        '200':
+          description: The set of resources associated with a particular CarePlan
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/_search:
+    post:
+      tags:
+        - CarePlan
+      description: 'This interaction searches a set of CarePlans based on some filter criteria. Search interactions take a series of parameters of name''=''value pairs encoded as an application/x-www-form-urlencoded submission for a POST.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: CarePlans Search using POST
+      parameters:
+        - name: _content
+          in: query
+          description: Search the contents of the resource's data using a fulltext search
+          schema:
+            type: string
+        - name: _id
+          in: query
+          description: The resource identity
+          schema:
+            type: string
+        - name: _language
+          in: query
+          description: The resource language
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: _profile
+          in: query
+          description: Search for resources which have the given profile
+          schema:
+            type: string
+        - name: _security
+          in: query
+          description: Search for resources which have the given security labels
+          schema:
+            type: string
+        - name: _tag
+          in: query
+          description: Search for resources which have the given tag
+          schema:
+            type: string
+        - name: _text
+          in: query
+          description: Search the contents of the resource's narrative using a fulltext search
+          schema:
+            type: string
+        - name: activitycode
+          in: query
+          description: Detail type of activity
+          schema:
+            type: string
+        - name: activitydate
+          in: query
+          description: 'Specified date occurs within period specified by CarePlan.activity.timingSchedule. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: activityreference
+          in: query
+          description: Activity details defined in specific resource
+          schema:
+            type: string
+        - name: condition
+          in: query
+          description: Health issues this plan addresses
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Time period plan covers. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+          schema:
+            type: string
+            format: date
+        - name: goal
+          in: query
+          description: Desired outcome of plan
+          schema:
+            type: string
+        - name: participant
+          in: query
+          description: Who is involved
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: Who care plan is for
+          schema:
+            type: string
+        - name: performer
+          in: query
+          description: 'Matches if the practitioner is listed as a performer in any of the "simple" activities.  (For performers of the detailed activities, chain through the activitydetail search parameter.)'
+          schema:
+            type: string
+        - name: relatedcode
+          in: query
+          description: includes | replaces | fulfills
+          schema:
+            type: string
+        - name: relatedcode-relatedplan
+          in: query
+          description: A combination of the type of relationship and the related plan
+          schema:
+            type: string
+        - name: relatedplan
+          in: query
+          description: Plan relationship exists with
+          schema:
+            type: string
+        - name: subject
+          in: query
+          description: Who care plan is for
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                _content:
+                  type: string
+                  description: Search the contents of the resource's data using a fulltext search
+                _id:
+                  type: string
+                  description: The resource identity
+                _language:
+                  type: string
+                  description: The resource language
+                _lastUpdated:
+                  type: string
+                  description: 'Only return resources which were last updated as specified by the given range. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                _profile:
+                  type: string
+                  description: Search for resources which have the given profile
+                _security:
+                  type: string
+                  description: Search for resources which have the given security labels
+                _tag:
+                  type: string
+                  description: Search for resources which have the given tag
+                _text:
+                  type: string
+                  description: Search the contents of the resource's narrative using a fulltext search
+                activitycode:
+                  type: string
+                  description: Detail type of activity
+                activitydate:
+                  type: string
+                  description: 'Specified date occurs within period specified by CarePlan.activity.timingSchedule. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                activityreference:
+                  type: string
+                  description: Activity details defined in specific resource
+                condition:
+                  type: string
+                  description: Health issues this plan addresses
+                date:
+                  type: string
+                  description: 'Time period plan covers. The date parameter format is yyyy-mm-ddThh:nn:ss(TZ). The prefixes >, >=, <= and < may be used on the parameter value.'
+                  format: date
+                goal:
+                  type: string
+                  description: Desired outcome of plan
+                participant:
+                  type: string
+                  description: Who is involved
+                patient:
+                  type: string
+                  description: Who care plan is for
+                performer:
+                  type: string
+                  description: 'Matches if the practitioner is listed as a performer in any of the "simple" activities.  (For performers of the detailed activities, chain through the activitydetail search parameter.)'
+                relatedcode:
+                  type: string
+                  description: includes | replaces | fulfills
+                relatedcode-relatedplan:
+                  type: string
+                  description: A combination of the type of relationship and the related plan
+                relatedplan:
+                  type: string
+                  description: Plan relationship exists with
+                subject:
+                  type: string
+                  description: Who care plan is for
+      responses:
+        '200':
+          description: CarePlan bundle
+          content:
+            application/fhir+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarePlan'
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.read
+            - system/CarePlan.write
+  /CarePlan/{id}/$meta-add:
+    post:
+      tags:
+        - CarePlan
+      description: 'Add a metadata info CarePlan with specified id.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: Add CarePlan metadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: CarePlan could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: CarePlan not found.
+          content: {}
+        '422':
+          description: The CarePlan resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.write
+  /CarePlan/{id}/_history/{vid}/$meta-add:
+    post:
+      tags:
+        - CarePlan
+      description: 'Add metadata info to specified CarePlan resource.<p><a href = ''https://www.hl7.org/fhir/careplan.html''>FHIR documentation for CarePlan.</a></p>'
+      operationId: Add CarePlan Version based Metadata
+      parameters:
+        - name: vid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: Specifies the format of data in body
+          required: false
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Specify access token for API in the given format: Bearer [access_token].'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: The Accept request-header field can be used to specify certain media types which are acceptable for the response.
+          schema:
+            type: string
+            default: application/fhir+json;charset=utf-8
+        - name: id
+          in: path
+          description: The logical resource id associated with the Resource.
+          required: true
+          schema:
+            pattern: '[a-z0-9\-\.]{1,64}'
+            type: string
+      requestBody:
+        description: The request body should be a valid meta payload.
+        content:
+          application/fhir+json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/metaBody'
+        required: true
+      responses:
+        '201':
+          description: Successful creation
+          content: {}
+        '400':
+          description: CarePlan could not be parsed or failed basic FHIR validation rules
+          content: {}
+        '404':
+          description: CarePlan not found.
+          content: {}
+        '422':
+          description: The CarePlan resource violated applicable FHIR profiles or server business rules.
+          content: {}
+        default:
+          description: unexpected error
+          content: {}
+      security:
+        - OAuthV2B2B:
+            - system/CarePlan.write
+components:
+  schemas:
+    CarePlan:
+      required:
+      - activity
+      - addresses
+      - author
+      - basedOn
+      - careTeam
+      - category
+      - contained
+      - created
+      - description
+      - encounter
+      - goal
+      - id
+      - identifier
+      - instantiatesUri
+      - intent
+      - meta
+      - partOf
+      - period
+      - replaces
+      - resourceType
+      - status
+      - subject
+      - text
+      type: object
+      properties:
+        resourceType:
+          minLength: 1
+          type: string
+        id:
+          minLength: 1
+          type: string
+        text:
+          required:
+          - div
+          - status
+          type: object
+          properties:
+            status:
+              minLength: 1
+              type: string
+            div:
+              minLength: 1
+              type: string
+        contained:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - id
+            - resourceType
+            type: object
+            properties:
+              resourceType:
+                minLength: 1
+                type: string
+              id:
+                minLength: 1
+                type: string
+              clinicalStatus:
+                required:
+                - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - code
+                      - system
+                      type: object
+                      properties:
+                        system:
+                          minLength: 1
+                          type: string
+                        code:
+                          minLength: 1
+                          type: string
+              verificationStatus:
+                required:
+                - coding
+                type: object
+                properties:
+                  coding:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - code
+                      - system
+                      type: object
+                      properties:
+                        system:
+                          minLength: 1
+                          type: string
+                        code:
+                          minLength: 1
+                          type: string
+              code:
+                required:
+                - text
+                type: object
+                properties:
+                  text:
+                    minLength: 1
+                    type: string
+              subject:
+                required:
+                - display
+                - reference
+                type: object
+                properties:
+                  reference:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+        identifier:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - value
+            type: object
+            properties:
+              value:
+                minLength: 1
+                type: string
+        instantiatesUri:
+          type: array
+          items:
+            type: object
+            properties: {}
+        basedOn:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            type: object
+            properties:
+              display:
+                minLength: 1
+                type: string
+        replaces:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            type: object
+            properties:
+              display:
+                minLength: 1
+                type: string
+        partOf:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            type: object
+            properties:
+              display:
+                minLength: 1
+                type: string
+        status:
+          minLength: 1
+          type: string
+        intent:
+          minLength: 1
+          type: string
+        category:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - text
+            type: object
+            properties:
+              text:
+                minLength: 1
+                type: string
+        description:
+          minLength: 1
+          type: string
+        subject:
+          required:
+          - display
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        encounter:
+          required:
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+        period:
+          required:
+          - end
+          type: object
+          properties:
+            end:
+              minLength: 1
+              type: string
+        created:
+          minLength: 1
+          type: string
+        author:
+          required:
+          - display
+          - reference
+          type: object
+          properties:
+            reference:
+              minLength: 1
+              type: string
+            display:
+              minLength: 1
+              type: string
+        careTeam:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+        addresses:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - display
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+              display:
+                minLength: 1
+                type: string
+        goal:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            required:
+            - reference
+            type: object
+            properties:
+              reference:
+                minLength: 1
+                type: string
+        activity:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: object
+            properties:
+              outcomeCodeableConcept:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+                  properties:
+                    coding:
+                      minItems: 1
+                      uniqueItems: true
+                      type: array
+                      items:
+                        required:
+                        - code
+                        - display
+                        - system
+                        type: object
+                        properties:
+                          system:
+                            minLength: 1
+                            type: string
+                          code:
+                            minLength: 1
+                            type: string
+                          display:
+                            minLength: 1
+                            type: string
+              outcomeReference:
+                minItems: 1
+                uniqueItems: true
+                type: array
+                items:
+                  required:
+                  - display
+                  - reference
+                  type: object
+                  properties:
+                    reference:
+                      minLength: 1
+                      type: string
+                    display:
+                      minLength: 1
+                      type: string
+              detail:
+                required:
+                - code
+                - doNotPerform
+                - location
+                - performer
+                - scheduledTiming
+                - status
+                - statusReason
+                type: object
+                properties:
+                  code:
+                    required:
+                    - coding
+                    type: object
+                    properties:
+                      coding:
+                        minItems: 1
+                        uniqueItems: true
+                        type: array
+                        items:
+                          required:
+                          - code
+                          - display
+                          - system
+                          type: object
+                          properties:
+                            system:
+                              minLength: 1
+                              type: string
+                            code:
+                              minLength: 1
+                              type: string
+                            display:
+                              minLength: 1
+                              type: string
+                  status:
+                    minLength: 1
+                    type: string
+                  statusReason:
+                    required:
+                    - text
+                    type: object
+                    properties:
+                      text:
+                        minLength: 1
+                        type: string
+                  doNotPerform:
+                    type: boolean
+                  scheduledTiming:
+                    required:
+                    - repeat
+                    type: object
+                    properties:
+                      repeat:
+                        required:
+                        - frequency
+                        - period
+                        - periodUnit
+                        type: object
+                        properties:
+                          frequency:
+                            type: number
+                          period:
+                            type: number
+                          periodUnit:
+                            minLength: 1
+                            type: string
+                  location:
+                    required:
+                    - display
+                    type: object
+                    properties:
+                      display:
+                        minLength: 1
+                        type: string
+                  performer:
+                    minItems: 1
+                    uniqueItems: true
+                    type: array
+                    items:
+                      required:
+                      - display
+                      - reference
+                      type: object
+                      properties:
+                        reference:
+                          minLength: 1
+                          type: string
+                        display:
+                          minLength: 1
+                          type: string
+        meta:
+          required:
+          - tag
+          type: object
+          properties:
+            tag:
+              minItems: 1
+              uniqueItems: true
+              type: array
+              items:
+                required:
+                - code
+                - display
+                - system
+                type: object
+                properties:
+                  system:
+                    minLength: 1
+                    type: string
+                  code:
+                    minLength: 1
+                    type: string
+                  display:
+                    minLength: 1
+                    type: string
+      description: ""
+    metaBody:
+      type: string
+  securitySchemes:
+    OAuthV2B2C:
+      type: oauth2
+      description: Security scheme for B2C flow using authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://org-env.apigee.net/oauth/v2/authorize'
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken'
+          scopes:
+            system/CarePlan.read: Read permissions for CarePlan demographics.
+            system/CarePlan.write: Write permissions for CarePlan demographics.
+    OAuthV2B2B:
+      type: oauth2
+      description: Security scheme for B2B flow using authorization code flow.
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://org-env.apigee.net/oauth/v2/accesstoken?grant_type=client_credentials'
+          scopes:
+            system/CarePlan.read: Read permissions for CarePlan demographics.
+            system/CarePlan.write: Write permissions for CarePlan demographics.

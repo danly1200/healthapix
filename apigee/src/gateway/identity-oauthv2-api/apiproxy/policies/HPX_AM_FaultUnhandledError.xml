@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_FaultUnhandledError">
+    <DisplayName>HPX_AM_FaultUnhandledError</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers/>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{"error":"server_error","error_description":"unknown error"}</Payload>
+        <StatusCode>401</StatusCode>
+        <ReasonPhrase>Unauthorized</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

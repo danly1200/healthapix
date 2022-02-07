@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="status">
+            <Description>Checks whether Keys and JWKS json exist or not and prints in trace</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_KV_GetKeyNames</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPublicKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPrivateKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_AnalyzeKVM</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_RemoveRequestAttributes</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_AM_JwksStatus</Name>
+                </Step>
+            </Response>
+            <Condition>(request.verb = "GET") and (proxy.pathsuffix MatchesPath "/status")</Condition>
+        </Flow>
+        <Flow name="create">
+            <Description>Create Key Pair, KVM entries and JWKS json</Description>
+            <Request>
+                <Step>
+                    <Name>HPX_KV_GetKeyNames</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPublicKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_GetPrivateKey</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_AnalyzeKVM</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_RemoveRequestAttributes</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>HPX_AM_ExtractJwksDetails</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_JS_AssignVariables</Name>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_CreateKeyJwks</Name>
+                    <Condition>skipKvm = false</Condition>
+                </Step>
+                <Step>
+                    <Name>HPX_KV_CreatePrivateKey</Name>
+                    <Condition>skipKvm = false</Condition>
+                </Step>
+                <Step>
+                    <Name>HPX_AM_RemovePayload</Name>
+                </Step>
+            </Response>
+            <Condition>(request.verb = "GET") and (proxy.pathsuffix MatchesPath "/create")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/identity-jwks</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+        <Condition>(flowName = "create") and ((installPublicKeyName = true) or (installPrivateKeyName = true) or (installJwksJson = true) or (installPublicKey = true) or (installPrivateKey = true) or (request.header.x-force-update = true))</Condition>
+    </RouteRule>
+    <RouteRule name="no-target"/>
+</ProxyEndpoint>

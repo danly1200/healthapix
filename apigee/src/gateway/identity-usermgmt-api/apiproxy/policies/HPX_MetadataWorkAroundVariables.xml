@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_MetadataWorkAroundVariables">
+    <DisplayName>HPX_MetadataWorkAroundVariables</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>targetBaseURI</Name>
+        <Template>{google_fhirstore_url}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="https" createNew="true"></AssignTo>
+</AssignMessage>

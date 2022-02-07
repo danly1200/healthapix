@@ -1,0 +1,7 @@
+<div {{ attributes }}>
+    {% if layer.type == 'text' %}
+        {{ layer.text|raw }}
+    {% elseif layer.type == 'image' %}
+        <img src="{{ layer.image.url }}" data-ww="{{ layer.ww }}" data-hh="{{ layer.hh }}" alt="{{ layer.image_alt }}"/>
+    {% endif %}
+</div>

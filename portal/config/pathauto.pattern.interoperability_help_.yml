@@ -1,0 +1,22 @@
+uuid: e7fed544-6c06-4ff7-86c2-314a6072bd9e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: interoperability_help_
+label: 'Interoperability help '
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  7787828c-1b8e-4bc6-88a7-85b29115075a:
+    id: node_type
+    bundles:
+      interoperability_help_page: interoperability_help_page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 7787828c-1b8e-4bc6-88a7-85b29115075a
+selection_logic: and
+weight: -5
+relationships: {  }

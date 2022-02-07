@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="HPX_AM_ReAssignGrantType">
+    <DisplayName>HPX_AM_ReAssignGrantType</DisplayName>
+    <Properties/>
+    <Set>
+        <FormParams>
+            <FormParam name="grant_type">{request.queryparam.grant_type}</FormParam>
+        </FormParams>
+    </Set>
+    <AssignVariable>
+        <Name>scope</Name>
+        <Ref>request.queryparam.scope</Ref>
+    </AssignVariable>
+    <Remove>
+        <QueryParams>
+            <QueryParam name="grant_type"/>
+        </QueryParams>
+    </Remove>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
