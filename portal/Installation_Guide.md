@@ -19,9 +19,9 @@ Reference: <https://developers.google.com/identity/protocols/oauth2/web-server>
 
 ### B) Apigee Details
 
-HealthAPIx portal connects to an Apigee environment. Apigee environment details listed below is required for connecting portal to Apigee:
+HealthAPIx portal connects to an Apigee environment. The Apigee environment details listed below are required for connecting the portal to Apigee:
 
-1. Apigee org = `<apigee-org>`
+1. Apigee org = `<apigee-org>` 
 1. Apigee env = `<apigee-env>`
 1. Apigee admin credentials = `<apigee-username>`
 1. DevPortalAppCreator app ClientId = `<app-client-id>`
