@@ -271,7 +271,7 @@ Developer Synchronization is required to run for the app creation as all the dev
 
 ### G) Apigee Management API Details
 
-HealthAPIx portal connects to Apigee using Apigee management API. The configuraiton listed below is required for App approval workflow:
+HealthAPIx portal connects to Apigee using the Apigee management API. The configuration listed below is required for App approval workflow:
 
 1. Apigee Management API
 1. Developer Email
@@ -279,7 +279,7 @@ HealthAPIx portal connects to Apigee using Apigee management API. The configurai
 
 * Login as admin into the Developer Portal
 
-* Navigate to the below   and add the values for the following fields
+* Navigate to the below and add the values for the following fields
 `https://(ip address of the portal)/admin/config/apigee-auth-url/settings`
 
 * Apigee Management API: `https://api.enterprise.apigee.com/v1/organizations`
