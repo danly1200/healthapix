@@ -240,7 +240,7 @@ Note down the Client ID and Client Secret on top right corner once changes are s
 
 ### E) Apigee Edge Configuration
 
-HealthAPIx portal can connect to only one Apigee environment. Typically the portal in dev/preview environment connects to Apigee dev environment. HealthAPIx portal in produciton environment connects to Apigee prod environment.
+HealthAPIx portal can connect to only one Apigee environment. Typically the portal in dev/preview environment connects to Apigee dev environment. HealthAPIx portal in production environment connects to Apigee prod environment.
 
 * Login as admin into the Developer portal
 
