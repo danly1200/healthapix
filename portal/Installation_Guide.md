@@ -1,4 +1,4 @@
-# HealthAPIx Portal Installation Guide
+# HealthAPIx Apigee Portal Installation Guide
 
 [Step 1: Prerequisites](#Step-1:-Prerequisites)  
 [Step 2: Portal Installation](#Step-2:-Portal-Installation)  
@@ -10,7 +10,7 @@
 
 ### A) GCP Configuration Details
 
-1. GCP Compute Engine VM instance built with Centos 7.9 image
+1. VM instance built with Centos 7.9 image
 (The installation script is tested on a CentOS 7.9)
 
 1. OAuth2.0 Web Client Id and Client Secret configured in the GCP Project Credentials page. This is required to connect to Google Sign-in experience (SIGN IN WITH GOOGLE). In your GCP Project, register an OAuth 2.0 Client for web application:
